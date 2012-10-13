@@ -1,0 +1,23 @@
+<h2>Please enter the constraints for the desired contract conditions:</h2>
+#{form @JobExecution.sendExecutionConditions(), id:'contract'}
+		<div class='class-condition'>
+			<div class='class-name'>${owlClass.getLocalName()}</div>
+			<div class='class-uri'>${owlClass.getUri()}</div>
+			#{condition class:owlClass, id:1 /}
+				<input type='hidden' id='conversationId' name='conversationId' value="${conversationId}"/>
+				<input type='hidden' id='conditionJson' name='conditionJson' />
+				<input type='submit' value="Update" />
+		</div>
+#{/form}
+
+<script type="text/javascript">
+$(function(){
+	$('#replies').stopMonitoringForReplies();
+	$('#contract').submit(function(event){
+		var classConditionPanel = $('.class-condition');
+		var condition = QB.buildCondition($('.class-uri', classConditionPanel).html(), classConditionPanel);
+		$('#conditionJson').val(JSON.stringify(condition));
+		console.log($('#conditionJson').val());	
+	});
+});
+</script>

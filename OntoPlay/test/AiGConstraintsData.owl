@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY unnamed "http://www.owl-ontologies.com/unnamed.owl#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY AiGGridOntology "http://gridagents.sourceforge.net/AiGGridOntology#" >
+    <!ENTITY AiGConstraintsData "http://gridagents.sourceforge.net/AiGConstraintsData#4" >
+    <!ENTITY AiGConditionsOntology "http://gridagents.sourceforge.net/AiGConditionsOntology#" >
+    <!ENTITY AiGConstraintsData3 "http://gridagents.sourceforge.net/AiGConstraintsData#2.5" >
+]>
+
+
+<rdf:RDF xmlns="http://gridagents.sourceforge.net/AiGConstraintsData#"
+     xml:base="http://gridagents.sourceforge.net/AiGConstraintsData"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:AiGGridOntology="http://gridagents.sourceforge.net/AiGGridOntology#"
+     xmlns:AiGConstraintsData="http://gridagents.sourceforge.net/AiGConstraintsData#4"
+     xmlns:AiGConditionsOntology="http://gridagents.sourceforge.net/AiGConditionsOntology#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:AiGConstraintsData3="http://gridagents.sourceforge.net/AiGConstraintsData#2.5"
+     xmlns:unnamed="http://www.owl-ontologies.com/unnamed.owl#">
+    <owl:Ontology rdf:about="http://gridagents.sourceforge.net/AiGConstraintsData">
+        <owl:imports rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology"/>
+        <owl:imports rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&AiGConditionsOntology;constraintWeight"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasMemory -->
+
+    <owl:ObjectProperty rdf:about="&AiGGridOntology;hasMemory"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/unnamed.owl#hasCPU -->
+
+    <owl:ObjectProperty rdf:about="&unnamed;hasCPU"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/unnamed.owl#hasComponent -->
+
+    <owl:ObjectProperty rdf:about="&unnamed;hasComponent">
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <owl:ObjectProperty rdf:about="&owl;topObjectProperty"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasAvailableSize -->
+
+    <owl:DatatypeProperty rdf:about="&AiGGridOntology;hasAvailableSize"/>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasClockSpeed -->
+
+    <owl:DatatypeProperty rdf:about="&AiGGridOntology;hasClockSpeed"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConstraintsData#CpuConstraint -->
+
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGConstraintsData#CpuConstraint">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&unnamed;CPU"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&AiGGridOntology;hasClockSpeed"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;int"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="&xsd;integer">2500</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConstraintsData#RequiredCPU -->
+
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGConstraintsData#RequiredCPU">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&unnamed;hasCPU"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&unnamed;CPU"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&AiGGridOntology;hasClockSpeed"/>
+                                <owl:someValuesFrom>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="&xsd;int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="&xsd;integer">2500</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:comment>BBBBBB</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConstraintsData#RequiredCPU2 -->
+
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGConstraintsData#RequiredCPU2">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&unnamed;hasCPU"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&unnamed;CPU"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&AiGGridOntology;hasClockSpeed"/>
+                                <owl:someValuesFrom>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="&xsd;int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="&xsd;integer">2500</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:comment>AAAA</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConstraintsData#RequiredMemory -->
+
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGConstraintsData#RequiredMemory">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&unnamed;Memory"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&AiGGridOntology;hasAvailableSize"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;int"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="&xsd;integer">3000</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <AiGConditionsOntology:constraintWeight rdf:datatype="&xsd;float">5</AiGConditionsOntology:constraintWeight>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConstraintsData#RequiredResource -->
+
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGConstraintsData#RequiredResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://gridagents.sourceforge.net/AiGConstraintsData#RequiredCPU"/>
+                    <rdf:Description rdf:about="http://gridagents.sourceforge.net/AiGConstraintsData#RequiredMemory"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&unnamed;WorkerNode"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#PhysicalMemory -->
+
+    <owl:Class rdf:about="&AiGGridOntology;PhysicalMemory"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/unnamed.owl#CPU -->
+
+    <owl:Class rdf:about="&unnamed;CPU"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/unnamed.owl#Memory -->
+
+    <owl:Class rdf:about="&unnamed;Memory"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/unnamed.owl#WorkerNode -->
+
+    <owl:Class rdf:about="&unnamed;WorkerNode"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConstraintsData#2.5GHzCPU -->
+
+    <owl:Thing rdf:about="&AiGConstraintsData3;GHzCPU">
+        <rdf:type rdf:resource="&unnamed;CPU"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <AiGGridOntology:hasClockSpeed rdf:datatype="&xsd;integer">2500</AiGGridOntology:hasClockSpeed>
+    </owl:Thing>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConstraintsData#4GBMem -->
+
+    <owl:NamedIndividual rdf:about="&AiGConstraintsData;GBMem">
+        <rdf:type rdf:resource="&AiGGridOntology;PhysicalMemory"/>
+        <AiGGridOntology:hasAvailableSize rdf:datatype="&xsd;int">4000</AiGGridOntology:hasAvailableSize>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConstraintsData#MatchingCandidate -->
+
+    <owl:Thing rdf:about="http://gridagents.sourceforge.net/AiGConstraintsData#MatchingCandidate">
+        <rdf:type rdf:resource="&unnamed;WorkerNode"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <unnamed:hasCPU rdf:resource="&AiGConstraintsData3;GHzCPU"/>
+    </owl:Thing>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.0.0.1469) http://owlapi.sourceforge.net -->
+

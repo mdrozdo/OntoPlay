@@ -1,0 +1,5 @@
+<ul>
+    #{list items:replies, as:'reply' }
+        <li>${reply.getMessage().getContent()}</li>
+    #{/list}
+</ul>

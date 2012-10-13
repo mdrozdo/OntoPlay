@@ -1,0 +1,16 @@
+<h2>Following is the list of found teams:</h2>
+#{form @JobExecution.sendTeamList(), id:'teamList'}
+	<input type='hidden' id='conversationId' name='conversationId' value="${conversationId}"/>
+		<div class='team-list'>
+			#{list items:teams, as:'team'}
+    			<div class='team-item'><input type="checkbox" name="teamUris" value="${team.getUri()}" />${team.getLocalName()}</div>   
+			#{/list}		
+		</div>
+		<input type='submit' value="Update" />
+#{/form}
+
+<script type="text/javascript">
+$(function(){
+	$('#replies').stopMonitoringForReplies();	
+});
+</script>

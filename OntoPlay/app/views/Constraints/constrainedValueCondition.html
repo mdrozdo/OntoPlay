@@ -1,0 +1,29 @@
+<div class='class-panel'>
+	#{select 'class-select', items:classes, valueProperty:'uri', labelProperty:'localName', class:'class-select' }
+	#{option 'off'}Select a class#{/option}
+	#{/select}
+</div>
+<div class='constrained-value'></div>
+<script type='text/javascript'>
+	$(function(){
+	var select = $('#condition-${conditionId} .class-select');
+	select.bind('change', function(event){
+		var classUri = $(':selected', select).val();
+		if(classUri === 'off'){
+			$('#condition-${conditionId} .constrained-value').html('');
+			return;
+		}
+
+		#{if isDescriptionOfIndividual}
+		var getValueConditionAction = #{jsAction @Constraints.individual(':conditionId', ':classUri') /}
+		#{/if}
+		#{else}
+		var getValueConditionAction = #{jsAction @Constraints.condition(':conditionId', ':classUri') /}
+		#{/else}   
+		$('#condition-${conditionId} .constrained-value').load(getValueConditionAction({
+			conditionId:${conditionId}, 
+			classUri:encodeURIComponent(classUri)			
+		}));
+	});
+});
+</script>

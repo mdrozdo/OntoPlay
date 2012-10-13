@@ -1,0 +1,28 @@
+#{extends 'main.html' /}
+#{set title:'AiG - Execute a job.' /}
+
+<div class='content'>
+	<h1 class='description'>Specify requirements for the team:</h1>
+	#{form @Samples.JobExecution.updateConditions(), id:'job-execution', }
+		<div class='class-condition'>
+			<div class='class-name'>${owlClass.getLocalName()}</div>
+			<div class='class-uri'>${owlClass.getUri()}</div>
+			#{condition class:owlClass, id:1 /}
+				<input type='hidden' id='conditionJson' name='conditionJson' />
+				<input type='submit' value="Update" />
+		</div>
+	#{/form}
+</div>
+
+<script type="text/javascript">
+$(function(){
+	try { console.log('init console...'); } catch(e) { console = { log: function() {} } }
+		
+	$('#job-execution').submit(function(event){
+		var classConditionPanel = $('.class-condition');
+		var condition = QB.buildCondition($('.class-uri', classConditionPanel).html(), classConditionPanel);
+		$('#conditionJson').val(JSON.stringify(condition));
+		console.log($('#conditionJson').val());	
+	});
+});
+</script>

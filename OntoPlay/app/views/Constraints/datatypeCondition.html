@@ -1,0 +1,29 @@
+#{select 'operator-select', class:'operator-select'}
+	#{option 'off'}Select an operator#{/option}
+	#{list items:operators, as:'operator'}	
+	#{option operator.name}${operator.description} #{/option}
+	#{/list}
+#{/select}
+<div class='value-condition'></div>
+<script type='text/javascript'>
+	$(function(){
+	var select = $('#condition-${conditionId} .operator-select');
+	console.log(select);
+	select.bind('change', function(event){
+		var operator = $(':selected', select).val();
+		var getValueConditionAction = #{jsAction @Constraints.getValueCondition(':conditionId', ':classUri', ':propertyUri', ':operator') /}
+		console.log(operator);
+		if(operator === 'off'){
+			$('#condition-${conditionId} .value-condition').html('');
+			return;
+		}			
+		   
+		$('#condition-${conditionId} .value-condition').load(getValueConditionAction({
+			conditionId:${conditionId}, 
+			classUri:encodeURIComponent('${classUri}'),
+			propertyUri:encodeURIComponent('${propertyUri}'),
+			operator:operator
+		}));
+	});
+});
+</script>
