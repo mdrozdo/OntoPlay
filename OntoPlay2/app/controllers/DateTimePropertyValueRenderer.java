@@ -12,7 +12,7 @@ public class DateTimePropertyValueRenderer implements
 			OntoProperty property, String operator, Renderer renderer) {
 		HashMap<String, Object> args = new HashMap<String, Object>();
 		args.put("conditionId", conditionId);
-		renderer.renderTemplate("@Constraints.dateTimeValue", args);
+		renderer.renderTemplate("Constraints.dateTimeValue", args);
 	}
 
 }

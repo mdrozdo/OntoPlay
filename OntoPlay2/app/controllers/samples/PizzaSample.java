@@ -16,6 +16,7 @@ import models.owlGeneration.OntologyGenerator;
 import play.*;
 import play.mvc.*;
 import play.data.Form;
+import play.Logger.*;
 
 import views.html.samples.*;
 import views.html.*;
@@ -31,7 +32,6 @@ public class PizzaSample extends Controller {
 
 	public static Result index() {
 		ontologyReader = createOwlReader();
-		owlApi = createOwlGenerator();
 		OntoClass owlClass = ontologyReader.getOwlClass(PIZZA_NS + "Pizza");
 
 		return ok(pizzasample.render(owlClass));
@@ -48,8 +48,11 @@ public class PizzaSample extends Controller {
 	}
 
 	public static Result updateConditions() {
+		owlApi = createOwlGenerator();
 		String conditionJson = Form.form().bindFromRequest().get("conditionJson");
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
+		ALogger log = play.Logger.of("application");
+		log.info("owlapi:"+ (owlApi == null ? "yup" : "nope"));
 		String conditionRdf = owlApi.convertToOwlIndividual(PIZZA_NS + "NewPizza", condition);
 		return ok(conditionJson);//updateSuccessful(conditionRdf);
 	}

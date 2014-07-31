@@ -1,5 +1,7 @@
 package controllers;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,7 +9,10 @@ import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
 import models.ontologyReading.OntologyReader;
 import models.ontologyReading.jena.JenaOwlReader;
+import play.*;
 import play.mvc.*;
+
+import views.html.*;
 
 public class Individuals extends OntologyController {
 
@@ -20,7 +25,7 @@ public class Individuals extends OntologyController {
 		//TODO: render(newConditionId, owlClass);
 	}
 
-	public static void getPropertyCondition(int conditionId, String classUri,
+	public static Result getPropertyCondition(int conditionId, String classUri,
 			String propertyUri) {
 		
 		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
@@ -29,15 +34,16 @@ public class Individuals extends OntologyController {
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
 				.getRenderer(property.getClass());
 		
+		final HtmlHolder holder = new HtmlHolder();
 		conditionRenderer.renderProperty(conditionId, owlClass, property, true,
 				new Renderer() {
 
 					public void renderTemplate(String templateName,
 							Map<String, Object> args) {
-						//TODO: Individuals.renderTemplate(templateName, args);
-
+						holder.value = renderTemplateByName(templateName, args.values().toArray());						
 					}
 				});
+		return ok(holder.value);
 	}
 
 	public static void getValueCondition(int conditionId, String classUri,

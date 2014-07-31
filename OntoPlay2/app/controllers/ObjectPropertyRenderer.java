@@ -18,7 +18,7 @@ public class ObjectPropertyRenderer extends PropertyConditionRenderer {
 		args.put("propertyUri", prop.getUri());
 		args.put("isDescriptionOfIndividual", isDescriptionOfIndividual);
 
-		renderer.renderTemplate("@Constraints.objectCondition", args);
+		renderer.renderTemplate("Constraints.objectCondition", args);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class ObjectPropertyRenderer extends PropertyConditionRenderer {
 		args.put("classes", JenaOwlReader.getGlobalInstance().getClassesInRange(owlClass, property));
 		args.put("isDescriptionOfIndividual", isDescriptionOfIndividual);
 		
-		renderer.renderTemplate("@Constraints.constrainedValueCondition", args);
+		renderer.renderTemplate("Constraints.constrainedValueCondition", args);
 	}
 
 	private void renderIndividualValueCondition(int conditionId,
@@ -53,7 +53,7 @@ public class ObjectPropertyRenderer extends PropertyConditionRenderer {
 		Map<String, Object> args = new HashMap<String, Object>();
 		args.put("individuals", JenaOwlReader.getGlobalInstance().getIndividualsInRange(owlClass, property));
 		
-		renderer.renderTemplate("@Constraints.individualValueCondition", args);
+		renderer.renderTemplate("Constraints.individualValueCondition", args);
 		
 	}
 }

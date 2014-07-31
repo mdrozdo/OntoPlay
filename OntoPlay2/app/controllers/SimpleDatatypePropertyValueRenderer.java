@@ -10,7 +10,7 @@ public class SimpleDatatypePropertyValueRenderer implements
 
 	public void renderOperator(int conditionId, OntoClass owlClass,
 			OntoProperty property, String operator, Renderer renderer) {
-		renderer.renderTemplate("@Constraints.simpleDatatypeValue", new HashMap<String, Object>());
+		renderer.renderTemplate("Constraints.simpleDatatypeValue", new HashMap<String, Object>());
 	}
 
 }

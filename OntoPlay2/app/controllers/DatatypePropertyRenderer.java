@@ -25,7 +25,7 @@ public class DatatypePropertyRenderer extends PropertyConditionRenderer {
 		else
 			args.put("operators", getOperatorsForIndividual());
 		
-		renderer.renderTemplate("@Constraints.datatypeCondition", args);
+		renderer.renderTemplate("Constraints.datatypeCondition", args);
 	}
 
 	private List<PropertyOperator> getOperatorsForIndividual() {

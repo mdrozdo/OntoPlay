@@ -6,11 +6,29 @@ import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
 import models.ontologyReading.OntologyReader;
 import models.ontologyReading.jena.JenaOwlReader;
-import play.mvc.Controller;
+import play.*;
+import play.Routes;
+import play.mvc.*;
+
+import views.html.*;
 
 public class Constraints extends OntologyController {
 
 	private static int maxConditionId = 1;
+
+    public static Result javascriptRoutes()
+    {
+        response().setContentType("text/javascript");
+        return ok(
+            Routes.javascriptRouter("jsRoutes",
+		        // Routes
+		        //controllers.routes.javascript.Application.condition()//,
+		        controllers.routes.javascript.Constraints.individual(),
+		        controllers.routes.javascript.Individuals.getPropertyCondition()
+		        //controllers.routes.javascript.Application.getPropertyCondition(),
+		        //controllers.routes.javascript.Application.getValueCondition(),
+        ));
+    }
 
 	public static void condition(int conditionId, String classUri) {
 		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
@@ -19,14 +37,14 @@ public class Constraints extends OntologyController {
 		//TODO: render(newConditionId, owlClass);
 	}
 	
-	public static void individual(int conditionId, String classUri) {
+	public static Result individual(int conditionId, String classUri) {
 		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
 		maxConditionId++;
-		int newConditionId = maxConditionId;
-		//TODO: render(newConditionId, owlClass);
+        int newConditionId = maxConditionId;
+        return ok(individual.render( owlClass, ""+newConditionId));
 	}
 
-	public static void getPropertyCondition(int conditionId, String classUri,
+   public static void getPropertyCondition(int conditionId, String classUri,
 			String propertyUri) {
 		
 		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
@@ -63,9 +81,5 @@ public class Constraints extends OntologyController {
 
 					}
 				});
-
-
-//		renderText(String.format("%d; %s; %s; %s", conditionId, classUri,
-//				propertyUri, operator));
 	}
 }
