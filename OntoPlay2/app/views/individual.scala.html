@@ -1,0 +1,126 @@
+@import models.ontologyModel.OntoClass
+@import play.data.Form
+
+@(owlClass: OntoClass, boxId: String/*, mainForm: Form[String]*/)
+
+<div class='condition-panel' id='condition-@boxId'>
+	<div class='remove-condition'><a href='#'>remove</a></div>
+
+	<select name="property-select" class='property-select' >
+        <option value="off">Select a property</option>
+    	@owlClass.getProperties().map { p =>
+            <option value="@p.getUri()">@p.getLocalName()</option>
+        }
+    </select>	
+
+	<div class='property-condition'></div>
+	
+</div>
+<div class='condition-operator'><a href='#'>and</a></div>
+
+<script type='text/javascript'>
+$(function(){
+	<!-- TODO: Refactor this into some jQuery module or at least move to separate js file-->
+	$('#condition-@boxId>.remove-condition').hide();
+
+	$('#condition-@boxId+.condition-operator>a').bind('click', function(event){
+		@*
+		var classUri = '${owlClass.getUri()}';
+
+		var getValueConditionAction = #{jsAction @Constraints.individual(':conditionId', ':classUri') /}
+		   
+		$.get(getValueConditionAction({
+					conditionId:@boxId, 
+					classUri:encodeURIComponent(classUri)			
+				}), function(data){
+					$('#condition-@boxId+.condition-operator>a').hide();
+					$('#condition-@boxId+.condition-operator').after(data);
+					$('#condition-@boxId>.remove-condition').show();
+		});
+		*@
+		return false;
+	});
+
+	$('#condition-@boxId>.remove-condition>a').bind('click', function(event){
+		$('#condition-@boxId').remove();
+		return false;
+	});
+
+	var select = $('#condition-@boxId .property-select');
+	$('#condition-@boxId .property-select').bind('change', function(event){
+		var propertyUri = $(':selected', select).val();
+		console.log(propertyUri);
+		if(propertyUri === 'off'){
+			$('#condition-@boxId .property-condition').html('');
+			return;
+		}
+		
+		@*
+		var getPropConditionAction = #{jsAction @Individuals.getPropertyCondition(':conditionId', ':classUri', ':propertyUri') /}
+		   
+		$('#condition-@boxId .property-condition').load(getPropConditionAction({
+			conditionId:@boxId,
+			classUri:encodeURIComponent('${owlClass.getUri()}'),
+			propertyUri:encodeURIComponent(propertyUri)
+		}));
+		*@
+	});
+});
+</script>
+
+@*
+<div class='condition-panel' id='condition-@boxId'>
+	<div class='remove-condition'><a href='#'>remove</a></div>
+	#{select 'property-select', items:_class.getProperties(), valueProperty:'uri', labelProperty:'localName', class:'property-select'}
+	#{option 'off'}Select a property#{/option}
+	#{/select} 
+	
+	<div class='property-condition'></div>
+	
+</div>
+<div class='condition-operator'><a href='#'>and</a></div>
+
+<script type='text/javascript'>
+$(function(){
+	$('#condition-${_id}>.remove-condition').hide();
+
+	$('#condition-${_id}+.condition-operator>a').bind('click', function(event){
+		var classUri = '${_class.getUri()}';
+
+		var getValueConditionAction = #{jsAction @Constraints.individual(':conditionId', ':classUri') /}
+		   
+		$.get(getValueConditionAction({
+					conditionId:${_id}, 
+					classUri:encodeURIComponent(classUri)			
+				}), function(data){
+					$('#condition-${_id}+.condition-operator>a').hide();
+					$('#condition-${_id}+.condition-operator').after(data);
+					$('#condition-${_id}>.remove-condition').show();
+		});
+		return false;
+	});
+
+	$('#condition-${_id}>.remove-condition>a').bind('click', function(event){
+		$('#condition-${_id}').remove();
+		return false;
+	});
+
+	var select = $('#condition-${_id} .property-select');
+	$('#condition-${_id} .property-select').bind('change', function(event){
+		var propertyUri = $(':selected', select).val();
+		console.log(propertyUri);
+		if(propertyUri === 'off'){
+			$('#condition-${_id} .property-condition').html('');
+			return;
+		}
+		
+		var getPropConditionAction = #{jsAction @Individuals.getPropertyCondition(':conditionId', ':classUri', ':propertyUri') /}
+		   
+		$('#condition-${_id} .property-condition').load(getPropConditionAction({
+			conditionId:${_id},
+			classUri:encodeURIComponent('${_class.getUri()}'),
+			propertyUri:encodeURIComponent(propertyUri)
+		}));
+	});
+});
+</script> *@

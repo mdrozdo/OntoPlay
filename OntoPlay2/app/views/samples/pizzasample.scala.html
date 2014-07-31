@@ -1,0 +1,68 @@
+@import models.ontologyModel.OntoClass
+@import play.data.Form
+
+@(owlClass: OntoClass)
+
+@main("Pizza Sample") {
+
+<div class='content'>
+	<h1 class='description'>Describe the pizza you wish to order:</h1>
+	@*@(mainForm:Form[String])*@
+	@helper.form(action = controllers.samples.routes.PizzaSample.updateConditions(), 'id -> "pizza") {
+			<div class='class-condition'>
+			<div class='class-name'>@owlClass.getLocalName()</div>
+			<div class='class-uri'>@owlClass.getUri()</div>
+			@individual(owlClass, "1")
+				<input type='hidden' id='conditionJson' name='conditionJson' />
+				<input type='submit' value="Update" />
+		</div>
+	}		
+</div>
+
+<script type="text/javascript">
+$(function(){
+	try { console.log('init console...'); } catch(e) { console = { log: function() {} } }
+		
+	$('#pizza').submit(function(event){
+		var classConditionPanel = $('.class-condition');
+		var condition = QB.buildCondition($('.class-uri', classConditionPanel).html(), classConditionPanel);
+		$('#conditionJson').val(JSON.stringify(condition));
+		console.log($('#conditionJson').val());	
+	});
+});
+</script>
+    
+}
+
+
+
+@*
+#{extends 'main.html' /}
+#{set title:'Pizza Sample' /}
+
+<div class='content'>
+	<h1 class='description'>Describe the pizza you wish to order:</h1>
+	#{form @samples.PizzaSample.updateConditions(), id:'pizza', }
+		<div class='class-condition'>
+			<div class='class-name'>${owlClass.getLocalName()}</div>
+			<div class='class-uri'>${owlClass.getUri()}</div>
+			#{individual class:owlClass, id:1 /}
+				<input type='hidden' id='conditionJson' name='conditionJson' />
+				<input type='submit' value="Update" />
+		</div>
+	#{/form}
+</div>
+
+<script type="text/javascript">
+$(function(){
+	try { console.log('init console...'); } catch(e) { console = { log: function() {} } }
+		
+	$('#pizza').submit(function(event){
+		var classConditionPanel = $('.class-condition');
+		var condition = QB.buildCondition($('.class-uri', classConditionPanel).html(), classConditionPanel);
+		$('#conditionJson').val(JSON.stringify(condition));
+		console.log($('#conditionJson').val());	
+	});
+});
+</script>
+*@
