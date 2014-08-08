@@ -1,11 +1,11 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import play.mvc.Controller;
 import models.PropertyOperator;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
@@ -16,7 +16,7 @@ public class DatatypePropertyRenderer extends PropertyConditionRenderer {
 	private List<PropertyOperator> operators = new ArrayList<PropertyOperator>();
 	
 	public void renderProperty(int conditionId, OntoClass owlClass, OntoProperty prop, boolean isDescriptionOfIndividual, Renderer renderer) {
-		Map<String, Object> args = new HashMap<String, Object>();
+		Map<String, Object> args = new LinkedHashMap<String, Object>();
 		args.put("conditionId", conditionId);
 		args.put("classUri", owlClass.getUri());
 		args.put("propertyUri", prop.getUri());

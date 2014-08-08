@@ -24,6 +24,7 @@ public class Constraints extends OntologyController {
 		        // Routes
 		        //controllers.routes.javascript.Application.condition()//,
 		        controllers.routes.javascript.Constraints.individual(),
+		        controllers.routes.javascript.Constraints.getValueCondition(),
 		        controllers.routes.javascript.Individuals.getPropertyCondition()
 		        //controllers.routes.javascript.Application.getPropertyCondition(),
 		        //controllers.routes.javascript.Application.getValueCondition(),
@@ -64,7 +65,7 @@ public class Constraints extends OntologyController {
 				});
 	}
 
-	public static void getValueCondition(int conditionId, String classUri,
+	public static Result getValueCondition(int conditionId, String classUri,
 			String propertyUri, String operator) {
 		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
 		OntoProperty property = getOntologyReader().getProperty(propertyUri);
@@ -72,14 +73,16 @@ public class Constraints extends OntologyController {
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
 				.getRenderer(property.getClass());
 		
+		final HtmlHolder holder = new HtmlHolder();
+		
 		conditionRenderer.renderOperator(conditionId, owlClass, property, operator, 
 				new Renderer() {
 
 					public void renderTemplate(String templateName,
 							Map<String, Object> args) {
-						//TODO: Constraints.renderTemplate(templateName, args);
-
+						holder.value = renderTemplateByName(templateName, args.values().toArray());
 					}
 				});
+		return ok(holder.value);
 	}
 }

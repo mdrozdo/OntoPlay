@@ -1,6 +1,6 @@
 package controllers;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import models.ontologyModel.OntoClass;
@@ -12,7 +12,7 @@ public class ObjectPropertyRenderer extends PropertyConditionRenderer {
 	@Override
 	public void renderProperty(int conditionId, OntoClass owlClass, OntoProperty prop, boolean isDescriptionOfIndividual, 
 			Renderer renderer) {
-		Map<String, Object> args = new HashMap<String, Object>();
+		Map<String, Object> args = new LinkedHashMap<String, Object>();
 		args.put("conditionId", conditionId);
 		args.put("classUri", owlClass.getUri());
 		args.put("propertyUri", prop.getUri());
@@ -38,7 +38,7 @@ public class ObjectPropertyRenderer extends PropertyConditionRenderer {
 			OntoClass owlClass, OntoProperty property, String operator,
 			boolean isDescriptionOfIndividual, Renderer renderer) {
 		
-		Map<String, Object> args = new HashMap<String, Object>();
+		Map<String, Object> args = new LinkedHashMap<String, Object>();
 		args.put("conditionId", conditionId);
 		args.put("classes", JenaOwlReader.getGlobalInstance().getClassesInRange(owlClass, property));
 		args.put("isDescriptionOfIndividual", isDescriptionOfIndividual);
@@ -50,7 +50,7 @@ public class ObjectPropertyRenderer extends PropertyConditionRenderer {
 			OntoClass owlClass, OntoProperty property, String operator,
 			Renderer renderer) {
 
-		Map<String, Object> args = new HashMap<String, Object>();
+		Map<String, Object> args = new LinkedHashMap<String, Object>();
 		args.put("individuals", JenaOwlReader.getGlobalInstance().getIndividualsInRange(owlClass, property));
 		
 		renderer.renderTemplate("Constraints.individualValueCondition", args);
