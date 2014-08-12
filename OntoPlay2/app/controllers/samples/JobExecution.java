@@ -27,6 +27,9 @@ import models.ontologyReading.OntologyReader;
 import models.ontologyReading.jena.JenaOwlReaderConfig;
 import models.owlGeneration.OntologyGenerator;
 import play.mvc.*;
+import views.html.samples.*;
+import play.data.Form;
+
 
 public class JobExecution extends OntologyController {
 
@@ -38,7 +41,7 @@ public class JobExecution extends OntologyController {
 
 	private final static String CGO_NS = "http://www.owl-ontologies.com/unnamed.owl#";
 
-	public static void index() {
+	public static Result index() {
 		try {
 			String uri = "file:test/AiGConditionsOntology.owl";
 			JenaOwlReaderConfig jenaOwlReaderConfig = new JenaOwlReaderConfig()
@@ -54,21 +57,23 @@ public class JobExecution extends OntologyController {
 		} 
 		
 		OntoClass owlClass = getOntologyReader().getOwlClass(CGO_NS + "ComputingElement");
-
+		return ok(jobexecution.render(owlClass));
 		//TODO: render(owlClass);
 	}
 
-	public static void updateConditions(String conditionJson) {
+	public static Result updateConditions() {
+		String conditionJson = Form.form().bindFromRequest().get("conditionJson");
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(getOntologyReader(), conditionJson);
 		String conditionRdf = owlApi.convertToOwlClass("http://gridagents.sourceforge.net/TeamConditions#TeamCondition", condition);
 
 		Gateway gateway = Gateway.getInstance();
 		try {
 			String conversationId = gateway.startConversation(new FindTeamsForExecutingJobMessage(conditionRdf, "User_1"/*Security.connected()*/));
-			monitorConversation(conversationId);
+			return monitorConversation(conversationId);
 		} catch (GatewayException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return internalServerError("Gateway error");
 		}
 	}
 
@@ -191,11 +196,14 @@ public class JobExecution extends OntologyController {
 		}		
     }	
 
-	public static void monitorConversation(String conversationId) {
+	public static Result monitorConversation(String conversationId) {
+		return ok("monitorConversation");
+
 		//TODO: render(conversationId);
 	}
 
-	public static void updateSuccessful(String condition) {
+	public static Result updateSuccessful(String condition) {
+		return ok("updateSuccessful");
 		//TODO: render(condition);
 	}
 
