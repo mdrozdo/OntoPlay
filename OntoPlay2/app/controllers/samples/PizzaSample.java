@@ -54,7 +54,7 @@ public class PizzaSample extends Controller {
 		ALogger log = play.Logger.of("application");
 		log.info("owlapi:"+ (owlApi == null ? "yup" : "nope"));
 		String conditionRdf = owlApi.convertToOwlIndividual(PIZZA_NS + "NewPizza", condition);
-		return ok(conditionJson);//updateSuccessful(conditionRdf);
+		return ok(conditionRdf);//updateSuccessful(conditionRdf);
 	}
 
 	public static void updateSuccessful(String response) {
