@@ -23,7 +23,7 @@
 $(function(){
 	try { console.log('init console...'); } catch(e) { console = { log: function() {} } };
 		
-	$('#pizza').submit(function(event){
+	$('#job-execution').submit(function(event){
 		var classConditionPanel = $('.class-condition');
 		var condition = QB.buildCondition($('.class-uri', classConditionPanel).html(), classConditionPanel);
 		$('#conditionJson').val(JSON.stringify(condition));

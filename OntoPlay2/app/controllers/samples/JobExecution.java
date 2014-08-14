@@ -62,19 +62,22 @@ public class JobExecution extends OntologyController {
 	}
 
 	public static Result updateConditions() {
+		//OntologyGenerator.initialize("file:test/AiGConditionsOntology.owl", "./test");
+		//owlApi = OntologyGenerator.getGlobalInstance();
 		String conditionJson = Form.form().bindFromRequest().get("conditionJson");
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(getOntologyReader(), conditionJson);
 		String conditionRdf = owlApi.convertToOwlClass("http://gridagents.sourceforge.net/TeamConditions#TeamCondition", condition);
 
-		Gateway gateway = Gateway.getInstance();
-		try {
-			String conversationId = gateway.startConversation(new FindTeamsForExecutingJobMessage(conditionRdf, "User_1"/*Security.connected()*/));
-			return monitorConversation(conversationId);
-		} catch (GatewayException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return internalServerError("Gateway error");
-		}
+		return ok(conditionRdf);
+		// Gateway gateway = Gateway.getInstance();
+		// try {
+		// 	String conversationId = gateway.startConversation(new FindTeamsForExecutingJobMessage(conditionRdf, "User_1"/*Security.connected()*/));
+		// 	return monitorConversation(conversationId);
+		// } catch (GatewayException e) {
+		// 	// TODO Auto-generated catch block
+		// 	e.printStackTrace();
+		// 	return internalServerError("Gateway error");
+		// }
 	}
 
 	public static void sendTeamList(String conversationId, List<String> teamUris) {
