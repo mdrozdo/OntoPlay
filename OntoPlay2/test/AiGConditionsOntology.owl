@@ -275,10 +275,7 @@
 
     <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
 
-    <owl:ObjectProperty rdf:about="&owl;topObjectProperty">
-        <rdfs:range rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobDescription"/>
-        <rdfs:domain rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobExecutionConditions"/>
-    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="&owl;topObjectProperty"/>
     
 
 
