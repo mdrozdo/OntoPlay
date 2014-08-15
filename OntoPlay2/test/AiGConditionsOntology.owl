@@ -86,6 +86,16 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#containsResource -->
+
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#containsResource">
+        <rdfs:range rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResource"/>
+        <rdfs:domain rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResult"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#contractPeriod -->
 
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#contractPeriod">
@@ -140,6 +150,14 @@
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobExecutionConditions"/>
         <rdfs:range rdf:resource="&time;TemporalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#jobToExecute -->
+
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#jobToExecute">
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
     </owl:ObjectProperty>
     
 
@@ -249,9 +267,18 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/unnamed.owl#hasID -->
+
+    <owl:ObjectProperty rdf:about="&cgo;hasID"/>
+    
+
+
     <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
 
-    <owl:ObjectProperty rdf:about="&owl;topObjectProperty"/>
+    <owl:ObjectProperty rdf:about="&owl;topObjectProperty">
+        <rdfs:range rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobDescription"/>
+        <rdfs:domain rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobExecutionConditions"/>
+    </owl:ObjectProperty>
     
 
 
@@ -326,6 +353,23 @@
         <rdfs:domain rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResource"/>
         <rdfs:range rdf:resource="&xsd;string"/>
         <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#hasJobId -->
+
+    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#hasJobId">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#JobDescription"/>
+                    <rdf:Description rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResult"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
     </owl:DatatypeProperty>
     
 
@@ -463,6 +507,12 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/unnamed.owl#hasName -->
+
+    <owl:DatatypeProperty rdf:about="&cgo;hasName"/>
+    
+
+
     <!-- http://www.w3.org/2002/07/owl#topDataProperty -->
 
     <owl:DatatypeProperty rdf:about="&owl;topDataProperty"/>
@@ -514,7 +564,7 @@
     <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#JobDescription -->
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#JobDescription">
-        <rdfs:subClassOf rdf:resource="&cgo;GridEntity"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </owl:Class>
     
 
@@ -530,6 +580,12 @@
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResource">
         <rdfs:subClassOf rdf:resource="&cgo;DataResource"/>
     </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#JobResult -->
+
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResult"/>
     
 
 
@@ -714,6 +770,12 @@
     <!-- http://www.owl-ontologies.com/unnamed.owl#StorageSpace -->
 
     <owl:Class rdf:about="&cgo;StorageSpace"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/unnamed.owl#URL -->
+
+    <owl:Class rdf:about="&cgo;URL"/>
     
 
 
@@ -1234,6 +1296,34 @@
     <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Instant_4">
         <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </time:Instant>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out -->
+
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResource"/>
+        <cgo:hasID rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out_URL"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out_URL -->
+
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out_URL">
+        <rdf:type rdf:resource="&cgo;URL"/>
+        <cgo:hasName rdf:datatype="&xsd;string">http://tempuri.org/job1234_out.zip</cgo:hasName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#JobResult_1234 -->
+
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResult_1234">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResult"/>
+        <hasJobId rdf:datatype="&xsd;string">1234</hasJobId>
+        <containsResource rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out"/>
+    </owl:NamedIndividual>
     
 
 

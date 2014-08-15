@@ -1,7 +1,9 @@
 package models;
 
 import jade.lang.acl.ACLMessage;
+import jadeOWL.base.DataFactory;
 import jadeOWL.base.OntologyManager;
+import jadeOWL.base.messaging.ACLOWLMessage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,7 +19,11 @@ import java.util.Set;
 import models.ontologyModel.OwlIndividual;
 import models.ontologyReading.jena.JenaOwlReaderConfig;
 
-import org.mindswap.pellet.jena.PelletReasonerFactory;
+import org.mindswap.pellet.KnowledgeBase;
+import org.mindswap.pellet.jena.PelletInfGraph;
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
@@ -26,8 +32,15 @@ import org.semanticweb.owlapi.io.OWLOntologyCreationIOException;
 
 import agent.Reply;
 
+import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
+import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 import com.hp.hpl.jena.ontology.OntDocumentManager;
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.query.QueryExecution;
+import com.hp.hpl.jena.query.QueryExecutionFactory;
+import com.hp.hpl.jena.query.QuerySolution;
+import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 public class JadeOwlMessageReader {
@@ -99,6 +112,73 @@ public class JadeOwlMessageReader {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public Set<String> readJobResultFileUrls(ACLMessage jobResultMessage) throws OWLOntologyCreationException{
+		OWLOntology jobResult = ontologyManager.getOntologyFromACLMessage(jobResultMessage);
+		
+		Set<String> urls = new HashSet<String>();
+		
+		PelletReasoner reasoner = PelletReasonerFactory.getInstance().createNonBufferingReasoner(jobResult);
+		KnowledgeBase kb = reasoner.getKB();
+		PelletInfGraph graph = new org.mindswap.pellet.jena.PelletReasoner().bind(kb);
+		// Wrap the graph in a model
+		InfModel model = ModelFactory.createInfModel(graph);
+		QueryExecution qe = null;
+		ResultSet rs;
+
+		try {
+		    String qry = 
+		    	"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n"+
+		    	"PREFIX cond:<http://gridagents.sourceforge.net/AiGConditionsOntology#> \r\n"+
+		    	"PREFIX cgo:<http://www.owl-ontologies.com/unnamed.owl#>\r\n"+
+		    	" SELECT ?url WHERE { \n" +
+		    	"?result rdf:type cond:JobResult .\n"+
+		    	"?result cond:containsResource ?resource .\n"+
+		    	"?resource rdf:type cond:JobResource .\n"+
+		    	"?resource cgo:hasID ?x .\n"+
+		    	"?x rdf:type cgo:URL .\n"+
+		    	"?x cgo:hasName ?url }"; 
+		    qe = QueryExecutionFactory.create(qry, model); 
+		    rs = qe.execSelect(); 
+
+		    if(!rs.hasNext()){
+		    	System.out.println("Found none.");
+		    }
+		    while(rs.hasNext()) {
+		        QuerySolution sol = rs.nextSolution(); 
+		        String url = sol.get("url").asLiteral().getString();
+				System.out.println(url);
+				urls.add(url);
+		    }
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		finally {
+		    qe.close();
+		    model.close();
+		    graph.close();
+		}
+		
+		return urls;
+	}
+
+	private Set<OWLNamedIndividual> findIndividualsOfClass(OWLOntology ontology, IRI classURI) {
+		Set<OWLNamedIndividual> individuals = null;
+
+		OWLDataFactory dataFactory = ontologyManager.getOWLDataFactory();
+		OWLClass owlClass = dataFactory.getOWLClass(classURI);
+
+		try {
+			individuals = ontologyManager.getQueryManager().getInstancesForClassQuery(owlClass, ontology);
+		} catch (OWLOntologyCreationException e) {
+			e.printStackTrace();
+		} catch (OWLOntologyStorageException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return individuals;
 	}
 
 	private static Set<OWLNamedIndividual> filterByUris(Set<OWLNamedIndividual> individuals, List<String> filteredUris) {

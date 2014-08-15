@@ -1,4 +1,5 @@
 import jade.lang.acl.ACLMessage;
+import jadeOWL.base.messaging.ACLOWLMessage;
 
 import java.io.BufferedReader;
 
@@ -12,6 +13,7 @@ import java.io.Writer;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import jobs.PropertyTypeConfiguration;
 import jobs.PropertyTypeConfiguration;
@@ -90,7 +92,25 @@ public class JadeOwlMessageReaderTest {
 		assertThat(selectLocalNames(individuals))
 				.containsExactly("compositeWorker2");
 	}	
+
+	@Test
+	public void jadeOwl_Reads_File_URLs_From_Job_Result() throws Exception {
+		ACLOWLMessage jobResultMessage = createJobResultMessage();
+		Set<String> resultFileUrls = jadeOwl.readJobResultFileUrls(jobResultMessage);
+		
+		assertThat(resultFileUrls).containsOnly("http://tempuri.org/job1234_out.zip");
+	}		
 	
+	
+	private ACLOWLMessage createJobResultMessage() throws IOException {
+		ACLOWLMessage message = new ACLOWLMessage(ACLMessage.INFORM);
+		
+		message.setConversationId("conversationId");
+		message.setOntology("JobResult");
+		message.setContent(FileUtils.readFileToString(new File("test/jobResult.owl")));
+		return message;
+	}
+
 	private List<String> selectLocalNames(List<? extends OwlElement> properties) {
 		List<String> names = new ArrayList<String>(properties.size());
 
