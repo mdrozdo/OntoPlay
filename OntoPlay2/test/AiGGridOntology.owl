@@ -116,8 +116,8 @@
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#ComputingElement"/>
-                    <rdf:Description rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#WorkerNode"/>
+                    <rdf:Description rdf:about="&unnamed;ComputingElement"/>
+                    <rdf:Description rdf:about="&unnamed;WorkerNode"/>
                 </owl:unionOf>
             </owl:Class>
         </rdfs:domain>
@@ -530,18 +530,6 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#ComputingElement -->
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#ComputingElement"/>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#ComputingResource -->
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#ComputingResource"/>
-    
-
-
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#Eigen -->
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Eigen">
@@ -573,7 +561,7 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#GPU -->
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#GPU">
-        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#ComputingResource"/>
+        <rdfs:subClassOf rdf:resource="&unnamed;ComputingResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#clockSpeed"/>
@@ -771,12 +759,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#WorkerNode -->
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#WorkerNode"/>
-    
-
-
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#X86 -->
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#X86">
@@ -828,12 +810,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     <!-- http://www.owl-ontologies.com/unnamed.owl#FileSystem -->
 
     <owl:Class rdf:about="&unnamed;FileSystem"/>
-    
-
-
-    <!-- http://www.owl-ontologies.com/unnamed.owl#GPU -->
-
-    <owl:Class rdf:about="&unnamed;GPU"/>
     
 
 
@@ -976,7 +952,7 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#AMD_Radeon_HD_7970 -->
 
     <owl:Thing rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#AMD_Radeon_HD_7970">
-        <rdf:type rdf:resource="&unnamed;GPU"/>
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#GPU"/>
         <rdf:type rdf:resource="&owl;NamedIndividual"/>
         <hasCores rdf:datatype="&xsd;int">2048</hasCores>
         <hasClockSpeed rdf:datatype="&xsd;int">900</hasClockSpeed>
@@ -1083,7 +1059,7 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#NVIDIA_GeForce_GTX_680 -->
 
     <owl:Thing rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#NVIDIA_GeForce_GTX_680">
-        <rdf:type rdf:resource="&unnamed;GPU"/>
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#GPU"/>
         <rdf:type rdf:resource="&owl;NamedIndividual"/>
         <hasClockSpeed rdf:datatype="&xsd;int">1000</hasClockSpeed>
         <hasCores rdf:datatype="&xsd;int">1536</hasCores>
