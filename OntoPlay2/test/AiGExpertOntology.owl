@@ -60,9 +60,9 @@
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#forExpertOpinion -->
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#forJobProfile -->
 
-    <owl:ObjectProperty rdf:about="&AiGExpertOntology;forExpertOpinion">
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;forJobProfile">
         <rdfs:domain rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
         <rdfs:range rdf:resource="&AiGExpertOntology;JobProfile"/>
     </owl:ObjectProperty>
@@ -73,7 +73,7 @@
 
     <owl:ObjectProperty rdf:about="&AiGExpertOntology;forMatrix">
         <rdfs:domain rdf:resource="&AiGExpertOntology;Algorithm"/>
-        <rdfs:domain rdf:resource="&AiGExpertOntology;FundamentalOperation"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;JobProfile"/>
         <rdfs:range rdf:resource="&AiGExpertOntology;Structured"/>
     </owl:ObjectProperty>
     
@@ -118,12 +118,12 @@
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasExpertRecommentation -->
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasExpertOpinion -->
 
-    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasExpertRecommentation">
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasExpertOpinion">
         <rdfs:range rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
         <rdfs:domain rdf:resource="&AiGExpertOntology;JobProfile"/>
-        <owl:inverseOf rdf:resource="&AiGExpertOntology;forExpertOpinion"/>
+        <owl:inverseOf rdf:resource="&AiGExpertOntology;forJobProfile"/>
     </owl:ObjectProperty>
     
 
@@ -592,8 +592,8 @@
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BandedStorageFormat -->
 
     <owl:Class rdf:about="&AiGExpertOntology;BandedStorageFormat">
-        <rdfs:label xml:lang="en">Banded Storage Format</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorageFormat"/>
+        <rdfs:label xml:lang="en">Banded Matrix Storage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorage"/>
         <rdfs:comment>store only diagonals of a banded matrix</rdfs:comment>
     </owl:Class>
     
@@ -1039,8 +1039,8 @@
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#FullStorageFormat -->
 
     <owl:Class rdf:about="&AiGExpertOntology;FullStorageFormat">
-        <rdfs:label xml:lang="en">Full Storage Format</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorageFormat"/>
+        <rdfs:label xml:lang="en">Full Matrix Storage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorage"/>
         <rdfs:comment>store all elements</rdfs:comment>
     </owl:Class>
     
@@ -1700,15 +1700,6 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixStorageFormat -->
-
-    <owl:Class rdf:about="&AiGExpertOntology;MatrixStorageFormat">
-        <rdfs:label xml:lang="en">Matrix Storage Format</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;2DMatrix"/>
-    </owl:Class>
-    
-
-
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixStructure -->
 
     <owl:Class rdf:about="&AiGExpertOntology;MatrixStructure">
@@ -1856,8 +1847,8 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PackedStorageFormat -->
 
     <owl:Class rdf:about="&AiGExpertOntology;PackedStorageFormat">
-        <rdfs:label xml:lang="en">Packed Storage Format</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorageFormat"/>
+        <rdfs:label xml:lang="en">Packed Matrix Storage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorage"/>
         <rdfs:comment>store only the upper or lower triangular part</rdfs:comment>
     </owl:Class>
     
@@ -2651,9 +2642,27 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HPCExpert1 -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;HPCExpert1">
+        <rdf:type rdf:resource="&AiGExpertOntology;DomainExpert"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LinearEquation1 -->
 
     <owl:NamedIndividual rdf:about="&AiGExpertOntology;LinearEquation1"/>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Opinion1ForEigenvalueProblem -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;Opinion1ForEigenvalueProblem">
+        <rdf:type rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
+        <hasExpert rdf:resource="&AiGExpertOntology;HPCExpert1"/>
+        <hasRecommendedResource rdf:resource="&AiGGridOntology;desktopWorkerNode1"/>
+    </owl:NamedIndividual>
     
 
 
@@ -2669,18 +2678,10 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
 
     <owl:NamedIndividual rdf:about="&AiGExpertOntology;eigenvalueProblemJobProfile">
         <rdf:type rdf:resource="&AiGExpertOntology;JobProfile"/>
-        <hasExpertRecommentation rdf:resource="&AiGExpertOntology;expert1OpinionForEigenvalueProblem"/>
+        <hasExpertOpinion rdf:resource="&AiGExpertOntology;Opinion1ForEigenvalueProblem"/>
         <withAlgorithm rdf:resource="&AiGExpertOntology;qrFactorization"/>
         <forProblem rdf:resource="&AiGExpertOntology;smallestEigenvalueProblem"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#expert1OpinionForEigenvalueProblem -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;expert1OpinionForEigenvalueProblem">
-        <rdf:type rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
-        <hasRecommendedResource rdf:resource="&AiGGridOntology;desktopWorkerNode1"/>
+        <forMatrix rdf:resource="&AiGExpertOntology;sparseSymmetricMatrix"/>
     </owl:NamedIndividual>
     
 
@@ -2735,6 +2736,7 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
 
     <owl:NamedIndividual rdf:about="&AiGExpertOntology;sparseSymmetricMatrix">
         <rdf:type rdf:resource="&AiGExpertOntology;Matrix"/>
+        <hasDimension>3</hasDimension>
         <hasMatrixProperty rdf:resource="&AiGExpertOntology;sparseMatrixProperty"/>
         <hasMatrixProperty rdf:resource="&AiGExpertOntology;sparseSymmetricMatrix"/>
     </owl:NamedIndividual>
