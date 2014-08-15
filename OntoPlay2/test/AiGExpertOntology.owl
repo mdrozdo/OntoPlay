@@ -2642,112 +2642,15 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HPCExpert1 -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;HPCExpert1">
-        <rdf:type rdf:resource="&AiGExpertOntology;DomainExpert"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LinearEquation1 -->
 
     <owl:NamedIndividual rdf:about="&AiGExpertOntology;LinearEquation1"/>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Opinion1ForEigenvalueProblem -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;Opinion1ForEigenvalueProblem">
-        <rdf:type rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
-        <hasExpert rdf:resource="&AiGExpertOntology;HPCExpert1"/>
-        <hasRecommendedResource rdf:resource="&AiGGridOntology;desktopWorkerNode1"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#RowPivoting -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;RowPivoting">
-        <rdf:type rdf:resource="&AiGExpertOntology;RowPivoting"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#eigenvalueProblemJobProfile -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;eigenvalueProblemJobProfile">
-        <rdf:type rdf:resource="&AiGExpertOntology;JobProfile"/>
-        <hasExpertOpinion rdf:resource="&AiGExpertOntology;Opinion1ForEigenvalueProblem"/>
-        <withAlgorithm rdf:resource="&AiGExpertOntology;qrFactorization"/>
-        <forProblem rdf:resource="&AiGExpertOntology;smallestEigenvalueProblem"/>
-        <forMatrix rdf:resource="&AiGExpertOntology;sparseSymmetricMatrix"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#luFactorizationWithPartialPivoting -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;luFactorizationWithPartialPivoting">
-        <rdf:type rdf:resource="&AiGExpertOntology;PartialPivoting"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#matrixInversionJobProfile -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;matrixInversionJobProfile">
-        <rdf:type rdf:resource="&AiGExpertOntology;JobProfile"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#qrFactorization -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;qrFactorization">
-        <forMatrix rdf:resource="&AiGExpertOntology;sparseSymmetricMatrix"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#qrFactorizationWithColumnPivoting -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;qrFactorizationWithColumnPivoting">
-        <rdf:type rdf:resource="&AiGExpertOntology;ColumnPivoting"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#smallestEigenvalueProblem -->
 
     <owl:NamedIndividual rdf:about="&AiGExpertOntology;smallestEigenvalueProblem"/>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#sparseMatrixProperty -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;sparseMatrixProperty">
-        <rdf:type rdf:resource="&AiGExpertOntology;SparseMatrix"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#sparseSymmetricMatrix -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;sparseSymmetricMatrix">
-        <rdf:type rdf:resource="&AiGExpertOntology;Matrix"/>
-        <hasDimension>3</hasDimension>
-        <hasMatrixProperty rdf:resource="&AiGExpertOntology;sparseMatrixProperty"/>
-        <hasMatrixProperty rdf:resource="&AiGExpertOntology;sparseSymmetricMatrix"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#symmetricMatrixProperty -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;symmetricMatrixProperty">
-        <rdf:type rdf:resource="&AiGExpertOntology;SymmetricMatrix"/>
-    </owl:NamedIndividual>
 </rdf:RDF>
 
 
