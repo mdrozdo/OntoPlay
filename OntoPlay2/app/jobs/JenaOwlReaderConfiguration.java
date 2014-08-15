@@ -12,8 +12,9 @@ import models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
 public class JenaOwlReaderConfiguration{
 	
 	public void doJob() throws Exception {
-		String uri = "file:test/AiGConditionsOntology.owl";
+		String uri = "file:test/AiGExpertOntology.owl";
 		JenaOwlReaderConfig jenaOwlReaderConfig = new JenaOwlReaderConfig()
+			.useLocalMapping("http://gridagents.sourceforge.net/AiGConditionsOntology", "file:test/AiGConditionsOntology.owl")
 			.useLocalMapping("http://gridagents.sourceforge.net/AiGGridOntology", "file:test/AiGGridOntology.owl")
 			.useLocalMapping("http://www.w3.org/2006/time", "file:test/time.owl")
 			.useLocalMapping("http://www.owl-ontologies.com/unnamed.owl", "file:test/cgo.owl")

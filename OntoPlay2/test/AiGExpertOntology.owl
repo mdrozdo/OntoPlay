@@ -1,0 +1,2754 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY unnamed "http://www.owl-ontologies.com/unnamed.owl#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY AiGGridOntology "http://gridagents.sourceforge.net/AiGGridOntology#" >
+    <!ENTITY AiGExpertOntology "http://gridagents.sourceforge.net/AiGExpertOntology#" >
+]>
+
+
+<rdf:RDF xmlns="http://gridagents.sourceforge.net/AiGExpertOntology#"
+     xml:base="http://gridagents.sourceforge.net/AiGExpertOntology"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:AiGGridOntology="http://gridagents.sourceforge.net/AiGGridOntology#"
+     xmlns:AiGExpertOntology="http://gridagents.sourceforge.net/AiGExpertOntology#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:unnamed="http://www.owl-ontologies.com/unnamed.owl#">
+    <owl:Ontology rdf:about="http://gridagents.sourceforge.net/AiGExpertOntology">
+        <owl:imports rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#forExpertOpinion -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;forExpertOpinion">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;JobProfile"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#forMatrix -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;forMatrix">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Algorithm"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;FundamentalOperation"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;Structured"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#forProblem -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;forProblem">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;JobProfile"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;Problem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasARCECOFactorization -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasARCECOFactorization">
+        <rdfs:range rdf:resource="&AiGExpertOntology;ARCECO"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;ARCESL"/>
+        <rdfs:subPropertyOf rdf:resource="&AiGExpertOntology;hasFactorizationForStructuralSolver"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasCOLROWFactorization -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasCOLROWFactorization">
+        <rdfs:range rdf:resource="&AiGExpertOntology;COLROW"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;CRSLVE"/>
+        <rdfs:subPropertyOf rdf:resource="&AiGExpertOntology;hasFactorizationForStructuralSolver"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasExpert -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasExpert">
+        <rdfs:range rdf:resource="&AiGExpertOntology;DomainExpert"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Problem"/>
+        <owl:inverseOf rdf:resource="&AiGExpertOntology;isExpertIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasExpertRecommentation -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasExpertRecommentation">
+        <rdfs:range rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;JobProfile"/>
+        <owl:inverseOf rdf:resource="&AiGExpertOntology;forExpertOpinion"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasF01LHFFactorization -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasF01LHFFactorization">
+        <rdfs:range rdf:resource="&AiGExpertOntology;F01LHF"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;F04LHF"/>
+        <rdfs:subPropertyOf rdf:resource="&AiGExpertOntology;hasFactorizationForStructuralSolver"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasFactorization -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasFactorization"/>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasFactorizationForStructuralSolver -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasFactorizationForStructuralSolver">
+        <rdfs:range rdf:resource="&AiGExpertOntology;StructuralMatrixFactorization"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;StructuralMatrixSolver"/>
+        <rdfs:subPropertyOf rdf:resource="&AiGExpertOntology;hasFactorization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasFactorizationForTriangularSolver -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasFactorizationForTriangularSolver">
+        <rdfs:range rdf:resource="&AiGExpertOntology;GeneralLinearEquationFactorization"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;TriangularSolver"/>
+        <rdfs:subPropertyOf rdf:resource="&AiGExpertOntology;hasFactorization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasGEABDFactorization -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasGEABDFactorization">
+        <rdfs:range rdf:resource="&AiGExpertOntology;GEABD"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;SOLN"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;SOLT"/>
+        <rdfs:subPropertyOf rdf:resource="&AiGExpertOntology;hasFactorizationForStructuralSolver"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasJobProfile -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasJobProfile">
+        <rdfs:range rdf:resource="&AiGExpertOntology;JobProfile"/>
+        <rdfs:domain rdf:resource="&unnamed;ComputingComponent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasLinearEquationDirectSolver -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasLinearEquationDirectSolver">
+        <rdfs:range rdf:resource="&AiGExpertOntology;GeneralMatrixSolver"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;IterativeRefinement"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasMatrixElementProperty -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasMatrixElementProperty">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Matrix"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;MatrixElementProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasMatrixProperty -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasMatrixProperty">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Matrix"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;MatrixProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasOperations -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasOperations">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Algorithm"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;FundamentalOperation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasRecommendedResource -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasRecommendedResource">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
+        <rdfs:range rdf:resource="&unnamed;GridEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasSimpleType -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasSimpleType">
+        <rdfs:range rdf:resource="&AiGExpertOntology;Simple"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Structured"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#isExpertIn -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;isExpertIn">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;DomainExpert"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;Problem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#proposedByExpert -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;proposedByExpert">
+        <rdfs:range rdf:resource="&AiGExpertOntology;DomainExpert"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#proposedExpertRecommendation -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;proposedExpertRecommendation">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;DomainExpert"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
+        <owl:inverseOf rdf:resource="&AiGExpertOntology;proposedByExpert"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#withAlgorithm -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;withAlgorithm">
+        <rdfs:range rdf:resource="&AiGExpertOntology;Algorithm"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;FundamentalOperation"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;JobProfile"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasBlockDimension -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;hasBlockDimension">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Structured"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasDiagonalsAboveMain -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;hasDiagonalsAboveMain">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Matrix"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasDiagonalsBelowMain -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;hasDiagonalsBelowMain">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Matrix"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasDimension -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;hasDimension">
+        <rdfs:comment>matrix dimensions in form rows x columns</rdfs:comment>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Structured"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasLabelName -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;hasLabelName">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;DomainExpert"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasMatrixConditionNumber -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;hasMatrixConditionNumber">
+        <rdfs:range rdf:resource="&xsd;float"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&AiGExpertOntology;hasMatrixProperty"/>
+                <owl:someValuesFrom rdf:resource="&AiGExpertOntology;SquareMatrix"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasMatrixDeterminant -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;hasMatrixDeterminant">
+        <rdfs:range rdf:resource="&xsd;float"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&AiGExpertOntology;hasMatrixProperty"/>
+                <owl:someValuesFrom rdf:resource="&AiGExpertOntology;SquareMatrix"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasMatrixNorm -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;hasMatrixNorm">
+        <rdfs:range rdf:resource="&xsd;float"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&AiGExpertOntology;Matrix"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&AiGExpertOntology;hasMatrixProperty"/>
+                        <owl:someValuesFrom rdf:resource="&AiGExpertOntology;2DMatrix"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasMatrixProfile -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;hasMatrixProfile">
+        <rdfs:comment xml:lang="en">The profile of a matrix is the number of elements in the envelope plus the number of elements on the diagonal.</rdfs:comment>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;SparseMatrix"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;SymmetricMatrix"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasMatrixRank -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;hasMatrixRank">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Matrix"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#isDirect -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;isDirect">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Algorithm"/>
+        <owl:propertyDisjointWith rdf:resource="&AiGExpertOntology;isIterative"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#isIterative -->
+
+    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;isIterative">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Algorithm"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#1DMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;1DMatrix">
+        <rdfs:label xml:lang="en">1D Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixShape"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#2DMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;2DMatrix">
+        <rdfs:label xml:lang="en">2D Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixShape"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#2DMatrixNorm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;2DMatrixNorm">
+        <rdfs:label xml:lang="en">Matrix Norm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;2DMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#3DMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;3DMatrix">
+        <rdfs:label xml:lang="en">3D Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixShape"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ABDFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ABDFactorization">
+        <rdfs:label xml:lang="en">ABD Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;StructuralMatrixFactorization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ABDSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ABDSolver">
+        <rdfs:label xml:lang="en">ABD Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;StructuralMatrixSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ARCECO -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ARCECO">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ABDFactorization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ARCESL -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ARCESL">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ABDSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#AddVector -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;AddVector">
+        <rdfs:label xml:lang="en">Vector Addition</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Algorithm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Algorithm">
+        <rdfs:label xml:lang="en">Algorithm</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#AllEigenvalueProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;AllEigenvalueProblem">
+        <rdfs:label xml:lang="en">All Eigenvalue Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenvalueProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#AllEigenvectorProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;AllEigenvectorProblem">
+        <rdfs:label xml:lang="en">All Eigenvector Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenvectorProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#AlmostBlockDiagonalMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;AlmostBlockDiagonalMatrix">
+        <rdfs:label xml:lang="en">Almost Block Diagonal Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;BlockStructuredMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#AlternateRowColumnPivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;AlternateRowColumnPivoting">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SpecialPivoting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ArrowheadMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ArrowheadMatrix">
+        <rdfs:label xml:lang="en">Arrowhead Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;BlockStructuredMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BABDCR -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BABDCR">
+        <rdfs:label xml:lang="en">BABDCR</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;BABDSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BABDSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BABDSolver">
+        <rdfs:label xml:lang="en">BABD Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;StructuralMatrixSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BandedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BandedMatrix">
+        <rdfs:label xml:lang="en">Banded Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BandedStorageFormat -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BandedStorageFormat">
+        <rdfs:label xml:lang="en">Banded Storage Format</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorageFormat"/>
+        <rdfs:comment>store only diagonals of a banded matrix</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BidiagonalBandedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BidiagonalBandedMatrix">
+        <rdfs:label xml:lang="en">Bidiagonal Banded Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SpecialBandedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BlockBidiagonalMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BlockBidiagonalMatrix">
+        <rdfs:label xml:lang="en">Block Bidiagonal Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;BlockStructuredMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BlockDiagonalMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BlockDiagonalMatrix">
+        <rdfs:label xml:lang="en">Block Diagonal Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;BlockStructuredMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BlockDiagonallyDominantMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BlockDiagonallyDominantMatrix">
+        <rdfs:label xml:lang="en">Block Diagonally Dominant Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDiagonalDominance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BlockPivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BlockPivoting">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SpecialPivoting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BlockStructuredMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BlockStructuredMatrix">
+        <rdfs:label xml:lang="en">Block Structured Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BlockTridiagonalMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BlockTridiagonalMatrix">
+        <rdfs:label xml:lang="en">Block Tridiagonal Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;BlockStructuredMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Boolean -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Boolean">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Simple"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BoxMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BoxMatrix">
+        <rdfs:label xml:lang="en">Box Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GeneralSymmetricMatrix"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
+        <rdfs:comment xml:lang="en">(2r+1) ×(2r+1) matrix of 1s.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#COLROW -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;COLROW">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ABDFactorization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CPPLapack -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CPPLapack">
+        <rdfs:subClassOf rdf:resource="&unnamed;Lib"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CRSLVE -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CRSLVE">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ABDSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CSVFormat -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CSVFormat">
+        <rdfs:label xml:lang="en">CSV</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataFormat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Character -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Character">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Simple"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CholeskyFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CholeskyFactorization">
+        <rdfs:label xml:lang="en">Cholesky Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SymmetricMatrixFactorization"/>
+        <rdfs:comment>for symmetric and Hermitian positive definite matrices including band matrices</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CirculantMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CirculantMatrix">
+        <rdfs:label xml:lang="en">Circulant Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ToeplitzMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ColumnDiagonallyDominantMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ColumnDiagonallyDominantMatrix">
+        <rdfs:label xml:lang="en">Column Diagonally Dominant Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DiagonallyDominantMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ColumnMajorMatrixStorage -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ColumnMajorMatrixStorage">
+        <rdfs:label xml:lang="en">Column Major Matrix Storage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ColumnPivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ColumnPivoting">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;PartialPivoting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CompletePivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CompletePivoting">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Pivoting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Complex -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Complex">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Simple"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CompressedMatrixStorage -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CompressedMatrixStorage">
+        <rdfs:label xml:lang="en">Compressed Matrix Storage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorage"/>
+        <rdfs:comment>We have a vector of values, a vector of column indices corresponding to this values and a vector of pointers where each row starts.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CoordinateMatrixStorage -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CoordinateMatrixStorage">
+        <rdfs:label xml:lang="en">Coordinate Matrix Storage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorage"/>
+        <rdfs:comment> This type is an implementation a list of triples (i,j,value) by using three vectors.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CopyVector -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CopyVector">
+        <rdfs:label xml:lang="en">Copy Vector</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CyclicReduction -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CyclicReduction">
+        <rdfs:label xml:lang="en">Cyclic Reduction</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;TridiagonalFactorization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DataElement -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DataElement">
+        <rdfs:label xml:lang="en">Data Element</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DataElementType -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DataElementType">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DataFormat -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DataFormat">
+        <rdfs:label xml:lang="en">Storage File Format</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixProperty"/>
+        <rdfs:comment xml:lang="en">Format in which data elements are stored.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DenseMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DenseMatrix">
+        <rdfs:label xml:lang="en">Dense Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDensity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DiagonalMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DiagonalMatrix">
+        <rdfs:label xml:lang="en">Diagonal Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SpecialBandedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DiagonallyDominantMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DiagonallyDominantMatrix">
+        <rdfs:label xml:lang="en">Diagonally Dominant Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDiagonalDominance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DiamondMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DiamondMatrix">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GeneralSymmetricMatrix"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
+        <rdfs:isDefinedBy xml:lang="en">Diamond Matrix</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DiskMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DiskMatrix">
+        <rdfs:label xml:lang="en">Disk Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
+        <rdfs:comment xml:lang="en">Matrix whose elements are in a disk-shaped region of radius r, and are otherwise .</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DomainExpert -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DomainExpert">
+        <rdfs:label xml:lang="en">Domain Expert</rdfs:label>
+        <rdfs:comment>Class for people being expert in given fields.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DotProduct -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DotProduct">
+        <rdfs:label xml:lang="en">Dot Product</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DotProductConjugated -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DotProductConjugated">
+        <rdfs:label xml:lang="en">Dot Product Conjugated</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DotProductUnconjugated -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DotProductUnconjugated">
+        <rdfs:label xml:lang="en">Dot Product Unconjugated</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DoubleCompex -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DoubleCompex">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Complex"/>
+        <rdfs:comment>complex with double precision</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DoubleReal -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DoubleReal">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Real"/>
+        <rdfs:comment>real with double precision</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#EigenFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;EigenFactorization">
+        <rdfs:label xml:lang="en">Eigen Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#EigenProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;EigenProblem">
+        <rdfs:label xml:lang="en">Eigen Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearAlgebra"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#EigenSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;EigenSolver">
+        <rdfs:label xml:lang="en">Eigen Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Algorithm"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#EigenvalueProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;EigenvalueProblem">
+        <rdfs:label xml:lang="en">Eigenvalue Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#EigenvectorProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;EigenvectorProblem">
+        <rdfs:label xml:lang="en">Eigenvector Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#EuclideanNorm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;EuclideanNorm">
+        <rdfs:label xml:lang="en">Euclidean Vector Norm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VectorNorm"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ExpertOpinion -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ExpertOpinion">
+        <rdfs:label xml:lang="en">Expert Opinion</rdfs:label>
+        <rdfs:comment>Class representing specific problem&apos;s solution proposed by an expert wiht a given method, and requirements for the resource.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#F01LHF -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;F01LHF">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ABDFactorization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#F04LHF -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;F04LHF">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ABDSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#FrobeniusNorm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;FrobeniusNorm">
+        <rdfs:label xml:lang="en">Frobenius Matrix Norm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixNorm"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#FullStorageFormat -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;FullStorageFormat">
+        <rdfs:label xml:lang="en">Full Storage Format</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorageFormat"/>
+        <rdfs:comment>store all elements</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#FundamentalOperation -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;FundamentalOperation">
+        <rdfs:label xml:lang="en">Fundamental Operation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Algorithm"/>
+        <rdfs:comment>Class repersenting methods for solving problems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GEABD -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GEABD">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ABDFactorization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GaussElimination -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GaussElimination">
+        <rdfs:label xml:lang="en">Gauss Elimination</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GeneralMatrixSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GaussJordanElimination -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GaussJordanElimination">
+        <rdfs:label xml:lang="en">Gauss-Jordan Elimination</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GeneralMatrixSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GeneralBandedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GeneralBandedMatrix">
+        <rdfs:label xml:lang="en">General Banded Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;BandedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GeneralIllConditionedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GeneralIllConditionedMatrix">
+        <rdfs:label xml:lang="en">General</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;IllCondotionedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GeneralLinearEquationFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GeneralLinearEquationFactorization">
+        <rdfs:label xml:lang="en">General Linear Equations Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationDirectSolver"/>
+        <rdfs:comment xml:lang="en">Methods for performing factorization of matrix A from AX=B.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GeneralMatrixSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GeneralMatrixSolver">
+        <rdfs:label xml:lang="en">General Matrix Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationDirectSolver"/>
+        <rdfs:comment xml:lang="en">Solvers giving solution for linear equations.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GeneralNonDiagonallyDominantMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GeneralNonDiagonallyDominantMatrix">
+        <rdfs:label xml:lang="en">General Non Diagonally Dominant Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDiagonalDominance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GeneralSymmetricMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GeneralSymmetricMatrix">
+        <rdfs:label xml:lang="en">General Symmetric Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SymmetricMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GeneralUnstructuredMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GeneralUnstructuredMatrix">
+        <rdfs:label xml:lang="en">General Unstructure Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GeneralUnsymmetricMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GeneralUnsymmetricMatrix">
+        <rdfs:label xml:lang="en">General Unsymmetric Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSymmetricity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GeneralWellConditionedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GeneralWellConditionedMatrix">
+        <rdfs:label xml:lang="en">General</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;WellConditionedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HDF -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;HDF">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataFormat"/>
+        <rdfs:comment xml:lang="en">MIME type: application/x-hdf
+HDF data format Version 4.
+General-purpose format for representing multidimensional datasets.
+Used for storage, management, and exchange of scientific data.
+HDF is an acronym for Hierarchical Data Format. (from Wolfram Mathematica Documentation Center)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HadamardWellConditionedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;HadamardWellConditionedMatrix">
+        <rdfs:label xml:lang="en">Hadamard</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;WellConditionedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HankelMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;HankelMatrix">
+        <rdfs:label xml:lang="en">Hankel Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HarwellBoeing -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;HarwellBoeing">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataFormat"/>
+        <rdfs:comment xml:lang="en">Used for exchanging and storing sparse matrices.
+Plain text format.
+File format of the Harwell-Boeing collection of standard test matrices.
+The three-letter file extension encodes matrix properties that are also represented in the file.
+The first letter of the file extension encodes the data type: &quot;r&quot; (real), &quot;c&quot; (complex), or &quot;p&quot; (pattern).
+The second letter denotes the symmetry property: &quot;s&quot; (symmetric), &quot;u&quot; (unsymmetric), &quot;h&quot; (Hermitian), &quot;z&quot; (skew-symmetric), or &quot;r&quot; (rectangular).
+The third letter of the file extension is either &quot;a&quot; (assembled) or &quot;e&quot; (elemental unassembled).
+Stores matrices in a sparse representation.(from Wolfram Mathematica Documentation Center)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HauseholderTransformation -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;HauseholderTransformation">
+        <rdfs:label xml:lang="en">Householder Transformation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Transformation"/>
+        <rdfs:comment xml:lang="en">Householder transformation is a linear transformation that describes a reflection about a plane or hyperplane containing the origin. Householder transformations are widely used in numerical linear algebra, to perform QR decompositions and in the first step of the QR algorithm.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HermitianMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;HermitianMatrix">
+        <rdfs:label xml:lang="en">Hermitian Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSymmetricity"/>
+        <rdfs:comment xml:lang="en">For a (n x n )-dimensional hermitian matrix  is a square matrix with complex entries that is equal to its own conjugate transpose:  0 &lt;= i &lt; n, 0 &lt;= j &lt; n holds hi, j = hj, i-.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HermitianRank2KMatrixUpdate -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;HermitianRank2KMatrixUpdate">
+        <rdfs:label xml:lang="en">Hermitian Rank 2k Matrix Update</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Rank2KUpdateOfMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HermitianRankKMatrixUpdate -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;HermitianRankKMatrixUpdate">
+        <rdfs:label xml:lang="en">Hermitian Rank k Matrix Update</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;RankKUpdateOfMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HessenbergMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;HessenbergMatrix">
+        <rdfs:label xml:lang="en">Hessenberg Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStructure"/>
+        <rdfs:comment xml:lang="en">A special kind of square matrix, one that is &quot;almost&quot; triangular.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HilbertIllConditionedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;HilbertIllConditionedMatrix">
+        <rdfs:label xml:lang="en">Hilbert</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;IllCondotionedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HilbertMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;HilbertMatrix">
+        <rdfs:label xml:lang="en">Hilbert Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;HankelMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#IdentityMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;IdentityMatrix">
+        <rdfs:label xml:lang="en">Identity Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
+        <rdfs:comment xml:lang="en">The identity matrix of size n is the n × n square matrix with ones on the main diagonal and zeros elsewhere.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#IllCondotionedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;IllCondotionedMatrix">
+        <rdfs:label xml:lang="en">Ill-conditioned Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixConditioning"/>
+        <rdfs:comment xml:lang="en">A matrix is ill-conditioned if the condition number is too large (and singular if it is infinite).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#IndefiniteSymmetricMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;IndefiniteSymmetricMatrix">
+        <rdfs:label xml:lang="en">Indefinite Symmetric Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SymmetricMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#InducedMatrixNorm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;InducedMatrixNorm">
+        <rdfs:label xml:lang="en">Induced Matrix Norm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixNorm"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Integer -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Integer">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Simple"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#IterativeRefinement -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;IterativeRefinement">
+        <rdfs:label xml:lang="en">Iterative Refinement</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationDirectSolver"/>
+        <rdfs:comment xml:lang="en">Method for making linear equation solution more exact.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#JobProfile -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;JobProfile">
+        <rdfs:label xml:lang="en">Job Profile</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LDLFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;LDLFactorization">
+        <rdfs:label xml:lang="en">LDL Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SymmetricMatrixFactorization"/>
+        <rdfs:comment>for symmetric and Hermitian positive definite tridiagonal matrices</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LUFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;LUFactorization">
+        <rdfs:label xml:lang="en">LU Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GeneralLinearEquationFactorization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LargestEigenvalueProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;LargestEigenvalueProblem">
+        <rdfs:label xml:lang="en">Largest Eigenvalue Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenvalueProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LeastSquaresProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;LeastSquaresProblem">
+        <rdfs:label xml:lang="en">Least Squares Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearAlgebra"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LinearAlgebra -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;LinearAlgebra">
+        <rdfs:label xml:lang="en">Linear Algebra Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Problem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LinearEquationDirectSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;LinearEquationDirectSolver">
+        <rdfs:label xml:lang="en">Linear Equations Direct Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LinearEquationIterativeSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;LinearEquationIterativeSolver">
+        <rdfs:label xml:lang="en">Linear Equation Iterative Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LinearEquationSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;LinearEquationSolver">
+        <rdfs:label xml:lang="en">Linear Equations Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Algorithm"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LinearMatrixMatrixSolution -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;LinearMatrixMatrixSolution">
+        <rdfs:label xml:lang="en">Linear Matrix-Matrix Solution</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MMOperation"/>
+        <rdfs:comment>linear matrix-matrix solution for triangular matrices</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Lower -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Lower">
+        <rdfs:label xml:lang="en">Lower</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixHalf"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LowerHessenbergMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;LowerHessenbergMatrix">
+        <rdfs:label xml:lang="en">Lower Hessenberg Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;HessenbergMatrix"/>
+        <rdfs:comment xml:lang="en">A lower Hessenberg matrix has zero entries above the first superdiagonal.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MAT -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MAT">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataFormat"/>
+        <rdfs:comment xml:lang="en">MATLAB MAT-files.
+Matrix data format.
+Native data format of the MATLAB numerical computation software.
+Stores numerical matrices, Boolean values, or strings.
+Binary format. (from Wolfram Mathematica Documentation Center)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MMOperation -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MMOperation">
+        <rdfs:label xml:lang="en">Matrix Operation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;FundamentalOperation"/>
+        <rdfs:comment xml:lang="en">matrix operations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MMatrix">
+        <rdfs:label xml:lang="en">M-Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixElementProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MTX -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MTX">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataFormat"/>
+        <rdfs:comment xml:lang="en">Matrix Market matrix format.
+Used for exchanging and storing test matrices.
+Plain text format.
+File format of the NIST Matrix Market collection of standard test matrices.
+Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sparse (&quot;coordinate format&quot;) representation. (from Wolfram Mathematica Documentation Center)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MVOperation -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MVOperation">
+        <rdfs:label xml:lang="en">Matrix-Vector Operation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;FundamentalOperation"/>
+        <rdfs:comment>matrix-vector operations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ManhattanVectorNorm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ManhattanVectorNorm">
+        <rdfs:label xml:lang="en">Manhattan Vector Norm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VectorNorm"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MappedMatrixStorage -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MappedMatrixStorage">
+        <rdfs:label xml:lang="en">Mapped Matrix Storage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorage"/>
+        <rdfs:comment>This type is an implementation of a std::map&lt;size_t, std::map&lt;size_t, double&gt; &gt;.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Matrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Matrix">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Structured"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixConditionNumber -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixConditionNumber">
+        <rdfs:label xml:lang="en">Matrix Condition Number</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixConditioning"/>
+        <rdfs:comment xml:lang="en">The ratio C of the largest to smallest singular value in the singular value decomposition of a matrix.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixConditioning -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixConditioning">
+        <rdfs:label xml:lang="en">Matrix Conditioning</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SquareMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixDefiniteness -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixDefiniteness">
+        <rdfs:label xml:lang="en">Matrix Definiteness</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixDensity -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixDensity">
+        <rdfs:label xml:lang="en">Matrix Density</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixDeterminantProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixDeterminantProblem">
+        <rdfs:label xml:lang="en">Matrix Determinant Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SystemOfLinearEquationsProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixDiagonalDominance -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixDiagonalDominance">
+        <rdfs:label xml:lang="en">Matrix Diagonal Dominance</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SquareMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixElementProperty -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixElementProperty">
+        <rdfs:label xml:lang="en">Matrix Element Property</rdfs:label>
+        <rdfs:comment xml:lang="en">Special properties for single matrix elements.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixHalf -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixHalf">
+        <rdfs:label xml:lang="en">Matrix Half</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixInversionProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixInversionProblem">
+        <rdfs:label xml:lang="en">Matrix inversion Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SystemOfLinearEquationsProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixMatrixProduct -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixMatrixProduct">
+        <rdfs:label xml:lang="en">Matrix-Matrix Product</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MMOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixNorm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixNorm">
+        <rdfs:label xml:lang="en">Matrix Norm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MMOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixNormProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixNormProblem">
+        <rdfs:label xml:lang="en">Matrix Norm Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearAlgebra"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixProperty -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixProperty">
+        <rdfs:label xml:lang="en">Matrix Property</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixRank -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixRank">
+        <rdfs:label xml:lang="en">Matrix Rank</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;2DMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixShape -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixShape">
+        <rdfs:label xml:lang="en">Matrix Shape</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixSingularity -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixSingularity">
+        <rdfs:label xml:lang="en">Matrix Singularity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SquareMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixSpecial -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixSpecial">
+        <rdfs:label xml:lang="en">Matrix Special</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;2DMatrix"/>
+        <rdfs:comment xml:lang="en">Special forms of matrices.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixSpectralNorm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixSpectralNorm">
+        <rdfs:label xml:lang="en">Matrix Spectral Norm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;2DMatrixNorm"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixStorage -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixStorage">
+        <rdfs:label xml:lang="en">Matrix Storage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixStorageFormat -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixStorageFormat">
+        <rdfs:label xml:lang="en">Matrix Storage Format</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;2DMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixStructure -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixStructure">
+        <rdfs:label xml:lang="en">Matrix Structure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SquareMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixSymmetricity -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixSymmetricity">
+        <rdfs:label xml:lang="en">Matrix Symmetricity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SquareMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixTranspose -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixTranspose">
+        <rdfs:label xml:lang="en">Matrix Transpose</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;FundamentalOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixVectorProduct -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MatrixVectorProduct">
+        <rdfs:label xml:lang="en">Matrix-Vector Product</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MaxVectorNorm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MaxVectorNorm">
+        <rdfs:label xml:lang="en">Maximum Vector Norm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VectorNorm"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MultidimensionalMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MultidimensionalMatrix">
+        <rdfs:label xml:lang="en">Multidimensional Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixShape"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MultipleRightHandSideProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MultipleRightHandSideProblem">
+        <rdfs:label xml:lang="en">Multiple Right Hand Side Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SystemOfLinearEquationsProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#NegativeDefiniteMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;NegativeDefiniteMatrix">
+        <rdfs:label xml:lang="en">Negative Definite Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDefiniteness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#NegativeSemiDefiniteMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;NegativeSemiDefiniteMatrix">
+        <rdfs:label xml:lang="en">Negative Semidefinite Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDefiniteness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#NoPivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;NoPivoting">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Pivoting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#NonSingularMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;NonSingularMatrix">
+        <rdfs:label xml:lang="en">Nonsingular Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSingularity"/>
+        <rdfs:comment xml:lang="en">An n-by-n (square) matrix A is called nonsingular) if there exists an n-by-n matrix B such that AB=BA=In.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#NonlinearLeastSquares -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;NonlinearLeastSquares">
+        <rdfs:label xml:lang="en">Nonlinera Least Squares Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LeastSquaresProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#OrdinaryLeastSquares -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;OrdinaryLeastSquares">
+        <rdfs:label xml:lang="en">Ordinary Least Squares Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LeastSquaresProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#OrthogonalMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;OrthogonalMatrix">
+        <rdfs:label xml:lang="en">Orthogonal Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#P-Matrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;P-Matrix">
+        <rdfs:label xml:lang="en">P-Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixElementProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#P-Norm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;P-Norm">
+        <rdfs:label xml:lang="en">P-Norm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VectorNorm"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PackedStorageFormat -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PackedStorageFormat">
+        <rdfs:label xml:lang="en">Packed Storage Format</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorageFormat"/>
+        <rdfs:comment>store only the upper or lower triangular part</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PartialPivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PartialPivoting">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Pivoting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PentadiagonalBandedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PentadiagonalBandedMatrix">
+        <rdfs:label xml:lang="en">Pentadiagonal Banded Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SpecialBandedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PermutationMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PermutationMatrix">
+        <rdfs:label xml:lang="en">Permutation Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Pivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Pivoting">
+        <rdfs:label xml:lang="en">Pivoting</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GaussElimination"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GaussJordanElimination"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LUFactorization"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;QRFactorization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PlaneRotationOfPoints -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PlaneRotationOfPoints">
+        <rdfs:label xml:lang="en">Plane Rotation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PositiveDefiniteMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PositiveDefiniteMatrix">
+        <rdfs:label xml:lang="en">Positive Definite Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDefiniteness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PositiveDefiniteSymmetricMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PositiveDefiniteSymmetricMatrix">
+        <rdfs:label xml:lang="en">Positive Definite Symmetric Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SymmetricMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PositiveSemiDefiniteMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PositiveSemiDefiniteMatrix">
+        <rdfs:label xml:lang="en">Positive Semidefinite Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDefiniteness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PositiveSemidefiniteSymmetricMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PositiveSemidefiniteSymmetricMatrix">
+        <rdfs:label xml:lang="en">Positive Semidefinite Symmetric Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SymmetricMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PowerMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PowerMethod">
+        <rdfs:label xml:lang="en">Power Method</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenSolver"/>
+        <rdfs:comment xml:lang="en">Giiven a matrix A, the algorithm will produce a number λ (the eigenvalue) and a nonzero vector v (the eigenvector), such that Av = λv. The power method is a  simple algorithm. It does not compute a matrix decomposition, and hence it can be used when A is a very large sparse matrix.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Problem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Problem">
+        <rdfs:label xml:lang="en">Problem</rdfs:label>
+        <rdfs:comment>Class representing problems available.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#QRFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;QRFactorization">
+        <rdfs:label xml:lang="en">QR Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenFactorization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#QuadrupleComplex -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;QuadrupleComplex">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Complex"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#QuadrupleReal -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;QuadrupleReal">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Real"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#RangeEigenvalueProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;RangeEigenvalueProblem">
+        <rdfs:label xml:lang="en">Range Eigenvalue Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenvalueProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#RangeEigenvectorProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;RangeEigenvectorProblem">
+        <rdfs:label xml:lang="en">Range Eigenvector Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenvectorProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Rank1UpdateOfMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Rank1UpdateOfMatrix">
+        <rdfs:label xml:lang="en">Rank 1 Matrix Update</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Rank2KUpdateOfMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Rank2KUpdateOfMatrix">
+        <rdfs:label xml:lang="en">Rank 2k Matrix Update</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MMOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Rank2UpdateOfMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Rank2UpdateOfMatrix">
+        <rdfs:label xml:lang="en">Rank 2 Matrix Update</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#RankEqualtoDimension -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;RankEqualtoDimension">
+        <rdfs:label xml:lang="en">Rank Equal to Dimension</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixRank"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#RankKUpdateOfMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;RankKUpdateOfMatrix">
+        <rdfs:label xml:lang="en">Rank k Matrix Update</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MMOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#RanknotEqualtoDimension -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;RanknotEqualtoDimension">
+        <rdfs:label xml:lang="en">Rank Not Equal to Dimension</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixRank"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Real -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Real">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Simple"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Record -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Record">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Structured"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#RectangularMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;RectangularMatrix">
+        <rdfs:label xml:lang="en">Rectangular Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;2DMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#RowDiagonallyDominantMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;RowDiagonallyDominantMatrix">
+        <rdfs:label xml:lang="en">Row Diagonally Dominant Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DiagonallyDominantMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#RowMajorMatrixStorage -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;RowMajorMatrixStorage">
+        <rdfs:label xml:lang="en">Row Major Matrix Storage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#RowPivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;RowPivoting">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;PartialPivoting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SOLN -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SOLN">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ABDSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SOLT -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SOLT">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ABDSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ScalarMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ScalarMatrix">
+        <rdfs:label xml:lang="en">Scalar Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
+        <rdfs:comment xml:lang="en">For a (m x n)-dimensional scalar matrix and 0 &lt;= i &lt; m, 0 &lt;= j &lt; n holds zi, j = s.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ScalarVectorProduct -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ScalarVectorProduct">
+        <rdfs:label xml:lang="en">Scalar-Vector Product</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ScaledColumnPivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ScaledColumnPivoting">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ColumnPivoting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ScaledRowPivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ScaledRowPivoting">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;RowPivoting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Simple -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Simple">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataElementType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SingleComplex -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SingleComplex">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Complex"/>
+        <rdfs:comment>complex with single precision</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SingleReal -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SingleReal">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Real"/>
+        <rdfs:comment>real with single precision</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SingleRightHandSideProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SingleRightHandSideProblem">
+        <rdfs:label xml:lang="en">Single Right Hand Side Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SystemOfLinearEquationsProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SingularMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SingularMatrix">
+        <rdfs:label xml:lang="en">Singular Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSingularity"/>
+        <rdfs:comment xml:lang="en">A square matrix that is not invertible is called singular. A square matrix is singular if and only if its determinant is 0.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SingularValueDecompositionProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SingularValueDecompositionProblem">
+        <rdfs:label xml:lang="en">Singular Value Decomposition Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearAlgebra"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SkylineMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SkylineMatrix">
+        <rdfs:label xml:lang="en">Skyline Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStructure"/>
+        <rdfs:comment xml:lang="en">A skyline matrix is a form of a square, banded (and typically symmetric) matrix that reduces the storage requirement of a matrix due to its banded nature.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SmallestEigenvalueProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SmallestEigenvalueProblem">
+        <rdfs:label xml:lang="en">Smallest Eigenvalue Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenvalueProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SolutionOfLinearSystemOFEquation -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SolutionOfLinearSystemOFEquation">
+        <rdfs:label xml:lang="en">System of Linear Equation Solution</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MVOperation"/>
+        <rdfs:comment xml:lang="en">Solving the system of inlear equations for triagnular matrix</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SparseMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SparseMatrix">
+        <rdfs:label xml:lang="en">Sparse Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDensity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SpecialBandedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SpecialBandedMatrix">
+        <rdfs:label xml:lang="en">Special Banded Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;BandedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SpecialPivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SpecialPivoting">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Pivoting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SquareMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SquareMatrix">
+        <rdfs:label xml:lang="en">Square Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;2DMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#StrictlyBlockDiagonallyDominantMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;StrictlyBlockDiagonallyDominantMatrix">
+        <rdfs:label xml:lang="en">Strictly Block Diagonally Dominant Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDiagonalDominance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#StrictlyColumnDiagonallyDominantMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;StrictlyColumnDiagonallyDominantMatrix">
+        <rdfs:label xml:lang="en">Strictly Row Diagonally Dominant Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;StrictlyDiagonallyDominantMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#StrictlyDiagonallyDominantMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;StrictlyDiagonallyDominantMatrix">
+        <rdfs:label xml:lang="en">Strictly Diagonally Dominant Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDiagonalDominance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#StrictlyRowDiagonallyDominantMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;StrictlyRowDiagonallyDominantMatrix">
+        <rdfs:label xml:lang="en">Strictly Column Diagonally Dominant Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;StrictlyDiagonallyDominantMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#String -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;String">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Structured"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#StructuralMatrixFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;StructuralMatrixFactorization">
+        <rdfs:label xml:lang="en">Structural Matrix Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationDirectSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#StructuralMatrixSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;StructuralMatrixSolver">
+        <rdfs:label xml:lang="en">Structural Matrix Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationDirectSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Structure -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Structure">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Structured"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Structured -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Structured">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataElementType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SumOfVectorMagnitudes -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SumOfVectorMagnitudes">
+        <rdfs:label xml:lang="en">Vector Magnitudes Sum</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VectorNorm"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SumVectorElements -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SumVectorElements">
+        <rdfs:label xml:lang="en">Sum of Elements of Complex Vector</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SymmetricIndefiniteFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SymmetricIndefiniteFactorization">
+        <rdfs:label xml:lang="en">Symmetric Indefinite Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SymmetricMatrixFactorization"/>
+        <rdfs:comment>symmetric and Hermitian indefinite matrices</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SymmetricMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SymmetricMatrix">
+        <rdfs:label xml:lang="en">Symmetric Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSymmetricity"/>
+        <rdfs:comment xml:lang="en">For a (n x n )-dimensional symmetric matrix and 0 &lt;= i &lt; n, 0 &lt;= j &lt; n holds si, j = sj, i.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SymmetricMatrixFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SymmetricMatrixFactorization">
+        <rdfs:label xml:lang="en">Symmetric Matrix Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationDirectSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SymmetricRank2KUpdateOfMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SymmetricRank2KUpdateOfMatrix">
+        <rdfs:label xml:lang="en">Symmetric rank 2k Matrix Update</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Rank2KUpdateOfMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SymmetricRankKUpdateOfMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SymmetricRankKUpdateOfMatrix">
+        <rdfs:label xml:lang="en">Symmetric Rank k Matrix Update</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;RankKUpdateOfMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SystemOfLinearEquationsProblem -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SystemOfLinearEquationsProblem">
+        <rdfs:label xml:lang="en">System of Linear Equations Problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearAlgebra"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ToeplitzMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ToeplitzMatrix">
+        <rdfs:label xml:lang="en">Toeplitz Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSymmetricity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#TournamentPivoting -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;TournamentPivoting">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Pivoting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Transformation -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Transformation">
+        <rdfs:label xml:lang="en">Transformation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Algorithm"/>
+        <rdfs:comment xml:lang="en">Transformation consisting of several operations.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#TriangularBandedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;TriangularBandedMatrix">
+        <rdfs:label xml:lang="en">Triangular Banded Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SpecialBandedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#TriangularMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;TriangularMatrix">
+        <rdfs:label xml:lang="en">Triangular Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#TriangularSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;TriangularSolver">
+        <rdfs:label xml:lang="en">Triangular Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GeneralMatrixSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#TridiagonalBandedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;TridiagonalBandedMatrix">
+        <rdfs:label xml:lang="en">Tridiagonal Banded Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SpecialBandedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#TridiagonalFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;TridiagonalFactorization">
+        <rdfs:label xml:lang="en">Tridiagonal Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;StructuralMatrixFactorization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#UnitaryMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;UnitaryMatrix">
+        <rdfs:label xml:lang="en">Unitary Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
+        <rdfs:comment xml:lang="en">A complex square matrix U is unitary if U^* U = UU^* = I , where I is the identity matrix and U * is the conjugate transpose of U.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Upper -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Upper">
+        <rdfs:label xml:lang="en">Upper</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixHalf"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#UpperHessenbergMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;UpperHessenbergMatrix">
+        <rdfs:label xml:lang="en">Upper Hessenberg Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;HessenbergMatrix"/>
+        <rdfs:comment xml:lang="en">An upper Hessenberg matrix has zero entries below the first subdiagonal.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#VVOperation -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;VVOperation">
+        <rdfs:label xml:lang="en">Vector Operation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;FundamentalOperation"/>
+        <rdfs:comment xml:lang="en">scalar, vector and vector-vector operations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#VandermondeIllConditionedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;VandermondeIllConditionedMatrix">
+        <rdfs:label xml:lang="en">Vandermonde</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;IllCondotionedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Vector -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Vector">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Structured"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#VectorNorm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;VectorNorm">
+        <rdfs:label xml:lang="en">Vector Norm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#VectorScalarProduct -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;VectorScalarProduct">
+        <rdfs:label xml:lang="en">Vector-Scalar Product</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#VectorVectorSwap -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;VectorVectorSwap">
+        <rdfs:label xml:lang="en">Vector-Vector Swap</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;VVOperation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#WZFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;WZFactorization">
+        <rdfs:label xml:lang="en">WZ Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GeneralLinearEquationFactorization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#WellConditionedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;WellConditionedMatrix">
+        <rdfs:label xml:lang="en">Well-Conditioned Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixConditioning"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ZMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ZMatrix">
+        <rdfs:label xml:lang="en">Z-Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixElementProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ZeroMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ZeroMatrix">
+        <rdfs:label xml:lang="en">Zero Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
+        <rdfs:comment xml:lang="en">For a (m x n)-dimensional zero matrix and 0 &lt;= i &lt; m, 0 &lt;= j &lt; n holds zi, j = 0.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#AnyPivoting -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;AnyPivoting">
+        <rdfs:comment>individuals of this class represent any type of pivoting</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#FullPivoting -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;FullPivoting"/>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LinearEquation1 -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;LinearEquation1"/>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#RowPivoting -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;RowPivoting">
+        <rdf:type rdf:resource="&AiGExpertOntology;RowPivoting"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#eigenvalueProblemJobProfile -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;eigenvalueProblemJobProfile">
+        <rdf:type rdf:resource="&AiGExpertOntology;JobProfile"/>
+        <hasExpertRecommentation rdf:resource="&AiGExpertOntology;expert1OpinionForEigenvalueProblem"/>
+        <withAlgorithm rdf:resource="&AiGExpertOntology;qrFactorization"/>
+        <forProblem rdf:resource="&AiGExpertOntology;smallestEigenvalueProblem"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#expert1OpinionForEigenvalueProblem -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;expert1OpinionForEigenvalueProblem">
+        <rdf:type rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
+        <hasRecommendedResource rdf:resource="&AiGGridOntology;desktopWorkerNode1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#luFactorizationWithPartialPivoting -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;luFactorizationWithPartialPivoting">
+        <rdf:type rdf:resource="&AiGExpertOntology;PartialPivoting"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#matrixInversionJobProfile -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;matrixInversionJobProfile">
+        <rdf:type rdf:resource="&AiGExpertOntology;JobProfile"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#qrFactorization -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;qrFactorization">
+        <forMatrix rdf:resource="&AiGExpertOntology;sparseSymmetricMatrix"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#qrFactorizationWithColumnPivoting -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;qrFactorizationWithColumnPivoting">
+        <rdf:type rdf:resource="&AiGExpertOntology;ColumnPivoting"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#smallestEigenvalueProblem -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;smallestEigenvalueProblem"/>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#sparseMatrixProperty -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;sparseMatrixProperty">
+        <rdf:type rdf:resource="&AiGExpertOntology;SparseMatrix"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#sparseSymmetricMatrix -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;sparseSymmetricMatrix">
+        <rdf:type rdf:resource="&AiGExpertOntology;Matrix"/>
+        <hasMatrixProperty rdf:resource="&AiGExpertOntology;sparseMatrixProperty"/>
+        <hasMatrixProperty rdf:resource="&AiGExpertOntology;sparseSymmetricMatrix"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#symmetricMatrixProperty -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertOntology;symmetricMatrixProperty">
+        <rdf:type rdf:resource="&AiGExpertOntology;SymmetricMatrix"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+
