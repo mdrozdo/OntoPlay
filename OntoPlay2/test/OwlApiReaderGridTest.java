@@ -82,6 +82,7 @@ public class OwlApiReaderGridTest {
 		OntoClass memoryClass = kb.getOwlClass("http://gridagents.sourceforge.net/AiGGridOntology#PhysicalMemory");
 
 		assertThat(memoryClass).isNotNull();
+		//TODO: Fix test
 		assertThat(selectLocalNames(memoryClass.getProperties())).containsOnly(
 				"hasName", "hasID", "belongToVO", "hasTotalSize", "hasAvailableSize");
 	}

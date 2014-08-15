@@ -171,6 +171,16 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#outputsJobResource -->
+
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#outputsJobResource">
+        <rdfs:domain rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobDescription"/>
+        <rdfs:range rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResource"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#paymentConditions -->
 
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#paymentConditions">
@@ -343,17 +353,6 @@
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#hasDestinationPath -->
-
-    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#hasDestinationPath">
-        <rdfs:comment>The destination path of the resource relative to the root of the job resource location.</rdfs:comment>
-        <rdfs:domain rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResource"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#hasJobId -->
 
     <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#hasJobId">
@@ -367,6 +366,17 @@
                 </owl:unionOf>
             </owl:Class>
         </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#hasLocalPath -->
+
+    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#hasLocalPath">
+        <rdfs:comment>The destination path of the resource relative to the root of the job resource location.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResource"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
     </owl:DatatypeProperty>
     
 

@@ -1,6 +1,8 @@
 package models.owlGeneration;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,8 +20,9 @@ import models.propertyConditions.DatatypePropertyCondition;
 import models.propertyConditions.IndividualValueCondition;
 
 import org.mindswap.pellet.jena.PelletReasonerFactory;
-import org.semanticweb.HermiT.Reasoner;
 import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
+import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
 import org.semanticweb.owlapi.io.StringDocumentTarget;
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.IRI;
@@ -138,8 +141,7 @@ public class OntologyGenerator {
 			List<OWLAxiom> axioms = getIndividualGenerator().convertToOntIndividual(individualUri, condition);
 			
 			addToOntologyAsIndividualDescription(destinationOntology, axioms);
-			
-			return serializeToString(destinationOntology);
+			return serializeToString(destinationOntology, false);			
 			
 		} catch (OWLOntologyCreationException e) {
 			// TODO Auto-generated catch block
@@ -171,9 +173,19 @@ public class OntologyGenerator {
 	}
 
 	private String serializeToString(OWLOntology destinationOntology) throws OWLOntologyStorageException {
+		return serializeToString(destinationOntology, true);
+	}
+			
+	private String serializeToString(OWLOntology destinationOntology, boolean useRdf) throws OWLOntologyStorageException {
 		StringDocumentTarget serializationTarget = new StringDocumentTarget();
-		
-		manager.saveOntology(destinationOntology, serializationTarget);
+		if(useRdf){
+			RDFXMLOntologyFormat rdfXmlFormat = new RDFXMLOntologyFormat();
+			manager.saveOntology(destinationOntology, rdfXmlFormat, serializationTarget);				
+		}
+		else{
+			OWLXMLOntologyFormat owlXmlFormat = new OWLXMLOntologyFormat();
+			manager.saveOntology(destinationOntology, owlXmlFormat, serializationTarget);
+		}
 		return serializationTarget.toString();
 	}
 
