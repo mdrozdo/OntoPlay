@@ -2,6 +2,7 @@
 
 
 <!DOCTYPE rdf:RDF [
+    <!ENTITY cgo "http://purl.org/NET/cgo#" >
     <!ENTITY time "http://www.w3.org/2006/time#" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
@@ -9,7 +10,6 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY cgo "http://www.owl-ontologies.com/unnamed.owl#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
     <!ENTITY xsp "http://www.owl-ontologies.com/2005/08/07/xsp.owl#" >
@@ -26,18 +26,20 @@
      xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
      xmlns:sqwrl="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
      xmlns:time="http://www.w3.org/2006/time#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:cgo="http://www.owl-ontologies.com/unnamed.owl#"
+     xmlns:cgo="http://purl.org/NET/cgo#"
      xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#">
     <owl:Ontology rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology">
+        <rdfs:label xml:lang="en">Agents in Grid - Conditions Ontology</rdfs:label>
+        <rdfs:label xml:lang="en">AiG Conditions Ontology</rdfs:label>
+        <owl:versionInfo xml:lang="en">Branch of the AiG Conditions Ontology started in 06.2013 for the purpose of Agents in Grid project</owl:versionInfo>
         <owl:imports rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology"/>
-        <owl:imports rdf:resource="http://www.w3.org/2006/time"/>
     </owl:Ontology>
     
 
@@ -52,6 +54,17 @@
 
     <owl:AnnotationProperty rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#constraintWeight"/>
     <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
     
 
 
@@ -277,7 +290,7 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#hasID -->
+    <!-- http://purl.org/NET/cgo#hasID -->
 
     <owl:ObjectProperty rdf:about="&cgo;hasID"/>
     
@@ -514,7 +527,7 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#hasName -->
+    <!-- http://purl.org/NET/cgo#hasName -->
 
     <owl:DatatypeProperty rdf:about="&cgo;hasName"/>
     
@@ -750,37 +763,37 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#DataResource -->
+    <!-- http://purl.org/NET/cgo#DataResource -->
 
     <owl:Class rdf:about="&cgo;DataResource"/>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#GridComponent -->
+    <!-- http://purl.org/NET/cgo#GridComponent -->
 
     <owl:Class rdf:about="&cgo;GridComponent"/>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#GridEntity -->
+    <!-- http://purl.org/NET/cgo#GridEntity -->
 
     <owl:Class rdf:about="&cgo;GridEntity"/>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#GridResource -->
+    <!-- http://purl.org/NET/cgo#GridResource -->
 
     <owl:Class rdf:about="&cgo;GridResource"/>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#StorageSpace -->
+    <!-- http://purl.org/NET/cgo#StorageSpace -->
 
     <owl:Class rdf:about="&cgo;StorageSpace"/>
     
 
 
-    <!-- http://www.owl-ontologies.com/unnamed.owl#URL -->
+    <!-- http://purl.org/NET/cgo#URL -->
 
     <owl:Class rdf:about="&cgo;URL"/>
     
@@ -807,553 +820,9 @@
     <!-- http://www.w3.org/2006/time#TemporalEntity -->
 
     <owl:Class rdf:about="&time;TemporalEntity"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#CondorJobContract -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorJobContract">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobExecutionConditions"/>
-        <deadlinePenalty rdf:datatype="&xsd;float">100.0</deadlinePenalty>
-        <paymentConditions rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorPaymentConditions"/>
-        <jobExecutionTimeline rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec20"/>
-        <contractedResource rdf:resource="&aiggo;compositeWorker"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#CondorMemoryPricing -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorMemoryPricing">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#MemoryUsageChargableItem"/>
-        <utilizationPrice rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorMemoryUtilizationPricing"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#CondorMemoryUtilizationPricing -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorMemoryUtilizationPricing">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Pricing"/>
-        <peakTimePrice rdf:datatype="&xsd;float">3.0</peakTimePrice>
-        <offPeakTimePrice rdf:datatype="&xsd;float">3.0</offPeakTimePrice>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#CondorNetworkPricing -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorNetworkPricing">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#NetworkBandwithChargableItem"/>
-        <utilizationPrice rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorNetworkUtilizationPrice"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#CondorNetworkUtilizationPrice -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorNetworkUtilizationPrice">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Pricing"/>
-        <peakTimePrice rdf:datatype="&xsd;float">1.0</peakTimePrice>
-        <offPeakTimePrice rdf:datatype="&xsd;float">1.0</offPeakTimePrice>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#CondorPaymentConditions -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorPaymentConditions">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#PaymentConditions"/>
-        <leadTime rdf:datatype="&xsd;dateTime">2010-12-28T00:00:00</leadTime>
-        <offeredChargableItem rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorMemoryPricing"/>
-        <offeredChargableItem rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorNetworkPricing"/>
-        <offeredChargableItem rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorWallClockTimePricing"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#CondorWallClockTimePricing -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorWallClockTimePricing">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#WallClockTimeChargableItem"/>
-        <utilizationPrice rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorWallClockUtilizationPrice"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#CondorWallClockUtilizationPrice -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#CondorWallClockUtilizationPrice">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Pricing"/>
-        <offPeakTimePrice rdf:datatype="&xsd;float">18.0</offPeakTimePrice>
-        <peakTimePrice rdf:datatype="&xsd;float">20.0</peakTimePrice>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13 -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13"/>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13Dec14 -->
-
-    <time:ProperInterval rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13Dec14">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:hasBeginning rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13H18"/>
-        <time:hasEnd rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec14H8"/>
-    </time:ProperInterval>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13Dec24 -->
-
-    <time:ProperInterval rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13Dec24">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:hasBeginning rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13"/>
-        <time:hasEnd rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec24"/>
-    </time:ProperInterval>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13H18 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13H18">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-13T18:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec14Dec15 -->
-
-    <time:ProperInterval rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec14Dec15">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:hasBeginning rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec14H18"/>
-        <time:hasEnd rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec15H8"/>
-    </time:ProperInterval>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec14H18 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec14H18">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-14T18:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec14H8 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec14H8">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-14T08:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec15Dec16 -->
-
-    <time:ProperInterval rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec15Dec16">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:hasBeginning rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec15H18"/>
-        <time:hasEnd rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec16H8"/>
-    </time:ProperInterval>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec15H18 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec15H18">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-15T18:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec15H8 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec15H8">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-15T08:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec16Dec17 -->
-
-    <time:ProperInterval rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec16Dec17">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:hasBeginning rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec16H18"/>
-        <time:hasEnd rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec17H8"/>
-    </time:ProperInterval>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec16H18 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec16H18">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-16T18:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec16H8 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec16H8">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-16T08:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec17H8 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec17H8">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-17T08:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec20 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec20">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-20T23:59:59</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec20Dec21 -->
-
-    <time:ProperInterval rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec20Dec21">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:hasBeginning rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec20H18"/>
-        <time:hasEnd rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec21H8"/>
-    </time:ProperInterval>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec20H18 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec20H18">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-20T18:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec21Dec22 -->
-
-    <time:ProperInterval rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec21Dec22">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:hasBeginning rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec21H18"/>
-        <time:hasEnd rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec22H8"/>
-    </time:ProperInterval>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec21H18 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec21H18">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-21T18:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec21H8 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec21H8">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-21T08:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec22Dec23 -->
-
-    <time:ProperInterval rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec22Dec23">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:hasBeginning rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec22H18"/>
-        <time:hasEnd rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec23H8"/>
-    </time:ProperInterval>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec22H18 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec22H18">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-22T18:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec22H8 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec22H8">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-22T08:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec23Dec24 -->
-
-    <time:ProperInterval rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec23Dec24">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:hasBeginning rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec23H18"/>
-        <time:hasEnd rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec24H8"/>
-    </time:ProperInterval>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec23H18 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec23H18">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-23T18:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec23H8 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec23H8">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-23T08:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec24 -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec24"/>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Dec24H8 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec24H8">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2010-12-24T08:00:00</time:inXSDDateTime>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopAvailabilityPricing -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopAvailabilityPricing">
-        <offPeakTimePrice rdf:datatype="&xsd;float">0.0</offPeakTimePrice>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeAvailabilityPricing -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeAvailabilityPricing">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Pricing"/>
-        <offPeakTimePrice rdf:datatype="&xsd;float">10.0</offPeakTimePrice>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeContract -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeContract">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#WorkerContractConditions"/>
-        <isContractExtensionPossible rdf:datatype="&xsd;boolean">true</isContractExtensionPossible>
-        <workerAvailability rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13Dec14"/>
-        <contractPeriod rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec13Dec24"/>
-        <workerAvailability rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec14Dec15"/>
-        <workerAvailability rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec15Dec16"/>
-        <workerAvailability rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec16Dec17"/>
-        <workerAvailability rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec20Dec21"/>
-        <workerAvailability rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec21Dec22"/>
-        <workerAvailability rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec22Dec23"/>
-        <workerAvailability rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Dec23Dec24"/>
-        <paymentConditions rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodePayment"/>
-        <contractedResource rdf:resource="&aiggo;desktopWorkerNode1"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeDownloadPricing -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeDownloadPricing">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DownloadChargableItem"/>
-        <utilizationPrice rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeDownloadUtilizationPrice"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeDownloadUtilizationPrice -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeDownloadUtilizationPrice">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Pricing"/>
-        <offPeakTimePrice rdf:datatype="&xsd;float">2.0</offPeakTimePrice>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodePayment -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodePayment">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#PaymentConditions"/>
-        <fixedAvailabilityPrice rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeAvailabilityPricing"/>
-        <offeredChargableItem rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeDownloadPricing"/>
-        <offeredChargableItem rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeStoragePricing"/>
-        <offeredChargableItem rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeUploadPricing"/>
-        <fixedUtilizationPrice rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeUtilizationPricing"/>
-        <offeredChargableItem rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeWallClockPrice"/>
-        <paymentMechanism rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#payAsYouGo"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeStoragePricing -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeStoragePricing">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#TemporaryStorageChargableItem"/>
-        <utilizationPrice rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeStorageUtilizationPrice"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeStorageUtilizationPrice -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeStorageUtilizationPrice">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Pricing"/>
-        <offPeakTimePrice rdf:datatype="&xsd;float">5.0</offPeakTimePrice>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeUploadPricing -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeUploadPricing">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#UploadChargableItem"/>
-        <utilizationPrice rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeUploadUtilizationPrice"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeUploadUtilizationPrice -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeUploadUtilizationPrice">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Pricing"/>
-        <offPeakTimePrice rdf:datatype="&xsd;float">4.0</offPeakTimePrice>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeUtilizationPricing -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeUtilizationPricing">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Pricing"/>
-        <offPeakTimePrice rdf:datatype="&xsd;float">40.0</offPeakTimePrice>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeWallClockPrice -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeWallClockPrice">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#WallClockTimeChargableItem"/>
-        <utilizationPrice rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeWallClockUtilizationPrice"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeWallClockUtilizationPrice -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#DesktopNodeWallClockUtilizationPrice">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Pricing"/>
-        <offPeakTimePrice rdf:datatype="&xsd;float">10.0</offPeakTimePrice>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Instant_2 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Instant_2">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Instant_4 -->
-
-    <time:Instant rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Instant_4">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-    </time:Instant>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResource"/>
-        <cgo:hasID rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out_URL"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out_URL -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out_URL">
-        <rdf:type rdf:resource="&cgo;URL"/>
-        <cgo:hasName rdf:datatype="&xsd;string">http://tempuri.org/job1234_out.zip</cgo:hasName>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#JobResult_1234 -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResult_1234">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#JobResult"/>
-        <hasJobId rdf:datatype="&xsd;string">1234</hasJobId>
-        <containsResource rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#Job1234_Out"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGConditionsOntology#payAsYouGo -->
-
-    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGConditionsOntology#payAsYouGo">
-        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology#PayAsYouGo"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#compositeWorker -->
-
-    <owl:NamedIndividual rdf:about="&aiggo;compositeWorker"/>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#desktopWorkerNode1 -->
-
-    <owl:NamedIndividual rdf:about="&aiggo;desktopWorkerNode1"/>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.0.0.1469) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
 

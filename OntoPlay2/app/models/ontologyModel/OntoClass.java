@@ -12,7 +12,9 @@ public class OntoClass implements OwlElement {
 
 	private String localName;
 	private String namespace;
+	private OntoClass superClass;
 	private List<OntoProperty> properties;
+	private String label;
 
 	public OntoClass(String namespace, String name, List<OntoProperty> properties) {
 		this.namespace = namespace;
@@ -22,6 +24,14 @@ public class OntoClass implements OwlElement {
 
 	public OntoClass(OntClass ontClass) {
 		this(ontClass.getNameSpace(), ontClass.getLocalName(), new ArrayList<OntoProperty>());
+		this.label = ontClass.getLabel(null);
+		if(label != null && label.isEmpty())
+			label = null;
+	}
+	
+	public OntoClass(OntClass ontClass, OntClass ontSuperClass) {
+		this(ontClass.getNameSpace(), ontClass.getLocalName(), new ArrayList<OntoProperty>());
+		this.superClass = new OntoClass(ontSuperClass);
 	}
 
 	public OntoClass(IRI iri, List<OntoProperty> properties) {
@@ -51,6 +61,24 @@ public class OntoClass implements OwlElement {
 
 	public String getUri() {
 		return String.format("%s%s", namespace, localName);
+	}
+	
+	public String getDisplayName() {
+		String localDisplayName = label;
+		if(localDisplayName == null)
+			localDisplayName = localName;
+		if(superClass != null)
+			return String.format("%s\\%s", superClass.getDisplayName(), localDisplayName);
+		else 			
+			return localDisplayName; 
+	}
+
+	public OntoClass getSuperClass() {
+		return superClass;
+	}
+
+	public String getLabel() {
+		return label;
 	}
 
 }

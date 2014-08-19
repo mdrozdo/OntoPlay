@@ -116,16 +116,15 @@ public class JenaOwlReader extends OntologyReader{
 
 	private List<OntoProperty> getProperties(OntClass ontClass) {
 		List<OntoProperty> props = new ArrayList<OntoProperty>();
-
+		System.out.println("get properties for: " + ontClass.getLocalName());
 		for (Iterator<OntProperty> i = ontClass.listDeclaredProperties(); i.hasNext();) {
 			OntProperty prop = i.next();
 			if (prop.getDomain() != null || !ignorePropsWithNoDomain)
-			try{
-				props.add(createProperty(prop));
-			}
-			catch(InvalidConfigurationException ex){
-				ex.printStackTrace();
-			}			
+				try {
+					props.add(createProperty(prop));
+				} catch (InvalidConfigurationException ex) {
+					ex.printStackTrace();
+				}
 		}
 
 		// The below code should not be needed, but it may depend on the
@@ -163,19 +162,6 @@ public class JenaOwlReader extends OntologyReader{
 		return individuals;
 	}
 
-	/* (non-Javadoc)
-	 * @see models.ontologyReading.jena.OntologyReader#getClassesInRange(models.ontologyModel.OntoClass, models.ontologyModel.OntoProperty)
-	 */
-	public List<OntoClass> getClassesInRange(OntoClass owlClass, OntoProperty property) {
-		List<OntoClass> classes = new ArrayList<OntoClass>();
-
-		for (OntClass ontClass : getAllClassesFromRange(property)) {
-			classes.add(new OntoClass(ontClass));
-		}
-
-		return classes;
-	}
-
 	private List<OntClass> getAllClassesFromRange(OntoProperty property) {
 		List<OntClass> classes = new ArrayList<OntClass>();
 
@@ -195,7 +181,37 @@ public class JenaOwlReader extends OntologyReader{
 				}
 			}
 		}
-
 		return classes;
+	}
+
+	/* (non-Javadoc)
+	 * @see models.ontologyReading.jena.OntologyReader#getClassesInRange(models.ontologyModel.OntoClass, models.ontologyModel.OntoProperty)
+	 */
+	public List<OntoClass> getClassesInRange(OntoClass owlClass, OntoProperty property) {
+		List<OntoClass> classes = new ArrayList<OntoClass>();
+
+		OntProperty ontProp = model.getOntProperty(property.getUri());
+		for (ExtendedIterator<? extends OntResource> r = ontProp.listRange(); r.hasNext();) {
+			OntResource res = r.next();
+			if (ontProp.hasRange(res)) {
+				if (res.isClass()) {
+					OntClass rangeClass = res.asClass();
+					
+					classes.add(new OntoClass(rangeClass));
+					fillWithSubClasses(classes, rangeClass);					
+				}
+			}
+		}
+		return classes;
+	}
+
+	private void fillWithSubClasses(List<OntoClass> classes, OntClass superClass){
+		for (ExtendedIterator<? extends OntResource> s = superClass.listSubClasses(true); s.hasNext();) {
+			OntClass subclass = s.next().asClass();
+			if (!subclass.getURI().equals("http://www.w3.org/2002/07/owl#Nothing")){
+				classes.add(new OntoClass(subclass, superClass));
+				fillWithSubClasses(classes, subclass);
+			}
+		}
 	}
 }

@@ -2,26 +2,37 @@
 
 
 <!DOCTYPE rdf:RDF [
+    <!ENTITY cgo "http://purl.org/NET/cgo#" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY unnamed "http://www.owl-ontologies.com/unnamed.owl#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY AiGGridOntology "http://gridagents.sourceforge.net/AiGGridOntology#" >
     <!ENTITY AiGExpertOntology "http://gridagents.sourceforge.net/AiGExpertOntology#" >
+    <!ENTITY AiGExpertOntology2 "http://gridagents.sourceforge.net/AiGExpertOntology#2" >
+    <!ENTITY AiGExpertOntology4 "http://gridagents.sourceforge.net/AiGExpertOntology#1" >
+    <!ENTITY AiGExpertOntology3 "http://gridagents.sourceforge.net/AiGExpertOntology#3" >
+    <!ENTITY AiGConditionsOntology "http://gridagents.sourceforge.net/AiGConditionsOntology#" >
 ]>
 
 
 <rdf:RDF xmlns="http://gridagents.sourceforge.net/AiGExpertOntology#"
      xml:base="http://gridagents.sourceforge.net/AiGExpertOntology"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:AiGExpertOntology4="&AiGExpertOntology;1"
      xmlns:AiGGridOntology="http://gridagents.sourceforge.net/AiGGridOntology#"
+     xmlns:AiGConditionsOntology="http://gridagents.sourceforge.net/AiGConditionsOntology#"
+     xmlns:AiGExpertOntology2="&AiGExpertOntology;2"
+     xmlns:AiGExpertOntology3="&AiGExpertOntology;3"
      xmlns:AiGExpertOntology="http://gridagents.sourceforge.net/AiGExpertOntology#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:unnamed="http://www.owl-ontologies.com/unnamed.owl#">
+     xmlns:cgo="http://purl.org/NET/cgo#">
     <owl:Ontology rdf:about="http://gridagents.sourceforge.net/AiGExpertOntology">
+        <rdfs:label xml:lang="en">Agents in Grid - Expert Ontology</rdfs:label>
+        <rdfs:label xml:lang="en">AiG Expert Ontology</rdfs:label>
+        <owl:versionInfo xml:lang="en">Part of the branch of the AiG Expert Ontology started in 06.2013 for the purpose of Agents in Grid project</owl:versionInfo>
         <owl:imports rdf:resource="http://gridagents.sourceforge.net/AiGConditionsOntology"/>
     </owl:Ontology>
     
@@ -60,21 +71,21 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#forData -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;forData">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Algorithm"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;DataElement"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;JobProfile"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#forJobProfile -->
 
     <owl:ObjectProperty rdf:about="&AiGExpertOntology;forJobProfile">
         <rdfs:domain rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
         <rdfs:range rdf:resource="&AiGExpertOntology;JobProfile"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#forMatrix -->
-
-    <owl:ObjectProperty rdf:about="&AiGExpertOntology;forMatrix">
-        <rdfs:domain rdf:resource="&AiGExpertOntology;Algorithm"/>
-        <rdfs:domain rdf:resource="&AiGExpertOntology;JobProfile"/>
-        <rdfs:range rdf:resource="&AiGExpertOntology;Structured"/>
     </owl:ObjectProperty>
     
 
@@ -98,12 +109,33 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasAlgorithm -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasAlgorithm">
+        <rdfs:range rdf:resource="&AiGExpertOntology;Algorithm"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;JobProfile"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasCOLROWFactorization -->
 
     <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasCOLROWFactorization">
         <rdfs:range rdf:resource="&AiGExpertOntology;COLROW"/>
         <rdfs:domain rdf:resource="&AiGExpertOntology;CRSLVE"/>
         <rdfs:subPropertyOf rdf:resource="&AiGExpertOntology;hasFactorizationForStructuralSolver"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasDomain -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasDomain">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Algorithm"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;DataProperty"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;Domain"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;DomainExpert"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Problem"/>
     </owl:ObjectProperty>
     
 
@@ -121,9 +153,11 @@
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasExpertOpinion -->
 
     <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasExpertOpinion">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;DomainExpert"/>
         <rdfs:range rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
         <rdfs:domain rdf:resource="&AiGExpertOntology;JobProfile"/>
         <owl:inverseOf rdf:resource="&AiGExpertOntology;forJobProfile"/>
+        <owl:inverseOf rdf:resource="&AiGExpertOntology;proposedByExpert"/>
     </owl:ObjectProperty>
     
 
@@ -179,7 +213,7 @@
 
     <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasJobProfile">
         <rdfs:range rdf:resource="&AiGExpertOntology;JobProfile"/>
-        <rdfs:domain rdf:resource="&unnamed;ComputingComponent"/>
+        <rdfs:domain rdf:resource="&cgo;ComputingComponent"/>
     </owl:ObjectProperty>
     
 
@@ -203,20 +237,31 @@
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasMatrixProperty -->
-
-    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasMatrixProperty">
-        <rdfs:domain rdf:resource="&AiGExpertOntology;Matrix"/>
-        <rdfs:range rdf:resource="&AiGExpertOntology;MatrixProperty"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasOperations -->
 
     <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasOperations">
         <rdfs:domain rdf:resource="&AiGExpertOntology;Algorithm"/>
         <rdfs:range rdf:resource="&AiGExpertOntology;FundamentalOperation"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;Transformation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasPreconditioner -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasPreconditioner">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;NonstationarySolver"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;Preconditioner"/>
+        <rdfs:domain rdf:resource="&AiGExpertOntology;SationarySolver"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasProperty -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasProperty">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;DataElement"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;DataProperty"/>
     </owl:ObjectProperty>
     
 
@@ -225,7 +270,7 @@
 
     <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasRecommendedResource">
         <rdfs:domain rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
-        <rdfs:range rdf:resource="&unnamed;GridEntity"/>
+        <rdfs:range rdf:resource="&cgo;GridEntity"/>
     </owl:ObjectProperty>
     
 
@@ -235,6 +280,15 @@
     <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasSimpleType">
         <rdfs:range rdf:resource="&AiGExpertOntology;Simple"/>
         <rdfs:domain rdf:resource="&AiGExpertOntology;Structured"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#hasStorageFormat -->
+
+    <owl:ObjectProperty rdf:about="&AiGExpertOntology;hasStorageFormat">
+        <rdfs:domain rdf:resource="&AiGExpertOntology;DataElement"/>
+        <rdfs:range rdf:resource="&AiGExpertOntology;DataStorageFormat"/>
     </owl:ObjectProperty>
     
 
@@ -253,26 +307,6 @@
     <owl:ObjectProperty rdf:about="&AiGExpertOntology;proposedByExpert">
         <rdfs:range rdf:resource="&AiGExpertOntology;DomainExpert"/>
         <rdfs:domain rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#proposedExpertRecommendation -->
-
-    <owl:ObjectProperty rdf:about="&AiGExpertOntology;proposedExpertRecommendation">
-        <rdfs:domain rdf:resource="&AiGExpertOntology;DomainExpert"/>
-        <rdfs:range rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
-        <owl:inverseOf rdf:resource="&AiGExpertOntology;proposedByExpert"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#withAlgorithm -->
-
-    <owl:ObjectProperty rdf:about="&AiGExpertOntology;withAlgorithm">
-        <rdfs:range rdf:resource="&AiGExpertOntology;Algorithm"/>
-        <rdfs:range rdf:resource="&AiGExpertOntology;FundamentalOperation"/>
-        <rdfs:domain rdf:resource="&AiGExpertOntology;JobProfile"/>
     </owl:ObjectProperty>
     
 
@@ -340,7 +374,7 @@
         <rdfs:range rdf:resource="&xsd;float"/>
         <rdfs:domain>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&AiGExpertOntology;hasMatrixProperty"/>
+                <owl:onProperty rdf:resource="&AiGExpertOntology;hasProperty"/>
                 <owl:someValuesFrom rdf:resource="&AiGExpertOntology;SquareMatrix"/>
             </owl:Restriction>
         </rdfs:domain>
@@ -354,7 +388,7 @@
         <rdfs:range rdf:resource="&xsd;float"/>
         <rdfs:domain>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&AiGExpertOntology;hasMatrixProperty"/>
+                <owl:onProperty rdf:resource="&AiGExpertOntology;hasProperty"/>
                 <owl:someValuesFrom rdf:resource="&AiGExpertOntology;SquareMatrix"/>
             </owl:Restriction>
         </rdfs:domain>
@@ -371,7 +405,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&AiGExpertOntology;Matrix"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&AiGExpertOntology;hasMatrixProperty"/>
+                        <owl:onProperty rdf:resource="&AiGExpertOntology;hasProperty"/>
                         <owl:someValuesFrom rdf:resource="&AiGExpertOntology;2DMatrix"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -397,25 +431,6 @@
     <owl:DatatypeProperty rdf:about="&AiGExpertOntology;hasMatrixRank">
         <rdfs:domain rdf:resource="&AiGExpertOntology;Matrix"/>
         <rdfs:range rdf:resource="&xsd;int"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#isDirect -->
-
-    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;isDirect">
-        <rdfs:domain rdf:resource="&AiGExpertOntology;Algorithm"/>
-        <owl:propertyDisjointWith rdf:resource="&AiGExpertOntology;isIterative"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#isIterative -->
-
-    <owl:DatatypeProperty rdf:about="&AiGExpertOntology;isIterative">
-        <rdfs:domain rdf:resource="&AiGExpertOntology;Algorithm"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
     
 
@@ -501,6 +516,16 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#AccuracyImprovement -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;AccuracyImprovement">
+        <rdfs:label xml:lang="en">Solution Accuracy Improvment</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Algorithm"/>
+        <rdfs:comment xml:lang="en">Methods to improve the accuracy of numerical solutions to systems of linear equations. </rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#AddVector -->
 
     <owl:Class rdf:about="&AiGExpertOntology;AddVector">
@@ -553,6 +578,15 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#AlternatingDirectionImplicitMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;AlternatingDirectionImplicitMethod">
+        <rdfs:label xml:lang="en">Alternating Direction Implicit Method</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DifferentialEquationPreconditioner"/>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ArrowheadMatrix -->
 
     <owl:Class rdf:about="&AiGExpertOntology;ArrowheadMatrix">
@@ -599,11 +633,41 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BiCGMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BiCGMethod">
+        <rdfs:label xml:lang="en">Biconjugate Gradient (BiCG)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonstationarySolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonsymmetricMatrixSolver"/>
+        <rdfs:comment xml:lang="en">The Biconjugate Gradient method generates two CG-like sequences of vectors, one based on a system with the original coefficient matrix A, and one on A transposed. Instead of orthogonalizing each sequence, they are made mutually orthogonal, or “bi-orthogonal”. It is useful when the matrix is nonsymmetric and nonsingular.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BiCGSTABMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BiCGSTABMethod">
+        <rdfs:label xml:lang="en">Biconjugate Gradient Stabilized (Bi-CGSTAB)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonstationarySolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonsymmetricMatrixSolver"/>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BidiagonalBandedMatrix -->
 
     <owl:Class rdf:about="&AiGExpertOntology;BidiagonalBandedMatrix">
         <rdfs:label xml:lang="en">Bidiagonal Banded Matrix</rdfs:label>
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SpecialBandedMatrix"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BlockBandedMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BlockBandedMatrix">
+        <rdfs:label xml:lang="en">Block-Banded Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;BlockStructuredMatrix"/>
     </owl:Class>
     
 
@@ -631,6 +695,24 @@
     <owl:Class rdf:about="&AiGExpertOntology;BlockDiagonallyDominantMatrix">
         <rdfs:label xml:lang="en">Block Diagonally Dominant Matrix</rdfs:label>
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixDiagonalDominance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BlockIncompleteFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BlockIncompleteFactorization">
+        <rdfs:label xml:lang="en">Block Incomplete Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;IncompleteFactorizationPreconditioner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#BlockJacobiPreconditoner -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;BlockJacobiPreconditoner">
+        <rdfs:label xml:lang="en">Block Jacobi Preconditioner</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;JacobiPreconditioner"/>
     </owl:Class>
     
 
@@ -680,6 +762,44 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CGMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CGMethod">
+        <rdfs:label xml:lang="en">Conjugate Gradient (CG)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonstationarySolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SPDMatrixSolver"/>
+        <rdfs:comment xml:lang="en">The method derives its name from the fact that it generates a sequence of conjugate (or orthogonal) vectors. These vectors are the residuals of the iterates. They are also the gradients of a quadratic functional, the minimization of which is equivalent to solving the linear system. CG is an extremely effective method when the coefficient matrix is symmetric positive definite, since storage for only a limited number of vectors is required.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CGNE -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CGNE">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ConjugateGradientOnNEMethod"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CGNR -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CGNR">
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ConjugateGradientOnNEMethod"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CGSMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CGSMethod">
+        <rdfs:label xml:lang="en">Conjugate Gradient Squared (CGS)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonstationarySolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonsymmetricMatrixSolver"/>
+        <rdfs:comment xml:lang="en">The Conjugate Gradient Squared method is a variant of BiCG that applies the updating operations for the A-sequence and the A transposed-sequences both to the same vectors.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#COLROW -->
 
     <owl:Class rdf:about="&AiGExpertOntology;COLROW">
@@ -691,7 +811,7 @@
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CPPLapack -->
 
     <owl:Class rdf:about="&AiGExpertOntology;CPPLapack">
-        <rdfs:subClassOf rdf:resource="&unnamed;Lib"/>
+        <rdfs:subClassOf rdf:resource="&cgo;Lib"/>
     </owl:Class>
     
 
@@ -708,7 +828,7 @@
 
     <owl:Class rdf:about="&AiGExpertOntology;CSVFormat">
         <rdfs:label xml:lang="en">CSV</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataFormat"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataStorageFormat"/>
     </owl:Class>
     
 
@@ -717,6 +837,17 @@
 
     <owl:Class rdf:about="&AiGExpertOntology;Character">
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Simple"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ChebyshevIteration -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ChebyshevIteration">
+        <rdfs:label xml:lang="en">Chebyshev Iteration</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonstationarySolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonsymmetricMatrixSolver"/>
+        <rdfs:comment xml:lang="en">The Chebyshev Iteration recursively determines polynomials with coefficients chosen to minimize the norm of the residual in a min-max sense.</rdfs:comment>
     </owl:Class>
     
 
@@ -736,6 +867,7 @@
     <owl:Class rdf:about="&AiGExpertOntology;CirculantMatrix">
         <rdfs:label xml:lang="en">Circulant Matrix</rdfs:label>
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ToeplitzMatrix"/>
+        <rdfs:comment xml:lang="en">A circulant matrix is a special kind of Toeplitz matrix where each row vector is rotated one element to the right relative to the preceding row vector.</rdfs:comment>
     </owl:Class>
     
 
@@ -792,6 +924,18 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ConjugateGradientOnNEMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ConjugateGradientOnNEMethod">
+        <rdfs:label xml:lang="en">Conjugate Gradients on the Normal Equations</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonstationarySolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonsymmetricMatrixSolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SIDMatrixSolver"/>
+        <rdfs:comment xml:lang="en">These methods are based on the application of the CG method to one of two forms of the normal equations for Ax=b.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CoordinateMatrixStorage -->
 
     <owl:Class rdf:about="&AiGExpertOntology;CoordinateMatrixStorage">
@@ -820,6 +964,15 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#CyclicReductionMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;CyclicReductionMethod">
+        <rdfs:label xml:lang="en">Cyclic Reduction Method</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;FastSolverPreconditioner"/>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DataElement -->
 
     <owl:Class rdf:about="&AiGExpertOntology;DataElement">
@@ -832,16 +985,25 @@
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DataElementType -->
 
     <owl:Class rdf:about="&AiGExpertOntology;DataElementType">
+        <rdfs:label xml:lang="en">Data Element Type</rdfs:label>
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataElement"/>
     </owl:Class>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DataFormat -->
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DataProperty -->
 
-    <owl:Class rdf:about="&AiGExpertOntology;DataFormat">
-        <rdfs:label xml:lang="en">Storage File Format</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixProperty"/>
+    <owl:Class rdf:about="&AiGExpertOntology;DataProperty">
+        <rdfs:label xml:lang="en">Data Property</rdfs:label>
+        <rdfs:comment xml:lang="en">Properties for problems input data.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DataStorageFormat -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DataStorageFormat">
+        <rdfs:label xml:lang="en">Data Storage Format</rdfs:label>
         <rdfs:comment xml:lang="en">Format in which data elements are stored.</rdfs:comment>
     </owl:Class>
     
@@ -884,12 +1046,30 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DifferentialEquationPreconditioner -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;DifferentialEquationPreconditioner">
+        <rdfs:label xml:lang="en">Differential Equation Preconditioner</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Preconditioner"/>
+        <rdfs:comment xml:lang="en">Method for precondtioning from properties of differential equation.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#DiskMatrix -->
 
     <owl:Class rdf:about="&AiGExpertOntology;DiskMatrix">
         <rdfs:label xml:lang="en">Disk Matrix</rdfs:label>
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
         <rdfs:comment xml:lang="en">Matrix whose elements are in a disk-shaped region of radius r, and are otherwise .</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Domain -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Domain">
+        <rdfs:comment xml:lang="en">Representation of a specific domain.</rdfs:comment>
     </owl:Class>
     
 
@@ -1027,6 +1207,24 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#FFTMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;FFTMethod">
+        <rdfs:label xml:lang="en">FFT Method</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;FastSolverPreconditioner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#FastSolverPreconditioner -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;FastSolverPreconditioner">
+        <rdfs:label xml:lang="en">Fast Solver Preconditoner</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DifferentialEquationPreconditioner"/>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#FrobeniusNorm -->
 
     <owl:Class rdf:about="&AiGExpertOntology;FrobeniusNorm">
@@ -1064,6 +1262,17 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GMRESMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GMRESMethod">
+        <rdfs:label xml:lang="en">Generalized Minimal Residual (GMRES)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonstationarySolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonsymmetricMatrixSolver"/>
+        <rdfs:comment xml:lang="en">The Generalized Minimal Residual method computes a sequence of orthogonal vectors (like MINRES), and combines these through a least-squares solve and update. However, unlike MINRES (and CG) it requires storing the whole sequence, so that a large amount of storage is needed. Useful for general nonsymmetric matrices.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GaussElimination -->
 
     <owl:Class rdf:about="&AiGExpertOntology;GaussElimination">
@@ -1078,6 +1287,17 @@
     <owl:Class rdf:about="&AiGExpertOntology;GaussJordanElimination">
         <rdfs:label xml:lang="en">Gauss-Jordan Elimination</rdfs:label>
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GeneralMatrixSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GaussSeidelMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GaussSeidelMethod">
+        <rdfs:label xml:lang="en">Gauss-Seidel Method</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SPDMatrixSolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SationarySolver"/>
+        <rdfs:comment xml:lang="en">The Gauss–Seidel method is an iterative method used to solve a linear system of equations. It can be applied to any matrix with non-zero elements on the diagonals, convergence is only guaranteed if the matrix is either diagonally dominant, or symmetric and positive definite. The Gauss-Seidel method is like the Jacobi method, except that it uses updated values as soon as they are available. In general, if the Jacobi method converges, the Gauss-Seidel method will converge faster than the Jacobi method, though still relatively slowly.</rdfs:comment>
     </owl:Class>
     
 
@@ -1165,10 +1385,46 @@
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GeneralizedMarchingAlgorithm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GeneralizedMarchingAlgorithm">
+        <rdfs:label xml:lang="en">Generalized Marching Algorithm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;FastSolverPreconditioner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GivensRotation -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GivensRotation">
+        <rdfs:label xml:lang="en">Givens Rotation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Transformation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GramSchmidtOrtoghonalization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GramSchmidtOrtoghonalization">
+        <rdfs:label xml:lang="en">Gram-Schmidt Ortoghonalization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Transformation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#GustavsonStorage -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;GustavsonStorage">
+        <rdfs:label xml:lang="en">Gustavson Storage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorage"/>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HDF -->
 
     <owl:Class rdf:about="&AiGExpertOntology;HDF">
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataFormat"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataStorageFormat"/>
         <rdfs:comment xml:lang="en">MIME type: application/x-hdf
 HDF data format Version 4.
 General-purpose format for representing multidimensional datasets.
@@ -1199,7 +1455,7 @@ HDF is an acronym for Hierarchical Data Format. (from Wolfram Mathematica Docume
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#HarwellBoeing -->
 
     <owl:Class rdf:about="&AiGExpertOntology;HarwellBoeing">
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataFormat"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataStorageFormat"/>
         <rdfs:comment xml:lang="en">Used for exchanging and storing sparse matrices.
 Plain text format.
 File format of the Harwell-Boeing collection of standard test matrices.
@@ -1299,6 +1555,24 @@ Stores matrices in a sparse representation.(from Wolfram Mathematica Documentati
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#IncompleteFactorizationPreconditioner -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;IncompleteFactorizationPreconditioner">
+        <rdfs:label xml:lang="en">Incomplete Factorization Preconditioner</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Preconditioner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#IncompleteLQFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;IncompleteLQFactorization">
+        <rdfs:label xml:lang="en">Incomplete LQ Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;IncompleteFactorizationPreconditioner"/>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#IndefiniteSymmetricMatrix -->
 
     <owl:Class rdf:about="&AiGExpertOntology;IndefiniteSymmetricMatrix">
@@ -1329,8 +1603,37 @@ Stores matrices in a sparse representation.(from Wolfram Mathematica Documentati
 
     <owl:Class rdf:about="&AiGExpertOntology;IterativeRefinement">
         <rdfs:label xml:lang="en">Iterative Refinement</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationDirectSolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;AccuracyImprovement"/>
         <rdfs:comment xml:lang="en">Method for making linear equation solution more exact.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#JacobiAlgorithm -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;JacobiAlgorithm">
+        <rdfs:label xml:lang="en">Jacobi Algorithm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;EigenSolver"/>
+        <rdfs:comment xml:lang="en">The Jacobi eigenvalue algorithm is an iterative method for the calculation of the eigenvalues and eigenvectors of a real symmetric matrix.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#JacobiMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;JacobiMethod">
+        <rdfs:label xml:lang="en">Jacobi Method</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SationarySolver"/>
+        <rdfs:comment xml:lang="en">The Jacobi method is based on solving for every variable locally with respect to the other variables; one iteration of the method corresponds to solving for every variable once. Extremely easy to use, but unless the matrix is strongly diagonally dominant.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#JacobiPreconditioner -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;JacobiPreconditioner">
+        <rdfs:label xml:lang="en">Jacobi Preconditioner</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Preconditioner"/>
     </owl:Class>
     
 
@@ -1448,12 +1751,23 @@ Stores matrices in a sparse representation.(from Wolfram Mathematica Documentati
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MAT -->
 
     <owl:Class rdf:about="&AiGExpertOntology;MAT">
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataFormat"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataStorageFormat"/>
         <rdfs:comment xml:lang="en">MATLAB MAT-files.
 Matrix data format.
 Native data format of the MATLAB numerical computation software.
 Stores numerical matrices, Boolean values, or strings.
 Binary format. (from Wolfram Mathematica Documentation Center)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MINRESMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;MINRESMethod">
+        <rdfs:label xml:lang="en">Minimal Residual (MINRES)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonstationarySolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SIDMatrixSolver"/>
+        <rdfs:comment xml:lang="en">This method is computational alternative for CG for coefficient matrices that are symmetric but possibly indefinite.</rdfs:comment>
     </owl:Class>
     
 
@@ -1480,7 +1794,7 @@ Binary format. (from Wolfram Mathematica Documentation Center)</rdfs:comment>
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MTX -->
 
     <owl:Class rdf:about="&AiGExpertOntology;MTX">
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataFormat"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataStorageFormat"/>
         <rdfs:comment xml:lang="en">Matrix Market matrix format.
 Used for exchanging and storing test matrices.
 Plain text format.
@@ -1586,6 +1900,7 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
 
     <owl:Class rdf:about="&AiGExpertOntology;MatrixElementProperty">
         <rdfs:label xml:lang="en">Matrix Element Property</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataProperty"/>
         <rdfs:comment xml:lang="en">Special properties for single matrix elements.</rdfs:comment>
     </owl:Class>
     
@@ -1603,7 +1918,7 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#MatrixInversionProblem -->
 
     <owl:Class rdf:about="&AiGExpertOntology;MatrixInversionProblem">
-        <rdfs:label xml:lang="en">Matrix inversion Problem</rdfs:label>
+        <rdfs:label xml:lang="en">Matrix Inversion Problem</rdfs:label>
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SystemOfLinearEquationsProblem"/>
     </owl:Class>
     
@@ -1640,7 +1955,7 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
 
     <owl:Class rdf:about="&AiGExpertOntology;MatrixProperty">
         <rdfs:label xml:lang="en">Matrix Property</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DataProperty"/>
     </owl:Class>
     
 
@@ -1789,6 +2104,15 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#NonNormalMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;NonNormalMatrix">
+        <rdfs:label xml:lang="en">Non-Normal Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStructure"/>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#NonSingularMatrix -->
 
     <owl:Class rdf:about="&AiGExpertOntology;NonSingularMatrix">
@@ -1804,6 +2128,35 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     <owl:Class rdf:about="&AiGExpertOntology;NonlinearLeastSquares">
         <rdfs:label xml:lang="en">Nonlinera Least Squares Problem</rdfs:label>
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LeastSquaresProblem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#NonstationarySolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;NonstationarySolver">
+        <rdfs:label xml:lang="en">Nonstationary Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationIterativeSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#NonsymmetricMatrixSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;NonsymmetricMatrixSolver">
+        <rdfs:label xml:lang="en">Nonsymmetric Matrix Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationIterativeSolver"/>
+        <rdfs:comment xml:lang="en">Solvers efficient for nonsymmetric systems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#NormalMatrix -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;NormalMatrix">
+        <rdfs:label xml:lang="en">Normal Matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStructure"/>
+        <rdfs:comment xml:lang="en">In mathematics, a complex square matrix A is normal if it commutes with its conjugate transpose. Normality is a convenient test for diagonalizability: a matrix is normal if and only if it is unitarily similar to a diagonal matrix.</rdfs:comment>
     </owl:Class>
     
 
@@ -1850,6 +2203,15 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
         <rdfs:label xml:lang="en">Packed Matrix Storage</rdfs:label>
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorage"/>
         <rdfs:comment>store only the upper or lower triangular part</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#ParlettMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;ParlettMethod">
+        <rdfs:label xml:lang="en">Parlett Method</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;AccuracyImprovement"/>
     </owl:Class>
     
 
@@ -1901,6 +2263,25 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PointIncompleteFactorization -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PointIncompleteFactorization">
+        <rdfs:label xml:lang="en">Point Incomplete Factorization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;IncompleteFactorizationPreconditioner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PolynomialPreconditioner -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;PolynomialPreconditioner">
+        <rdfs:label xml:lang="en">Polynomial Preconditioner</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Preconditioner"/>
+        <rdfs:comment xml:lang="en"> Polynomial preconditioners can be considered as members of the second class of preconditioners: direct approximations of the inverse of the coefﬁcient matrix.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#PositiveDefiniteMatrix -->
 
     <owl:Class rdf:about="&AiGExpertOntology;PositiveDefiniteMatrix">
@@ -1947,11 +2328,32 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Preconditioner -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;Preconditioner">
+        <rdfs:label xml:lang="en">Preconditioner</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationIterativeSolver"/>
+        <rdfs:comment xml:lang="en">Iterative methods usually involve a second matrix that transforms the coefficient matrix into one with a more favorable spectrum. The transformation matrix is called a preconditioner. A good preconditioner improves the convergence of the iterative method.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#Problem -->
 
     <owl:Class rdf:about="&AiGExpertOntology;Problem">
         <rdfs:label xml:lang="en">Problem</rdfs:label>
         <rdfs:comment>Class representing problems available.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#QMRMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;QMRMethod">
+        <rdfs:label xml:lang="en">Quasi-Minimal Residual (QMR)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonstationarySolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonsymmetricMatrixSolver"/>
+        <rdfs:comment xml:lang="en">The Quasi-Minimal Residual method applies a least-squares solve and update to the BiCG residuals, thereby smoothing out the irregular convergence behavior of BiCG.</rdfs:comment>
     </owl:Class>
     
 
@@ -2104,6 +2506,16 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SIDMatrixSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SIDMatrixSolver">
+        <rdfs:label xml:lang="en">Symmetric Indefinite Matrix Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationIterativeSolver"/>
+        <rdfs:comment xml:lang="en">Solvers efficient for symmetric indefinite systems.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SOLN -->
 
     <owl:Class rdf:about="&AiGExpertOntology;SOLN">
@@ -2116,6 +2528,56 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
 
     <owl:Class rdf:about="&AiGExpertOntology;SOLT">
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;ABDSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SORMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SORMethod">
+        <rdfs:label xml:lang="en">Successive Over-Relaxation (SOR)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GaussSeidelMethod"/>
+        <rdfs:comment xml:lang="en">Successive Overrelaxation (SOR) can be derived from the Gauss-Seidel method by introducing an extrapolation parameter ω. For the optimal choice of ω, SOR may converge faster than Gauss-Seidel by an order of magnitude. For ω=1, SOR becomes Gauss-Seidel.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SPDMatrixSolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SPDMatrixSolver">
+        <rdfs:label xml:lang="en">Symmetric Positive Definite Matrix Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationIterativeSolver"/>
+        <rdfs:comment xml:lang="en">Solvers efficient for symmetric positive definite systems.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SSORPreconditioner -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SSORPreconditioner">
+        <rdfs:label xml:lang="en">SSOR Preconditioner</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;Preconditioner"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SYMMLQMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SYMMLQMethod">
+        <rdfs:label xml:lang="en">Symmetric LQ (SYMMLQ)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;NonstationarySolver"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;SIDMatrixSolver"/>
+        <rdfs:comment xml:lang="en">These method iscomputational alternative for CG for coefficient matrices that are
+symmetric but possibly indefinite. SYMMLQ will generate the same solution iterates as CG if the coefficient matrix is symmetric positive definite.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SationarySolver -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SationarySolver">
+        <rdfs:label xml:lang="en">Stationary Solver</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationIterativeSolver"/>
     </owl:Class>
     
 
@@ -2212,9 +2674,9 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SkylineMatrix -->
 
     <owl:Class rdf:about="&AiGExpertOntology;SkylineMatrix">
-        <rdfs:label xml:lang="en">Skyline Matrix</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStructure"/>
-        <rdfs:comment xml:lang="en">A skyline matrix is a form of a square, banded (and typically symmetric) matrix that reduces the storage requirement of a matrix due to its banded nature.</rdfs:comment>
+        <rdfs:label xml:lang="en">Skyline Storage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStorage"/>
+        <rdfs:comment xml:lang="en">A skyline matrix is a form of a square, banded (and typically symmetric) matrix that reduces the storage requirement of a matrix due to its banded nature. other: variable band matrix storage, or envelope storage scheme.</rdfs:comment>
     </owl:Class>
     
 
@@ -2384,7 +2846,7 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     <owl:Class rdf:about="&AiGExpertOntology;SymmetricMatrix">
         <rdfs:label xml:lang="en">Symmetric Matrix</rdfs:label>
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSymmetricity"/>
-        <rdfs:comment xml:lang="en">For a (n x n )-dimensional symmetric matrix and 0 &lt;= i &lt; n, 0 &lt;= j &lt; n holds si, j = sj, i.</rdfs:comment>
+        <rdfs:comment xml:lang="en">For a (n x n )-dimensional symmetric matrix and 0 &lt;= i &lt; n, 0 &lt;= j &lt; n holds si, j = sj, i. Matrix is equal to its transpose.</rdfs:comment>
     </owl:Class>
     
 
@@ -2394,6 +2856,15 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     <owl:Class rdf:about="&AiGExpertOntology;SymmetricMatrixFactorization">
         <rdfs:label xml:lang="en">Symmetric Matrix Factorization</rdfs:label>
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;LinearEquationDirectSolver"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SymmetricPartPreconditioner -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SymmetricPartPreconditioner">
+        <rdfs:label xml:lang="en">Symmetric Part Preconditioner</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;DifferentialEquationPreconditioner"/>
     </owl:Class>
     
 
@@ -2416,6 +2887,16 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SymmetricSORMethod -->
+
+    <owl:Class rdf:about="&AiGExpertOntology;SymmetricSORMethod">
+        <rdfs:label xml:lang="en">Symmetric Successive Over-Relaxation (SSOR)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;GaussSeidelMethod"/>
+        <rdfs:comment xml:lang="en">If we assume that the coefficient matrix A is symmetric, then  SSOR, combines two SOR sweeps together in such a way that the resulting iteration matrix is similar to a symmetric matrix. Symmetric Successive Overrelaxation (SSOR) has no advantage over SOR as a standalone iterative method; however, it is useful as a preconditioner for nonstationary methods.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGExpertOntology#SystemOfLinearEquationsProblem -->
 
     <owl:Class rdf:about="&AiGExpertOntology;SystemOfLinearEquationsProblem">
@@ -2429,7 +2910,8 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
 
     <owl:Class rdf:about="&AiGExpertOntology;ToeplitzMatrix">
         <rdfs:label xml:lang="en">Toeplitz Matrix</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSymmetricity"/>
+        <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixStructure"/>
+        <rdfs:comment xml:lang="en">Diagonal-constant matrix, in which each descending diagonal from left to right is constant.</rdfs:comment>
     </owl:Class>
     
 
@@ -2614,43 +3096,6 @@ Stores numerical or pattern matrices in a dense (&quot;array format&quot;) or sp
         <rdfs:subClassOf rdf:resource="&AiGExpertOntology;MatrixSpecial"/>
         <rdfs:comment xml:lang="en">For a (m x n)-dimensional zero matrix and 0 &lt;= i &lt; m, 0 &lt;= j &lt; n holds zi, j = 0.</rdfs:comment>
     </owl:Class>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#AnyPivoting -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;AnyPivoting">
-        <rdfs:comment>individuals of this class represent any type of pivoting</rdfs:comment>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#FullPivoting -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;FullPivoting"/>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#LinearEquation1 -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;LinearEquation1"/>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGExpertOntology#smallestEigenvalueProblem -->
-
-    <owl:NamedIndividual rdf:about="&AiGExpertOntology;smallestEigenvalueProblem"/>
 </rdf:RDF>
 
 

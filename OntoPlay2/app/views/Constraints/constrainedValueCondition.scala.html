@@ -6,7 +6,7 @@
 	<select name='class-select' class='class-select'>
 		<option value='off'>Select a class</option>
 		@classes.map{c =>
-			<option value='@c.getUri()'>@c.getLocalName()</option> 
+			<option value='@c.getUri()'>@c.getDisplayName()</option> 
 		}
 	</select>
 </div>

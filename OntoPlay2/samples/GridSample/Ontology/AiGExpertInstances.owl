@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY cgo "http://purl.org/NET/cgo#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY AiGGridOntology "http://gridagents.sourceforge.net/AiGGridOntology#" >
+    <!ENTITY AiGGridInstances "http://gridagents.sourceforge.net/AiGGridInstances#" >
+    <!ENTITY AiGExpertOntology "http://gridagents.sourceforge.net/AiGExpertOntology#" >
+    <!ENTITY AiGExpertInstances "http://gridagents.sourceforge.net/AiGExpertInstances#" >
+    <!ENTITY AiGConditionsOntology "http://gridagents.sourceforge.net/AiGConditionsOntology#" >
+    <!ENTITY AiGConditionsInstances "http://gridagents.sourceforge.net/AiGConditionsInstances#" >
+]>
+
+
+<rdf:RDF xmlns="http://gridagents.sourceforge.net/AiGExpertInstances#"
+     xml:base="http://gridagents.sourceforge.net/AiGExpertInstances"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:AiGGridOntology="http://gridagents.sourceforge.net/AiGGridOntology#"
+     xmlns:AiGConditionsOntology="http://gridagents.sourceforge.net/AiGConditionsOntology#"
+     xmlns:AiGGridInstances="http://gridagents.sourceforge.net/AiGGridInstances#"
+     xmlns:AiGConditionsInstances="http://gridagents.sourceforge.net/AiGConditionsInstances#"
+     xmlns:AiGExpertOntology="http://gridagents.sourceforge.net/AiGExpertOntology#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:AiGExpertInstances="http://gridagents.sourceforge.net/AiGExpertInstances#"
+     xmlns:cgo="http://purl.org/NET/cgo#">
+    <owl:Ontology rdf:about="http://gridagents.sourceforge.net/AiGExpertInstances">
+        <rdfs:label xml:lang="en">Agents in Grid - Expert Instances</rdfs:label>
+        <rdfs:label xml:lang="en">AiG Expert Instances</rdfs:label>
+        <rdfs:comment xml:lang="en">A companion ontology for AiG Expert Ontology that contains example instances for AiG Expert Ontology classes</rdfs:comment>
+        <owl:versionInfo xml:lang="en">Part of the branch of the AiG Expert Ontology started in 06.2013 for the purpose of Agents in Grid project</owl:versionInfo>
+        <owl:imports rdf:resource="http://gridagents.sourceforge.net/AiGConditionsInstances"/>
+        <owl:imports rdf:resource="http://gridagents.sourceforge.net/AiGExpertOntology"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#AnyPivoting -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;AnyPivoting">
+        <rdfs:comment>individuals of this class represent any type of pivoting</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#Expert1 -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;Expert1">
+        <rdf:type rdf:resource="&AiGExpertOntology;DomainExpert"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#Expert2 -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;Expert2">
+        <rdf:type rdf:resource="&AiGExpertOntology;DomainExpert"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#Expert3 -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;Expert3">
+        <rdf:type rdf:resource="&AiGExpertOntology;DomainExpert"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#HPCExpert1 -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;HPCExpert1">
+        <rdf:type rdf:resource="&AiGExpertOntology;DomainExpert"/>
+        <AiGExpertOntology:hasDomain rdf:resource="&AiGExpertInstances;linearAlgebraDomain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#Opinion1ForEigenvalueProblem -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;Opinion1ForEigenvalueProblem">
+        <rdf:type rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
+        <AiGExpertOntology:hasExpert rdf:resource="&AiGExpertInstances;HPCExpert1"/>
+        <AiGExpertOntology:forJobProfile rdf:resource="&AiGExpertInstances;eigenvalueProblemJobProfile"/>
+        <AiGExpertOntology:hasRecommendedResource rdf:resource="&AiGGridInstances;desktopWorkerNode1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#Opinion2ForEigenvalueProblem -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;Opinion2ForEigenvalueProblem">
+        <rdf:type rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
+        <AiGExpertOntology:hasExpert rdf:resource="&AiGExpertInstances;Expert1"/>
+        <AiGExpertOntology:hasJobProfile rdf:resource="&AiGExpertInstances;eigenvalueProblemJobProfile"/>
+        <AiGExpertOntology:hasRecommendedResource rdf:resource="&AiGGridInstances;Worker_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#Opinion3ForEigenvalueProblem -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;Opinion3ForEigenvalueProblem">
+        <rdf:type rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
+        <AiGExpertOntology:hasExpert rdf:resource="&AiGExpertInstances;Expert2"/>
+        <AiGExpertOntology:hasJobProfile rdf:resource="&AiGExpertInstances;eigenvalueProblemJobProfile2"/>
+        <AiGExpertOntology:hasRecommendedResource rdf:resource="&AiGGridInstances;Worker_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#Opinion4ForEigenvalueProblem -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;Opinion4ForEigenvalueProblem">
+        <rdf:type rdf:resource="&AiGExpertOntology;ExpertOpinion"/>
+        <AiGExpertOntology:hasExpert rdf:resource="&AiGExpertInstances;Expert3"/>
+        <AiGExpertOntology:hasJobProfile rdf:resource="&AiGExpertInstances;eigenvalueProblemJobProfile2"/>
+        <AiGExpertOntology:hasRecommendedResource rdf:resource="&AiGGridInstances;Worker_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#RowPivoting -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;RowPivoting">
+        <rdf:type rdf:resource="&AiGExpertOntology;RowPivoting"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#eigenSolverJacobiMethod -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;eigenSolverJacobiMethod">
+        <rdf:type rdf:resource="&AiGExpertOntology;JacobiAlgorithm"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#eigenSolverPowerMethod -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;eigenSolverPowerMethod">
+        <rdf:type rdf:resource="&AiGExpertOntology;PowerMethod"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#eigenvalueProblemJobProfile -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;eigenvalueProblemJobProfile">
+        <rdf:type rdf:resource="&AiGExpertOntology;JobProfile"/>
+        <AiGExpertOntology:hasExpertOpinion rdf:resource="&AiGExpertInstances;Opinion1ForEigenvalueProblem"/>
+        <AiGExpertOntology:hasExpertOpinion rdf:resource="&AiGExpertInstances;Opinion2ForEigenvalueProblem"/>
+        <AiGExpertOntology:hasAlgorithm rdf:resource="&AiGExpertInstances;eigenSolverJacobiMethod"/>
+        <AiGExpertOntology:forProblem rdf:resource="&AiGExpertInstances;smallestEigenvalueProblem"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#eigenvalueProblemJobProfile2 -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;eigenvalueProblemJobProfile2">
+        <rdf:type rdf:resource="&AiGExpertOntology;JobProfile"/>
+        <AiGExpertOntology:hasExpertOpinion rdf:resource="&AiGExpertInstances;Opinion3ForEigenvalueProblem"/>
+        <AiGExpertOntology:hasExpertOpinion rdf:resource="&AiGExpertInstances;Opinion4ForEigenvalueProblem"/>
+        <AiGExpertOntology:hasAlgorithm rdf:resource="&AiGExpertInstances;eigenSolverPowerMethod"/>
+        <AiGExpertOntology:forProblem rdf:resource="&AiGExpertInstances;smallestEigenvalueProblem"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#linearAlgebraDomain -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;linearAlgebraDomain">
+        <rdf:type rdf:resource="&AiGExpertOntology;Domain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#luFactorizationWithPartialPivoting -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;luFactorizationWithPartialPivoting">
+        <rdf:type rdf:resource="&AiGExpertOntology;PartialPivoting"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#matrixInversionJobProfile -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;matrixInversionJobProfile">
+        <rdf:type rdf:resource="&AiGExpertOntology;JobProfile"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#qrFactorizationWithColumnPivoting -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;qrFactorizationWithColumnPivoting">
+        <rdf:type rdf:resource="&AiGExpertOntology;ColumnPivoting"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#smallestEigenvalueProblem -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;smallestEigenvalueProblem">
+        <rdf:type rdf:resource="&AiGExpertOntology;SmallestEigenvalueProblem"/>
+        <AiGExpertOntology:hasExpertOpinion rdf:resource="&AiGExpertInstances;Opinion1ForEigenvalueProblem"/>
+        <AiGExpertOntology:hasDomain rdf:resource="&AiGExpertInstances;linearAlgebraDomain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#sparseMatrixProperty -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;sparseMatrixProperty">
+        <rdf:type rdf:resource="&AiGExpertOntology;SparseMatrix"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#sparseSymmetricMatrix -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;sparseSymmetricMatrix">
+        <rdf:type rdf:resource="&AiGExpertOntology;Matrix"/>
+        <AiGExpertOntology:hasDimension>3</AiGExpertOntology:hasDimension>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGExpertInstances#symmetricMatrixProperty -->
+
+    <owl:NamedIndividual rdf:about="&AiGExpertInstances;symmetricMatrixProperty">
+        <rdf:type rdf:resource="&AiGExpertOntology;SymmetricMatrix"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+

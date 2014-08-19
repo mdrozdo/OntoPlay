@@ -13,7 +13,7 @@ import models.owlGeneration.OntologyGenerator;
 
 public class OwlApiReaderConfiguration  {
 	public void doJob() throws Exception {
-		initialize("test/AiGExpertOntology.owl", "./test");
+		initialize("file:../../samples/GridSample/Ontology/AiGGridInstances.owl", "../../samples/GridSample/Ontology");
 	}
 	
 	public void initialize(String uri, String localOntologyFolder){

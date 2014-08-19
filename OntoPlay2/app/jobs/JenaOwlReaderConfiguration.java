@@ -12,12 +12,12 @@ import models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
 public class JenaOwlReaderConfiguration{
 	
 	public void doJob() throws Exception {
-		String uri = "file:test/AiGExpertOntology.owl";
+		String uri = "file:../../samples/GridSample/Ontology/AiGGridInstances.owl";
 		JenaOwlReaderConfig jenaOwlReaderConfig = new JenaOwlReaderConfig()
-			.useLocalMapping("http://gridagents.sourceforge.net/AiGConditionsOntology", "file:test/AiGConditionsOntology.owl")
-			.useLocalMapping("http://gridagents.sourceforge.net/AiGGridOntology", "file:test/AiGGridOntology.owl")
-			.useLocalMapping("http://www.w3.org/2006/time", "file:test/time.owl")
-			.useLocalMapping("http://www.owl-ontologies.com/unnamed.owl", "file:test/cgo.owl")
+			.useLocalMapping("http://gridagents.sourceforge.net/AiGGridOntology", "file:../../samples/GridSample/Ontology/AiGGridOntology.owl")
+			.useLocalMapping("http://www.w3.org/2006/time", "file:../../samples/GridSample/Ontology/time.owl")
+			.useLocalMapping("http://purl.org/NET/cgo", "file:../../samples/GridSample/Ontology/cgo.owl")
+			.useLocalMapping("http://purl.org/NET/cgoInstances", "file:../../samples/GridSample/Ontology/cgo.owl")
 			.ignorePropertiesWithUnspecifiedDomain();
 		
 		initialize(uri, jenaOwlReaderConfig);
