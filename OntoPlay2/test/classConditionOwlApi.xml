@@ -7,7 +7,7 @@
      xmlns:ont="http://www.co-ode.org/ontologies/ont.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:unnamed="http://www.owl-ontologies.com/unnamed.owl#"
+     xmlns:cgo="http://purl.org/NET/cgo#"
      xmlns:bla="http://bla.org/">
     
 
@@ -15,13 +15,13 @@
         <equivalentClass>
             <Class>
                 <intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#WorkerNode"/>
+                    <rdf:Description rdf:about="http://purl.org/NET/cgo#WorkerNode"/>
                     <Restriction>
                         <onProperty rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasMemory"/>
                         <someValuesFrom>
                             <Class>
                                 <intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#Memory"/>
+                                    <rdf:Description rdf:about="http://purl.org/NET/cgo#Memory"/>
                                     <Restriction>
                                         <onProperty rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize"/>
                                         <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">123</hasValue>

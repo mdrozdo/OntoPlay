@@ -71,10 +71,10 @@ public class OwlApiReaderGridTest {
 
 	@Test
 	public void getClass_ReturnsClassFromImportedOntology() {
-		OntoClass wnClass = kb.getOwlClass("http://www.owl-ontologies.com/unnamed.owl#WorkerNode");
+		OntoClass wnClass = kb.getOwlClass("http://purl.org/NET/cgo#WorkerNode");
 		assertThat(wnClass).isNotNull();
 		Assert.assertEquals("WorkerNode", wnClass.getLocalName());
-		Assert.assertEquals("http://www.owl-ontologies.com/unnamed.owl#", wnClass.getNamespace());
+		Assert.assertEquals("http://purl.org/NET/cgo#", wnClass.getNamespace());
 	}
 
 	@Test
@@ -102,7 +102,7 @@ public class OwlApiReaderGridTest {
 	
 	@Test
 	public void getClass_ReturnsClassWithObjectProperty() throws Exception {
-		OntoClass classFromOntology = kb.getOwlClass("http://www.owl-ontologies.com/unnamed.owl#WorkerNode");
+		OntoClass classFromOntology = kb.getOwlClass("http://purl.org/NET/cgo#WorkerNode");
 
 		assertThat(classFromOntology).isNotNull();
 		
@@ -115,7 +115,7 @@ public class OwlApiReaderGridTest {
 	
 	@Test
 	public void forComputingElement_getClass_ReturnsClassWithStorageSpaceProperty() throws Exception {
-		OntoClass computingElement = kb.getOwlClass("http://www.owl-ontologies.com/unnamed.owl#ComputingElement");
+		OntoClass computingElement = kb.getOwlClass("http://purl.org/NET/cgo#ComputingElement");
 
 		assertThat(computingElement).isNotNull();
 		assertThat(selectLocalNames(computingElement.getProperties())).contains(
@@ -124,7 +124,7 @@ public class OwlApiReaderGridTest {
 	
 	@Test
 	public void forWorkerNode_hasMemory_getClassesInRange_ReturnsClassAndSubClasses() throws Exception{
-		OntoClass workerNodeClass = kb.getOwlClass("http://www.owl-ontologies.com/unnamed.owl#WorkerNode");
+		OntoClass workerNodeClass = kb.getOwlClass("http://purl.org/NET/cgo#WorkerNode");
 
 		assertThat(workerNodeClass).isNotNull();
 		
@@ -139,7 +139,7 @@ public class OwlApiReaderGridTest {
 
 	@Test
 	public void forInstalledSoftware_getIndividualsInRange_ReturnsCorrectResults() throws Exception {
-		OntoClass owlClass = new OntoClass("http://www.owl-ontologies.com/unnamed.owl#", "WorkerNode", new ArrayList<OntoProperty>());
+		OntoClass owlClass = new OntoClass("http://purl.org/NET/cgo#", "WorkerNode", new ArrayList<OntoProperty>());
 		OwlObjectProperty property = new OwlObjectProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasInstalledSoftware"); 
 
 		assertThat(selectLocalNames(kb.getIndividualsInRange(owlClass, property))).containsExactly("vista_sp2", "debian_5.0", "Scientific_Linux_303");
@@ -147,7 +147,7 @@ public class OwlApiReaderGridTest {
 	
 	@Test
 	public void forHasNameProperty_getProperty_works(){
-		OntoProperty prop = kb.getProperty("http://www.owl-ontologies.com/unnamed.owl#hasName");
+		OntoProperty prop = kb.getProperty("http://purl.org/NET/cgo#hasName");
 		assertThat(prop).isNotNull();
 	}
 

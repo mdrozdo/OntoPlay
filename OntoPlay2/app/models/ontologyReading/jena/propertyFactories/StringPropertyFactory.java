@@ -19,7 +19,7 @@ public class StringPropertyFactory extends OwlPropertyFactory {
 			return false;
 		
 		String rangeUri = ontProperty.getRange().getURI();
-		return rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#string") || rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#boolean") || rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#anyURI");
+		return rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#string") || rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#boolean") || rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#anyURI") || rangeUri.equalsIgnoreCase("http://www.w3.org/2000/01/rdf-schema#Literal");
 	}
 
 	@Override

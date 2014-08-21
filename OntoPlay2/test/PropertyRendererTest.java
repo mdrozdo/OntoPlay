@@ -67,7 +67,7 @@ public class PropertyRendererTest {
 	@Test
 	public void forGreaterThan_renderOperator_rendersSimpleDatatypeValueTemplate(){
 		int conditionId = 1;
-		OntoClass owlClass = kb.getOwlClass("http://www.owl-ontologies.com/unnamed.owl#StorageSpace");
+		OntoClass owlClass = kb.getOwlClass("http://purl.org/NET/cgo#StorageSpace");
 		OntoProperty property = kb.getProperty("http://gridagents.sourceforge.net/AiGGridOntology#hasAvailableSize");
 		
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
@@ -82,7 +82,7 @@ public class PropertyRendererTest {
 	@Test
 	public void forLessThan_renderOperator_rendersSimpleDatatypeValueTemplate(){
 		int conditionId = 1;
-		OntoClass owlClass = kb.getOwlClass("http://www.owl-ontologies.com/unnamed.owl#StorageSpace");
+		OntoClass owlClass = kb.getOwlClass("http://purl.org/NET/cgo#StorageSpace");
 		OntoProperty property = kb.getProperty("http://gridagents.sourceforge.net/AiGGridOntology#hasAvailableSize");
 		
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
@@ -97,7 +97,7 @@ public class PropertyRendererTest {
 	@Test
 	public void forIntegerProperty_and_class_expression_constraint_renderProperty_rendersAllOperators(){
 		int conditionId = 1;
-		OntoClass owlClass = kb.getOwlClass("http://www.owl-ontologies.com/unnamed.owl#StorageSpace");
+		OntoClass owlClass = kb.getOwlClass("http://purl.org/NET/cgo#StorageSpace");
 		OntoProperty property = kb.getProperty("http://gridagents.sourceforge.net/AiGGridOntology#hasAvailableSize");
 		
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
@@ -118,8 +118,8 @@ public class PropertyRendererTest {
 	@Test
 	public void forStringProperty_and_class_expression_constraint_renderProperty_rendersOnlyEqualToOperator(){
 		int conditionId = 1;
-		OntoClass owlClass = kb.getOwlClass("http://www.owl-ontologies.com/unnamed.owl#StorageSpace");
-		OntoProperty property = kb.getProperty("http://www.owl-ontologies.com/unnamed.owl#hasName");
+		OntoClass owlClass = kb.getOwlClass("http://purl.org/NET/cgo#StorageSpace");
+		OntoProperty property = kb.getProperty("http://purl.org/NET/cgo#hasName");
 		
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
 				.getRenderer(property.getClass());
@@ -135,7 +135,7 @@ public class PropertyRendererTest {
 	@Test
 	public void forFloatProperty_and_individual_description_renderProperty_rendersOnlyEqualToOperator(){
 		int conditionId = 1;
-		OntoClass owlClass = kb.getOwlClass("http://www.owl-ontologies.com/unnamed.owl#Memory");
+		OntoClass owlClass = kb.getOwlClass("http://purl.org/NET/cgo#Memory");
 		OntoProperty property = kb.getProperty("http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize");
 		
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer

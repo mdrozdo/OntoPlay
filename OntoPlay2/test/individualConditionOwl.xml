@@ -5,7 +5,7 @@
     xmlns:owl="http://www.w3.org/2002/07/owl#">
   <owl:Class rdf:about="http://bla.org/testCondition">
     <owl:intersectionOf rdf:parseType="Collection">
-      <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#WorkerNode"/>
+      <rdf:Description rdf:about="http://purl.org/NET/cgo#WorkerNode"/>
       <owl:Restriction>
         <owl:hasValue rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2RAM"/>
         <owl:onProperty rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasMemory"/>

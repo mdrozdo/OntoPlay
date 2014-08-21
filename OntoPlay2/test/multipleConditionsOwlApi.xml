@@ -7,7 +7,7 @@
      xmlns:ont="http://www.co-ode.org/ontologies/ont.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:unnamed="http://www.owl-ontologies.com/unnamed.owl#"
+     xmlns:cgo="http://purl.org/NET/cgo#"
      xmlns:bla="http://bla.org/">
     
     
@@ -15,7 +15,7 @@
   	<equivalentClass>
   	<Class>
     <intersectionOf rdf:parseType="Collection">
-      <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#CPU"/>
+      <rdf:Description rdf:about="http://purl.org/NET/cgo#CPU"/>
       <Restriction>
         <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12345</hasValue><!-- TODO: check datatype -->
         <onProperty rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasClockSpeed"/>

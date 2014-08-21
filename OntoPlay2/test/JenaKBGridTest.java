@@ -68,10 +68,10 @@ public class JenaKBGridTest {
 
 	@Test
 	public void getClass_ReturnsClassFromImportedOntology() {
-		OntoClass wnClass = kb.getOwlClass("http://www.owl-ontologies.com/unnamed.owl#WorkerNode");
+		OntoClass wnClass = kb.getOwlClass("http://purl.org/NET/cgo#WorkerNode");
 		assertThat(wnClass).isNotNull();
 		Assert.assertEquals("WorkerNode", wnClass.getLocalName());
-		Assert.assertEquals("http://www.owl-ontologies.com/unnamed.owl#", wnClass.getNamespace());
+		Assert.assertEquals("http://purl.org/NET/cgo#", wnClass.getNamespace());
 	}
 
 	@Test
@@ -85,7 +85,7 @@ public class JenaKBGridTest {
 	
 	@Test
 	public void forComputingElement_getClass_ReturnsClassWithStorageSpaceProperty() throws Exception {
-		OntoClass memoryClass = kb.getOwlClass("http://www.owl-ontologies.com/unnamed.owl#ComputingElement");
+		OntoClass memoryClass = kb.getOwlClass("http://purl.org/NET/cgo#ComputingElement");
 
 		assertThat(selectLocalNames(memoryClass.getProperties())).contains(
 				"hasStorageSpace");
@@ -93,16 +93,16 @@ public class JenaKBGridTest {
 	
 	@Test
 	public void forInstalledSoftware_getIndividualsInRange_ReturnsCorrectResults() throws Exception {
-		OntoClass owlClass = new OntoClass("http://www.owl-ontologies.com/unnamed.owl#", "WorkerNode", new ArrayList<OntoProperty>());
+		OntoClass owlClass = new OntoClass("http://purl.org/NET/cgo#", "WorkerNode", new ArrayList<OntoProperty>());
 		OwlObjectProperty property = new OwlObjectProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasInstalledSoftware"); 
 
-		assertThat(selectLocalNames(kb.getIndividualsInRange(owlClass, property))).containsExactly("vista_sp2", "debian_5.0", "Scientific_Linux_303");
+		assertThat(selectLocalNames(kb.getIndividualsInRange(owlClass, property))).containsExactly("MPI16", "vista_sp2", "debian_5.0", "Scientific_Linux_303");
 	}
 	
 		
 	@Test
 	public void forHasNameProperty_getProperty_works(){
-		OntoProperty prop = kb.getProperty("http://www.owl-ontologies.com/unnamed.owl#hasName");
+		OntoProperty prop = kb.getProperty("http://purl.org/NET/cgo#hasName");
 		assertThat(prop).isNotNull();
 	}
 

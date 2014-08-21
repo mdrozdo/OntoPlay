@@ -9,7 +9,7 @@
     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns="http://www.owl-ontologies.com/unnamed.owl#"
+    xmlns="http://purl.org/NET/cgo#"
   xml:base="http://www.owl-ontologies.com/unnamed.owl">
   <owl:Ontology rdf:about=""/>
   <owl:Class rdf:ID="GridUser">

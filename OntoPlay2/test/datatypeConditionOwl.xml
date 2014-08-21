@@ -5,7 +5,7 @@
     xmlns:owl="http://www.w3.org/2002/07/owl#">
   <owl:Class rdf:about="http://bla.org/testCondition">
     <owl:intersectionOf rdf:parseType="Collection">
-      <rdf:Description rdf:about="http://www.owl-ontologies.com/unnamed.owl#CPU"/>
+      <rdf:Description rdf:about="http://purl.org/NET/cgo#CPU"/>
       <owl:Restriction>
         <owl:hasValue>12345</owl:hasValue>
         <owl:onProperty rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasClockSpeed"/>

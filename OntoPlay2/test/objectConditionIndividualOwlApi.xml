@@ -6,17 +6,17 @@
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:unnamed="http://www.owl-ontologies.com/unnamed.owl#"
+     xmlns:cgo="http://purl.org/NET/cgo#"
      xmlns:bla="http://bla.org/">
     
     <NamedIndividual rdf:about="http://bla.org/testIndividual">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/unnamed.owl#WorkerNode"/>
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#WorkerNode"/>
         <AiGGridOntology:hasMemory>
-        	<unnamed:Memory>
+        	<cgo:Memory>
         		<AiGGridOntology:hasTotalSize rdf:datatype="http://www.w3.org/2001/XMLSchema#float">
         			123
         		</AiGGridOntology:hasTotalSize>        		
-        	</unnamed:Memory>
+        	</cgo:Memory>
         </AiGGridOntology:hasMemory>        
     </NamedIndividual>
     

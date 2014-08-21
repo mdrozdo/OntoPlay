@@ -67,14 +67,14 @@ public class OwlApiKBGridTest {
 	@Before
 	public void setup() {
 		classXpath = "//owl:Class[@rdf:about='http://bla.org/testCondition']";		
-		individualXpath = "//owl:NamedIndividual[@rdf:about='http://bla.org/testIndividual']";
+		individualXpath = "//owl:NamedIndividual[@IRI='http://bla.org/testIndividual']";
 		HashMap m = new HashMap();
 	    m.put("owl", "http://www.w3.org/2002/07/owl#");
 	    m.put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
 	    
 	    NamespaceContext ctx = new SimpleNamespaceContext(m);
 	    XMLUnit.setXpathNamespaceContext(ctx);
-		ontologyWriter = OntologyGenerator.loadFromFile("file:test/AiGGridOntology.owl", "./test");
+		ontologyWriter = OntologyGenerator.loadFromFile("file:../Ontology/AiGGridOntology.owl", "../Ontology");
 		try {
 			new PropertyTypeConfiguration().doJob();
 		} catch (Exception e) {
@@ -86,7 +86,7 @@ public class OwlApiKBGridTest {
 	
 	@Test
 	public void forDatatypePropertyEqualsCondition_convertToOwlClass_ReturnsCreatedOwlClassDescription() throws Exception {
-		ClassCondition condition = new ClassCondition("http://www.owl-ontologies.com/unnamed.owl#CPU");
+		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
 		OwlDatatypeProperty property = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed");
 		condition.addProperty(createEqualToDatatypeCondition(property, "12345"));
 		
@@ -100,7 +100,7 @@ public class OwlApiKBGridTest {
 	
 	@Test
 	public void forEmptyCondition_convertToOwlIndividual_ReturnsCreatedOwlIndividual() throws Exception {
-		ClassCondition condition = new ClassCondition("http://www.owl-ontologies.com/unnamed.owl#CPU");
+		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
 		
 		String expectedOwl = FileUtils.readFileToString(new File("test/emptyConditionIndividualOwlApi.xml"));
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org/testIndividual", condition);
@@ -112,7 +112,7 @@ public class OwlApiKBGridTest {
 	
 	@Test
 	public void forDatatypePropertyEqualsCondition_convertToOwlIndividual_ReturnsCreatedOwlIndividual() throws Exception {
-		ClassCondition condition = new ClassCondition("http://www.owl-ontologies.com/unnamed.owl#CPU");
+		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
 		OwlDatatypeProperty property = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed");
 		condition.addProperty(createEqualToDatatypeCondition(property, "12345"));
 		
@@ -140,7 +140,7 @@ public class OwlApiKBGridTest {
 	
 	@Test
 	public void forIndividualEqualsCondition_convertToOwlClass_ReturnsCreatedOwlClassDescription() throws Exception {
-		ClassCondition condition = new ClassCondition("http://www.owl-ontologies.com/unnamed.owl#WorkerNode");
+		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#WorkerNode");
 		condition.addProperty(new IndividualValueCondition("http://gridagents.sourceforge.net/AiGGridOntology#hasMemory", 
 				"http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2RAM"));
 		
@@ -151,7 +151,7 @@ public class OwlApiKBGridTest {
 	
 	@Test
 	public void forIndividualEqualsCondition_convertToOwlIndividual_ReturnsCreatedOwlIndividual() throws Exception {
-		ClassCondition condition = new ClassCondition("http://www.owl-ontologies.com/unnamed.owl#WorkerNode");
+		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#WorkerNode");
 		condition.addProperty(new IndividualValueCondition("http://gridagents.sourceforge.net/AiGGridOntology#hasMemory", 
 				"http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2RAM"));
 		
@@ -163,9 +163,9 @@ public class OwlApiKBGridTest {
 	
 	@Test
 	public void forNestedEqualsCondition_convertToOwlClass_ReturnsCreatedOwlClassDescription() throws Exception {
-		ClassCondition condition = new ClassCondition("http://www.owl-ontologies.com/unnamed.owl#WorkerNode");
+		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#WorkerNode");
 		
-		ClassCondition nestedCondition = new  ClassCondition("http://www.owl-ontologies.com/unnamed.owl#Memory");
+		ClassCondition nestedCondition = new  ClassCondition("http://purl.org/NET/cgo#Memory");
 		
 		OwlDatatypeProperty property = new FloatProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasTotalSize");
 		nestedCondition.addProperty(createEqualToDatatypeCondition(property, "123"));
@@ -181,9 +181,9 @@ public class OwlApiKBGridTest {
 	
 	@Test
 	public void forNestedEqualsCondition_convertToOwlIndividual_ReturnsCreatedOwlIndividual() throws Exception {
-		ClassCondition condition = new ClassCondition("http://www.owl-ontologies.com/unnamed.owl#WorkerNode");
+		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#WorkerNode");
 		
-		ClassCondition nestedCondition = new  ClassCondition("http://www.owl-ontologies.com/unnamed.owl#Memory");
+		ClassCondition nestedCondition = new  ClassCondition("http://purl.org/NET/cgo#Memory");
 		
 		OwlDatatypeProperty property = new FloatProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasTotalSize");
 		nestedCondition.addProperty(createEqualToDatatypeCondition(property, "123"));
@@ -199,7 +199,7 @@ public class OwlApiKBGridTest {
 	
 	@Test
 	public void forListOfPropertyConditions_convertToOwlClass_ReturnsCreatedOwlClassDescription() throws Exception {
-		ClassCondition condition = new ClassCondition("http://www.owl-ontologies.com/unnamed.owl#CPU");
+		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
 		OwlDatatypeProperty intProperty = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed");
 		OwlDatatypeProperty stringProperty = new StringProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasName");
 		
@@ -217,7 +217,7 @@ public class OwlApiKBGridTest {
 		OwlDatatypeProperty intProperty = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed");
 		DatatypePropertyCondition propertyCondition = new DatatypePropertyCondition("http://gridagents.sourceforge.net/AiGGridOntology#hasClockSpeed", "greaterThan", "12345");
 		propertyCondition.setProperty(intProperty);
-		ClassCondition condition = new ClassCondition("http://www.owl-ontologies.com/unnamed.owl#CPU");
+		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
 		condition.addProperty(propertyCondition);
 		
 		String expectedOwl = FileUtils.readFileToString(new File("test/greaterThanConditionOwlApi.xml"));
@@ -232,7 +232,7 @@ public class OwlApiKBGridTest {
 		OwlDatatypeProperty intProperty = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed");
 		DatatypePropertyCondition propertyCondition = new DatatypePropertyCondition("http://gridagents.sourceforge.net/AiGGridOntology#hasClockSpeed", "lessThan", "12345");
 		propertyCondition.setProperty(intProperty);
-		ClassCondition condition = new ClassCondition("http://www.owl-ontologies.com/unnamed.owl#CPU");
+		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
 		condition.addProperty(propertyCondition);
 		
 		String expectedOwl = FileUtils.readFileToString(new File("test/lessThanConditionOwlApi.xml"));

@@ -52,19 +52,19 @@ public class ConditionDeserializerTest {
 	
 	@Test
 	public void deserializeCondition_createsIndividualValueCondition() {
-		String json = "{'classUri':'http://www.owl-ontologies.com/unnamed.owl#WorkerNode','propertyConditions':[{'propertyUri':'http://www.owl-ontologies.com/unnamed.owl#belongToVO','operator':'equalToIndividual','individualValue':'http://www.owl-ontologies.com/unnamed.owl#Biomed'}]}";
+		String json = "{'classUri':'http://purl.org/NET/cgo#WorkerNode','propertyConditions':[{'propertyUri':'http://purl.org/NET/cgo#belongToVO','operator':'equalToIndividual','individualValue':'http://purl.org/NET/cgo#Biomed'}]}";
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(propertyProvider, json);
 		
 		assertThat(condition.getPropertyConditions()).hasSize(1);
 		PropertyValueCondition actualPropertyCondition = condition.getPropertyConditions().get(0);
 		assertIsIndividualValueCondition(actualPropertyCondition, 
-				"http://www.owl-ontologies.com/unnamed.owl#belongToVO", 
-				"http://www.owl-ontologies.com/unnamed.owl#Biomed");
+				"http://purl.org/NET/cgo#belongToVO", 
+				"http://purl.org/NET/cgo#Biomed");
 	}
 
 	@Test
 	public void deserializeCondition_createsDatatypeEqualToValueConditions() {
-		String json = "{'classUri':'http://www.owl-ontologies.com/unnamed.owl#WorkerNode','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#isVirtualized','operator':'equalTo', 'datatypeValue':'true'}]}";
+		String json = "{'classUri':'http://purl.org/NET/cgo#WorkerNode','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#isVirtualized','operator':'equalTo', 'datatypeValue':'true'}]}";
 		
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(propertyProvider, json);
 		
@@ -73,7 +73,7 @@ public class ConditionDeserializerTest {
 	
 	@Test
 	public void deserializeCondition_fillsPropertyDataInCondition() {
-		String json = "{'classUri':'http://www.owl-ontologies.com/unnamed.owl#WorkerNode','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#isVirtualized','operator':'equalTo', 'datatypeValue':'true'}]}";
+		String json = "{'classUri':'http://purl.org/NET/cgo#WorkerNode','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#isVirtualized','operator':'equalTo', 'datatypeValue':'true'}]}";
 		
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(propertyProvider, json);
 		
@@ -84,7 +84,7 @@ public class ConditionDeserializerTest {
 	
 	@Test
 	public void deserializeCondition_createsDatatypeGreaterThanValueConditions() {
-		String json = "{'classUri':'http://www.owl-ontologies.com/unnamed.owl#StorageSpace','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize','operator':'greaterThan', 'datatypeValue':'123'}]}";
+		String json = "{'classUri':'http://purl.org/NET/cgo#StorageSpace','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize','operator':'greaterThan', 'datatypeValue':'123'}]}";
 		
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(propertyProvider, json);
 		
@@ -95,7 +95,7 @@ public class ConditionDeserializerTest {
 	
 	@Test
 	public void deserializeCondition_createsClassValueConditions() {
-		String json = "{'classUri':'http://www.owl-ontologies.com/unnamed.owl#WorkerNode','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#hasMemory','operator':'constrainedBy','classConstraintValue':{'classUri':'http://www.owl-ontologies.com/unnamed.owl#Memory','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize','propertyValue':'1234'}]}}]}";
+		String json = "{'classUri':'http://purl.org/NET/cgo#WorkerNode','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#hasMemory','operator':'constrainedBy','classConstraintValue':{'classUri':'http://purl.org/NET/cgo#Memory','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize','propertyValue':'1234'}]}}]}";
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(propertyProvider, json);
 		assertThat(condition.getPropertyConditions()).hasSize(1);
 		assertThat(condition.getPropertyConditions().get(0).getClass().equals(ClassValueCondition.class)).isTrue();
@@ -106,7 +106,7 @@ public class ConditionDeserializerTest {
 	
 	@Test
 	public void deserializeCondition_given_description_of_individual_createsClassValueConditions() {
-		String json = "{'classUri':'http://www.owl-ontologies.com/unnamed.owl#WorkerNode','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#hasMemory','operator':'describedWith','classConstraintValue':{'classUri':'http://www.owl-ontologies.com/unnamed.owl#Memory','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize','propertyValue':'1234'}]}}]}";
+		String json = "{'classUri':'http://purl.org/NET/cgo#WorkerNode','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#hasMemory','operator':'describedWith','classConstraintValue':{'classUri':'http://purl.org/NET/cgo#Memory','propertyConditions':[{'propertyUri':'http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize','propertyValue':'1234'}]}}]}";
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(propertyProvider, json);
 		assertThat(condition.getPropertyConditions()).hasSize(1);
 		assertThat(condition.getPropertyConditions().get(0).getClass().equals(ClassValueCondition.class)).isTrue();
