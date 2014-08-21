@@ -13,9 +13,13 @@ public class StringPropertyFactory extends OwlPropertyFactory {
 	public boolean canCreateProperty(OntProperty ontProperty) {
 		if(!ontProperty.isDatatypeProperty())
 			return false;
+		if(ontProperty.getRange() == null)
+			return false;
+		if(ontProperty.getRange().getURI() == null)
+			return false;
 		
 		String rangeUri = ontProperty.getRange().getURI();
-		return rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#string") || rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#boolean");
+		return rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#string") || rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#boolean") || rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#anyURI");
 	}
 
 	@Override
