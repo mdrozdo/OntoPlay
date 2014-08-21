@@ -155,16 +155,5 @@ public class JenaKBGridTest {
 		return names;
 	}	
 
-	private OwlIndividual getByUri(String uri, List<OwlIndividual> individuals) {
-		for (OwlIndividual i : individuals) {
-			if(i.getUri().equals(uri)){
-				return i;
-			}
-		}
-		return null;
-	}
 	
-	private DatatypePropertyCondition createEqualToDatatypeCondition(String propertyUri, String propertyValue) {
-		return new DatatypePropertyCondition(propertyUri, "equalTo", propertyValue);
-	}	
 }
