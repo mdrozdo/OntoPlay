@@ -18,11 +18,5 @@ public class OwlApiReaderConfiguration  {
 	
 	public void initialize(String uri, String localOntologyFolder){
 		OwlApiReader.initialize(uri, localOntologyFolder);
-		
-		OwlPropertyFactory.registerPropertyFactory(new IntegerPropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new FloatPropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new DateTimePropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new StringPropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new ObjectPropertyFactory());	
 	}
 }

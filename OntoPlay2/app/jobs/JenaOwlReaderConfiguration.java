@@ -27,10 +27,5 @@ public class JenaOwlReaderConfiguration{
 		JenaOwlReader.initialize(uri,
 				jenaOwlReaderConfig);
 		
-		OwlPropertyFactory.registerPropertyFactory(new IntegerPropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new FloatPropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new DateTimePropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new StringPropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new ObjectPropertyFactory());
 	}
 }

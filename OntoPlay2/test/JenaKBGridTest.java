@@ -106,11 +106,49 @@ public class JenaKBGridTest {
 		OntoProperty prop = kb.getProperty("http://purl.org/NET/cgo#hasName");
 		assertThat(prop).isNotNull();
 	}
+	
+	@Test
+	public void withoutIgnoreEmptyDomains_getClass_includesPropertyWithNoDomain() throws Exception {
+		JenaOwlReader.initialize("file:" + Config.getOntologyLocation() + "cgo.owl",
+				new JenaOwlReaderConfig());
+		OntologyReader specialReader = JenaOwlReader.getGlobalInstance();
+		OntoClass memoryClass = specialReader.getOwlClass("http://purl.org/NET/cgo#CPU");
+
+		assertThat(memoryClass).isNotNull();
+		assertThat(selectLocalNames(memoryClass.getProperties())).contains(
+				"model");
+	}
+	
+	@Test
+	public void withoutIgnoreEmptyDomains_getClass_includesPropertiesWithCorrectDomain() throws Exception {
+		JenaOwlReader.initialize("file:" + Config.getOntologyLocation() + "cgo.owl",
+				new JenaOwlReaderConfig());
+		OntologyReader specialReader = JenaOwlReader.getGlobalInstance();
+		OntoClass memoryClass = specialReader.getOwlClass("http://purl.org/NET/cgo#CPU");
+
+		assertThat(memoryClass).isNotNull();
+		assertThat(selectLocalNames(memoryClass.getProperties())).contains(
+				"availableNum");
+	}
+	
+	@Test
+	public void withoutIgnoreEmptyDomains_getClass_excludesPropertyWithIncorrectDomain() throws Exception {
+		JenaOwlReader.initialize("file:" + Config.getOntologyLocation() + "cgo.owl",
+				new JenaOwlReaderConfig());
+		OntologyReader specialReader = JenaOwlReader.getGlobalInstance();
+		OntoClass memoryClass = specialReader.getOwlClass("http://purl.org/NET/cgo#CPU");
+
+		assertThat(memoryClass).isNotNull();
+		assertThat(selectLocalNames(memoryClass.getProperties())).excludes(
+				"descriptor");
+	}
+	
 
 	private List<String> selectLocalNames(List<? extends OwlElement> properties) {
 		List<String> names = new ArrayList<String>(properties.size());
 
 		for (OwlElement prop : properties) {
+			System.out.println(prop.getLocalName());
 			names.add(prop.getLocalName());
 		}
 

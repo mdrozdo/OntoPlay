@@ -14,6 +14,11 @@ import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
 import models.ontologyModel.OwlIndividual;
 import models.ontologyReading.OntologyReader;
+import models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
+import models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
+import models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
+import models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
+import models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
 import models.propertyConditions.ClassValueCondition;
 import models.propertyConditions.DatatypePropertyCondition;
 import models.propertyConditions.IndividualValueCondition;
@@ -56,6 +61,14 @@ public class JenaOwlReader extends OntologyReader{
 
 	public static void initialize(String uri, JenaOwlReaderConfig config) {
 		setGlobalInstance(loadFromFile(uri, config));
+		
+		OwlPropertyFactory.registerPropertyFactory(new IntegerPropertyFactory());
+		OwlPropertyFactory.registerPropertyFactory(new FloatPropertyFactory());
+		OwlPropertyFactory.registerPropertyFactory(new DateTimePropertyFactory());
+		OwlPropertyFactory.registerPropertyFactory(new StringPropertyFactory());
+		OwlPropertyFactory.registerPropertyFactory(new ObjectPropertyFactory());
+		
+	
 	}
 
 	public static JenaOwlReader loadFromFile(String uri, JenaOwlReaderConfig config) {

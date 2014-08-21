@@ -13,6 +13,11 @@ import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
 import models.ontologyModel.OwlIndividual;
 import models.ontologyReading.OntologyReader;
+import models.ontologyReading.owlApi.propertyFactories.DateTimePropertyFactory;
+import models.ontologyReading.owlApi.propertyFactories.FloatPropertyFactory;
+import models.ontologyReading.owlApi.propertyFactories.IntegerPropertyFactory;
+import models.ontologyReading.owlApi.propertyFactories.ObjectPropertyFactory;
+import models.ontologyReading.owlApi.propertyFactories.StringPropertyFactory;
 
 import org.semanticweb.HermiT.Configuration;
 import org.semanticweb.HermiT.Reasoner;
@@ -40,29 +45,43 @@ public class OwlApiReader extends OntologyReader {
 	private final OWLOntologyManager manager;
 	private final OWLDataFactory factory;
 	private String uri;
+	private boolean ignorePropsWithNoDomain;
 	
 	public static void initialize(String uri, String localOntologyFolder) {
-		setGlobalInstance(loadFromFile(uri, localOntologyFolder));
+		initialize(uri, new OwlApiReaderConfig().useLocalFolder(localOntologyFolder));
 	}
+	
+	public static void initialize(String uri, OwlApiReaderConfig config) {
+		setGlobalInstance(loadFromFile(uri, config));
+		
+		OwlPropertyFactory.registerPropertyFactory(new IntegerPropertyFactory());
+		OwlPropertyFactory.registerPropertyFactory(new FloatPropertyFactory());
+		OwlPropertyFactory.registerPropertyFactory(new DateTimePropertyFactory());
+		OwlPropertyFactory.registerPropertyFactory(new StringPropertyFactory());
+		OwlPropertyFactory.registerPropertyFactory(new ObjectPropertyFactory());		
+	}
+	
+	
 
-	public static OwlApiReader loadFromFile(String filePath, String mappingFolder) {
+	public static OwlApiReader loadFromFile(String filePath, OwlApiReaderConfig config) {
 		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-		manager.addIRIMapper(new AutoIRIMapper(new File(mappingFolder), true));
+		manager.addIRIMapper(new AutoIRIMapper(new File(config.getLocalFolderPath()), true));
 		try{
 			OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new File(filePath));
 			Configuration hermitConfig = new Configuration();
 			hermitConfig.ignoreUnsupportedDatatypes = true;
 			Reasoner hermitReasoner = new Reasoner(hermitConfig, ontology); 
-			return new OwlApiReader(manager, ontology, hermitReasoner);
+			return new OwlApiReader(manager, ontology, hermitReasoner, config.isIgnorePropsWithNoDomain());
 		} catch (OWLOntologyCreationException e) {
 			throw new ConfigException("Failed to load ontology.", e);
 		}		
 	}
 	
-	public OwlApiReader(OWLOntologyManager manager, OWLOntology ontology, OWLReasoner reasoner) {
+	public OwlApiReader(OWLOntologyManager manager, OWLOntology ontology, OWLReasoner reasoner, boolean ignorePropsWithNoDomain) {
 		this.manager = manager;
 		this.ontology = ontology;
 		this.reasoner = reasoner;
+		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
 		this.factory = manager.getOWLDataFactory();
 		this.uri = ontology.getOntologyID().getOntologyIRI().toString();
 	}
