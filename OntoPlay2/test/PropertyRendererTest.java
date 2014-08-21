@@ -17,6 +17,7 @@ import jobs.PropertyTypeConfiguration;
 import jobs.PropertyTypeConfiguration;
 import junit.framework.Assert;
 import models.ClassCondition;
+import models.ConfigurationException;
 import models.InvalidConfigurationException;
 import models.PropertyOperator;
 import models.ontologyModel.OntoClass;
@@ -65,7 +66,7 @@ public class PropertyRendererTest {
 	}
 	
 	@Test
-	public void forGreaterThan_renderOperator_rendersSimpleDatatypeValueTemplate(){
+	public void forGreaterThan_renderOperator_rendersSimpleDatatypeValueTemplate() throws ConfigurationException{
 		int conditionId = 1;
 		OntoClass owlClass = kb.getOwlClass("http://purl.org/NET/cgo#StorageSpace");
 		OntoProperty property = kb.getProperty("http://gridagents.sourceforge.net/AiGGridOntology#hasAvailableSize");
@@ -80,7 +81,7 @@ public class PropertyRendererTest {
 	}
 	
 	@Test
-	public void forLessThan_renderOperator_rendersSimpleDatatypeValueTemplate(){
+	public void forLessThan_renderOperator_rendersSimpleDatatypeValueTemplate() throws ConfigurationException{
 		int conditionId = 1;
 		OntoClass owlClass = kb.getOwlClass("http://purl.org/NET/cgo#StorageSpace");
 		OntoProperty property = kb.getProperty("http://gridagents.sourceforge.net/AiGGridOntology#hasAvailableSize");
@@ -95,7 +96,7 @@ public class PropertyRendererTest {
 	}
 	
 	@Test
-	public void forIntegerProperty_and_class_expression_constraint_renderProperty_rendersAllOperators(){
+	public void forIntegerProperty_and_class_expression_constraint_renderProperty_rendersAllOperators() throws ConfigurationException{
 		int conditionId = 1;
 		OntoClass owlClass = kb.getOwlClass("http://purl.org/NET/cgo#StorageSpace");
 		OntoProperty property = kb.getProperty("http://gridagents.sourceforge.net/AiGGridOntology#hasAvailableSize");
@@ -116,7 +117,7 @@ public class PropertyRendererTest {
 	}
 
 	@Test
-	public void forStringProperty_and_class_expression_constraint_renderProperty_rendersOnlyEqualToOperator(){
+	public void forStringProperty_and_class_expression_constraint_renderProperty_rendersOnlyEqualToOperator() throws ConfigurationException{
 		int conditionId = 1;
 		OntoClass owlClass = kb.getOwlClass("http://purl.org/NET/cgo#StorageSpace");
 		OntoProperty property = kb.getProperty("http://purl.org/NET/cgo#hasName");
@@ -133,7 +134,7 @@ public class PropertyRendererTest {
 	}
 	
 	@Test
-	public void forFloatProperty_and_individual_description_renderProperty_rendersOnlyEqualToOperator(){
+	public void forFloatProperty_and_individual_description_renderProperty_rendersOnlyEqualToOperator() throws ConfigurationException{
 		int conditionId = 1;
 		OntoClass owlClass = kb.getOwlClass("http://purl.org/NET/cgo#Memory");
 		OntoProperty property = kb.getProperty("http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize");

@@ -52,7 +52,12 @@ public class ConditionDeserializer implements
 	}
 
 	private void fillConditionProperty(PropertyValueCondition condition) {
-		condition.setProperty(propertyProvider.getProperty(condition.getPropertyUri()));
+		try {
+			condition.setProperty(propertyProvider.getProperty(condition.getPropertyUri()));
+		} catch (ConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }

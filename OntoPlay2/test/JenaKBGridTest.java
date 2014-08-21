@@ -15,6 +15,7 @@ import jobs.PropertyTypeConfiguration;
 import jobs.PropertyTypeConfiguration;
 import junit.framework.Assert;
 import models.ClassCondition;
+import models.ConfigurationException;
 import models.InvalidConfigurationException;
 import models.PropertyValueCondition;
 import models.ontologyModel.OntoClass;
@@ -102,9 +103,20 @@ public class JenaKBGridTest {
 	
 		
 	@Test
-	public void forHasNameProperty_getProperty_works(){
+	public void forHasNameProperty_getProperty_works() throws ConfigurationException{
 		OntoProperty prop = kb.getProperty("http://purl.org/NET/cgo#hasName");
 		assertThat(prop).isNotNull();
+	}
+	
+	@Test
+	public void for_Unknown_Property_getProperty_Throws(){
+		try{
+			OntoProperty prop = kb.getProperty("http://purl.org/NET/cgo#notExistantProperty");
+			Assert.fail("Expected exception to be thrown");
+		}
+		catch(Exception ex){
+			assertThat(ex).isInstanceOf(ConfigurationException.class);
+		}
 	}
 	
 	@Test

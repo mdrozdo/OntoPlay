@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import models.ConfigurationException;
 import models.InvalidConfigurationException;
 import models.PropertyProvider;
 import models.PropertyValueCondition;
@@ -53,6 +54,7 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.RDFS;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
 public class JenaOwlReader extends OntologyReader{
 	private OntModel model;
@@ -75,11 +77,12 @@ public class JenaOwlReader extends OntologyReader{
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
 		if (config != null) {
 			OntDocumentManager dm = model.getDocumentManager();
+						
 			for (Map.Entry<String, String> mapping : config.getLocalMappings().entrySet()) {
 				dm.addAltEntry(mapping.getKey(), mapping.getValue());
 			}
 		}
-
+		
 		model.read(uri);
 
 		return new JenaOwlReader(model, config);
@@ -125,8 +128,12 @@ public class JenaOwlReader extends OntologyReader{
 	/* (non-Javadoc)
 	 * @see models.ontologyReading.jena.OntologyReader#getProperty(java.lang.String)
 	 */
-	public OntoProperty getProperty(String propertyUri) {
-		return createProperty(model.getOntProperty(propertyUri));
+	public OntoProperty getProperty(String propertyUri) throws ConfigurationException {
+		OntProperty ontProperty = model.getOntProperty(propertyUri);
+		if(ontProperty == null){
+			throw new ConfigurationException(String.format("Property %s not found in ontology", propertyUri));
+		}
+		return createProperty(ontProperty);
 	}
 
 	private List<OntoProperty> getProperties(OntClass ontClass) {

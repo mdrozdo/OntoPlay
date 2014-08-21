@@ -74,6 +74,11 @@ public class OwlApiOntologyGeneratorTest {
 	    
 	    NamespaceContext ctx = new SimpleNamespaceContext(m);
 	    XMLUnit.setXpathNamespaceContext(ctx);
+		initializeOntologyGenerator();
+		
+	}
+
+	private void initializeOntologyGenerator() {
 		ontologyWriter = OntologyGenerator.loadFromFile("file:../Ontology/AiGGridOntology.owl", "../Ontology");
 		try {
 			new PropertyTypeConfiguration().doJob();
@@ -81,7 +86,6 @@ public class OwlApiOntologyGeneratorTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	@Test
@@ -147,7 +151,21 @@ public class OwlApiOntologyGeneratorTest {
 		String expectedOwl = FileUtils.readFileToString(new File("test/datetimeConditionOwlApi.xml"));
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
 		
-	//	System.out.println(actualOwl);
+		System.out.println(actualOwl);
+		XMLAssert.assertXpathExists(classXpath, actualOwl);
+		XMLAssert.assertXpathsEqual(classXpath, expectedOwl, classXpath, actualOwl);		
+	}
+	
+	@Test
+	public void forDecimalPropertyEqualsCondition_convertToOwlClass_ReturnsCreatedOwlClassDescription() throws Exception {
+		ClassCondition condition = new ClassCondition("http://gridagents.sourceforge.net/MOSTOntology#FaultPlaneInfo");
+		OwlDatatypeProperty property = new FloatProperty("http://gridagents.sourceforge.net/MOSTOntology#", "hasDEPTH", "http://www.w3.org/2001/XMLSchema#decimal");
+		condition.addProperty(createEqualToDatatypeCondition(property, "10.5"));
+		
+		String expectedOwl = FileUtils.readFileToString(new File("test/decimalConditionOwlApi.xml"));
+		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
+		
+		System.out.println(actualOwl);
 		XMLAssert.assertXpathExists(classXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(classXpath, expectedOwl, classXpath, actualOwl);		
 	}

@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.Map;
 
+import models.ConfigurationException;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
 import models.ontologyReading.OntologyReader;
@@ -46,7 +47,7 @@ public class Constraints extends OntologyController {
 	}
 
    public static void getPropertyCondition(int conditionId, String classUri,
-			String propertyUri) {
+			String propertyUri) throws ConfigurationException {
 		
 		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
 		OntoProperty property = getOntologyReader().getProperty(propertyUri);
@@ -66,7 +67,7 @@ public class Constraints extends OntologyController {
 	}
 
 	public static Result getValueCondition(int conditionId, String classUri,
-			String propertyUri, String operator) {
+			String propertyUri, String operator) throws ConfigurationException {
 		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
 		OntoProperty property = getOntologyReader().getProperty(propertyUri);
 		

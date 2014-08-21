@@ -19,12 +19,13 @@ public class FloatPropertyFactory extends OwlPropertyFactory {
 			return false;
 		
 		String rangeUri = ontProperty.getRange().getURI();
-		return rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#float");
+		return rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#float") || 
+				rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal");
 	}
 
 	@Override
 	public OntoProperty createProperty(OntProperty ontProperty) {
-		return new FloatProperty(ontProperty.getNameSpace(), ontProperty.getLocalName());
+		return new FloatProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getRange().getURI());
 	}
 
 }

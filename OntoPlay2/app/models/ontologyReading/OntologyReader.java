@@ -2,6 +2,7 @@ package models.ontologyReading;
 
 import java.util.List;
 
+import models.ConfigurationException;
 import models.PropertyProvider;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
@@ -22,7 +23,7 @@ public abstract class OntologyReader implements PropertyProvider{
 	
 	public abstract OntoClass getOwlClass(String className);
 
-	public abstract OntoProperty getProperty(String propertyUri);
+	public abstract OntoProperty getProperty(String propertyUri) throws ConfigurationException;
 
 	public abstract List<OwlIndividual> getIndividualsInRange(OntoClass owlClass, OntoProperty property);
 
