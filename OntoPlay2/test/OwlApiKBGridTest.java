@@ -125,6 +125,20 @@ public class OwlApiKBGridTest {
 	}
 	
 	@Test
+	public void forAnyURIDatatypePropertyEqualsCondition_convertToOwlIndividual_ReturnsProperXsdType() throws Exception {
+		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#URL");
+		OwlDatatypeProperty property = new StringProperty("http://purl.org/NET/cgo#", "hasURIAddress", "http://www.w3.org/2001/XMLSchema#anyURI");
+		condition.addProperty(createEqualToDatatypeCondition(property, "http://localhost/file.txt"));
+		
+		String expectedOwl = FileUtils.readFileToString(new File("test/anyURIdatatypeConditionIndividualOwlApi.xml"));
+		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
+		individualXpath = "//owl:NamedIndividual[@IRI='#testIndividual']/..";
+		System.out.println(actualOwl);
+		XMLAssert.assertXpathExists(individualXpath, actualOwl);
+		XMLAssert.assertXpathsEqual(individualXpath, expectedOwl, individualXpath, actualOwl);		
+	}
+	
+	@Test
 	public void forDatetimePropertyEqualsCondition_convertToOwlClass_ReturnsCreatedOwlClassDescription() throws Exception {
 		ClassCondition condition = new ClassCondition("http://www.w3.org/2006/time#Instant");
 		OwlDatatypeProperty property = new DateTimeProperty("http://www.w3.org/2006/time#", "inXSDDateTime");

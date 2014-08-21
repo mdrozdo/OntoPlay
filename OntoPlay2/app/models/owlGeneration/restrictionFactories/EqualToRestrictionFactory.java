@@ -42,7 +42,7 @@ public class EqualToRestrictionFactory extends DatatypeRestrictionFactory {
 	}
 	
 	private OWLLiteral getValueLiteral(DatatypePropertyCondition condition){
-		OWLDatatype owlDatatype = factory.getOWLDatatype(IRI.create(dataTypeUri));
+		OWLDatatype owlDatatype = factory.getOWLDatatype(IRI.create(condition.getProperty().getDatatype()));
 		OWLLiteral value = factory.getOWLLiteral(condition.getDatatypeValue(), owlDatatype);
 		return value;
 	}

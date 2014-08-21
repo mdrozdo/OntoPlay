@@ -89,9 +89,9 @@ public class PropertyTypeConfiguration {
 	}
 
 	private PropertyConditionRenderer createStringPropertyRenderer() {
-		DatatypePropertyRenderer integerPropertyRenderer = new DatatypePropertyRenderer();
-		integerPropertyRenderer.registerPropertyOperator("equalTo", "is equal to ", true,  new SimpleDatatypePropertyValueRenderer());
-		return integerPropertyRenderer;
+		DatatypePropertyRenderer stringPropertyRenderer = new DatatypePropertyRenderer();
+		stringPropertyRenderer.registerPropertyOperator("equalTo", "is equal to ", true,  new SimpleDatatypePropertyValueRenderer());
+		return stringPropertyRenderer;
 	}
 
 	private DatatypePropertyRenderer createIntegerPropertyRenderer() {

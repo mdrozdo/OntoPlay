@@ -3,8 +3,9 @@ package models.propertyConditions;
 import java.math.BigDecimal;
 
 import models.PropertyValueCondition;
+import models.properties.OwlDatatypeProperty;
 
-public class DatatypePropertyCondition extends PropertyValueCondition{
+public class DatatypePropertyCondition extends PropertyValueCondition<OwlDatatypeProperty>{
 	private String datatypeValue;
 	private String operator;
 	
@@ -33,4 +34,14 @@ public class DatatypePropertyCondition extends PropertyValueCondition{
 	public String getOperator() {
 		return operator;
 	} 
+	
+	@Override
+	public void setPropertyUri(String propertyUri) {
+		super.setPropertyUri(propertyUri);
+	}
+
+	@Override
+	public String getPropertyUri() {
+		return super.getPropertyUri();
+	}
 }

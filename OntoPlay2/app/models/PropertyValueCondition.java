@@ -3,9 +3,9 @@ package models;
 import models.ontologyModel.OntoProperty;
 
 
-public class PropertyValueCondition {
+public class PropertyValueCondition<T extends OntoProperty> {
 	private String propertyUri;
-	private OntoProperty property;
+	private T property;
 
 	public PropertyValueCondition(){
 		
@@ -23,11 +23,11 @@ public class PropertyValueCondition {
 		return propertyUri;
 	}
 
-	public void setProperty(OntoProperty property) {
+	public void setProperty(T property) {
 		this.property = property;		
 	}
 	
-	public OntoProperty getProperty() {
+	public T getProperty() {
 		return property;
 	}
 
