@@ -1,6 +1,5 @@
 
 import java.io.BufferedReader;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +16,6 @@ import jobs.JenaOwlReaderConfiguration;
 import jobs.PropertyTypeConfiguration;
 import jobs.PropertyTypeConfiguration;
 import junit.framework.Assert;
-
 import models.ClassCondition;
 import models.InvalidConfigurationException;
 import models.PropertyOperator;
@@ -39,12 +37,13 @@ import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import conf.Config;
 import controllers.Constraints;
 import controllers.PropertyConditionRenderer;
 import controllers.Renderer;
-
 import static org.fest.assertions.Assertions.assertThat;
 
 //TODO: Create properties manually instead of using kb
@@ -54,6 +53,7 @@ public class PropertyRendererTest {
 	@Before
 	public void setup() {
 		try {
+			Config.setInstancesLocation("../Ontology/AiGInstances/");
 			new JenaOwlReaderConfiguration().doJob();
 			new PropertyTypeConfiguration().doJob();
 		} catch (Exception e) {

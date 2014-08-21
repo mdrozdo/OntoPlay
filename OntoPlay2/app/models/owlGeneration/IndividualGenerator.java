@@ -16,7 +16,11 @@ import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLDeclarationAxiom;
 import org.semanticweb.owlapi.model.OWLIndividual;
+import org.semanticweb.owlapi.model.OWLIndividualAxiom;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLOntologyManager;
 
 public class IndividualGenerator{
 	
@@ -33,11 +37,17 @@ public class IndividualGenerator{
 	}
 
 	public List<OWLAxiom> createPropertyAxioms(OWLIndividual individual, ClassCondition condition) throws ConfigurationException {
+		ArrayList<OWLAxiom> individualAxioms = new ArrayList<OWLAxiom>();
+		
+		if (individual.isNamed()) {
+			OWLDeclarationAxiom individualAxiom = factory.getOWLDeclarationAxiom(individual.asOWLNamedIndividual());
+			individualAxioms.add(individualAxiom);
+		}
+
 		OWLClass conditionClass = factory.getOWLClass(IRI.create(condition.getClassUri()));
 		
 		OWLClassAssertionAxiom classAssertionAxiom = factory.getOWLClassAssertionAxiom(conditionClass, individual);
 				
-		ArrayList<OWLAxiom> individualAxioms = new ArrayList<OWLAxiom>();
 		individualAxioms.add(classAssertionAxiom);
 		
 		for (PropertyValueCondition cond : condition.getPropertyConditions()) {

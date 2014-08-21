@@ -6,12 +6,13 @@ import models.properties.DateTimeProperty;
 import models.properties.OwlDatatypeProperty;
 import models.propertyConditions.DatatypePropertyCondition;
 import static org.fest.assertions.Assertions.assertThat;
+
 import org.apache.commons.io.FileUtils;
 import org.custommonkey.xmlunit.XMLAssert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import fakes.FakeRestrictionFactory;
-
 
 public class DatetimeRestrictionFactoryDecoratorTest {
 

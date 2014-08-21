@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +15,6 @@ import jobs.OwlApiReaderConfiguration;
 import jobs.PropertyTypeConfiguration;
 import jobs.PropertyTypeConfiguration;
 import junit.framework.Assert;
-
 import models.ClassCondition;
 import models.InvalidConfigurationException;
 import models.PropertyValueCondition;
@@ -41,10 +39,12 @@ import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+@Ignore("OWL API reader is no longer maintained")
 public class OwlApiReaderGridTest {
 	private OwlApiReader kb;
 

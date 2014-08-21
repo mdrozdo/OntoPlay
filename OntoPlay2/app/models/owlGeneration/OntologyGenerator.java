@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -14,6 +15,7 @@ import java.util.Set;
 
 import models.ClassCondition;
 import models.ConfigurationException;
+import models.OntologyUtils;
 import models.PropertyValueCondition;
 import models.propertyConditions.ClassValueCondition;
 import models.propertyConditions.DatatypePropertyCondition;
@@ -25,6 +27,7 @@ import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
 import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
 import org.semanticweb.owlapi.io.StringDocumentTarget;
 import org.semanticweb.owlapi.model.AddAxiom;
+import org.semanticweb.owlapi.model.AddImport;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
@@ -35,6 +38,8 @@ import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataSomeValuesFrom;
 import org.semanticweb.owlapi.model.OWLDatatype;
 import org.semanticweb.owlapi.model.OWLDatatypeRestriction;
+import org.semanticweb.owlapi.model.OWLEntity;
+import org.semanticweb.owlapi.model.OWLImportsDeclaration;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectHasValue;
@@ -110,10 +115,15 @@ public class OntologyGenerator {
 	public String convertToOwlClass(String classUri, ClassCondition condition) {
 		OWLOntology destinationOntology;
 		try {
-			destinationOntology = manager.createOntology();
-
+			IRI iri = IRI.create(classUri);
+			
+			String ontologyIRI = OntologyUtils.getNamespace(iri);
+			
+			destinationOntology = manager.createOntology(IRI.create(ontologyIRI));
+			
 			OWLClassExpression resultExpression = getClassRestrictionGenerator().convertToOntClass(classUri, condition);
 			
+			//addImportDeclarations(destinationOntology, resultExpression);
 			addToOntologyAsClass(destinationOntology, resultExpression, classUri);
 			
 			return serializeToString(destinationOntology);
@@ -132,15 +142,19 @@ public class OntologyGenerator {
 			return null;
 		}			
 	}
-	
+
 	public String convertToOwlIndividual(String individualUri, ClassCondition condition) {
 		OWLOntology destinationOntology;
 		try {
-			destinationOntology = manager.createOntology();
+			IRI iri = IRI.create(individualUri);
+			String ontologyIRI = OntologyUtils.getNamespace(iri);
+			
+			destinationOntology = manager.createOntology(IRI.create(ontologyIRI));
 
 			List<OWLAxiom> axioms = getIndividualGenerator().convertToOntIndividual(individualUri, condition);
 			
 			addToOntologyAsIndividualDescription(destinationOntology, axioms);
+			addImportDeclarations(destinationOntology, axioms);
 			return serializeToString(destinationOntology, false);			
 			
 		} catch (OWLOntologyCreationException e) {
@@ -158,6 +172,25 @@ public class OntologyGenerator {
 		}		
 	}
 
+	private void addImportDeclarations(OWLOntology destinationOntology,
+			List<OWLAxiom> axioms) {
+		
+		for (OWLAxiom axiom : axioms) {
+			for(OWLEntity ent : axiom.getSignature()){
+				
+				IRI ontoIRI = IRI.create(OntologyUtils.getNamespace(ent.getIRI()));
+				
+				OWLImportsDeclaration importsDeclaration = factory.getOWLImportsDeclaration(ontoIRI);
+				if(!ontoIRI.toString().contains("XMLSchema")
+						&& !destinationOntology.getOntologyID().getOntologyIRI().equals(ontoIRI) 
+						&& !destinationOntology.getImportsDeclarations().contains(importsDeclaration)){
+					AddImport addImportChange = new AddImport(destinationOntology, importsDeclaration);
+					manager.applyChange(addImportChange);
+				}
+			}
+		}
+	}
+
 	private void addToOntologyAsIndividualDescription(OWLOntology destinationOntology, List<OWLAxiom> axioms) {
 		for (OWLAxiom owlAxiom : axioms) {
 			manager.addAxiom(destinationOntology, owlAxiom);
@@ -168,6 +201,8 @@ public class OntologyGenerator {
 		OWLClass resultClass = factory.getOWLClass(IRI.create(conditionUri));
 		
 		OWLAxiom equivalentClassAxiom = factory.getOWLEquivalentClassesAxiom(resultClass, resultExpression);
+		addImportDeclarations(destinationOntology, new ArrayList<OWLAxiom>(
+				Arrays.asList(new OWLAxiom[] { equivalentClassAxiom })));
 		
 		manager.addAxiom(destinationOntology, equivalentClassAxiom);
 	}

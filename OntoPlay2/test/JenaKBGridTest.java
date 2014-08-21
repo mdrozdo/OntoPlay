@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +14,6 @@ import jobs.JenaOwlReaderConfiguration;
 import jobs.PropertyTypeConfiguration;
 import jobs.PropertyTypeConfiguration;
 import junit.framework.Assert;
-
 import models.ClassCondition;
 import models.InvalidConfigurationException;
 import models.PropertyValueCondition;
@@ -40,6 +38,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import conf.Config;
 import static org.fest.assertions.Assertions.assertThat;
 
 public class JenaKBGridTest {
@@ -57,13 +56,15 @@ public class JenaKBGridTest {
 	@Before
 	public void setup() {
 		try {
+			OntologyReader.setGlobalInstance(null);
+			Config.setInstancesLocation("../Ontology/AiGInstances/");
 			new JenaOwlReaderConfiguration().doJob();
 			new PropertyTypeConfiguration().doJob();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		kb = JenaOwlReader.getGlobalInstance();
+		kb = OntologyReader.getGlobalInstance();
 	}
 
 	@Test
@@ -80,7 +81,7 @@ public class JenaKBGridTest {
 
 		assertThat(memoryClass).isNotNull();
 		assertThat(selectLocalNames(memoryClass.getProperties())).containsOnly(
-				"hasName", "hasID", "belongToVO", "hasTotalSize", "hasAvailableSize");
+				"hasModelName", "hasName", "hasID", "belongToVO", "hasTotalSize", "hasAvailableSize");
 	}
 	
 	@Test

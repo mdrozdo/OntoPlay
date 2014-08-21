@@ -84,7 +84,9 @@ public class JenaOwlReader extends OntologyReader{
 
 	public JenaOwlReader(OntModel model, JenaOwlReaderConfig config) {
 		this(model);
-		ignorePropsWithNoDomain = config.isIgnorePropsWithNoDomain();
+		if (config != null) {
+			ignorePropsWithNoDomain = config.isIgnorePropsWithNoDomain();
+		}
 	}
 
 	/* (non-Javadoc)

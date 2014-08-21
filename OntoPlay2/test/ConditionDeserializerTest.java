@@ -12,8 +12,8 @@ import models.propertyConditions.IndividualValueCondition;
 
 import org.fest.assertions.Condition;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-
 
 public class ConditionDeserializerTest {
 
