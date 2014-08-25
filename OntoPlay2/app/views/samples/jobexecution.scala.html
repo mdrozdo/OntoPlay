@@ -12,8 +12,7 @@
 			<div class='class-condition'>
 			<div class='class-name'>@owlClass.getLocalName()</div>
 			<div class='class-uri'>@owlClass.getUri()</div>
-			@* TODO: Change from individual to condition  *@
-			@individual(owlClass, "1") 
+			@condition(owlClass, "1") 
 				<input type='hidden' id='conditionJson' name='conditionJson' />
 				<input type='submit' value="Update" />
 		</div>

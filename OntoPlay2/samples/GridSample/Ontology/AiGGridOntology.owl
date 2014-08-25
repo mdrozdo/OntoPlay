@@ -40,6 +40,7 @@
     <owl:Ontology rdf:about="http://gridagents.sourceforge.net/AiGGridOntology">
         <rdfs:label xml:lang="en">Agents in Grid - Grid Ontology</rdfs:label>
         <rdfs:label xml:lang="en">AiG Grid Ontology</rdfs:label>
+        <owl:versionInfo xml:lang="en">After reengineering number 4 (19.11.2013)</owl:versionInfo>
         <owl:versionInfo xml:lang="en">Branch of the AiG Grid Ontology started in 06.2013 for the purpose of Agents in Grid project</owl:versionInfo>
         <rdfs:comment xml:lang="en">This is the base ontology of the Agents in Grid system. Along with the cgo (Core Grid Ontology) it takes the place of an upper ontology in the AiG ontology hierarchy.</rdfs:comment>
         <owl:imports rdf:resource="http://purl.org/NET/cgo"/>
@@ -55,22 +56,36 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
     <owl:AnnotationProperty rdf:about="&dc;date"/>
-    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
     <owl:AnnotationProperty rdf:about="&dc;description"/>
-    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
     <owl:AnnotationProperty rdf:about="&dc;title"/>
     
 
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Datatypes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
+    <!-- http://www.w3.org/2000/01/rdf-schema#comment -->
 
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
+
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
     
 
 
@@ -119,23 +134,7 @@
     <owl:ObjectProperty rdf:about="&AiGGridOntology;hasGPU">
         <rdfs:comment rdf:datatype="&xsd;string">The graphical computing power.</rdfs:comment>
         <rdfs:range rdf:resource="&AiGGridOntology;GPU"/>
-        <rdfs:domain>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&cgo;ComputingElement"/>
-                    <rdf:Description rdf:about="&cgo;WorkerNode"/>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:domain>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasGridService -->
-
-    <owl:ObjectProperty rdf:about="&AiGGridOntology;hasGridService">
-        <rdfs:domain rdf:resource="&cgo;GridComponent"/>
-        <rdfs:range rdf:resource="&cgo;GridService"/>
+        <rdfs:domain rdf:resource="&cgo;ComputingComponent"/>
     </owl:ObjectProperty>
     
 
@@ -156,7 +155,7 @@
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&cgo;ComputingElement"/>
+                    <rdf:Description rdf:about="&cgo;ComputingComponent"/>
                     <rdf:Description rdf:about="&cgo;StorageElement"/>
                     <rdf:Description rdf:about="&cgo;WorkerNode"/>
                 </owl:unionOf>
@@ -228,24 +227,6 @@
     
 
 
-    <!-- http://purl.org/NET/cgo#hasCPU -->
-
-    <owl:ObjectProperty rdf:about="&cgo;hasCPU"/>
-    
-
-
-    <!-- http://purl.org/NET/cgo#hasWN -->
-
-    <owl:ObjectProperty rdf:about="&cgo;hasWN"/>
-    
-
-
-    <!-- http://purl.org/NET/cgo#runningServices -->
-
-    <owl:ObjectProperty rdf:about="&cgo;runningServices"/>
-    
-
-
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#alt -->
 
     <owl:ObjectProperty rdf:about="&wgs84_pos;alt">
@@ -277,8 +258,7 @@ above the local reference ellipsoid).</rdfs:comment>
  Or a relationship between a park and its outline as a closed arc of points, or a road and
  its location as a arc (a sequence of points).
  Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- </rdfs:comment>
+ an accuracy appropriate for the size of the object and uses such as mapping .</rdfs:comment>
         <rdfs:range rdf:resource="&wgs84_pos;SpatialThing"/>
         <rdfs:subPropertyOf rdf:resource="&foaf;based_near"/>
     </owl:ObjectProperty>
@@ -395,8 +375,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:DatatypeProperty rdf:about="&AiGGridOntology;hasVersion">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:domain rdf:resource="&cgo;GridResource"/>
-        <rdfs:domain rdf:resource="&cgo;GridService"/>
+        <rdfs:domain rdf:resource="&cgo;Software"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -437,6 +416,14 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:DatatypeProperty rdf:about="&cgo;hasName">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&AiGGridOntology;ComputerSystemConcept"/>
+                    <rdf:Description rdf:about="&cgo;GridEntity"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
     </owl:DatatypeProperty>
     
 
@@ -548,15 +535,6 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#DualCoreAMDOpteron -->
-
-    <owl:Class rdf:about="&AiGGridOntology;DualCoreAMDOpteron">
-        <rdfs:label xml:lang="en">Dual Core AMD Opteron</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&cgo;CPU"/>
-    </owl:Class>
-    
-
-
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#Eigen -->
 
     <owl:Class rdf:about="&AiGGridOntology;Eigen">
@@ -613,26 +591,18 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     
 
 
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#GPUMemory -->
+
+    <owl:Class rdf:about="&AiGGridOntology;GPUMemory">
+        <rdfs:subClassOf rdf:resource="&cgo;Memory"/>
+    </owl:Class>
+    
+
+
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#GSL -->
 
     <owl:Class rdf:about="&AiGGridOntology;GSL">
         <rdfs:subClassOf rdf:resource="&AiGGridOntology;LinearAlgebraLib"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Globus4 -->
-
-    <owl:Class rdf:about="&AiGGridOntology;Globus4">
-        <rdfs:subClassOf rdf:resource="&cgo;GridMiddleware"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Globus5 -->
-
-    <owl:Class rdf:about="&AiGGridOntology;Globus5">
-        <rdfs:subClassOf rdf:resource="&cgo;GridMiddleware"/>
     </owl:Class>
     
 
@@ -650,42 +620,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <owl:Class rdf:about="&AiGGridOntology;IT++">
         <rdfs:subClassOf rdf:resource="&AiGGridOntology;LinearAlgebraLib"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#IntelCoreDuoQuad -->
-
-    <owl:Class rdf:about="&AiGGridOntology;IntelCoreDuoQuad">
-        <rdfs:label xml:lang="en">Intel Core Duo Quad</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&cgo;CPU"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#IntelCore_i4 -->
-
-    <owl:Class rdf:about="&AiGGridOntology;IntelCore_i4">
-        <rdfs:label xml:lang="en">Inter Core i4</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&cgo;CPU"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#IntelCore_i5 -->
-
-    <owl:Class rdf:about="&AiGGridOntology;IntelCore_i5">
-        <rdfs:label xml:lang="en">Intel Core i5</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&cgo;CPU"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#IntelXeon -->
-
-    <owl:Class rdf:about="&AiGGridOntology;IntelXeon">
-        <rdfs:label xml:lang="en">Intel Xeon</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&cgo;CPU"/>
     </owl:Class>
     
 
@@ -775,7 +709,7 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <owl:Class rdf:about="&AiGGridOntology;PETSc">
         <rdfs:subClassOf rdf:resource="&AiGGridOntology;LinearAlgebraLib"/>
-        <rdfs:comment xml:lang="en"> Portable, Extensible Toolkit for Scientiﬁc computation</rdfs:comment>
+        <rdfs:comment xml:lang="en">Portable, Extensible Toolkit for Scientiﬁc computation</rdfs:comment>
     </owl:Class>
     
 
@@ -792,14 +726,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <owl:Class rdf:about="&AiGGridOntology;RNM">
         <rdfs:subClassOf rdf:resource="&AiGGridOntology;LinearAlgebraLib"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#SATA -->
-
-    <owl:Class rdf:about="&AiGGridOntology;SATA">
-        <rdfs:subClassOf rdf:resource="&cgo;StorageInterface"/>
     </owl:Class>
     
 
@@ -916,12 +842,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     
 
 
-    <!-- http://purl.org/NET/cgo#Condor -->
-
-    <owl:Class rdf:about="&cgo;Condor"/>
-    
-
-
     <!-- http://purl.org/NET/cgo#FileSystem -->
 
     <owl:Class rdf:about="&cgo;FileSystem"/>
@@ -934,15 +854,9 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     
 
 
-    <!-- http://purl.org/NET/cgo#IDE -->
+    <!-- http://purl.org/NET/cgo#GridEntity -->
 
-    <owl:Class rdf:about="&cgo;IDE"/>
-    
-
-
-    <!-- http://purl.org/NET/cgo#LINUXEXT3 -->
-
-    <owl:Class rdf:about="&cgo;LINUXEXT3"/>
+    <owl:Class rdf:about="&cgo;GridEntity"/>
     
 
 
@@ -994,27 +908,9 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     
 
 
-    <!-- http://purl.org/NET/cgo#WINNT -->
-
-    <owl:Class rdf:about="&cgo;WINNT"/>
-    
-
-
-    <!-- http://purl.org/NET/cgo#Windows -->
-
-    <owl:Class rdf:about="&cgo;Windows"/>
-    
-
-
     <!-- http://purl.org/NET/cgo#WorkerNode -->
 
     <owl:Class rdf:about="&cgo;WorkerNode"/>
-    
-
-
-    <!-- http://www.w3.org/2002/07/owl#Thing -->
-
-    <owl:Class rdf:about="&owl;Thing"/>
     
 
 
@@ -1023,8 +919,7 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     <owl:Class rdf:about="&wgs84_pos;Point">
         <rdfs:label rdf:datatype="&xsd;string">point</rdfs:label>
         <rdfs:subClassOf rdf:resource="&wgs84_pos;SpatialThing"/>
-        <rdfs:comment rdf:datatype="&xsd;string">A point, typically described using a coordinate system relative to Earth, such as WGS84.
-  </rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">A point, typically described using a coordinate system relative to Earth, such as WGS84.</rdfs:comment>
         <rdfs:comment rdf:datatype="&xsd;string">Uniquely identified by lat/long/alt. i.e. spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT), lat(P2, LAT), long(P2, LONG), alt(P2, ALT). sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).</rdfs:comment>
     </owl:Class>
     
@@ -1042,19 +937,24 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Annotations
+    // Individuals
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <rdf:Description rdf:about="&wgs84_pos;lat_long">
-        <rdfs:label rdf:datatype="&xsd;string">lat/long</rdfs:label>
-        <rdfs:comment rdf:datatype="&xsd;string">A comma-separated representation of a latitude, longitude coordinate.</rdfs:comment>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#">
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos# -->
+
+    <owl:Thing rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
         <rdfs:label rdf:datatype="&xsd;string">geo</rdfs:label>
-        <rdfs:comment rdf:datatype="&xsd;string">
-Recent changes to this namespace:
+        <dc:date rdf:datatype="&xsd;string">$Date: 2009/04/20 15:00:30 $</dc:date>
+        <dc:description rdf:datatype="&xsd;string">A vocabulary for representing latitude, longitude and 
+ altitude information in the WGS84 geodetic reference datum. 
+ Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.</dc:description>
+        <rdfs:comment rdf:datatype="&xsd;string">Recent changes to this namespace:
 $Log: wgs84_pos.rdf,v $
 Revision 1.22  2009/04/20 15:00:30  timbl
 Remove the time bits which have been deal with elsewhere eg in iCal.
@@ -1134,18 +1034,22 @@ space separated to comma separated.
 
 revision 1.1
 date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
-basic geo vocab
-
-</rdfs:comment>
-        <dc:date rdf:datatype="&xsd;string">$Date: 2009/04/20 15:00:30 $</dc:date>
-        <dc:description rdf:datatype="&xsd;string">A vocabulary for representing latitude, longitude and 
- altitude information in the WGS84 geodetic reference datum. 
- Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.</dc:description>
+basic geo vocab</rdfs:comment>
         <dc:title rdf:datatype="&xsd;string">WGS84 Geo Positioning: an RDF vocabulary</dc:title>
-    </rdf:Description>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#lat_long -->
+
+    <owl:Thing rdf:about="&wgs84_pos;lat_long">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:label rdf:datatype="&xsd;string">lat/long</rdfs:label>
+        <rdfs:comment rdf:datatype="&xsd;string">A comma-separated representation of a latitude, longitude coordinate.</rdfs:comment>
+    </owl:Thing>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 

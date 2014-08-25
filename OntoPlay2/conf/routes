@@ -6,9 +6,12 @@
 GET     /                           controllers.Application.index()
 
 # Module routes
+GET /constraints/condition controllers.Constraints.condition(conditionId : Int, classUri: String)
 GET /constraints/individual controllers.Constraints.individual(conditionId : Int, classUri: String)
 GET /constraints/getValueCondition controllers.Constraints.getValueCondition(conditionId : Int, classUri: String, propertyUri : String, operator : String)
+GET /constraints/getPropertyCondition controllers.Constraints.getPropertyCondition(conditionId: Integer, classUri: String, propertyUri: String)
 GET /individuals/getPropertyCondition controllers.Individuals.getPropertyCondition(conditionId: Integer, classUri: String, propertyUri: String)
+
 
 # Javascript routing
 GET    /assets/javascripts/routes      controllers.Constraints.javascriptRoutes()

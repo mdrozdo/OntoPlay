@@ -9,6 +9,7 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY papers "http://www.cs.man.ac.uk/~rizos/papers/" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
     <!ENTITY xsp "http://www.owl-ontologies.com/2005/08/07/xsp.owl#" >
@@ -26,36 +27,16 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:papers="http://www.cs.man.ac.uk/~rizos/papers/"
      xmlns:cgo="http://purl.org/NET/cgo#">
     <owl:Ontology rdf:about="http://purl.org/NET/cgo">
         <rdfs:label xml:lang="en">Core Grid Ontology</rdfs:label>
         <rdfs:label xml:lang="en">cgo</rdfs:label>
+        <owl:versionInfo xml:lang="en">After reengineering number 4 (19.11.2013)</owl:versionInfo>
         <owl:versionInfo xml:lang="en">Branch of the Core Grid Ontology started in 06.2013 for the purpose of Agents in Grid project</owl:versionInfo>
         <rdfs:comment xml:lang="en">The Core Grid Ontology is designed to represent the knowledge of grid systems</rdfs:comment>
-        <rdfs:seeAlso rdf:resource="http://www.cs.man.ac.uk/~rizos/papers/ccgrid06.pdf"/>
+        <rdfs:seeAlso rdf:resource="&papers;ccgrid06.pdf"/>
     </owl:Ontology>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotation properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Datatypes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
     
 
 
@@ -158,14 +139,7 @@
     <owl:ObjectProperty rdf:about="&cgo;hasCPU">
         <rdfs:comment xml:lang="en">The computing power.</rdfs:comment>
         <rdfs:range rdf:resource="&cgo;CPU"/>
-        <rdfs:domain>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&cgo;ComputingElement"/>
-                    <rdf:Description rdf:about="&cgo;WorkerNode"/>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:domain>
+        <rdfs:domain rdf:resource="&cgo;ComputingComponent"/>
     </owl:ObjectProperty>
     
 
@@ -196,9 +170,42 @@
     <!-- http://purl.org/NET/cgo#hasID -->
 
     <owl:ObjectProperty rdf:about="&cgo;hasID">
-        <rdfs:comment xml:lang="en">An unique identifier of a Grid entity.</rdfs:comment>
+        <rdfs:comment xml:lang="en">An identifier of a Grid entity.</rdfs:comment>
         <rdfs:domain rdf:resource="&cgo;GridEntity"/>
-        <rdfs:range rdf:resource="&cgo;URI"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/NET/cgo#hasIP -->
+
+    <owl:ObjectProperty rdf:about="&cgo;hasIP">
+        <rdfs:range rdf:resource="&cgo;IP"/>
+        <rdfs:subPropertyOf rdf:resource="&cgo;hasID"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&cgo;GridComponent"/>
+                    <rdf:Description rdf:about="&cgo;NetworkResource"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/NET/cgo#hasMAC -->
+
+    <owl:ObjectProperty rdf:about="&cgo;hasMAC">
+        <rdfs:range rdf:resource="&cgo;MAC"/>
+        <rdfs:subPropertyOf rdf:resource="&cgo;hasID"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&cgo;GridComponent"/>
+                    <rdf:Description rdf:about="&cgo;NetworkResource"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
     </owl:ObjectProperty>
     
 
@@ -223,8 +230,17 @@
 
     <owl:ObjectProperty rdf:about="&cgo;hasPort">
         <rdfs:comment xml:lang="en">The port number of a Grid service.</rdfs:comment>
-        <rdfs:domain rdf:resource="&cgo;GridService"/>
         <rdfs:range rdf:resource="&cgo;Port"/>
+        <rdfs:subPropertyOf rdf:resource="&cgo;hasID"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&cgo;GridComponent"/>
+                    <rdf:Description rdf:about="&cgo;GridService"/>
+                    <rdf:Description rdf:about="&cgo;NetworkResource"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
     </owl:ObjectProperty>
     
 
@@ -236,9 +252,28 @@
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&cgo;ComputingElement"/>
+                    <rdf:Description rdf:about="&cgo;ComputingComponent"/>
                     <rdf:Description rdf:about="&cgo;JobScheduler"/>
                     <rdf:Description rdf:about="&cgo;Jobmanager"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/NET/cgo#hasURI -->
+
+    <owl:ObjectProperty rdf:about="&cgo;hasURI">
+        <rdfs:range rdf:resource="&cgo;URI"/>
+        <rdfs:subPropertyOf rdf:resource="&cgo;hasID"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&cgo;DataResource"/>
+                    <rdf:Description rdf:about="&cgo;GridComponent"/>
+                    <rdf:Description rdf:about="&cgo;GridService"/>
+                    <rdf:Description rdf:about="&cgo;NetworkResource"/>
                 </owl:unionOf>
             </owl:Class>
         </rdfs:domain>
@@ -265,7 +300,7 @@
     <!-- http://purl.org/NET/cgo#maxRunningJobs -->
 
     <owl:ObjectProperty rdf:about="&cgo;maxRunningJobs">
-        <rdfs:domain rdf:resource="&cgo;ComputingElement"/>
+        <rdfs:domain rdf:resource="&cgo;ComputingComponent"/>
     </owl:ObjectProperty>
     
 
@@ -375,7 +410,7 @@
     <!-- http://purl.org/NET/cgo#runningServices -->
 
     <owl:ObjectProperty rdf:about="&cgo;runningServices">
-        <rdfs:domain rdf:resource="&cgo;ComputingElement"/>
+        <rdfs:domain rdf:resource="&cgo;ComputingComponent"/>
     </owl:ObjectProperty>
     
 
@@ -429,7 +464,7 @@
     <!-- http://purl.org/NET/cgo#freeCPUs -->
 
     <owl:DatatypeProperty rdf:about="&cgo;freeCPUs">
-        <rdfs:domain rdf:resource="&cgo;ComputingElement"/>
+        <rdfs:domain rdf:resource="&cgo;ComputingComponent"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -438,6 +473,59 @@
     <!-- http://purl.org/NET/cgo#hasClockSpeed -->
 
     <owl:DatatypeProperty rdf:about="&cgo;hasClockSpeed"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#hasIDData -->
+
+    <owl:DatatypeProperty rdf:about="&cgo;hasIDData">
+        <rdfs:label xml:lang="en">has ID</rdfs:label>
+        <rdfs:comment xml:lang="en">An identifier of a grid entity</rdfs:comment>
+        <rdfs:domain rdf:resource="&cgo;GridEntity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/NET/cgo#hasIPAddress -->
+
+    <owl:DatatypeProperty rdf:about="&cgo;hasIPAddress">
+        <rdfs:label xml:lang="en">has IP</rdfs:label>
+        <rdfs:comment xml:lang="en">Internet protocol address</rdfs:comment>
+        <rdfs:domain rdf:resource="&cgo;IP"/>
+        <rdfs:subPropertyOf rdf:resource="&cgo;hasIDData"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/NET/cgo#hasIPv4 -->
+
+    <owl:DatatypeProperty rdf:about="&cgo;hasIPv4">
+        <rdfs:label xml:lang="en">has IP version 4</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="&cgo;hasIPAddress"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/NET/cgo#hasIPv6 -->
+
+    <owl:DatatypeProperty rdf:about="&cgo;hasIPv6">
+        <rdfs:label xml:lang="en">has IP version 6</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="&cgo;hasIPAddress"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/NET/cgo#hasMACAddress -->
+
+    <owl:DatatypeProperty rdf:about="&cgo;hasMACAddress">
+        <rdfs:label xml:lang="en">has MAC</rdfs:label>
+        <rdfs:comment xml:lang="en">Media access control address</rdfs:comment>
+        <rdfs:domain rdf:resource="&cgo;MAC"/>
+        <rdfs:subPropertyOf rdf:resource="&cgo;hasIDData"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -453,7 +541,40 @@
 
     <owl:DatatypeProperty rdf:about="&cgo;hasName">
         <rdfs:comment xml:lang="en">A hunman-readable name of a Grid entity</rdfs:comment>
-        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/NET/cgo#hasPortNumber -->
+
+    <owl:DatatypeProperty rdf:about="&cgo;hasPortNumber">
+        <rdfs:domain rdf:resource="&cgo;Port"/>
+        <rdfs:subPropertyOf rdf:resource="&cgo;hasIDData"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="&xsd;integer"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:maxExclusive rdf:datatype="&xsd;integer">65536</xsd:maxExclusive>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:minExclusive rdf:datatype="&xsd;integer">0</xsd:minExclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/NET/cgo#hasURIAddress -->
+
+    <owl:DatatypeProperty rdf:about="&cgo;hasURIAddress">
+        <rdfs:label xml:lang="en">has Uniform Resource Identifier</rdfs:label>
+        <rdfs:domain rdf:resource="&cgo;URL"/>
+        <rdfs:subPropertyOf rdf:resource="&cgo;hasIDData"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
     </owl:DatatypeProperty>
     
 
@@ -505,7 +626,7 @@
     <!-- http://purl.org/NET/cgo#runningJobs -->
 
     <owl:DatatypeProperty rdf:about="&cgo;runningJobs">
-        <rdfs:domain rdf:resource="&cgo;ComputingElement"/>
+        <rdfs:domain rdf:resource="&cgo;ComputingComponent"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -523,7 +644,7 @@
     <!-- http://purl.org/NET/cgo#totalJobs -->
 
     <owl:DatatypeProperty rdf:about="&cgo;totalJobs">
-        <rdfs:domain rdf:resource="&cgo;ComputingElement"/>
+        <rdfs:domain rdf:resource="&cgo;ComputingComponent"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -532,7 +653,7 @@
     <!-- http://purl.org/NET/cgo#waitingJobs -->
 
     <owl:DatatypeProperty rdf:about="&cgo;waitingJobs">
-        <rdfs:domain rdf:resource="&cgo;ComputingElement"/>
+        <rdfs:domain rdf:resource="&cgo;ComputingComponent"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -829,6 +950,12 @@
         <rdfs:subClassOf rdf:resource="&cgo;GridEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&cgo;hasName"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&cgo;runningEnvironment"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -838,12 +965,6 @@
                         </owl:unionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;needLib"/>
-                <owl:someValuesFrom rdf:resource="&cgo;Lib"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -860,8 +981,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasName"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="&cgo;needLib"/>
+                <owl:someValuesFrom rdf:resource="&cgo;Lib"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -882,12 +1003,6 @@
         <rdfs:subClassOf rdf:resource="&cgo;GridEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;requiredService"/>
-                <owl:allValuesFrom rdf:resource="&cgo;GridService"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&cgo;InstalledSoftware"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -903,6 +1018,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cgo;hasID"/>
                 <owl:allValuesFrom rdf:resource="&cgo;IP"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cgo;requiredService"/>
+                <owl:allValuesFrom rdf:resource="&cgo;GridService"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -933,6 +1054,15 @@
     
 
 
+    <!-- http://purl.org/NET/cgo#GridID -->
+
+    <owl:Class rdf:about="&cgo;GridID">
+        <rdfs:subClassOf rdf:resource="&cgo;NetworkResource"/>
+        <rdfs:comment xml:lang="en">Represents an identifier in the grid such as IP address, URI, etc.</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://purl.org/NET/cgo#GridInformationService -->
 
     <owl:Class rdf:about="&cgo;GridInformationService">
@@ -947,14 +1077,8 @@
         <rdfs:subClassOf rdf:resource="&cgo;GridEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasComponent"/>
-                <owl:someValuesFrom rdf:resource="&cgo;GridComponent"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&cgo;hasName"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -965,8 +1089,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&cgo;hasComponent"/>
+                <owl:someValuesFrom rdf:resource="&cgo;GridComponent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&cgo;hasName"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -985,6 +1115,12 @@
 
     <owl:Class rdf:about="&cgo;GridResource">
         <rdfs:subClassOf rdf:resource="&cgo;GridEntity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cgo;hasName"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cgo;belongToVO"/>
@@ -1010,12 +1146,6 @@
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasName"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1026,32 +1156,39 @@
         <rdfs:subClassOf rdf:resource="&cgo;GridEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;status"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&cgo;hasPort"/>
                 <owl:allValuesFrom rdf:resource="&cgo;Port"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&cgo;hasID"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&cgo;IP"/>
+                            <rdf:Description rdf:about="&cgo;URI"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&cgo;status"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasID"/>
-                <owl:allValuesFrom rdf:resource="&cgo;URI"/>
+                <owl:onProperty rdf:resource="&cgo;descriptor"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;descriptor"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="&cgo;status"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1064,8 +1201,8 @@
         <rdfs:subClassOf rdf:resource="&cgo;GridEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;registeredUser"/>
-                <owl:someValuesFrom rdf:resource="&cgo;VO"/>
+                <owl:onProperty rdf:resource="&cgo;hasPolicy"/>
+                <owl:someValuesFrom rdf:resource="&cgo;Cert"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1076,8 +1213,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasID"/>
-                <owl:someValuesFrom rdf:resource="&cgo;Cert"/>
+                <owl:onProperty rdf:resource="&cgo;registeredUser"/>
+                <owl:someValuesFrom rdf:resource="&cgo;VO"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1112,19 +1249,21 @@
     <!-- http://purl.org/NET/cgo#IP -->
 
     <owl:Class rdf:about="&cgo;IP">
-        <rdfs:subClassOf rdf:resource="&cgo;URI"/>
+        <rdfs:subClassOf rdf:resource="&cgo;GridID"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasName"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasName"/>
+                <owl:onProperty rdf:resource="&cgo;hasIPAddress"/>
                 <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cgo;hasIPAddress"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Represents an IP address that has a number</rdfs:comment>
     </owl:Class>
     
 
@@ -1223,6 +1362,28 @@
     
 
 
+    <!-- http://purl.org/NET/cgo#MAC -->
+
+    <owl:Class rdf:about="&cgo;MAC">
+        <rdfs:subClassOf rdf:resource="&cgo;GridID"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cgo;hasMACAddress"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cgo;hasMACAddress"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Represents a MAC address that has a number</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://purl.org/NET/cgo#MDS -->
 
     <owl:Class rdf:about="&cgo;MDS">
@@ -1290,14 +1451,6 @@
 
     <owl:Class rdf:about="&cgo;MPICC">
         <rdfs:subClassOf rdf:resource="&cgo;Exec"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/NET/cgo#MacAddr -->
-
-    <owl:Class rdf:about="&cgo;MacAddr">
-        <rdfs:subClassOf rdf:resource="&cgo;NetworkResource"/>
     </owl:Class>
     
 
@@ -1394,19 +1547,21 @@
     <!-- http://purl.org/NET/cgo#Port -->
 
     <owl:Class rdf:about="&cgo;Port">
-        <rdfs:subClassOf rdf:resource="&cgo;NetworkResource"/>
+        <rdfs:subClassOf rdf:resource="&cgo;GridID"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasName"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="&cgo;hasPortNumber"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;integer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasName"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="&cgo;hasPortNumber"/>
+                <owl:allValuesFrom rdf:resource="&xsd;integer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Represents a computer port that has a number</rdfs:comment>
     </owl:Class>
     
 
@@ -1500,6 +1655,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cgo;hasComponent"/>
+                <owl:someValuesFrom rdf:resource="&cgo;StorageComponent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&cgo;hasComponent"/>
                 <owl:allValuesFrom rdf:resource="&cgo;GridComponent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1507,12 +1668,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&cgo;hasComponent"/>
                 <owl:someValuesFrom rdf:resource="&cgo;UI"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasComponent"/>
-                <owl:someValuesFrom rdf:resource="&cgo;StorageComponent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1603,19 +1758,21 @@
 
     <owl:Class rdf:about="&cgo;URI">
         <rdfs:label xml:lang="en">Uniform Resource Identifier</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&cgo;NetworkResource"/>
+        <rdfs:subClassOf rdf:resource="&cgo;GridID"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasName"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="&cgo;hasURIAddress"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;anyURI"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasName"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="&cgo;hasURIAddress"/>
+                <owl:allValuesFrom rdf:resource="&xsd;anyURI"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Represents an URI that has an address</rdfs:comment>
     </owl:Class>
     
 
@@ -1658,21 +1815,14 @@
         <rdfs:subClassOf rdf:resource="&cgo;GridEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;registeredUser"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&cgo;GridResource"/>
-                            <rdf:Description rdf:about="&cgo;GridUser"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="&cgo;hasName"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasName"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="&cgo;hasPolicy"/>
+                <owl:allValuesFrom rdf:resource="&cgo;Policy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1683,8 +1833,15 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&cgo;hasPolicy"/>
-                <owl:allValuesFrom rdf:resource="&cgo;Policy"/>
+                <owl:onProperty rdf:resource="&cgo;registeredUser"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&cgo;GridResource"/>
+                            <rdf:Description rdf:about="&cgo;GridUser"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1767,9 +1924,28 @@
     <!-- http://www.w3.org/2002/07/owl#Thing -->
 
     <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.cs.man.ac.uk/~rizos/papers/ccgrid06.pdf -->
+
+    <owl:Thing rdf:about="&papers;ccgrid06.pdf">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 

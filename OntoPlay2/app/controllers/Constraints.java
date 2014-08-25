@@ -25,18 +25,20 @@ public class Constraints extends OntologyController {
 		        // Routes
 		        //controllers.routes.javascript.Application.condition()//,
 		        controllers.routes.javascript.Constraints.individual(),
+		        controllers.routes.javascript.Constraints.condition(),
 		        controllers.routes.javascript.Constraints.getValueCondition(),
+		        controllers.routes.javascript.Constraints.getPropertyCondition(),
 		        controllers.routes.javascript.Individuals.getPropertyCondition()
 		        //controllers.routes.javascript.Application.getPropertyCondition(),
 		        //controllers.routes.javascript.Application.getValueCondition(),
         ));
     }
 
-	public static void condition(int conditionId, String classUri) {
+	public static Result condition(int conditionId, String classUri) {
 		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
 		maxConditionId++;
 		int newConditionId = maxConditionId;
-		//TODO: render(newConditionId, owlClass);
+		return ok(condition.render( owlClass, ""+newConditionId));
 	}
 	
 	public static Result individual(int conditionId, String classUri) {
@@ -46,7 +48,7 @@ public class Constraints extends OntologyController {
         return ok(individual.render( owlClass, ""+newConditionId));
 	}
 
-   public static void getPropertyCondition(int conditionId, String classUri,
+   public static Result getPropertyCondition(int conditionId, String classUri,
 			String propertyUri) throws ConfigurationException {
 		
 		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
@@ -55,20 +57,24 @@ public class Constraints extends OntologyController {
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
 				.getRenderer(property.getClass());
 		
+		final HtmlHolder holder = new HtmlHolder();
+		
 		conditionRenderer.renderProperty(conditionId, owlClass, property, false,
 				new Renderer() {
 
 					public void renderTemplate(String templateName,
 							Map<String, Object> args) {
-						//TODO: Constraints.renderTemplate(templateName, args);
-
+						holder.value = renderTemplateByName(templateName, args.values().toArray());
 					}
 				});
+		return ok(holder.value);
 	}
 
 	public static Result getValueCondition(int conditionId, String classUri,
 			String propertyUri, String operator) throws ConfigurationException {
+		
 		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
+	
 		OntoProperty property = getOntologyReader().getProperty(propertyUri);
 		
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
@@ -85,5 +91,6 @@ public class Constraints extends OntologyController {
 					}
 				});
 		return ok(holder.value);
+
 	}
 }
