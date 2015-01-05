@@ -38,12 +38,12 @@ public class PizzaSample extends Controller {
 	}
 
 	private static OntologyGenerator createOwlGenerator() {
-		return OntologyGenerator.loadFromFile("file:test/pizza.owl", "./test");
+		return OntologyGenerator.loadFromFile("file:samples/PizzaSample/pizza.owl", "./samples/PizzaSample");
 	}
 
 	private static OntologyReader createOwlReader() {
-		new JenaOwlReaderConfiguration().initialize("file:test/pizza.owl", new JenaOwlReaderConfig()
-			.useLocalMapping("http://www.co-ode.org/ontologies/pizza/pizza.owl", "file:test/pizza.owl"));
+		new JenaOwlReaderConfiguration().initialize("file:samples/PizzaSample/pizza.owl", new JenaOwlReaderConfig()
+			.useLocalMapping("http://www.co-ode.org/ontologies/pizza/pizza.owl", "file:samples/PizzaSample/pizza.owl"));
 		return OntologyReader.getGlobalInstance();
 	}
 
