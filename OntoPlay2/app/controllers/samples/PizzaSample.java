@@ -27,6 +27,7 @@ public class PizzaSample extends Controller {
 	private static OntologyReader ontologyReader;
 	private static OntologyGenerator owlApi;
 	private final static String PIZZA_NS = "http://www.co-ode.org/ontologies/pizza/pizza.owl#";
+	private final static String PIZZA_NEW_NS = "http://www.co-ode.org/ontologies/pizza/new/pizza.owl#";
 	// TODO: Eventually this should be kept in a database
 	private static Map<String, ClassCondition> conditions = new HashMap<String, ClassCondition>();
 
@@ -53,7 +54,7 @@ public class PizzaSample extends Controller {
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
 		ALogger log = play.Logger.of("application");
 		log.info("owlapi:"+ (owlApi == null ? "yup" : "nope"));
-		String conditionRdf = owlApi.convertToOwlIndividual(PIZZA_NS + "NewPizza", condition);
+		String conditionRdf = owlApi.convertToOwlIndividual(PIZZA_NEW_NS + "NewPizza", condition);
 		return ok(conditionRdf);//updateSuccessful(conditionRdf);
 	}
 
