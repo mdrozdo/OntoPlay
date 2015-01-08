@@ -60,12 +60,6 @@ import org.semanticweb.owlapi.util.OWLOntologyWalkerVisitor;
 import org.semanticweb.owlapi.vocab.OWL2Datatype;
 import org.semanticweb.owlapi.vocab.OWLFacet;
 
-import de.derivo.sparqldlapi.QueryEngine;
-
-
-
-import play.db.DB;
-
 public class OntologyGenerator {
 	private static OntologyGenerator instance;
 	private static OWLDataFactory factory;
@@ -111,8 +105,7 @@ public class OntologyGenerator {
 		individualGenerator = new IndividualGenerator(factory);
 	}
 
-
-	public String convertToOwlClass(String classUri, ClassCondition condition) {
+	public OWLOntology convertToOwlClassOntology(String classUri, ClassCondition condition) {
 		OWLOntology destinationOntology;
 		try {
 			IRI iri = IRI.create(classUri);
@@ -126,16 +119,12 @@ public class OntologyGenerator {
 			//addImportDeclarations(destinationOntology, resultExpression);
 			addToOntologyAsClass(destinationOntology, resultExpression, classUri);
 			
-			return serializeToString(destinationOntology);
+			return destinationOntology;
 			
 		} catch (OWLOntologyCreationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
-		} catch (OWLOntologyStorageException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+			return null;		
 		} catch (ConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -143,7 +132,19 @@ public class OntologyGenerator {
 		}			
 	}
 
-	public String convertToOwlIndividual(String individualUri, ClassCondition condition) {
+    public String convertToOwlClass(String classUri, ClassCondition condition) {
+        OWLOntology destinationOntology = convertToOwlClassOntology(classUri, condition);
+
+        try {
+            return serializeToString(destinationOntology);
+        } catch (OWLOntologyStorageException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+	public OWLOntology convertToOwlIndividualOntology(String individualUri, ClassCondition condition) {
 		OWLOntology destinationOntology;
 		try {
 			IRI iri = IRI.create(individualUri);
@@ -155,13 +156,9 @@ public class OntologyGenerator {
 			
 			addToOntologyAsIndividualDescription(destinationOntology, axioms);
 			addImportDeclarations(destinationOntology, axioms);
-			return serializeToString(destinationOntology, false);			
+			return destinationOntology;
 			
 		} catch (OWLOntologyCreationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		} catch (OWLOntologyStorageException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
@@ -170,6 +167,18 @@ public class OntologyGenerator {
 			e.printStackTrace();
 			return null;
 		}		
+	}	
+
+	public String convertToOwlIndividual(String individualUri, ClassCondition condition) {
+		OWLOntology destinationOntology = convertToOwlIndividualOntology(individualUri, condition);
+
+		try {
+            return serializeToString(destinationOntology);
+        } catch (OWLOntologyStorageException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }						
 	}
 
 	private void addImportDeclarations(OWLOntology destinationOntology,
