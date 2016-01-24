@@ -1,0 +1,62 @@
+@import play.data.Form 
+@import models.ontologyModel.OntoClass 
+@import java.util.ArrayList 
+@import models.ontologyModel.OwlIndividual
+
+@(owlClass: OntoClass, individuals : ArrayList[OwlIndividual])
+@main(owlClass.getLocalName()) {
+
+<fieldset class="scheduler-border">
+	<legend class="scheduler-border"> @owlClass.getLocalName()</legend>
+	<div class="row">
+		<div class="col-md-12">
+			<p><b>Uri:</b>  @owlClass.getUri()</p>
+			<p><b>Super Class:</b>
+			@if(owlClass.getSuperClass!=null){
+				<a href="/view/@owlClass.getSuperClass().getLocalName()">@owlClass.getSuperClass().getLocalName()</a>
+				}else {
+				Not Applicable
+				}
+			</p>
+			<p><b>Proeprties:</b>  @owlClass.getProperties().size()</p>
+			<p><b>Intances:</b>  @individuals.size()</p>
+		</div>
+	</div>
+	<!-- /.row -->
+
+	<hr>
+	<a class="btn btn-primary btn-sm" href="/add/@owlClass.getLocalName()">Create New Individual</a>
+	<hr>
+	@if(individuals.size() > 0){
+	<fieldset class="scheduler-border">
+	<legend class="scheduler-border"> <span class="badge">@individuals.size()</span> Individuals </legend>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>Local Name</th>
+					<th>Uri</th>
+				</tr>
+			</thead>
+			<tbody>
+				@individuals.map{i=>
+				<tr>
+					<td><a data-toggle="tooltip" data-placement="top" title="View Individual" href="/individual/@i.getLocalName()"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+					<td><a data-toggle="tooltip" data-placement="top" title="Disabled" class="not-allowed" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+					<td><a data-toggle="tooltip" data-placement="top" title="Remove Individual" href="/remove/@i.getLocalName()/@owlClass.getLocalName()"><span class="glyphicon glyphicon-trash"></span></a></td>
+					<td>@i.getLocalName()</td>
+					<td>@i.getUri()</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+	</fieldset>}
+</fieldset>
+
+
+
+}

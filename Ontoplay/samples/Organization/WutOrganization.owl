@@ -1,0 +1,877 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.wutorganization.com#"
+     xml:base="http://www.wutorganization.com"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:Test="http://www.wutorganization.com#Test "
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:http="http://"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.wutorganization.com"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#date -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.wutorganization.com#contains -->
+
+    <owl:ObjectProperty rdf:about="http://www.wutorganization.com#contains">
+        <rdfs:label>Contains</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Project"/>
+        <rdfs:range rdf:resource="http://www.wutorganization.com#Task"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#hasSkill -->
+
+    <owl:ObjectProperty rdf:about="http://www.wutorganization.com#hasSkill">
+        <rdfs:range rdf:resource="http://www.wutorganization.com#Skill"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Worker"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#isAssigned -->
+
+    <owl:ObjectProperty rdf:about="http://www.wutorganization.com#isAssigned">
+        <owl:inverseOf rdf:resource="http://www.wutorganization.com#isAssignedTo"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#isAssignedTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.wutorganization.com#isAssignedTo">
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Task"/>
+        <rdfs:range rdf:resource="http://www.wutorganization.com#Worker"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#isTypeOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.wutorganization.com#isTypeOf">
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Implementation"/>
+        <rdfs:range rdf:resource="http://www.wutorganization.com#LanguagesTypes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#knows -->
+
+    <owl:ObjectProperty rdf:about="http://www.wutorganization.com#knows">
+        <rdfs:range rdf:resource="http://www.wutorganization.com#Knowledge"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Worker"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#knowsValue -->
+
+    <owl:ObjectProperty rdf:about="http://www.wutorganization.com#knowsValue">
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Knowledge"/>
+        <rdfs:range rdf:resource="http://www.wutorganization.com#LanguagesTypes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#requires -->
+
+    <owl:ObjectProperty rdf:about="http://www.wutorganization.com#requires">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.wutorganization.com#RequiredActivity"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Task"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#requiresValue -->
+
+    <owl:ObjectProperty rdf:about="http://www.wutorganization.com#requiresValue">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.wutorganization.com#Activities"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#RequiredActivity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#skillValue -->
+
+    <owl:ObjectProperty rdf:about="http://www.wutorganization.com#skillValue">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.wutorganization.com#Activities"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Skill"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.wutorganization.com#hasBirthDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#hasBirthDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label>Birthdate</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Worker"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#hasDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#hasDescription">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Project"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#hasDetails -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#hasDetails">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Task"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#hasEmail -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#hasEmail">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label>Email</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Worker"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#hasEndDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#hasEndDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Task"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#hasFirstName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#hasFirstName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">First Name</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Worker"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#hasLastName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#hasLastName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label>Last Name</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Worker"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#hasName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Project"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#hasStartDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#hasStartDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Task"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#knowsScale -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#knowsScale">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Knowledge"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</xsd:maxInclusive>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</xsd:minExclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#requiresScale -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#requiresScale">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#RequiredActivity"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</xsd:maxInclusive>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</xsd:minExclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.wutorganization.com#skillScale -->
+
+    <owl:DatatypeProperty rdf:about="http://www.wutorganization.com#skillScale">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:domain rdf:resource="http://www.wutorganization.com#Skill"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</xsd:maxInclusive>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</xsd:minExclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.wutorganization.com#Activities -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#Activities"/>
+    
+
+
+    <!-- http://www.wutorganization.com#ClientSideTechnologies -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#ClientSideTechnologies">
+        <rdfs:subClassOf rdf:resource="http://www.wutorganization.com#Implementation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.wutorganization.com#DataBase -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#DataBase">
+        <rdfs:subClassOf rdf:resource="http://www.wutorganization.com#Implementation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.wutorganization.com#Design -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#Design">
+        <rdfs:subClassOf rdf:resource="http://www.wutorganization.com#Activities"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.wutorganization.com#Designing -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#Designing">
+        <rdfs:subClassOf rdf:resource="http://www.wutorganization.com#Implementation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.wutorganization.com#DesktopTechnologies -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#DesktopTechnologies">
+        <rdfs:subClassOf rdf:resource="http://www.wutorganization.com#Implementation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.wutorganization.com#Implementation -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#Implementation">
+        <rdfs:subClassOf rdf:resource="http://www.wutorganization.com#Activities"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.wutorganization.com#Knowledge -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#Knowledge"/>
+    
+
+
+    <!-- http://www.wutorganization.com#LanguagesTypes -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#LanguagesTypes"/>
+    
+
+
+    <!-- http://www.wutorganization.com#MobileTechnologies -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#MobileTechnologies">
+        <rdfs:subClassOf rdf:resource="http://www.wutorganization.com#Implementation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.wutorganization.com#Project -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#Project"/>
+    
+
+
+    <!-- http://www.wutorganization.com#RequiredActivity -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#RequiredActivity"/>
+    
+
+
+    <!-- http://www.wutorganization.com#ServerSideTechnologies -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#ServerSideTechnologies">
+        <rdfs:subClassOf rdf:resource="http://www.wutorganization.com#Implementation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.wutorganization.com#Skill -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#Skill"/>
+    
+
+
+    <!-- http://www.wutorganization.com#Specification -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#Specification">
+        <rdfs:subClassOf rdf:resource="http://www.wutorganization.com#Activities"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.wutorganization.com#Task -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#Task"/>
+    
+
+
+    <!-- http://www.wutorganization.com#Testing -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#Testing">
+        <rdfs:subClassOf rdf:resource="http://www.wutorganization.com#Activities"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.wutorganization.com#Worker -->
+
+    <owl:Class rdf:about="http://www.wutorganization.com#Worker"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.wutorganization.comoff -->
+
+    <owl:NamedIndividual rdf:about="http://www.wutorganization.comoff"/>
+    
+
+
+    <!-- http://www.wutorganization.com#Architectural -->
+
+    <Design rdf:about="http://www.wutorganization.com#Architectural">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Design>
+    
+
+
+    <!-- http://www.wutorganization.com#Component -->
+
+    <Design rdf:about="http://www.wutorganization.com#Component">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Design>
+    
+
+
+    <!-- http://www.wutorganization.com#ConstraintAndLogicLanguages -->
+
+    <LanguagesTypes rdf:about="http://www.wutorganization.com#ConstraintAndLogicLanguages">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </LanguagesTypes>
+    
+
+
+    <!-- http://www.wutorganization.com#Coverage -->
+
+    <Testing rdf:about="http://www.wutorganization.com#Coverage">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Testing>
+    
+
+
+    <!-- http://www.wutorganization.com#DataBaseDesign -->
+
+    <Design rdf:about="http://www.wutorganization.com#DataBaseDesign">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Design>
+    
+
+
+    <!-- http://www.wutorganization.com#DataBaseLanguages -->
+
+    <LanguagesTypes rdf:about="http://www.wutorganization.com#DataBaseLanguages">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </LanguagesTypes>
+    
+
+
+    <!-- http://www.wutorganization.com#Datadriven -->
+
+    <Testing rdf:about="http://www.wutorganization.com#Datadriven">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Testing>
+    
+
+
+    <!-- http://www.wutorganization.com#Distributed -->
+
+    <Testing rdf:about="http://www.wutorganization.com#Distributed">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Testing>
+    
+
+
+    <!-- http://www.wutorganization.com#DistributedProgrammingLanguages -->
+
+    <LanguagesTypes rdf:about="http://www.wutorganization.com#DistributedProgrammingLanguages">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </LanguagesTypes>
+    
+
+
+    <!-- http://www.wutorganization.com#FeasibilityStudy -->
+
+    <Specification rdf:about="http://www.wutorganization.com#FeasibilityStudy">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Specification>
+    
+
+
+    <!-- http://www.wutorganization.com#GUI -->
+
+    <Testing rdf:about="http://www.wutorganization.com#GUI">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Testing>
+    
+
+
+    <!-- http://www.wutorganization.com#ImperativeLanguages -->
+
+    <LanguagesTypes rdf:about="http://www.wutorganization.com#ImperativeLanguages">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </LanguagesTypes>
+    
+
+
+    <!-- http://www.wutorganization.com#Interface -->
+
+    <Design rdf:about="http://www.wutorganization.com#Interface">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Design>
+    
+
+
+    <!-- http://www.wutorganization.com#KeywordDriven -->
+
+    <Testing rdf:about="http://www.wutorganization.com#KeywordDriven">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Testing>
+    
+
+
+    <!-- http://www.wutorganization.com#Manual -->
+
+    <Testing rdf:about="http://www.wutorganization.com#Manual">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Testing>
+    
+
+
+    <!-- http://www.wutorganization.com#MarkupLanguages -->
+
+    <LanguagesTypes rdf:about="http://www.wutorganization.com#MarkupLanguages">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </LanguagesTypes>
+    
+
+
+    <!-- http://www.wutorganization.com#ObjectOrientedLanguages -->
+
+    <LanguagesTypes rdf:about="http://www.wutorganization.com#ObjectOrientedLanguages">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </LanguagesTypes>
+    
+
+
+    <!-- http://www.wutorganization.com#ParallelProgrammingLanguages -->
+
+    <LanguagesTypes rdf:about="http://www.wutorganization.com#ParallelProgrammingLanguages">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </LanguagesTypes>
+    
+
+
+    <!-- http://www.wutorganization.com#Regression -->
+
+    <Testing rdf:about="http://www.wutorganization.com#Regression">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Testing>
+    
+
+
+    <!-- http://www.wutorganization.com#RequirementsElicitationAndAnalysis -->
+
+    <Specification rdf:about="http://www.wutorganization.com#RequirementsElicitationAndAnalysis">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Specification>
+    
+
+
+    <!-- http://www.wutorganization.com#RequirementsValidation -->
+
+    <Specification rdf:about="http://www.wutorganization.com#RequirementsValidation">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Specification>
+    
+
+
+    <!-- http://www.wutorganization.com#ScriptingLanguages -->
+
+    <LanguagesTypes rdf:about="http://www.wutorganization.com#ScriptingLanguages">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </LanguagesTypes>
+    
+
+
+    <!-- http://www.wutorganization.com#StylesheetLanguages -->
+
+    <LanguagesTypes rdf:about="http://www.wutorganization.com#StylesheetLanguages">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </LanguagesTypes>
+    
+
+
+    <!-- http://www.wutorganization.com#TestProject -->
+
+    <Project rdf:about="http://www.wutorganization.com#TestProject">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Project1</hasName>
+        <hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This project is just for testing</hasDescription>
+        <contains>
+            <Task>
+                <requires>
+                    <RequiredActivity>
+                        <requiresScale rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9</requiresScale>
+                        <requiresValue rdf:resource="http://www.wutorganization.com#Manual"/>
+                    </RequiredActivity>
+                </requires>
+            </Task>
+        </contains>
+        <contains>
+            <Task>
+                <requires>
+                    <RequiredActivity>
+                        <requiresScale rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.5</requiresScale>
+                        <requiresValue rdf:resource="http://www.wutorganization.com#Architectural"/>
+                    </RequiredActivity>
+                </requires>
+            </Task>
+        </contains>
+    </Project>
+    
+
+
+    <!-- http://www.wutorganization.com#Unit -->
+
+    <Testing rdf:about="http://www.wutorganization.com#Unit">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Testing>
+    
+
+
+    <!-- http://www.wutorganization.com#WhiteBox -->
+
+    <Testing rdf:about="http://www.wutorganization.com#WhiteBox">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Testing>
+    
+
+
+    <!-- http://www.wutorganization.com#asds -->
+
+    <Project rdf:about="http://www.wutorganization.com#asds">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Project>
+    
+
+
+    <!-- http://www.wutorganization.com#asds1 -->
+
+    <Worker rdf:about="http://www.wutorganization.com#asds1">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Worker>
+    
+
+
+    <!-- http://www.wutorganization.com#fdsa -->
+
+    <Worker rdf:about="http://www.wutorganization.com#fdsa">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <hasFirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Amjad</hasFirstName>
+    </Worker>
+    
+
+
+    <!-- http://www.wutorganization.com#fg -->
+
+    <Project rdf:about="http://www.wutorganization.com#fg">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Project>
+    
+
+
+    <!-- http://www.wutorganization.com#firs -->
+
+    <Project rdf:about="http://www.wutorganization.com#firs">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Project>
+    
+
+
+    <!-- http://www.wutorganization.com#firstProject -->
+
+    <Project rdf:about="http://www.wutorganization.com#firstProject">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Testing Project</hasName>
+        <hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This project is just for testing </hasDescription>
+    </Project>
+    
+
+
+    <!-- http://www.wutorganization.com#ghj -->
+
+    <Worker rdf:about="http://www.wutorganization.com#ghj">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Worker>
+    
+
+
+    <!-- http://www.wutorganization.com#main -->
+
+    <Project rdf:about="http://www.wutorganization.com#main">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <contains>
+            <Task>
+                <hasStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2015-02-10</hasStartDate>
+                <hasEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2015-02-15</hasEndDate>
+                <isAssignedTo rdf:resource="http://www.wutorganization.com#mulhum"/>
+                <requires>
+                    <RequiredActivity>
+                        <requiresScale rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.8</requiresScale>
+                        <requiresValue rdf:resource="http://www.wutorganization.com#RequirementsElicitationAndAnalysis"/>
+                    </RequiredActivity>
+                </requires>
+            </Task>
+        </contains>
+    </Project>
+    
+
+
+    <!-- http://www.wutorganization.com#mn -->
+
+    <Worker rdf:about="http://www.wutorganization.com#mn">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Worker>
+    
+
+
+    <!-- http://www.wutorganization.com#motasem -->
+
+    <Worker rdf:about="http://www.wutorganization.com#motasem">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <hasLastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alwazir</hasLastName>
+        <hasFirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Motasem</hasFirstName>
+        <hasEmail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">almotasem89@gmail.com</hasEmail>
+    </Worker>
+    
+
+
+    <!-- http://www.wutorganization.com#mulhum -->
+
+    <Worker rdf:about="http://www.wutorganization.com#mulhum">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <hasLastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hazam</hasLastName>
+        <hasFirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mulhum</hasFirstName>
+        <knows>
+            <Knowledge>
+                <knowsScale rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9</knowsScale>
+                <knowsValue rdf:resource="http://www.wutorganization.com#StylesheetLanguages"/>
+            </Knowledge>
+        </knows>
+        <hasSkill>
+            <Skill>
+                <skillScale rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.3</skillScale>
+                <skillValue rdf:resource="http://www.wutorganization.com#RequirementsElicitationAndAnalysis"/>
+            </Skill>
+        </hasSkill>
+    </Worker>
+    
+
+
+    <!-- http://www.wutorganization.com#qedw -->
+
+    <Project rdf:about="http://www.wutorganization.com#qedw">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Project>
+    
+
+
+    <!-- http://www.wutorganization.com#tes -->
+
+    <Task rdf:about="http://www.wutorganization.com#tes">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <hasStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2015-02-01</hasStartDate>
+        <hasEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2015-02-10</hasEndDate>
+        <hasDetails rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Test</hasDetails>
+    </Task>
+    
+
+
+    <!-- http://www.wutorganization.com#test4321 -->
+
+    <Project rdf:about="http://www.wutorganization.com#test4321">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+        <contains>
+            <Task>
+                <isAssignedTo rdf:resource="http://www.wutorganization.com#mulhum"/>
+            </Task>
+        </contains>
+    </Project>
+    
+
+
+    <!-- http://www.wutorganization.com#vv -->
+
+    <Worker rdf:about="http://www.wutorganization.com#vv">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Worker>
+    
+
+
+    <!-- http://www.wutorganization.com#zxc -->
+
+    <Worker rdf:about="http://www.wutorganization.com#zxc">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </Worker>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 1.3.4.992) http://owlapi.sourceforge.net -->
+

@@ -1,0 +1,89 @@
+@import models.ontologyModel.OntoClass
+@import play.data.Form
+
+
+
+@(owlClass: OntoClass)
+
+
+@main(owlClass.getLocalName()) {
+
+
+<div class='content'>
+	<fieldset class="scheduler-border">
+	    <legend class="scheduler-border">@owlClass.getLocalName() </legend>
+			<div class='class-condition'>
+				
+				<input type='hidden'  id='className' name='class-name' value="@owlClass.getLocalName()"/>
+				<div class='class-uri'>@owlClass.getUri()</div>
+				<br/>
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="individualName">Individual name:</label>
+						<input id="individualName" class="form-control" name="individualName" type="text" required="required"/>
+					</div>
+				</form>
+				@individual(owlClass, "1")
+				<input class="btn btn-success" id='submit' type='button' value="Update" />
+				<a class="btn btn-danger" type='button' href="/view/@owlClass.getLocalName()">Cancel</a>
+			</div>
+	</fieldset>
+</div>
+
+
+<script type="text/javascript">
+$(function(){
+	//try { console.log('init console...'); } catch(e) { console = { log: function() {} } };
+		
+	$('#submit').click(function(event){
+	
+		event.preventDefault();		
+		var classConditionPanel = $('.class-condition');
+		var condition = QB.buildCondition($('.class-uri', classConditionPanel).html(), classConditionPanel);
+		console.log(condition);
+		var conditionJson=JSON.stringify(condition);
+		console.log(conditionJson);
+		return;
+		var individualName=$('#individualName').val();
+
+		//console.log(conditionJson);
+		if(individualName==""){
+			alert("Please enter the individual name");
+		}
+		else{
+		$.ajax(jsRoutes.controllers.samples.OntoPlay.add(conditionJson,individualName))
+			.done( function(data){
+				if(data=='ok'){
+					window.location.href="/view/@owlClass.getLocalName()";	
+				}
+				else {
+					$('#container').append(getError(data));
+				}
+			})
+			.fail( function(){
+				alert('Error');
+			});
+		
+		}
+		
+		function getError(err){
+			return '<div id="message-error" class="message message-error">'+
+			'<div class="image">'+
+				'<img src="../../assets/images/icons/error.png" alt="Error" height="32" />'+
+			'</div>'+
+			'<div class="text">'+
+				'<h6>Error Message</h6>'+
+				'<span>'+err+'</span>'+
+			'</div>'+
+			'<div class="dismiss">'+
+					'<a class="dismiss" href=""></a>'+
+			'</div>'+
+		'</div>'
+			
+		}
+	});
+});
+	
+</script>
+}
+    

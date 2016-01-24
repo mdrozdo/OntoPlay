@@ -1,0 +1,104 @@
+@(className: String)
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Aangular Tree</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <link rel="stylesheet" type="text/css" media="screen"
+         href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+      <link rel="stylesheet" type="text/css" media="screen"
+         href="@routes.Assets.at("stylesheets/mainStyle.css")">
+      <link rel="stylesheet" type="text/css" media="screen"
+         href="@routes.Assets.at("stylesheets/main.css")">
+      <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/target-icon.ico")">
+      <script src="@routes.Assets.at("javascripts/jquery-2.1.3.min.js")" type="text/javascript"
+      charset="utf-8"></script>
+      <!-- angular files-->
+      <script src="@routes.Assets.at("javascripts/angular/angular.js")" type="text/javascript"
+      charset="utf-8"></script>
+	  
+      <script src="@routes.Assets.at("javascripts/angular/app.js")" type="text/javascript"
+      charset="utf-8"></script>
+      <script src="@routes.Assets.at("javascripts/angular/main.js")" type="text/javascript"
+      charset="utf-8"></script>
+      <script src="@routes.Assets.at("javascripts/angular/child.js")" type="text/javascript"
+      charset="utf-8"></script>
+      <script src="@routes.Assets.at("javascripts/angular/Github.js")" type="text/javascript"
+      charset="utf-8"></script>
+	    <script src="@routes.Assets.at("javascripts/angular/services.js")" type="text/javascript"
+      charset="utf-8"></script>
+   </head>
+   <body ng-app="Ontoplay">
+      <div class="container">
+         <!-- Nested node template -->
+         <script type="text/ng-template" id="nodes_renderer.html">
+            <div>
+               <div class='condition-panel' ng-controller="Child" ng-init="className=node.className;data=node">
+            	  <div class='remove-condition'>
+            		 <a ng-click="remove($parent.data,$index)">
+            		 	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            		 </a>
+            	  </div>
+            	  <select ng-model="data.property" ng-change="changedProperty()" 
+            		 class='property-select form-control' >
+            		 <option value="off">Select a property</option>
+            		 <option data-id="asd" ng-repeat="item in properties" value={{item.uri}}>{{item.localName}}</option>
+            	  </select>
+            <!-- parent is used because of ng-if-->
+            	  <select ng-model="$parent.data.operator" ng-change="changedOperator()" ng-if="data.property != 'off'">
+            		 <option value="off">Select an operator</option>
+            		 <option ng-repeat="item in operators" value={{item.realValue}}>{{item.displayValue}}</option>
+            	  </select>
+				  <input type="{{data.inputType}}" ng-if="data.inputType!='object' && data.operator!='off'" ng-model="data.dataValue" /> 
+				  
+				  <select ng-model="$parent.data.propertyClass" ng-change="changedClass()" ng-if="data.inputType =='object' && data.operator!='off'">
+            		 <option value="off">Select a class</option>
+            		 <option ng-repeat="item in propertyClasses" value={{item.localName}}>{{item.localName}}</option>
+            	  </select>
+				  
+				  <select ng-model="$parent.data.objectValue"  ng-if="data.propertyClass!='off' && propertyIndividuals.length!=0">
+            		 <option value="off">Select an individual</option>
+            		 <option ng-repeat="item in propertyIndividuals" value={{item.localName}}>{{item.localName}}</option>
+            	  </select>
+            	  
+				  <ol style=" list-style-type: none;">
+            		 <li ng-repeat="node in node.nodes"  ng-include="'nodes_renderer.html'" >
+            		 </li>
+            	  </ol>
+            	  <div ng-if="node.nodes && node.nodes.length > 0" class='condition-operator'> <a ng-click="newSubItem(node,'')" href='#'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
+               
+      </div>
+      </div>
+      </script>
+      <div class="row">
+         <div class="col-sm-18">
+            <h3>Basic Example</h3>
+         </div>
+      </div>
+      <div ng-controller="Main"  class="row" ng-init="mainClass='@className'">
+        <div class="form-group">
+						<label for="individualName">Individual name:</label>
+						<input id="individualName" ng-model="individualName" class="form-control" name="individualName" type="text" required="required">
+		</div>
+		 <div class="col-sm-18">
+            <div ui-tree >
+               <ol ui-tree-nodes ng-model="data">
+                  <li ng-repeat="node in data"
+                     ng-include="'nodes_renderer.html'">
+                  </li>
+               </ol>
+            </div>
+         </div>
+         <div class='condition-operator'> <a ng-click=newItem('@className') href='#'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
+         <pre class="code">{{ data | json }}</pre>
+		 <input class="btn btn-success" ng-click="update()" type="button" value="Update">
+      </div>
+      </div>
+      <!-- /.container -->
+   </body>
+   <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript" charset="utf-8"></script>
+   <script src="@routes.Assets.at("javascripts/json2.js")" type="text/javascript" charset="utf-8"></script>
+   <script src="@routes.Assets.at("javascripts/queryBuilder.js")" type="text/javascript" charset="utf-8"></script>
+   <script src="@routes.Assets.at("javascripts/ontoScripts.js")" type="text/javascript" charset="utf-8"></script>
+</html>

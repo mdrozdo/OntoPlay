@@ -1,0 +1,977 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY cgo "http://purl.org/NET/cgo#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY cgoInstances "http://purl.org/NET/cgoInstances#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+    <!ENTITY xsp "http://www.owl-ontologies.com/2005/08/07/xsp.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://purl.org/NET/cgoInstances#"
+     xml:base="http://purl.org/NET/cgoInstances"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:cgoInstances="http://purl.org/NET/cgoInstances#"
+     xmlns:cgo="http://purl.org/NET/cgo#">
+    <owl:Ontology rdf:about="http://purl.org/NET/cgoInstances">
+        <rdfs:label xml:lang="en">Core Grid Ontology Instances</rdfs:label>
+        <rdfs:label xml:lang="en">cgo Instances</rdfs:label>
+        <rdfs:comment xml:lang="en">A companion ontology for CGO (Core Grid Ontology) that contains example instances for cgo classes</rdfs:comment>
+        <owl:versionInfo xml:lang="en">Part of the branch of the Core Grid Ontology started in 06.2013 for the purpose of Agents in Grid project
+
+A companion ontology for CGO (Core Grid Ontology) that contains example instances for cgo classes</owl:versionInfo>
+        <owl:imports rdf:resource="http://purl.org/NET/cgo"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&cgoInstances;status"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;belongToVO"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;hasQueue"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;clockSpeed"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;hasWN"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;runningServices"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;InstalledSoftware"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;hasModel"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;hasComponent"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;hasCPU"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;hasName"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;availableNum"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;hasID"/>
+    <owl:AnnotationProperty rdf:about="&cgoInstances;hasPort"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/NET/cgo#BDII -->
+
+    <owl:Class rdf:about="&cgo;BDII"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#CPU -->
+
+    <owl:Class rdf:about="&cgo;CPU"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#ComputingElement -->
+
+    <owl:Class rdf:about="&cgo;ComputingElement"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#EdgLB -->
+
+    <owl:Class rdf:about="&cgo;EdgLB"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#EdgNS -->
+
+    <owl:Class rdf:about="&cgo;EdgNS"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#EdgWl -->
+
+    <owl:Class rdf:about="&cgo;EdgWl"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#GlobusGatekeeper -->
+
+    <owl:Class rdf:about="&cgo;GlobusGatekeeper"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#IP -->
+
+    <owl:Class rdf:about="&cgo;IP"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#LCG -->
+
+    <owl:Class rdf:about="&cgo;LCG"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#Linux -->
+
+    <owl:Class rdf:about="&cgo;Linux"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#Maui -->
+
+    <owl:Class rdf:about="&cgo;Maui"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#PBS -->
+
+    <owl:Class rdf:about="&cgo;PBS"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#Port -->
+
+    <owl:Class rdf:about="&cgo;Port"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#Queue -->
+
+    <owl:Class rdf:about="&cgo;Queue"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#ResourceBroker -->
+
+    <owl:Class rdf:about="&cgo;ResourceBroker"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#Site -->
+
+    <owl:Class rdf:about="&cgo;Site"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#StorageElement -->
+
+    <owl:Class rdf:about="&cgo;StorageElement"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#UI -->
+
+    <owl:Class rdf:about="&cgo;UI"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#VO -->
+
+    <owl:Class rdf:about="&cgo;VO"/>
+    
+
+
+    <!-- http://purl.org/NET/cgo#WorkerNode -->
+
+    <owl:Class rdf:about="&cgo;WorkerNode"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#BG01-IPP -->
+
+    <owl:Thing rdf:about="&cgoInstances;BG01-IPP">
+        <rdf:type rdf:resource="&cgo;Site"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">A site in Bugarlia within EGEE testbed.</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#Biomed -->
+
+    <owl:Thing rdf:about="&cgoInstances;Biomed">
+        <rdf:type rdf:resource="&cgo;VO"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">Biomed</hasName>
+        <cgo:hasName>Biomed</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#CPU__Intel -->
+
+    <owl:Thing rdf:about="&cgoInstances;CPU__Intel">
+        <rdf:type rdf:resource="&cgo;CPU"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <availableNum rdf:datatype="&xsd;int">2</availableNum>
+        <cgo:availableNum rdf:datatype="&xsd;int">2</cgo:availableNum>
+        <clockSpeed rdf:datatype="&xsd;string">2.8GHz</clockSpeed>
+        <cgo:hasClockSpeed rdf:datatype="&xsd;int">2800</cgo:hasClockSpeed>
+        <hasModel rdf:datatype="&xsd;string">Xeon</hasModel>
+        <cgo:hasModelName>Xeon</cgo:hasModelName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#CY01-LCG2 -->
+
+    <owl:Thing rdf:about="&cgoInstances;CY01-LCG2">
+        <rdf:type rdf:resource="&cgo;Site"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The site of University Cyprus in EGEE testbed.</rdfs:comment>
+        <hasName rdf:datatype="&xsd;string">cy01-lcg2</hasName>
+        <cgo:hasName>cy01-lcg2</cgo:hasName>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <hasComponent rdf:resource="&cgoInstances;ce101.grid.ucy.ac.cy"/>
+        <cgo:hasComponent rdf:resource="&cgoInstances;ce101.grid.ucy.ac.cy"/>
+        <hasComponent rdf:resource="&cgoInstances;rb101.grid.ucy.ac.cy"/>
+        <cgo:hasComponent rdf:resource="&cgoInstances;rb101.grid.ucy.ac.cy"/>
+        <hasComponent rdf:resource="&cgoInstances;se101.grid.ucy.ac.cy"/>
+        <cgo:hasComponent rdf:resource="&cgoInstances;se101.grid.ucy.ac.cy"/>
+        <cgo:hasComponent rdf:resource="&cgoInstances;ui101.grid.ucy.ac.cy"/>
+        <hasComponent rdf:resource="&cgoInstances;ui101.grid.ucy.ac.cy"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#Dteam -->
+
+    <owl:Thing rdf:about="&cgoInstances;Dteam">
+        <rdf:type rdf:resource="&cgo;VO"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">dteam</hasName>
+        <cgo:hasName>dteam</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#EdgLB_RB101 -->
+
+    <owl:Thing rdf:about="&cgoInstances;EdgLB_RB101">
+        <rdf:type rdf:resource="&cgo;EdgLB"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#EdgNS_RB101 -->
+
+    <owl:Thing rdf:about="&cgoInstances;EdgNS_RB101">
+        <rdf:type rdf:resource="&cgo;EdgNS"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#EdgWl_RB101 -->
+
+    <owl:Thing rdf:about="&cgoInstances;EdgWl_RB101">
+        <rdf:type rdf:resource="&cgo;EdgWl"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The server is running on rb101</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#GlobusGatekeeper_CE101 -->
+
+    <owl:Thing rdf:about="&cgoInstances;GlobusGatekeeper_CE101">
+        <rdf:type rdf:resource="&cgo;GlobusGatekeeper"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The gatekeep server in ce101.</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_BDII101_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_BDII101_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.250</hasName>
+        <rdfs:comment rdf:datatype="&xsd;string">The IP address of the BDII server</rdfs:comment>
+        <cgo:hasName>194.42.17.250</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_CE101_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_CE101_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.231</hasName>
+        <cgo:hasName>194.42.17.231</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_RB101_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_RB101_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.249</hasName>
+        <rdfs:comment rdf:datatype="&xsd;string">The IP address of Rb101 server.</rdfs:comment>
+        <cgo:hasName>194.42.17.249</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_SE101_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_SE101_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.233</hasName>
+        <cgo:hasName>194.42.17.233</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_UI101_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_UI101_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.235</hasName>
+        <cgo:hasName>194.42.17.235</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_WN101_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_WN101_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.236</hasName>
+        <cgo:hasName>194.42.17.236</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_WN102_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_WN102_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.237</hasName>
+        <cgo:hasName>194.42.17.237</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_WN103_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_WN103_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.238</hasName>
+        <cgo:hasName>194.42.17.238</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_WN104_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_WN104_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.239</hasName>
+        <cgo:hasName>194.42.17.239</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_WN105_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_WN105_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.245</hasName>
+        <cgo:hasName>194.42.17.245</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_WN106_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_WN106_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.246</hasName>
+        <cgo:hasName>194.42.17.246</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_WN107_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_WN107_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.243</hasName>
+        <cgo:hasName>194.42.17.243</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#IP_WN108_UCY -->
+
+    <owl:Thing rdf:about="&cgoInstances;IP_WN108_UCY">
+        <rdf:type rdf:resource="&cgo;IP"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">194.42.17.244</hasName>
+        <cgo:hasName>194.42.17.244</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#LCG_2.6.0 -->
+
+    <owl:Thing rdf:about="&cgoInstances;LCG_2.6.0">
+        <rdf:type rdf:resource="&cgo;LCG"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#Port_Bdii -->
+
+    <owl:Thing rdf:about="&cgoInstances;Port_Bdii">
+        <rdf:type rdf:resource="&cgo;Port"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">the port number of bdii server</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#Port_EdgLB -->
+
+    <owl:Thing rdf:about="&cgoInstances;Port_EdgLB">
+        <rdf:type rdf:resource="&cgo;Port"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The port number of LB server.</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#Port_EdgNS -->
+
+    <owl:Thing rdf:about="&cgoInstances;Port_EdgNS">
+        <rdf:type rdf:resource="&cgo;Port"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The port number of EdgNS.</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#Port_EdgWl -->
+
+    <owl:Thing rdf:about="&cgoInstances;Port_EdgWl">
+        <rdf:type rdf:resource="&cgo;Port"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#Port_GlobusGatekeeper -->
+
+    <owl:Thing rdf:about="&cgoInstances;Port_GlobusGatekeeper">
+        <rdf:type rdf:resource="&cgo;Port"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#Port_Maui -->
+
+    <owl:Thing rdf:about="&cgoInstances;Port_Maui">
+        <rdf:type rdf:resource="&cgo;Port"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string"></hasName>
+        <hasName rdf:datatype="&xsd;string">31114</hasName>
+        <cgo:hasName>31114</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#Port_OpenPBS -->
+
+    <owl:Thing rdf:about="&cgoInstances;Port_OpenPBS">
+        <rdf:type rdf:resource="&cgo;Port"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string"></hasName>
+        <hasName rdf:datatype="&xsd;string">1099</hasName>
+        <cgo:hasName>1099</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#SEE -->
+
+    <owl:Thing rdf:about="&cgoInstances;SEE">
+        <rdf:type rdf:resource="&cgo;VO"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">SEE</hasName>
+        <cgo:hasName>SEE</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#Scientific_Linux_303 -->
+
+    <owl:Thing rdf:about="&cgoInstances;Scientific_Linux_303">
+        <rdf:type rdf:resource="&cgo;Linux"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">A linux OS.</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#bdii -->
+
+    <owl:Thing rdf:about="&cgoInstances;bdii">
+        <rdf:type rdf:resource="&cgo;BDII"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">bdii service in CY01-LCG site of EGEE testbed.</rdfs:comment>
+        <status rdf:datatype="&xsd;string">on</status>
+        <cgo:status>on</cgo:status>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <hasID rdf:resource="&cgoInstances;IP_BDII101_UCY"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_BDII101_UCY"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#biomedQ -->
+
+    <owl:Thing rdf:about="&cgoInstances;biomedQ">
+        <rdf:type rdf:resource="&cgo;Queue"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">biomed</hasName>
+        <cgo:hasName>biomedQ</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#ce001.grid.bas.bg -->
+
+    <owl:Thing rdf:about="&cgoInstances;ce001.grid.bas.bg">
+        <rdf:type rdf:resource="&cgo;ComputingElement"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Computing Element of EGEE in Bugalia.</rdfs:comment>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#ce101.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;ce101.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;ComputingElement"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">A CE in UCY</rdfs:comment>
+        <hasName rdf:datatype="&xsd;string">ce101.grid.ucy.ac.cy</hasName>
+        <cgo:hasName>ce101.grid.ucy.ac.cy</cgo:hasName>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_CE101_UCY"/>
+        <hasID rdf:resource="&cgoInstances;IP_CE101_UCY"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+        <hasQueue rdf:resource="&cgoInstances;biomedQ"/>
+        <cgo:hasQueue rdf:resource="&cgoInstances;biomedQ"/>
+        <cgo:hasQueue rdf:resource="&cgoInstances;dteamQ"/>
+        <hasQueue rdf:resource="&cgoInstances;dteamQ"/>
+        <cgo:runningServices rdf:resource="&cgoInstances;maui_ce101_ucy"/>
+        <runningServices rdf:resource="&cgoInstances;maui_ce101_ucy"/>
+        <runningServices rdf:resource="&cgoInstances;openpbs_ucy"/>
+        <cgo:runningServices rdf:resource="&cgoInstances;openpbs_ucy"/>
+        <hasQueue rdf:resource="&cgoInstances;seeQ"/>
+        <cgo:hasQueue rdf:resource="&cgoInstances;seeQ"/>
+        <cgo:hasWN rdf:resource="&cgoInstances;wn101.grid.ucy.ac.cy"/>
+        <hasWN rdf:resource="&cgoInstances;wn101.grid.ucy.ac.cy"/>
+        <cgo:hasWN rdf:resource="&cgoInstances;wn102.grid.ucy.ac.cy"/>
+        <hasWN rdf:resource="&cgoInstances;wn102.grid.ucy.ac.cy"/>
+        <hasWN rdf:resource="&cgoInstances;wn103.grid.ucy.ac.cy"/>
+        <cgo:hasWN rdf:resource="&cgoInstances;wn103.grid.ucy.ac.cy"/>
+        <cgo:hasWN rdf:resource="&cgoInstances;wn104.grid.ucy.ac.cy"/>
+        <hasWN rdf:resource="&cgoInstances;wn104.grid.ucy.ac.cy"/>
+        <hasWN rdf:resource="&cgoInstances;wn105.grid.ucy.ac.cy"/>
+        <cgo:hasWN rdf:resource="&cgoInstances;wn105.grid.ucy.ac.cy"/>
+        <hasWN rdf:resource="&cgoInstances;wn106.grid.ucy.ac.cy"/>
+        <cgo:hasWN rdf:resource="&cgoInstances;wn106.grid.ucy.ac.cy"/>
+        <cgo:hasWN rdf:resource="&cgoInstances;wn107.grid.ucy.ac.cy"/>
+        <hasWN rdf:resource="&cgoInstances;wn107.grid.ucy.ac.cy"/>
+        <cgo:hasWN rdf:resource="&cgoInstances;wn108.grid.ucy.ac.cy"/>
+        <hasWN rdf:resource="&cgoInstances;wn108.grid.ucy.ac.cy"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#dteamQ -->
+
+    <owl:Thing rdf:about="&cgoInstances;dteamQ">
+        <rdf:type rdf:resource="&cgo;Queue"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">dteam</hasName>
+        <cgo:hasName>dteamQ</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#maui_ce101_ucy -->
+
+    <owl:Thing rdf:about="&cgoInstances;maui_ce101_ucy">
+        <rdf:type rdf:resource="&cgo;Maui"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasID rdf:resource="&cgoInstances;IP_CE101_UCY"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_CE101_UCY"/>
+        <cgo:hasPort rdf:resource="&cgoInstances;Port_Maui"/>
+        <hasPort rdf:resource="&cgoInstances;Port_Maui"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#openpbs_ucy -->
+
+    <owl:Thing rdf:about="&cgoInstances;openpbs_ucy">
+        <rdf:type rdf:resource="&cgo;PBS"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_CE101_UCY"/>
+        <hasID rdf:resource="&cgoInstances;IP_CE101_UCY"/>
+        <hasPort rdf:resource="&cgoInstances;Port_OpenPBS"/>
+        <cgo:hasPort rdf:resource="&cgoInstances;Port_OpenPBS"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#rb101.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;rb101.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;ResourceBroker"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <rdfs:comment rdf:datatype="&xsd;string">The Resource Broker in CY01-LCG2 site.</rdfs:comment>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#se101.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;se101.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;StorageElement"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">se101.grid.ucy.ac.cy</hasName>
+        <cgo:hasName>se101.grid.ucy.ac.cy</cgo:hasName>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <hasID rdf:resource="&cgoInstances;IP_SE101_UCY"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_SE101_UCY"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#seeQ -->
+
+    <owl:Thing rdf:about="&cgoInstances;seeQ">
+        <rdf:type rdf:resource="&cgo;Queue"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">see</hasName>
+        <cgo:hasName>seeQ</cgo:hasName>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#ui101.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;ui101.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;UI"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_UI101_UCY"/>
+        <hasID rdf:resource="&cgoInstances;IP_UI101_UCY"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#wn101.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;wn101.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;WorkerNode"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">wn102</hasName>
+        <cgo:hasName>wn102</cgo:hasName>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <cgo:hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <hasID rdf:resource="&cgoInstances;IP_WN101_UCY"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_WN101_UCY"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#wn102.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;wn102.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;WorkerNode"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string"></hasName>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <cgo:hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_WN102_UCY"/>
+        <hasID rdf:resource="&cgoInstances;IP_WN102_UCY"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#wn103.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;wn103.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;WorkerNode"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">wn103.grid.ucy.ac.cy</hasName>
+        <cgo:hasName>wn103.grid.ucy.ac.cy</cgo:hasName>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <cgo:hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <hasID rdf:resource="&cgoInstances;IP_WN103_UCY"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_WN103_UCY"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#wn104.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;wn104.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;WorkerNode"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">wn104.grid.ucy.ac.cy</hasName>
+        <cgo:hasName>wn104.grid.ucy.ac.cy</cgo:hasName>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <cgo:hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_WN104_UCY"/>
+        <hasID rdf:resource="&cgoInstances;IP_WN104_UCY"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#wn105.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;wn105.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;WorkerNode"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">wn105.grid.ucy.ac.cy</hasName>
+        <cgo:hasName>wn105.grid.ucy.ac.cy</cgo:hasName>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <cgo:hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_WN105_UCY"/>
+        <hasID rdf:resource="&cgoInstances;IP_WN105_UCY"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#wn106.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;wn106.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;WorkerNode"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">wn106.grid.ucy.ac.cy</hasName>
+        <cgo:hasName>wn106.grid.ucy.ac.cy</cgo:hasName>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <cgo:hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_WN106_UCY"/>
+        <hasID rdf:resource="&cgoInstances;IP_WN106_UCY"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#wn107.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;wn107.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;WorkerNode"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">wn107.grid.ucy.ac.cy</hasName>
+        <cgo:hasName>wn107.grid.ucy.ac.cy</cgo:hasName>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <cgo:hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <hasID rdf:resource="&cgoInstances;IP_WN107_UCY"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_WN107_UCY"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://purl.org/NET/cgoInstances#wn108.grid.ucy.ac.cy -->
+
+    <owl:Thing rdf:about="&cgoInstances;wn108.grid.ucy.ac.cy">
+        <rdf:type rdf:resource="&cgo;WorkerNode"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasName rdf:datatype="&xsd;string">wn108.grid.ucy.ac.cy</hasName>
+        <cgo:hasName>wn108.grid.ucy.ac.cy</cgo:hasName>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <belongToVO rdf:resource="&cgoInstances;Biomed"/>
+        <cgo:hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <hasCPU rdf:resource="&cgoInstances;CPU__Intel"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <belongToVO rdf:resource="&cgoInstances;Dteam"/>
+        <cgo:hasID rdf:resource="&cgoInstances;IP_WN108_UCY"/>
+        <hasID rdf:resource="&cgoInstances;IP_WN108_UCY"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;LCG_2.6.0"/>
+        <cgo:belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <belongToVO rdf:resource="&cgoInstances;SEE"/>
+        <cgo:InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+        <InstalledSoftware rdf:resource="&cgoInstances;Scientific_Linux_303"/>
+    </owl:Thing>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+

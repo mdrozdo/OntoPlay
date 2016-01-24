@@ -1,0 +1,86 @@
+@import play.data.Form 
+@import models.ontologyModel.OntoClass 
+@import java.util.ArrayList
+@import models.tan.IndividualViewModel
+
+@(individual :IndividualViewModel)
+@main(individual.getLocalName()) {
+<!-- Heading Row -->
+<div class="row">
+	        <div class="panel panel-default">
+				<div class="panel-heading">@individual.getName() | @individual.getUri() <a class="btn btn-danger btn-xs pull-right" href="/remove/@individual.getLocalName()/@individual.getClassUri()" data-toggle="tooltip" title="Delete Individual"><span class="danger glyphicon glyphicon-remove-sign"></span></a></div>
+					<div class="panel-body">
+						<div class="row">
+				            <div class="col-md-4">
+				                <img class="img-thumbnail" src="@routes.Assets.at(individual.getImage())" alt="">
+				            </div>
+				            <!-- /.col-md-8 -->
+				            <div class="col-md-2"></div>
+				            <div class="col-md-5">
+				                		<p>@individual.getDescription()</p>                
+							                @for((key, value) <- individual.getFunctionalData()) {
+												<p>@key: @value.getLexicalForm()</p>
+											}
+											@for((key, value) <- individual.functionalObjectValues) {
+												<p>@key: <a href="/individual/@value.getLocalName()">@value.getLocalName()</a></p>
+											}
+				            </div>
+				          </div>
+			            <!-- /.col-md-4 -->
+
+        <hr>
+<fieldset class="scheduler-border">
+	<legend class="scheduler-border">Relations</legend>
+@if(individual.nonFunctionalDataValues.size() > 0){
+		@for((key, value) <- individual.nonFunctionalDataValues) {	
+		<div class="panel panel-default">
+		<div class="panel-heading">@key <span class="badge">@value.size()</span></div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Values</th>
+							</tr>
+						</thead>
+						<tbody>
+						@value.map{i=>
+							<tr><td>@i.getLexicalForm()</td></tr>
+							}
+						</tbody>
+					</table>
+				</div></div></div>
+		}
+	    <hr>
+	}
+    
+@if(individual.nonFunctionalObjectValues.size() > 0){
+@for((key, value) <- individual.nonFunctionalObjectValues) {
+		<div class="panel panel-default">
+		<div class="panel-heading">@key <span class="badge">@value.size()</span></div>
+			<div class="panel-body">
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Local Name</th>
+					<th>Uri</th>
+				</tr>
+			</thead>
+			<tbody>
+				@value.map{i=>
+					<tr>
+					<td><a data-toggle="tooltip" data-placement="top" title="View Individual" href="/individual/@i.getLocalName()"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+					<td>@i.getLocalName()</td>
+					<td>@i.getURI()</td>
+				</tr>
+				}
+				
+			</tbody>
+		</table>
+	</div></div></div><hr>
+	}
+</fieldset>
+	}</div></div></div></div>
+}
