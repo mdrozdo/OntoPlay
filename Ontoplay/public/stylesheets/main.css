@@ -80,3 +80,7 @@ margin: 5px;
 #remember-field {
     display: none;
 }
+
+.annotationPropertyClass{
+	color:red;
+}

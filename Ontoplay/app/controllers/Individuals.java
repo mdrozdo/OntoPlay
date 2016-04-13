@@ -2,8 +2,8 @@ package controllers;
 
 import java.util.Map;
 
+import controllers.configuration.OntologyHelper;
 import jobs.JenaOwlReaderConfiguration;
-import controllers.org.TANHelper;
 import models.ConfigurationException;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
@@ -24,7 +24,7 @@ public class Individuals extends OntologyController {
 
 	public static Result getPropertyCondition(int conditionId, String classUri,
 			String propertyUri) throws ConfigurationException {
-		new JenaOwlReaderConfiguration().initialize(TANHelper.file,new JenaOwlReaderConfig().useLocalMapping(TANHelper.iriString,TANHelper.fileName));
+		new JenaOwlReaderConfiguration().initialize(OntologyHelper.file,new JenaOwlReaderConfig().useLocalMapping(OntologyHelper.iriString,OntologyHelper.fileName));
 		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
 		
 		

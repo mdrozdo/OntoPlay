@@ -16,7 +16,6 @@ public class IndividualValueCondition extends PropertyValueCondition {
 	public void setIndividualValue(String individualValue) {
 		this.individualValue = individualValue;
 	}
-
 	public String getIndividualValue() {
 		return individualValue;
 	}

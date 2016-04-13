@@ -3,21 +3,34 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import controllers.configuration.OntologyHelper;
+import models.angular.update.Annotation;
+
 public class ClassCondition {
 	private String classUri;
 	private List<PropertyValueCondition> propertyConditions = new ArrayList<PropertyValueCondition>();
+	private List<Annotation> annotations=new ArrayList<Annotation>();
 
 	public ClassCondition(){
 		
 	}
 	
 	public ClassCondition(String classUri){
-		this.classUri = classUri;
+		setClassUri(classUri);
 	}
 
 		
 	public String getClassUri() {
 		return classUri;
+	}
+	
+	public void setClassUri(String classUri){
+		System.out.println("hello "+classUri);
+		if(classUri.indexOf("#")==-1){
+			classUri=OntologyHelper.nameSpace+classUri;
+			System.out.println("bye "+classUri);
+		}
+		this.classUri=classUri;
 	}
 
 	public List<PropertyValueCondition> getPropertyConditions() {
@@ -26,5 +39,13 @@ public class ClassCondition {
 
 	public void addProperty(PropertyValueCondition propertyCondition) {		
 		propertyConditions.add(propertyCondition);
+	}
+
+	public List<Annotation> getAnnotations() {
+		return annotations;
+	}
+
+	public void setAnnotations(List<Annotation> annotations) {
+		this.annotations = annotations;
 	}
 }

@@ -3,12 +3,10 @@ package models.ontologyReading.jena;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hp.hpl.jena.ontology.OntProperty;
+
 import models.InvalidConfigurationException;
 import models.ontologyModel.OntoProperty;
-
-
-
-import com.hp.hpl.jena.ontology.OntProperty;
 
 public abstract class OwlPropertyFactory {
 	private static List<OwlPropertyFactory> factories = new ArrayList<OwlPropertyFactory>();
@@ -22,7 +20,7 @@ public abstract class OwlPropertyFactory {
 			if(fact.canCreateProperty(ontProperty))
 				return fact.createProperty(ontProperty);
 		}
-		throw new InvalidConfigurationException(String.format("Failed to create a property description object for property: %s. No property factory has been found to handle the property type: %s.", ontProperty.getURI(), ontProperty.getRange()));
+			return null;
 	}
 	
 	public abstract boolean canCreateProperty(OntProperty ontProperty);

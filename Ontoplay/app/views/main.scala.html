@@ -1,7 +1,7 @@
 @import views.html.organization.includes.header 
 @(title:String)(content: Html)
 <!DOCTYPE html>
-<html ng-app="app">
+<html>
 <head>
 <title>@title</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -14,8 +14,6 @@
 <!-- angular files-->
 <script src="@routes.Assets.at("javascripts/angular/angular.js")" type="text/javascript" charset="utf-8"></script>
 <script src="@routes.Assets.at("javascripts/angular/angular-route.js")" type="text/javascript" charset="utf-8"></script>
-<script src="@routes.Assets.at("javascripts/angular/individual.js")" type="text/javascript" charset="utf-8"></script>
-<script src="@routes.Assets.at("javascripts/angular/Ontoplay.js")" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	@header()

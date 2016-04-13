@@ -1,11 +1,16 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import models.angular.update.Annotation;
 import models.ontologyModel.OntoProperty;
 
 
 public class PropertyValueCondition<T extends OntoProperty> {
 	private String propertyUri;
 	private T property;
+	private List<Annotation> annotations=new ArrayList<Annotation>();
 
 	public PropertyValueCondition(){
 		
@@ -29,6 +34,14 @@ public class PropertyValueCondition<T extends OntoProperty> {
 	
 	public T getProperty() {
 		return property;
+	}
+
+	public List<Annotation> getAnnotations() {
+		return annotations;
+	}
+
+	public void setAnnotations(List<Annotation> annotations) {
+		this.annotations = annotations;
 	}
 
 

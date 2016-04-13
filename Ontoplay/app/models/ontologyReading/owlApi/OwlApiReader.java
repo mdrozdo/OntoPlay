@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import models.PropertyValueCondition;
+import models.angular.AnnotationDTO;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
 import models.ontologyModel.OwlIndividual;
@@ -247,6 +248,12 @@ public class OwlApiReader extends OntologyReader {
 		OWLNamedIndividual individual=factory.getOWLNamedIndividual(IRI.create(name));
 		OwlIndividual owlIndividual = new OwlIndividual(individual, new ArrayList<PropertyValueCondition>());
 		return owlIndividual;
+	}
+
+	@Override
+	public Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -1,13 +1,19 @@
 package models.owlGeneration.restrictionFactories;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import models.ConfigurationException;
+import models.angular.update.Annotation;
 import models.owlGeneration.IndividualGenerator;
 import models.owlGeneration.RestrictionFactory;
 import models.owlGeneration.ClassRestrictionGenerator;
 import models.propertyConditions.ClassValueCondition;
 import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLAnnotation;
+import org.semanticweb.owlapi.model.OWLAnnotationProperty;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
@@ -49,7 +55,22 @@ public class ClassValueRestrictionFactory extends RestrictionFactory<ClassValueC
 		ArrayList<OWLAxiom> result = new ArrayList<OWLAxiom>();
 		result.addAll(nestedAxioms);
 		result.add(assertion);
-		
+		System.out.println("Hello1");
+		List<Annotation> tempAnnotations=condition.getAnnotations();
+		Set<OWLAnnotation> annotations = new HashSet<>();
+       for(Annotation condtionAnnotation:tempAnnotations){
+    	   OWLAnnotationProperty owlAnnotationProperty = factory
+					.getOWLAnnotationProperty(IRI.create(condtionAnnotation.getUri()));
+
+			annotations.add(factory.getOWLAnnotation(owlAnnotationProperty,
+					factory.getOWLLiteral(condtionAnnotation.getValue())));    	   
+       }
+       
+		if (annotations.size() != 0) {
+			OWLAxiom ax = factory.getOWLObjectPropertyAssertionAxiom(conditionProperty, individual,
+					nestedIndividual.asOWLAnonymousIndividual(), annotations);
+			result.add(ax);
+		}		
 		return result;
 	}
 	

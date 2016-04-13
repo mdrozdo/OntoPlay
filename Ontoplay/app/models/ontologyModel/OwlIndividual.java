@@ -74,6 +74,7 @@ public class OwlIndividual implements OwlElement{
 
 	@Override
 	public boolean equals(Object obj) {
+		
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -81,6 +82,8 @@ public class OwlIndividual implements OwlElement{
 		if (getClass() != obj.getClass())
 			return false;
 		OwlIndividual other = (OwlIndividual) obj;
+		if(this.uri==null||other.getUri()==null)
+			return false;
 		return uri.equals(other.getUri());
 	}
 

@@ -1,4 +1,4 @@
-package controllers.org;
+package controllers.configuration;
 
 import jadeOWL.base.OntologyManager;
 
@@ -7,11 +7,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 
 import jobs.JenaOwlReaderConfiguration;
 import models.ontologyReading.OntologyReader;
 import models.ontologyReading.jena.JenaOwlReaderConfig;
 
+import org.mindswap.pellet.jena.PelletReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
@@ -19,23 +21,28 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
-public class TANHelper {
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.util.FileManager;
 
-	public static final String file = "file:samples/TAN/TAN.owl";
-
-	public static final String fileName = "./samples/TAN/TAN.owl";
+public class OntologyHelper {
 	
-	public static final String checkFile = "file:samples/TAN/TANCheckk.owl";
+	public static String ontologyName="TAN.OWL";
+
+	public static String file = "file:"+Pathes.UPLOADS_PATH+ontologyName;
+
+	public static String fileName = Pathes.UPLOADS_PATH+ontologyName;
 	
-	public static final String checkFileName = "./samples/TAN/TANCheckk.owl";
+	public static String checkFile = "file:samples/TAN/TANCheckk.owl";
 	
-	public static final String filePath = "./samples/TAN";
+	public static String checkFileName = "./samples/TAN/TANCheckk.owl";
+	
 
-	public static final String checkFilePath = "./samples/OrganizationCheck";
+	public static String checkFilePath = "./samples/OrganizationCheck";
 
-	public static final String nameSpace = "http://www.tan.com#";
+	public static String nameSpace = "http://www.tan.com#";
 
-	public static final String iriString = "http://www.tan.com";
+	public static String iriString = "http://www.tan.com";
 
 	public static boolean saveOntology(OWLOntology generatedOntology) {
 		OWLOntologyManager OWLmanager = OWLManager.createOWLOntologyManager();
@@ -132,4 +139,9 @@ public class TANHelper {
 		initialize(checkFile, new JenaOwlReaderConfig().useLocalMapping(iriString,checkFileName));
 		return OntologyReader.getGlobalInstance();
 	}
+	
+	public static String getComponentIriByName(String name){
+		return nameSpace+name;
+	}
+	
 }

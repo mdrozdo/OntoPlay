@@ -1,7 +1,5 @@
 package models.tan;
 
-import controllers.org.TANHelper;
-
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -10,6 +8,8 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.FileManager;
+
+import controllers.configuration.OntologyHelper;
 
 import java.io.InputStream;
 
@@ -24,7 +24,7 @@ public class QueryExecuter {
 	OntModel connect() {
 		OntModel mode = null;
 		mode = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
-		InputStream in = FileManager.get().open(TANHelper.file); 
+		InputStream in = FileManager.get().open(OntologyHelper.file); 
 		if (in == null) {
 			throw new IllegalArgumentException("File not found"); 
 		}

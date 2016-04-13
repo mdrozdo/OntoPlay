@@ -1,23 +1,16 @@
 package models.ontologyReading.jena;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import models.ConfigurationException;
-import models.InvalidConfigurationException;
-import models.PropertyValueCondition;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
-import models.ontologyModel.OwlIndividual;
-import models.ontologyReading.OntologyReader;
-import models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
-import models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
+
+import com.hp.hpl.jena.ontology.AnnotationProperty;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntDocumentManager;
@@ -25,7 +18,25 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+
+import controllers.configuration.OntologyHelper;
+import models.ConfigurationException;
+import models.InvalidConfigurationException;
+import models.PropertyValueCondition;
+import models.angular.AnnotationDTO;
+import models.ontologyModel.OntoClass;
+import models.ontologyModel.OntoProperty;
+import models.ontologyModel.OwlIndividual;
+import models.ontologyReading.OntologyReader;
+import models.ontologyReading.jena.propertyFactories.AnnotationDataPropertyFactory;
+import models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
+import models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
+import models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
+import models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
+import models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
+import play.Logger.ALogger;
 
 public class JenaOwlReader extends OntologyReader{
 	private OntModel model;
@@ -40,6 +51,8 @@ public class JenaOwlReader extends OntologyReader{
 		OwlPropertyFactory.registerPropertyFactory(new DateTimePropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new StringPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new ObjectPropertyFactory());
+		//old way to display annotation properties
+		//	OwlPropertyFactory.registerPropertyFactory(new AnnotationDataPropertyFactory());
 		
 
 	}
@@ -106,17 +119,22 @@ public class JenaOwlReader extends OntologyReader{
 		if(ontProperty == null){
 			throw new ConfigurationException(String.format("Property %s not found in ontology", propertyUri));
 		}
+	
 		return createProperty(ontProperty);
 	}
 
 	private List<OntoProperty> getProperties(OntClass ontClass) {
+		
 		List<OntoProperty> props = new ArrayList<OntoProperty>();
 		System.out.println("get properties for: " + ontClass.getLocalName());
 		for (Iterator<OntProperty> i = ontClass.listDeclaredProperties(); i.hasNext();) {
 			OntProperty prop = i.next();
+		
 			if (prop.getDomain() != null || !ignorePropsWithNoDomain)
 				try {
-					props.add(createProperty(prop));
+				OntoProperty temp=	createProperty(prop);
+				if(temp!=null)
+					props.add(temp);
 				} catch (InvalidConfigurationException ex) {
 					ex.printStackTrace();
 				}
@@ -221,7 +239,10 @@ public class JenaOwlReader extends OntologyReader{
 		
 		for (ExtendedIterator<? extends OntResource> i = ontClass.listInstances(); i.hasNext();) {
 			Individual individual = i.next().asIndividual();
-
+			
+		 if(individual.getURI()==null)
+				continue;
+			
 			OwlIndividual owlIndividual = new OwlIndividual(individual, new ArrayList<PropertyValueCondition>());
 			if (!individuals.contains(owlIndividual))
 				individuals.add(owlIndividual);
@@ -235,5 +256,17 @@ public class JenaOwlReader extends OntologyReader{
 		Individual individual=model.getIndividual(name);
 		OwlIndividual owlIndividual = new OwlIndividual(individual, new ArrayList<PropertyValueCondition>());
 		return owlIndividual;
+	}
+
+	@Override
+	public Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace) {
+    	ExtendedIterator<AnnotationProperty> ei=model.listAnnotationProperties();
+    	Set<AnnotationDTO> annotations=new HashSet<AnnotationDTO>();
+    	while(ei.hasNext()){
+			AnnotationProperty temp=ei.next();
+			if((temp.getURI().indexOf(OntologyHelper.iriString)>-1)==isFromNameSpace)
+				annotations.add(new AnnotationDTO(temp.getURI(), temp.getLocalName()));
+		}
+    	return annotations;
 	}
 }

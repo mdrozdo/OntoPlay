@@ -9,6 +9,7 @@ public class DateTimePropertyFactory extends OwlPropertyFactory {
 
 	@Override
 	public boolean canCreateProperty(OntProperty ontProperty) {
+	
 		if(!ontProperty.isDatatypeProperty())
 			return false;
 		if(ontProperty.getRange() == null)

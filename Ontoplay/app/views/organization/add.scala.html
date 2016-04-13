@@ -8,7 +8,6 @@
 
 @main(owlClass.getLocalName()) {
 
-
 <div class='content'>
 	@*@(mainForm:Form[String])*@
 	<div class="box">
@@ -23,7 +22,7 @@
 			<input type='hidden'  id='className' name='class-name' value="@owlClass.getLocalName()"/>
 			<div class='class-uri'>@owlClass.getUri()</div>
 			<br/>
-		<label>Individual name: </label> <input id="individualName" name="individualName" type="text" required="required"/><br><br>
+		<label>Individual name1: </label> <input id="individualName" name="individualName" type="text" required="required"/><br><br>
 			
 			@individual(owlClass, "1")
 			
@@ -48,14 +47,12 @@ $(function(){
 	}
 		
 	$('#submit').click(function(event){
-		
+		alert('asd');
 		event.preventDefault();
 			
 		var classConditionPanel = $('.class-condition');
 		var condition = QB.buildCondition($('.class-uri', classConditionPanel).html(), classConditionPanel);
-		console.log(condition);
-		alert('Hello');
-		return;
+	
 		var conditionJson=JSON.stringify(condition);
 		var individualName=$('#individualName').val();
 		

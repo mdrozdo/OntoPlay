@@ -52,6 +52,7 @@ public class DatatypeRestrictionFactory extends RestrictionFactory<DatatypePrope
 	@Override
 	public List<OWLAxiom> createIndividualValue(DatatypePropertyCondition condition, OWLIndividual individual) throws ConfigurationException {
 		DatatypeRestrictionFactory factory = getOperatorRestrictionFactory(condition);
+		
 		return factory.createIndividualValue(condition, individual);
 	}
 }

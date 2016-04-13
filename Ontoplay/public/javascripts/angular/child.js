@@ -1,19 +1,17 @@
 (function() {
     'use strict';
 
-    angular.module('Ontoplay').controller('Child', ['$scope','Github','Services', function($scope,Github,Services) {
-		//input box type
-    	/*Demo*/	
-        var setUser = function(data) {
-            //Github.getRepos(data).then(setRepos,onError);            
-         };
-         
-         var setRepos = function(data) {
-        	 $scope.properties =data;           
-          }; 
+    angular.module('Ontoplay').controller('Child', ['$scope','Services','$rootScope', function($scope,Services,$rootScope) {
+    	//move it to service
+    	var closeDialog=function(){
+    		if ($("#dialog").hasClass('ui-dialog-content')){
+    			$('#dialog').dialog('close');
+    			}
+    	}
         
         $scope.changedProperty = function() {
 			reset(true,true,true,true);
+			closeDialog();
 		
         	if($scope.data.property!='off'){
         		Services.getOperators(encodeURIComponent($scope.data.property)).then(function(data){
@@ -59,16 +57,13 @@
 			}
 		}
         
-        var setUsers=function(data){
-        	
-        	$scope.users=data;
-        }
         
         var onError=function(){        	
         	alert('error');
         }
         
         $scope.$watch('className',function(oldValue,newValue){
+        	
         	if(newValue!=null)
 				Services.getProperties(newValue).then(function(data){$scope.properties=data;},onError);
         });
@@ -77,20 +72,48 @@
 			if(hideOperator){
 					$scope.data.operator="off";
 					$scope.data.inputType='';
+					$scope.data.annotations=[];
+					$scope.data.objectAnnotations=[];
 				}
 			if(hideDataValue)
 				$scope.data.dataValue="";
 			if(hideClasses){
 				$scope.data.propertyClass="off";
 				$scope.propertyClasses=[];
+				$scope.data.objectAnnotations=[];
 			}
 			if(hideSubNodes){
 				$scope.data.objectValue="off";
 				$scope.propertyIndividuals=[];
 				$scope.data.nodes=[];
+				$scope.data.objectAnnotations=[];
 			}
 			
 		}
+			
+			$scope.openAnnotationProperties=function(){
+				if($scope.data.property=='off'){
+					alert("Please, select a property first");
+					return;
+				}							
+				$rootScope.$broadcast("showDialog", $scope.data.annotations,$scope.data.property);
+			}
+			
+			$scope.openAnnotationForClass=function(objectClass){
+				if(objectClass=='off'){
+					return;
+				}							
+				objectClass=getObjectClassUri(objectClass);
+				$rootScope.$broadcast("showDialog", $scope.data.objectAnnotations,objectClass);			
+				}
+			
+			var getObjectClassUri=function (objectClass){
+				
+				for(var i=0;i<$scope.propertyClasses.length;i++)
+					if($scope.propertyClasses[i].localName==objectClass)
+						return $scope.propertyClasses[i].uri;
+				return objectClass;
+			}
 
     }]);
 

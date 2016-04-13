@@ -169,7 +169,7 @@ public class IndividualViewModel {
 			
 			while (properties.hasNext()) {
 				OntProperty property = properties.next();
-				Logger.info(getPropertyName(property));
+				//Logger.info(getPropertyName(property));
 				
 				if(property.isDatatypeProperty())
 				{

@@ -6,4 +6,5 @@ public class PropertyDTO extends OwlElementDTO {
 		super(namespace, localName);
 
 	}
+
 }

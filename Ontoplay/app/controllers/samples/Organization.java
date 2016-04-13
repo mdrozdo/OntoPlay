@@ -15,7 +15,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 //import jadeOWL.base.OntologyManager;
 
 import controllers.OntologyController;
-import controllers.org.TANHelper;
+import controllers.configuration.OntologyHelper;
 
 //TODO: This should generate individual describing the configuration, instead of constraints
 public class Organization extends OntologyController {
@@ -39,21 +39,21 @@ public class Organization extends OntologyController {
 			ClassCondition condition = ConditionDeserializer
 					.deserializeCondition(ontologyReader, conditionJson);
 			OWLOntology generatedOntology = ontologyGenerator
-					.convertToOwlIndividualOntology(TANHelper.nameSpace
+					.convertToOwlIndividualOntology(OntologyHelper.nameSpace
 							+ indiviualName, condition);
 
 			try {
 				OwlIndividual individual = ontologyReader
-						.getIndividual(TANHelper.nameSpace + indiviualName);
+						.getIndividual(OntologyHelper.nameSpace + indiviualName);
 				if (individual != null)
 					return ok("Indvidual name is already used");
 			} catch (Exception e) {
 			}
 
-			TANHelper.checkOntology(generatedOntology);
+			OntologyHelper.checkOntology(generatedOntology);
 			OntoClass owlClass = getOwlClass("Worker");
 
-			TANHelper.saveOntology(generatedOntology);
+			OntologyHelper.saveOntology(generatedOntology);
 
 			return ok("ok");
 		} catch (Exception e) {

@@ -1,5 +1,7 @@
 package models.properties;
 
+import models.Constants;
+
 public class IntegerProperty extends OwlDatatypeProperty {
 	
 	public IntegerProperty(String namespace, String localName, String datatype,String label) {
@@ -7,6 +9,6 @@ public class IntegerProperty extends OwlDatatypeProperty {
 	}
 
 	public IntegerProperty(String namespace, String localName,String label) {
-		this(namespace, localName, "http://www.w3.org/2001/XMLSchema#integer",label);
+		this(namespace, localName, Constants.INTEGER_MAIN_RANGE,label);
 	}
 }

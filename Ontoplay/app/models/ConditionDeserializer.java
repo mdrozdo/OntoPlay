@@ -32,17 +32,18 @@ public class ConditionDeserializer implements
 	@Override
 	public PropertyValueCondition deserialize(JsonElement json, Type typeOfT,
 			JsonDeserializationContext context) throws JsonParseException {
-		//System.out.print(json);
+		System.out.println(json);
 		PropertyValueCondition condition = null;
 		if(json.isJsonObject()){
 			JsonObject jo = json.getAsJsonObject();
+			
 			//TODO: extract it away to deserializers for each property value subclass
 			if(jo.has("individualValue")){
 				condition = context.deserialize(json, IndividualValueCondition.class);
 			}
 			else if(jo.has("datatypeValue")){
 				condition = context.deserialize(json, DatatypePropertyCondition.class);
-			}
+			} 
 			else if(jo.has("classConstraintValue")){
 				condition = context.deserialize(json, ClassValueCondition.class);
 			}

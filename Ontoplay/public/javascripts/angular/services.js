@@ -32,12 +32,19 @@
 	
 	var updateIndividual=function(data,individualName){
 	
-		var dataToBeSend={'data':data,'name':individualName};
-		console.log(dataToBeSend);
-			 return $http.post('/checkAngular', dataToBeSend).then(function(response){
+		var dataToBeSend={'conditionJson':data,'name':individualName};
+			 return $http.post('/individuals/save', dataToBeSend).then(function(response){
             return response.data;
           
         });
+	}
+	
+	var getAnnotationProperties=function(componentUri){
+		return $http.get('/annotationProperties/get/'+encodeURIComponent(componentUri)).then(function(response){
+			return response.data;
+			
+		});
+		
 	}
     
  
@@ -47,7 +54,8 @@
 	  getProperties:getProperties,
 	  getOperators:getOperators,
 	  getClasses:getClasses,
-	  update:updateIndividual
+	  update:updateIndividual,
+	  getAnnotationProperties:getAnnotationProperties
     };
   }
    var app = angular.module('Ontoplay');

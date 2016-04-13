@@ -1,5 +1,9 @@
 package models.angular;
-
+/**
+ * 
+ * @author Motasem Alwazir
+ *
+ */
 public class OwlElementDTO {
 	private String uri;
 	private String localName;
@@ -7,10 +11,11 @@ public class OwlElementDTO {
 	
 	
 	public OwlElementDTO(String uri, String localName) {
-		super();
 		this.uri = uri;
 		this.localName = localName;
 	}
+	public OwlElementDTO(){}
+	
 	public String getUri() {
 		return uri;
 	}

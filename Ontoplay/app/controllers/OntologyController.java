@@ -3,7 +3,7 @@ package controllers;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import controllers.org.TANHelper;
+import controllers.configuration.OntologyHelper;
 import models.ontologyModel.OntoClass;
 import models.ontologyReading.OntologyReader;
 import models.owlGeneration.OntologyGenerator;
@@ -15,7 +15,7 @@ public class OntologyController extends Controller {
 	protected static OntologyGenerator ontologyGenerator = OntologyGenerator.getGlobalInstance();
 
 	protected static OntoClass getOwlClass(String className) {
-		return ontologyReader.getOwlClass(TANHelper.nameSpace + className);
+		return ontologyReader.getOwlClass(OntologyHelper.nameSpace + className);
 	}
 
 	protected static class HtmlHolder {
