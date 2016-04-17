@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Annotations>
+
+
+
+
+<Annotation id="-7f97db7a:153a7ed4653:-8000" iri="http://www.tan.com#Annotation1" name="Annotation1"/>
+<Component id="-7f97db7a:153a7ed4653:-7fff" iri="http://www.tan.com#hasObjectProperty" name="hasObjectProperty" type="Object property"/>
+
+
+
+<Annotation id="722814b4:153a7f33cfd:-8000" iri="http://www.tan.com#Annotation2" name="Annotation2"/>
+<Relation annotationId="722814b4:153a7f33cfd:-8000" componentId="-7f97db7a:153a7ed4653:-7fff"/>
+
+
+<Component id="2046765d:153a7f535cc:-8000" iri="http://www.tan.com#hasDataProperty" name="hasDataProperty" type="Data property"/>
+
+<Annotation id="2a6b7101:153a81f3449:-8000" iri="http://www.tan.com#Annotation3" name="annotation3"/>
+<Component id="2a6b7101:153a81f3449:-7fff" iri="http://www.tan.com#Class1" name="Class1" type="Class"/>
+
+
+
+
+
+<Component id="-6440e119:153c1bfcc08:2905" iri="http://www.tan.com#isLocatedIn" name="isLocatedIn" type="Object Properties"/>
+
+<Component id="-6440e119:153c1bfcc08:296e" iri="http://www.tan.com#hasParent" name="hasParent" type="Object Properties"/>
+
+<Component id="-6440e119:153c1bfcc08:29d7" iri="http://www.tan.com#QuantifiableInterest" name="QuantifiableInterest" type="Classes"/>
+
+<Annotation id="-6440e119:153c1bfcc08:2ff0" iri="http://www.tan.com#testSecond" name="testSecond"/>
+<Component id="-6440e119:153c1bfcc08:2ff1" iri="http://www.tan.com#Product" name="Product" type="Classes"/>
+
+<Component id="-6440e119:153c1bfcc08:3672" iri="http://www.tan.com#isTargetedBy" name="isTargetedBy" type="Object Properties"/>
+
+<Component id="-6440e119:153c1bfcc08:39b3" iri="http://www.tan.com#City" name="City" type="Classes"/>
+
+<Component id="-6440e119:153c1bfcc08:44ac" iri="http://www.tan.com#isOffered" name="isOffered" type="Object Properties"/>
+
+<Component id="-6440e119:153c1bfcc08:6c7d" iri="http://www.tan.com#isInterestedIn" name="isInterestedIn" type="Object Properties"/>
+
+
+
+
+<Component id="-6440e119:153c63f51f0:-7437" iri="http://www.w3.org/2002/07/owl#topObjectProperty" name="topObjectProperty" type="Object Properties"/>
+<Relation annotationId="-6440e119:153c1bfcc08:2ff0" componentId="-6440e119:153c63f51f0:-7437" type="date"/>
+<Component id="-6440e119:153c63f51f0:-7366" iri="http://www.tan.com#hasFamilyName" name="hasFamilyName" type="Data Properties"/>
+<Relation annotationId="-6440e119:153c1bfcc08:2ff0" componentId="-6440e119:153c63f51f0:-7366" type="number"/>
+<Component id="-6440e119:153c63f51f0:-6f55" iri="http://www.tan.com#hasChildren" name="hasChildren" type="Object Properties"/>
+
+
+<Component id="-6440e119:153c63f51f0:-6594" iri="http://www.tan.com#ownsProduct" name="ownsProduct" type="Object Properties"/>
+
+<Component id="-6440e119:153c63f51f0:-4443" iri="http://www.tan.com#Device" name="Device" type="Classes"/>
+
+
+<Annotation id="-6440e119:153c63f51f0:-3262" iri="off" name=""/>
+<Component id="-6440e119:153c63f51f0:-3261" iri="off" name="" type="off"/>
+<Relation annotationId="-6440e119:153c63f51f0:-3262" componentId="-6440e119:153c63f51f0:-3261" type="off"/>
+<Component id="-6440e119:153c63f51f0:-18c8" iri="http://www.tan.com#Organization" name="Organization" type="Classes"/>
+
+<Relation annotationId="-6440e119:153c1bfcc08:2904" componentId="-6440e119:153c1bfcc08:6c7d" type="text"/>
+<Annotation id="-6440e119:153c63f51f0:d69" iri="http://www.tan.com#motasem" name="motasem"/>
+<Component id="-6440e119:153c63f51f0:d6a" iri="http://www.tan.com#isOfferedBy" name="isOfferedBy" type="Object Properties"/>
+<Relation annotationId="-6440e119:153c63f51f0:d69" componentId="-6440e119:153c63f51f0:d6a" type="date"/>
+
+<Relation annotationId="-6440e119:153c63f51f0:d69" componentId="-6440e119:153c63f51f0:-7366" type="date"/>
+<Component id="-17a01c0b:153cbe8b159:-42a4" iri="http://www.tan.com#Gender" name="Gender" type="Classes"/>
+<Relation annotationId="-6440e119:153c63f51f0:d69" componentId="-17a01c0b:153cbe8b159:-42a4" type="date"/>
+<Component id="-17a01c0b:153cbe8b159:-2f23" iri="http://www.tan.com#Consumer" name="Consumer" type="Classes"/>
+
+<Relation annotationId="-6440e119:153c1bfcc08:2ff0" componentId="-17a01c0b:153cbe8b159:-2f23" type="number"/>
+<Component id="-1cb97797:153e20e00cd:-7c54" iri="http://www.tan.com#hasGender" name="hasGender" type="Object Properties"/>
+<Relation annotationId="-6440e119:153c1bfcc08:2ff0" componentId="-1cb97797:153e20e00cd:-7c54" type="date"/>
+<Relation annotationId="-6440e119:153c63f51f0:d69" componentId="-1cb97797:153e20e00cd:-7c54" type="date"/>
+</Annotations>
