@@ -1,7 +1,5 @@
 package models.propertyConditions;
 
-import java.math.BigDecimal;
-
 import models.PropertyValueCondition;
 import models.properties.OwlDatatypeProperty;
 

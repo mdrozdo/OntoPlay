@@ -11,6 +11,10 @@ public class StringPropertyFactory extends OwlPropertyFactory {
 
 	@Override
 	public boolean canCreateProperty(OntProperty ontProperty) {
+
+//		if(!ontProperty.isDatatypeProperty() || !ontProperty.isAnnotationProperty())
+//			return false;
+		
 		if(!ontProperty.isDatatypeProperty())
 			return false;
 		if(ontProperty.getRange() == null)
@@ -24,7 +28,7 @@ public class StringPropertyFactory extends OwlPropertyFactory {
 
 	@Override
 	public OntoProperty createProperty(OntProperty ontProperty) {
-		return new StringProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getRange().getURI());
+		return new StringProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getRange().getURI(),ontProperty.getLabel(""));
 	}
 
 }

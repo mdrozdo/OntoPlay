@@ -5,10 +5,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLProperty;
 
 import models.ontologyModel.OntoProperty;
-import models.ontologyReading.jena.OwlPropertyFactory;
 import models.properties.StringProperty;
-
-import com.hp.hpl.jena.ontology.OntProperty;
 
 public class StringPropertyFactory extends SimpleDatatypePropertyFactory {
 	public StringPropertyFactory(){
@@ -17,7 +14,7 @@ public class StringPropertyFactory extends SimpleDatatypePropertyFactory {
 	
 	@Override
 	public OntoProperty createProperty(OWLOntology onto, OWLProperty property) {
-		return new StringProperty(property.getIRI().getStart(), property.getIRI().getFragment());
+		return new StringProperty(property.getIRI().getStart(), property.getIRI().getFragment(),"");
 	}
 
 }

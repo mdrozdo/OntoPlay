@@ -9,9 +9,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLProperty;
 import org.semanticweb.owlapi.model.OWLPropertyRange;
 
-import models.ontologyModel.OntoProperty;
 import models.ontologyReading.owlApi.OwlPropertyFactory;
-import models.properties.IntegerProperty;
 
 public abstract class SimpleDatatypePropertyFactory extends OwlPropertyFactory {
 

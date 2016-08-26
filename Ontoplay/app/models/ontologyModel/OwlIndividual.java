@@ -1,16 +1,12 @@
 package models.ontologyModel;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang.NullArgumentException;
-import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
 import models.PropertyValueCondition;
-import models.propertyConditions.DatatypePropertyCondition;
-
 import com.hp.hpl.jena.ontology.Individual;
 
 
@@ -18,15 +14,21 @@ public class OwlIndividual implements OwlElement{
 	private String uri;
 	private String localName;
 	private String classUri;
+	private Individual individual;
+	
 	private List<PropertyValueCondition> properties;
 	
 	public OwlIndividual(Individual individual, List<PropertyValueCondition> properties) {
 		if(properties == null){
 			throw new NullArgumentException("properties");
 		}
+		
+		if(individual == null)
+			throw new NullArgumentException("Individual");
 		this.uri = individual.getURI();
 		this.localName = individual.getLocalName();
 		this.properties = properties;
+		this.individual = individual;
 	}
 	
 	public OwlIndividual(OWLNamedIndividual individual, List<PropertyValueCondition> properties) {
@@ -38,16 +40,23 @@ public class OwlIndividual implements OwlElement{
 		this.properties = properties;
 	}
 	
+	@Override
 	public String getUri(){
 		return uri;
 	}
 	
+	@Override
 	public String getLocalName(){
 		return localName;
 	}
 	
 	public String getClassUri(){
 		return uri;
+	}
+	
+	@Override
+	public Individual getIndividual(){
+		return individual;
 	}
 	
 	public List<PropertyValueCondition> getProperties() {
@@ -65,6 +74,7 @@ public class OwlIndividual implements OwlElement{
 
 	@Override
 	public boolean equals(Object obj) {
+		
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -72,6 +82,8 @@ public class OwlIndividual implements OwlElement{
 		if (getClass() != obj.getClass())
 			return false;
 		OwlIndividual other = (OwlIndividual) obj;
+		if(this.uri==null||other.getUri()==null)
+			return false;
 		return uri.equals(other.getUri());
 	}
 
@@ -83,6 +95,12 @@ public class OwlIndividual implements OwlElement{
 				return prop;
 			}
 		}
+		return null;
+	}
+
+	@Override
+	public String getLabel() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

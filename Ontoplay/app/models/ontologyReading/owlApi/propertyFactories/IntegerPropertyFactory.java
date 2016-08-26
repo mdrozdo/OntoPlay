@@ -7,7 +7,6 @@ import org.semanticweb.owlapi.model.OWLProperty;
 
 import models.ontologyModel.OntoProperty;
 import models.properties.IntegerProperty;
-import models.properties.StringProperty;
 
 public class IntegerPropertyFactory extends SimpleDatatypePropertyFactory {
 	public IntegerPropertyFactory(){
@@ -16,6 +15,6 @@ public class IntegerPropertyFactory extends SimpleDatatypePropertyFactory {
 
 	@Override
 	public OntoProperty createProperty(OWLOntology onto, OWLProperty property) {
-		return new IntegerProperty(property.getIRI().getStart(), property.getIRI().getFragment());
+		return new IntegerProperty(property.getIRI().getStart(), property.getIRI().getFragment(),"");
 	}
 }

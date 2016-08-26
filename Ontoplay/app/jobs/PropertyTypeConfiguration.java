@@ -1,24 +1,11 @@
 package jobs;
 
 import org.semanticweb.owlapi.model.OWLDataFactory;
-import org.semanticweb.owlapi.vocab.OWL2Datatype;
-
-import controllers.Constraints;
 import controllers.DatatypePropertyRenderer;
 import controllers.DateTimePropertyValueRenderer;
 import controllers.ObjectPropertyRenderer;
 import controllers.PropertyConditionRenderer;
 import controllers.SimpleDatatypePropertyValueRenderer;
-import models.ontologyModel.OntoProperty;
-import models.ontologyModel.XsdType;
-import models.ontologyReading.jena.JenaOwlReader;
-import models.ontologyReading.jena.JenaOwlReaderConfig;
-import models.ontologyReading.jena.OwlPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
-import models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
 import models.owlGeneration.IndividualGenerator;
 import models.owlGeneration.OntologyGenerator;
 import models.owlGeneration.RestrictionFactory;
@@ -33,7 +20,6 @@ import models.owlGeneration.restrictionFactories.LessThanRestrictionFactory;
 import models.properties.DateTimeProperty;
 import models.properties.FloatProperty;
 import models.properties.IntegerProperty;
-import models.properties.OwlDatatypeProperty;
 import models.properties.OwlObjectProperty;
 import models.properties.StringProperty;
 import models.propertyConditions.ClassValueCondition;
@@ -78,12 +64,11 @@ public class PropertyTypeConfiguration {
 		topLevelFactory.registerOperatorRestrictionFactory(FloatProperty.class, "equalTo", new EqualToRestrictionFactory("http://www.w3.org/2001/XMLSchema#float", factory));
 		topLevelFactory.registerOperatorRestrictionFactory(FloatProperty.class, "lessThan", new LessThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#float", factory));
 		topLevelFactory.registerOperatorRestrictionFactory(FloatProperty.class, "greaterThan", new GreaterThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#float", factory));
-		topLevelFactory.registerOperatorRestrictionFactory(DateTimeProperty.class, "equalTo", 
-				new DatetimeRestrictionFactoryDecorator(new EqualToRestrictionFactory("http://www.w3.org/2001/XMLSchema#datetime", factory)));
+		topLevelFactory.registerOperatorRestrictionFactory(DateTimeProperty.class, "equalTo", new DatetimeRestrictionFactoryDecorator(new EqualToRestrictionFactory("http://www.w3.org/2001/XMLSchema#dateTime", factory)));
 		topLevelFactory.registerOperatorRestrictionFactory(DateTimeProperty.class, "lessThan", 
-				new DatetimeRestrictionFactoryDecorator(new LessThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#datetime", factory)));
+				new DatetimeRestrictionFactoryDecorator(new LessThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#dateTime", factory)));
 		topLevelFactory.registerOperatorRestrictionFactory(DateTimeProperty.class, "greaterThan", 
-				new DatetimeRestrictionFactoryDecorator(new GreaterThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#datetime", factory)));
+				new DatetimeRestrictionFactoryDecorator(new GreaterThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#dateTime", factory)));
 		
 		return topLevelFactory;
 	}

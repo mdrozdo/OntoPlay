@@ -7,10 +7,8 @@ import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLIndividual;
 
-import controllers.PropertyConditionRenderer;
 import models.ConfigurationException;
 import models.PropertyValueCondition;
-import models.properties.StringProperty;
 
 
 

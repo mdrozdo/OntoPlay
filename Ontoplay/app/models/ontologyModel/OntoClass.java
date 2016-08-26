@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLClass;
-
+import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 
 public class OntoClass implements OwlElement {
@@ -16,28 +15,32 @@ public class OntoClass implements OwlElement {
 	private List<OntoProperty> properties;
 	private String label;
 
-	public OntoClass(String namespace, String name, List<OntoProperty> properties) {
+	public OntoClass(String namespace, String name, List<OntoProperty> properties, OntClass ontClass) {
 		this.namespace = namespace;
 		this.localName = name;
 		this.properties = properties;
+		if(ontClass  != null && ontClass.getSuperClass()!=null)
+			this.superClass = new OntoClass(ontClass.getSuperClass());
+		
 	}
 
 	public OntoClass(OntClass ontClass) {
-		this(ontClass.getNameSpace(), ontClass.getLocalName(), new ArrayList<OntoProperty>());
+		this(ontClass.getNameSpace(), ontClass.getLocalName(), new ArrayList<OntoProperty>(), ontClass);
 		this.label = ontClass.getLabel(null);
 		if(label != null && label.isEmpty())
 			label = null;
 	}
 	
 	public OntoClass(OntClass ontClass, OntClass ontSuperClass) {
-		this(ontClass.getNameSpace(), ontClass.getLocalName(), new ArrayList<OntoProperty>());
+		this(ontClass.getNameSpace(), ontClass.getLocalName(), new ArrayList<OntoProperty>(), ontClass);
 		this.superClass = new OntoClass(ontSuperClass);
 	}
 
 	public OntoClass(IRI iri, List<OntoProperty> properties) {
-		this(iri.getScheme(), iri.getFragment(), properties);
+		this(iri.getScheme(), iri.getFragment(), properties, null);
 	}
 
+	@Override
 	public String getLocalName() {
 		return localName;
 	}
@@ -59,6 +62,7 @@ public class OntoClass implements OwlElement {
 		return null;
 	}
 
+	@Override
 	public String getUri() {
 		return String.format("%s%s", namespace, localName);
 	}
@@ -76,9 +80,23 @@ public class OntoClass implements OwlElement {
 	public OntoClass getSuperClass() {
 		return superClass;
 	}
+	
+	public String getSuperClassName() {
+		if(superClass != null )
+			return superClass.getLocalName();	
 
+			return "NotFound";
+	}
+
+	@Override
 	public String getLabel() {
 		return label;
+	}
+
+	@Override
+	public Individual getIndividual() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

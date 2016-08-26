@@ -1,14 +1,16 @@
 package models.properties;
 
+import models.Constants;
+
 public class StringProperty extends OwlDatatypeProperty{
 
-	public StringProperty(String namespace, String localName) {
-		this(namespace, localName, "http://www.w3.org/2001/XMLSchema#string");
+	public StringProperty(String namespace, String localName,String label) {
+		this(namespace, localName, Constants.STRING_MAIN_RANGE,label);
 	}
 	
 
-	public StringProperty(String namespace, String localName, String datatype) {
-		super(namespace, localName, datatype);
+	public StringProperty(String namespace, String localName, String datatype,String label) {
+		super(namespace, localName, datatype,label);
 		
 	}
 

@@ -1,19 +1,9 @@
 /** Main layout **/
 
-html, body {
-    background: #364B66 !important;
-    color:#fff;
-    font-family: Helvetica, Arial, Sans !important;
-}
 
-a {
-	color:#fff;    
-}
-
-body {
-    width: 900px;
-    padding: 0 30px;
-    margin: auto;
+.individualName
+{
+	margin-top:0px
 }
 
 #user{
@@ -26,7 +16,7 @@ body {
 }
 
 .condition-panel{	
-	border: 2px solid #BAC36E;
+	border: 2px solid gray;
 	padding: 5px 5px 20px 5px;
 	margin: 5px 5px 5px 5px;
 }
@@ -48,7 +38,8 @@ body {
 }
 
 .class-panel{
-/*	display: inline;*/
+display: inline;
+margin: 5px;
 	
 }
 
@@ -88,4 +79,8 @@ body {
 
 #remember-field {
     display: none;
+}
+
+.annotationPropertyClass{
+	color:red;
 }

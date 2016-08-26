@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import models.PropertyValueCondition;
+import models.angular.AnnotationDTO;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
 import models.ontologyModel.OwlIndividual;
@@ -36,7 +37,6 @@ import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.util.AutoIRIMapper;
-
 import com.hp.hpl.jena.shared.ConfigException;
 
 public class OwlApiReader extends OntologyReader {
@@ -87,7 +87,7 @@ public class OwlApiReader extends OntologyReader {
 	}
 
 	@Override
-	public List<OntoClass> getClassesInRange(OntoClass owlClass, OntoProperty property) {
+	public List<OntoClass> getClassesInRange( OntoProperty property) {
 		List<OntoClass> classes = new ArrayList<OntoClass>();
 
 		for (OWLClass ontClass : getAllClassesFromRange(property)) {
@@ -145,14 +145,14 @@ public class OwlApiReader extends OntologyReader {
 		
 		List<OntoProperty> classProperties = getClassProperties(owlClass); 
 		
-		return new OntoClass(owlClass.getIRI().getStart(), owlClass.getIRI().getFragment(), classProperties);		
+		return new OntoClass(owlClass.getIRI().getStart(), owlClass.getIRI().getFragment(), classProperties, null);		
 	}
 
 	private List<OntoProperty> getClassProperties(OWLClass owlClass) {
 		List<OntoProperty> classProperties = new ArrayList<OntoProperty>();
 		Set<OWLProperty> allProperties = new HashSet<OWLProperty>();
-		allProperties.addAll((Collection<? extends OWLProperty>) ontology.getDataPropertiesInSignature(true));
-		allProperties.addAll((Collection<? extends OWLProperty>) ontology.getObjectPropertiesInSignature(true));
+		allProperties.addAll(ontology.getDataPropertiesInSignature(true));
+		allProperties.addAll(ontology.getObjectPropertiesInSignature(true));
 		
 		for (Iterator iterator = allProperties.iterator(); iterator.hasNext();) {
 			OWLProperty owlProperty = (OWLProperty) iterator.next();
@@ -224,9 +224,36 @@ public class OwlApiReader extends OntologyReader {
 		return OwlPropertyFactory.createOwlProperty(ontology, property);
 	}
 
-	public OWLOntology getOntology() {
-		return ontology;
+
+
+	@Override
+	public List<OwlIndividual> getIndividuals(OntoClass owlClass) {
+		List<OwlIndividual> individuals = new ArrayList<OwlIndividual>();
+		OWLClass temp = factory.getOWLClass(IRI.create(owlClass.getUri()));
+		
+			NodeSet<OWLNamedIndividual> instances = reasoner.getInstances(temp, false);
+			for (Node<OWLNamedIndividual> instance : instances) {
+				OWLNamedIndividual individual = instance.getRepresentativeElement();
+				
+				OwlIndividual owlIndividual = new OwlIndividual(individual, new ArrayList<PropertyValueCondition>());
+				if (!individuals.contains(owlIndividual))
+					individuals.add(owlIndividual);
+			}			
+		
+		return individuals;
 	}
 
+	@Override
+	public OwlIndividual getIndividual(String name) {
+		OWLNamedIndividual individual=factory.getOWLNamedIndividual(IRI.create(name));
+		OwlIndividual owlIndividual = new OwlIndividual(individual, new ArrayList<PropertyValueCondition>());
+		return owlIndividual;
+	}
+
+	@Override
+	public Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

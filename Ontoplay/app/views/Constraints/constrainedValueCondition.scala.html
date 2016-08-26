@@ -3,7 +3,7 @@
 
 @(conditionId : Integer, classes : ArrayList[OntoClass], isDescriptionOfIndividual : Boolean)
 <div class='class-panel'>
-	<select name='class-select' class='class-select'>
+	<select name='class-select' class='class-select form-control'>
 		<option value='off'>Select a class</option>
 		@classes.map{c =>
 			<option value='@c.getUri()'>@c.getDisplayName()</option> 

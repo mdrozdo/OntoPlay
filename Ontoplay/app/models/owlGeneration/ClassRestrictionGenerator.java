@@ -21,6 +21,7 @@ public class ClassRestrictionGenerator{
 	}
 	
 	public OWLClassExpression convertToOntClass(String classUri, ClassCondition condition) throws ConfigurationException {
+		condition.setClassUri(condition.getClassUri());
 		OWLClass conditionClass = factory.getOWLClass(IRI.create(condition.getClassUri()));
 		
 		Set<OWLClassExpression> intersectionElements = new HashSet<OWLClassExpression>();

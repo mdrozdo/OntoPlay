@@ -6,13 +6,8 @@ import java.util.List;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLProperty;
 
-import models.InvalidConfigurationException;
 import models.ontologyModel.OntoProperty;
 import models.properties.StringProperty;
-
-
-
-import com.hp.hpl.jena.ontology.OntProperty;
 
 public abstract class OwlPropertyFactory {
 	private static List<OwlPropertyFactory> factories = new ArrayList<OwlPropertyFactory>();
@@ -26,7 +21,7 @@ public abstract class OwlPropertyFactory {
 			if(fact.canCreateProperty(onto, property))
 				return fact.createProperty(onto, property);
 		}
-		return new StringProperty(property.getIRI().getStart(), property.getIRI().getFragment());
+		return new StringProperty(property.getIRI().getStart(), property.getIRI().getFragment(),"");
 		//throw new InvalidConfigurationException(String.format("Failed to create a property description object for property: %s. No property factory has been found to handle the property type: %s.", property.getIRI(), property.getRanges(onto)));
 	}
 	

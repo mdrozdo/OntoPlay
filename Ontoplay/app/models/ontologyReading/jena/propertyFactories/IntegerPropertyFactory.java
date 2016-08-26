@@ -23,7 +23,7 @@ public class IntegerPropertyFactory extends OwlPropertyFactory {
 
 	@Override
 	public OntoProperty createProperty(OntProperty ontProperty) {
-		return new IntegerProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getRange().getURI());
+		return new IntegerProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getRange().getURI(),ontProperty.getLabel(""));
 	}
 
 }

@@ -1,0 +1,671 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/motasem/ontologies/Organaization#"
+     xml:base="http://www.semanticweb.org/motasem/ontologies/Organaization"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#HasMembers -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#HasMembers">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#IsMember"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#IsMember -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#IsMember">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Team"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Worker"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Knows -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Knows">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types_relation"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Worker"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Knows_value -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Knows_value">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types_relation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Leaderfor -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Leaderfor">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Team"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Worker"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#LedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#LedBy">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Leaderfor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Requires -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Requires">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Tasks"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Tasks_Activities_relation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Skilled_In -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Skilled_In">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities_relation"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Worker"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Skilled_In_Value -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Skilled_In_Value">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities_relation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Task_activities_value -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Task_activities_value">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Tasks_Activities_relation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Type_Of -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Type_Of">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Implementation"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Worked_By -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Worked_By">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Works_In -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Works_In">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Tasks"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Worker"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Email -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Email">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Worker"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#End_Date -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#End_Date">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Tasks"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#First_Name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#First_Name">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Worker"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Last_Name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Last_Name">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Worker"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Project_Name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Project_Name">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Project"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Skilled_in_scale -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Skilled_in_scale">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities_relation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Start_Date -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Start_Date">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Tasks"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Task_Activities_scale -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Task_Activities_scale">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Tasks_Activities_relation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Team_Name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Team_Name">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Team"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#knows_scale -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#knows_scale">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types_relation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Activities -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities"/>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Activities_relation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities_relation"/>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Client_Side_Technologies -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Client_Side_Technologies">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Implementation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Design -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Design">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Designing -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Designing">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Implementation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Desktop_Technologies -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Desktop_Technologies">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Implementation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Implementation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Implementation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types_relation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types_relation"/>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Mobile_Technologies -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Mobile_Technologies">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Implementation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Project -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Project"/>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Server_Side_Technologies -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Server_Side_Technologies">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Implementation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Specification -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Specification">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Tasks -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Tasks"/>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Tasks_Activities_relation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Tasks_Activities_relation"/>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Team -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Team"/>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Testing -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Testing">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Worker -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Worker"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Architectural -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Architectural">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Design"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Component -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Component">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Design"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Constraint_and_logic_languages -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Constraint_and_logic_languages">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Coverage -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Coverage">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Testing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Data-driven -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Data-driven">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Testing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#DataBase -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#DataBase">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Data_Base -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Data_Base">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Design"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Distributed -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Distributed">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Testing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Distributed_programming_languages -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Distributed_programming_languages">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Feasibility_Study -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Feasibility_Study">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Specification"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#GUI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#GUI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Testing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Imperative_languages -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Imperative_languages">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Interface -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Interface">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Design"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Keyword-driven -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Keyword-driven">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Testing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Manual -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Manual">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Testing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Markup_languages -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Markup_languages">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Object_oriented_languages -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Object_oriented_languages">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Parallel_programming_languages -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Parallel_programming_languages">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Regression -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Regression">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Testing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Requirements_Elicitation_And_Analysis -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Requirements_Elicitation_And_Analysis">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Specification"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Requirements_Specification: -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Requirements_Specification:">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Specification"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Requirements_Validation -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Requirements_Validation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Specification"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Scripting_languages -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Scripting_languages">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Software_design -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Software_design">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Stylesheet_languages -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Stylesheet_languages">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#Unit -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Unit">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Testing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#White-box -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#White-box">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Testing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/motasem/ontologies/Organaization#mulhum -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#mulhum">
+        <rdf:type rdf:resource="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Client_Side_Technologies"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Designing"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Desktop_Technologies"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Mobile_Technologies"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Server_Side_Technologies"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Activities"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Languages_Types"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Project"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Team"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/motasem/ontologies/Organaization#Worker"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 1.3.4.992) http://owlapi.sourceforge.net -->
+

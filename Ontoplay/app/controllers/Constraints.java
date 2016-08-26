@@ -5,9 +5,6 @@ import java.util.Map;
 import models.ConfigurationException;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
-import models.ontologyReading.OntologyReader;
-import models.ontologyReading.jena.JenaOwlReader;
-import play.*;
 import play.Routes;
 import play.mvc.*;
 
@@ -28,31 +25,33 @@ public class Constraints extends OntologyController {
 		        controllers.routes.javascript.Constraints.condition(),
 		        controllers.routes.javascript.Constraints.getValueCondition(),
 		        controllers.routes.javascript.Constraints.getPropertyCondition(),
-		        controllers.routes.javascript.Individuals.getPropertyCondition()
+		        controllers.routes.javascript.Individuals.getPropertyCondition(),
+		        controllers.samples.routes.javascript.OntoPlay.add()
 		        //controllers.routes.javascript.Application.getPropertyCondition(),
 		        //controllers.routes.javascript.Application.getValueCondition(),
         ));
     }
 
 	public static Result condition(int conditionId, String classUri) {
-		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
+		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
 		maxConditionId++;
 		int newConditionId = maxConditionId;
 		return ok(condition.render( owlClass, ""+newConditionId));
 	}
 	
 	public static Result individual(int conditionId, String classUri) {
-		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
+		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
 		maxConditionId++;
         int newConditionId = maxConditionId;
         return ok(individual.render( owlClass, ""+newConditionId));
+        
 	}
 
    public static Result getPropertyCondition(int conditionId, String classUri,
 			String propertyUri) throws ConfigurationException {
 		
-		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
-		OntoProperty property = getOntologyReader().getProperty(propertyUri);
+		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
+		OntoProperty property = ontologyReader.getProperty(propertyUri);
 		
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
 				.getRenderer(property.getClass());
@@ -62,6 +61,7 @@ public class Constraints extends OntologyController {
 		conditionRenderer.renderProperty(conditionId, owlClass, property, false,
 				new Renderer() {
 
+					@Override
 					public void renderTemplate(String templateName,
 							Map<String, Object> args) {
 						holder.value = renderTemplateByName(templateName, args.values().toArray());
@@ -73,9 +73,9 @@ public class Constraints extends OntologyController {
 	public static Result getValueCondition(int conditionId, String classUri,
 			String propertyUri, String operator) throws ConfigurationException {
 		
-		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
+		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
 	
-		OntoProperty property = getOntologyReader().getProperty(propertyUri);
+		OntoProperty property = ontologyReader.getProperty(propertyUri);
 		
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
 				.getRenderer(property.getClass());
@@ -85,11 +85,13 @@ public class Constraints extends OntologyController {
 		conditionRenderer.renderOperator(conditionId, owlClass, property, operator, 
 				new Renderer() {
 
+					@Override
 					public void renderTemplate(String templateName,
 							Map<String, Object> args) {
 						holder.value = renderTemplateByName(templateName, args.values().toArray());
 					}
 				});
+		
 		return ok(holder.value);
 
 	}

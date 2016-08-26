@@ -2,12 +2,6 @@ package jobs;
 
 import models.ontologyReading.jena.JenaOwlReader;
 import models.ontologyReading.jena.JenaOwlReaderConfig;
-import models.ontologyReading.jena.OwlPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
-import models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
 
 public class JenaOwlReaderConfiguration{
 	

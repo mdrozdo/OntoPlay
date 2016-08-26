@@ -3,8 +3,8 @@
 
 @(individuals : ArrayList[OwlIndividual])
 
-<div class='individual-panel'>
-	<select name='individual-select' class='individual-select'>
+<div class='individual-panel form-group'>
+	<select name='individual-select' class='individual-select form-control'>
 		<option value='off'>Select a value</option>
 	@individuals.map{i=>
 		<option value='@i.getUri()'>@i.getLocalName()</option>

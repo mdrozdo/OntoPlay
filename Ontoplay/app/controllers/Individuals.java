@@ -1,19 +1,14 @@
 package controllers;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
 
+import controllers.configuration.OntologyHelper;
+import jobs.JenaOwlReaderConfiguration;
 import models.ConfigurationException;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
-import models.ontologyReading.OntologyReader;
-import models.ontologyReading.jena.JenaOwlReader;
-import play.*;
+import models.ontologyReading.jena.JenaOwlReaderConfig;
 import play.mvc.*;
-
-import views.html.*;
 
 public class Individuals extends OntologyController {
 
@@ -29,17 +24,22 @@ public class Individuals extends OntologyController {
 
 	public static Result getPropertyCondition(int conditionId, String classUri,
 			String propertyUri) throws ConfigurationException {
+		new JenaOwlReaderConfiguration().initialize(OntologyHelper.file,new JenaOwlReaderConfig().useLocalMapping(OntologyHelper.iriString,OntologyHelper.fileName));
+		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
 		
-		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
-		OntoProperty property = getOntologyReader().getProperty(propertyUri);
 		
+		OntoProperty property = ontologyReader.getProperty(propertyUri);
+		
+		//from here I can know the property type (data,object,string ,date);
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
 				.getRenderer(property.getClass());
+		
 		
 		final HtmlHolder holder = new HtmlHolder();
 		conditionRenderer.renderProperty(conditionId, owlClass, property, true,
 				new Renderer() {
 
+					@Override
 					public void renderTemplate(String templateName,
 							Map<String, Object> args) {
 						holder.value = renderTemplateByName(templateName, args.values().toArray());						

@@ -1,60 +1,42 @@
 package models.ontologyReading.jena;
 
-import java.io.Console;
-import java.io.StringWriter;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.mindswap.pellet.jena.PelletReasonerFactory;
+
+import com.hp.hpl.jena.ontology.AnnotationProperty;
+import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.ontology.OntDocumentManager;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntProperty;
+import com.hp.hpl.jena.ontology.OntResource;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.util.FileManager;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+
+import controllers.configuration.OntologyHelper;
 import models.ConfigurationException;
 import models.InvalidConfigurationException;
-import models.PropertyProvider;
 import models.PropertyValueCondition;
+import models.angular.AnnotationDTO;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
 import models.ontologyModel.OwlIndividual;
 import models.ontologyReading.OntologyReader;
+import models.ontologyReading.jena.propertyFactories.AnnotationDataPropertyFactory;
 import models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
 import models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
 import models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
 import models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
 import models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
-import models.propertyConditions.ClassValueCondition;
-import models.propertyConditions.DatatypePropertyCondition;
-import models.propertyConditions.IndividualValueCondition;
-
-import org.mindswap.pellet.jena.PelletReasonerFactory;
-
-import play.db.DB;
-
-import com.hp.hpl.jena.ontology.DatatypeProperty;
-import com.hp.hpl.jena.ontology.HasValueRestriction;
-import com.hp.hpl.jena.ontology.Individual;
-import com.hp.hpl.jena.ontology.IntersectionClass;
-import com.hp.hpl.jena.ontology.ObjectProperty;
-import com.hp.hpl.jena.ontology.OntClass;
-import com.hp.hpl.jena.ontology.OntDocumentManager;
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.ontology.OntProperty;
-import com.hp.hpl.jena.ontology.OntResource;
-import com.hp.hpl.jena.ontology.Restriction;
-import com.hp.hpl.jena.ontology.SomeValuesFromRestriction;
-import com.hp.hpl.jena.ontology.UnionClass;
-import com.hp.hpl.jena.ontology.OntDocumentManager.ReadFailureHandler;
-import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.RDFList;
-import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.util.FileManager;
-import com.hp.hpl.jena.util.iterator.ExtendedIterator;
-import com.hp.hpl.jena.vocabulary.RDFS;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+import play.Logger.ALogger;
 
 public class JenaOwlReader extends OntologyReader{
 	private OntModel model;
@@ -69,8 +51,10 @@ public class JenaOwlReader extends OntologyReader{
 		OwlPropertyFactory.registerPropertyFactory(new DateTimePropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new StringPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new ObjectPropertyFactory());
+		//old way to display annotation properties
+		//	OwlPropertyFactory.registerPropertyFactory(new AnnotationDataPropertyFactory());
 		
-	
+
 	}
 
 	public static JenaOwlReader loadFromFile(String uri, JenaOwlReaderConfig config) {
@@ -108,6 +92,7 @@ public class JenaOwlReader extends OntologyReader{
 	/* (non-Javadoc)
 	 * @see models.ontologyReading.jena.OntologyReader#getOwlClass(java.lang.String)
 	 */
+	@Override
 	public OntoClass getOwlClass(String className) {
 		if (!(className.contains("#"))) {
 			className = String.format("%s#%s", uri, className);
@@ -116,7 +101,7 @@ public class JenaOwlReader extends OntologyReader{
 		if (ontClass == null)
 			return null;
 
-		OntoClass owlClass = new OntoClass(ontClass.getNameSpace(), ontClass.getLocalName(), getProperties(ontClass));
+		OntoClass owlClass = new OntoClass(ontClass.getNameSpace(), ontClass.getLocalName(), getProperties(ontClass), ontClass);
 		return owlClass;
 	}
 
@@ -128,22 +113,28 @@ public class JenaOwlReader extends OntologyReader{
 	/* (non-Javadoc)
 	 * @see models.ontologyReading.jena.OntologyReader#getProperty(java.lang.String)
 	 */
+	@Override
 	public OntoProperty getProperty(String propertyUri) throws ConfigurationException {
 		OntProperty ontProperty = model.getOntProperty(propertyUri);
 		if(ontProperty == null){
 			throw new ConfigurationException(String.format("Property %s not found in ontology", propertyUri));
 		}
+	
 		return createProperty(ontProperty);
 	}
 
 	private List<OntoProperty> getProperties(OntClass ontClass) {
+		
 		List<OntoProperty> props = new ArrayList<OntoProperty>();
 		System.out.println("get properties for: " + ontClass.getLocalName());
 		for (Iterator<OntProperty> i = ontClass.listDeclaredProperties(); i.hasNext();) {
 			OntProperty prop = i.next();
+		
 			if (prop.getDomain() != null || !ignorePropsWithNoDomain)
 				try {
-					props.add(createProperty(prop));
+				OntoProperty temp=	createProperty(prop);
+				if(temp!=null)
+					props.add(temp);
 				} catch (InvalidConfigurationException ex) {
 					ex.printStackTrace();
 				}
@@ -169,6 +160,7 @@ public class JenaOwlReader extends OntologyReader{
 	/* (non-Javadoc)
 	 * @see models.ontologyReading.jena.OntologyReader#getIndividualsInRange(models.ontologyModel.OntoClass, models.ontologyModel.OntoProperty)
 	 */
+	@Override
 	public List<OwlIndividual> getIndividualsInRange(OntoClass owlClass, OntoProperty property) {
 		List<OwlIndividual> individuals = new ArrayList<OwlIndividual>();
 
@@ -209,7 +201,8 @@ public class JenaOwlReader extends OntologyReader{
 	/* (non-Javadoc)
 	 * @see models.ontologyReading.jena.OntologyReader#getClassesInRange(models.ontologyModel.OntoClass, models.ontologyModel.OntoProperty)
 	 */
-	public List<OntoClass> getClassesInRange(OntoClass owlClass, OntoProperty property) {
+	@Override
+	public List<OntoClass> getClassesInRange( OntoProperty property) {
 		List<OntoClass> classes = new ArrayList<OntoClass>();
 
 		OntProperty ontProp = model.getOntProperty(property.getUri());
@@ -235,5 +228,45 @@ public class JenaOwlReader extends OntologyReader{
 				fillWithSubClasses(classes, subclass);
 			}
 		}
+	}
+	
+
+
+	@Override
+	public List<OwlIndividual> getIndividuals(OntoClass owlClass) {
+		OntClass ontClass=model.getOntClass(owlClass.getUri());
+		List<OwlIndividual> individuals = new ArrayList<OwlIndividual>();
+		
+		for (ExtendedIterator<? extends OntResource> i = ontClass.listInstances(); i.hasNext();) {
+			Individual individual = i.next().asIndividual();
+			
+		 if(individual.getURI()==null)
+				continue;
+			
+			OwlIndividual owlIndividual = new OwlIndividual(individual, new ArrayList<PropertyValueCondition>());
+			if (!individuals.contains(owlIndividual))
+				individuals.add(owlIndividual);
+		}
+		
+		return individuals;
+	}
+	
+	@Override
+	public OwlIndividual getIndividual(String name){
+		Individual individual=model.getIndividual(name);
+		OwlIndividual owlIndividual = new OwlIndividual(individual, new ArrayList<PropertyValueCondition>());
+		return owlIndividual;
+	}
+
+	@Override
+	public Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace) {
+    	ExtendedIterator<AnnotationProperty> ei=model.listAnnotationProperties();
+    	Set<AnnotationDTO> annotations=new HashSet<AnnotationDTO>();
+    	while(ei.hasNext()){
+			AnnotationProperty temp=ei.next();
+			if((temp.getURI().indexOf(OntologyHelper.iriString)>-1)==isFromNameSpace)
+				annotations.add(new AnnotationDTO(temp.getURI(), temp.getLocalName()));
+		}
+    	return annotations;
 	}
 }

@@ -3,7 +3,7 @@
 
 @(conditionId : Integer, classUri : String, propertyUri : String, operators : ArrayList[PropertyOperator])
 
-<select name='operator-select' class='operator-select'>
+<select name='operator-select' class='operator-select form-control'>
 	<option value='off'>Select an operator</option>
 	@operators.map{p =>
 			<option value='@p.getName()'>@p.getDescription()</option> 
@@ -21,8 +21,11 @@
 		if(operator === 'off'){
 			$('#condition-@conditionId .value-condition').html('');
 			return;
-		}		
-
+		}
+		if('@propertyUri'.indexOf("Date")!=-1){
+			$('#condition-@conditionId .value-condition').html(" <input class='property-value' type='date'/>");
+			return;
+	    }
 		$.ajax(getValueConditionAction)
 		.done( function(data){
 			$('#condition-@conditionId .value-condition').html(data);

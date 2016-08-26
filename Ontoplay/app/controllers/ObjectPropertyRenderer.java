@@ -1,10 +1,14 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
+import models.PropertyOperator;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
+import models.ontologyReading.OntologyReader;
 import models.ontologyReading.jena.JenaOwlReader;
 
 public class ObjectPropertyRenderer extends PropertyConditionRenderer {
@@ -40,7 +44,7 @@ public class ObjectPropertyRenderer extends PropertyConditionRenderer {
 		
 		Map<String, Object> args = new LinkedHashMap<String, Object>();
 		args.put("conditionId", conditionId);
-		args.put("classes", JenaOwlReader.getGlobalInstance().getClassesInRange(owlClass, property));
+		args.put("classes", OntologyReader.getGlobalInstance().getClassesInRange(property));
 		args.put("isDescriptionOfIndividual", isDescriptionOfIndividual);
 		
 		renderer.renderTemplate("Constraints.constrainedValueCondition", args);
@@ -51,9 +55,22 @@ public class ObjectPropertyRenderer extends PropertyConditionRenderer {
 			Renderer renderer) {
 
 		Map<String, Object> args = new LinkedHashMap<String, Object>();
-		args.put("individuals", JenaOwlReader.getGlobalInstance().getIndividualsInRange(owlClass, property));
+		args.put("individuals", OntologyReader.getGlobalInstance().getIndividualsInRange(owlClass, property));
 		
 		renderer.renderTemplate("Constraints.individualValueCondition", args);
 		
+	}
+
+	@Override
+	public List<PropertyOperator> getOperators(boolean isDescriptionOfIndividual) {
+		List<PropertyOperator> filteredOperators = new ArrayList<PropertyOperator>();
+		filteredOperators.add(new PropertyOperator("equalToIndividual", "is equal to individual", true));
+		
+		if(isDescriptionOfIndividual) {
+			filteredOperators.add(new PropertyOperator("describedWith", "is described with", true));
+		} else {
+			filteredOperators.add(new PropertyOperator("constrainedBy", " is constrained by", false));
+		}
+		return filteredOperators;
 	}
 }

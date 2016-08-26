@@ -1,13 +1,14 @@
 package models.ontologyReading;
 
 import java.util.List;
+import java.util.Set;
 
 import models.ConfigurationException;
 import models.PropertyProvider;
+import models.angular.AnnotationDTO;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
 import models.ontologyModel.OwlIndividual;
-import models.ontologyReading.jena.JenaOwlReader;
 
 public abstract class OntologyReader implements PropertyProvider{
 	
@@ -23,9 +24,16 @@ public abstract class OntologyReader implements PropertyProvider{
 	
 	public abstract OntoClass getOwlClass(String className);
 
+	@Override
 	public abstract OntoProperty getProperty(String propertyUri) throws ConfigurationException;
 
 	public abstract List<OwlIndividual> getIndividualsInRange(OntoClass owlClass, OntoProperty property);
 
-	public abstract List<OntoClass> getClassesInRange(OntoClass owlClass, OntoProperty property);
+	public abstract List<OntoClass> getClassesInRange( OntoProperty property);
+	
+	public abstract List<OwlIndividual> getIndividuals(OntoClass owlClass);
+	
+	public abstract OwlIndividual getIndividual(String name);
+	public abstract Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace);
+
 }

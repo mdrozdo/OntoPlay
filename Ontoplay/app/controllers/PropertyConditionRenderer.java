@@ -1,7 +1,9 @@
 package controllers;
 
 import java.util.HashMap;
+import java.util.List;
 
+import models.PropertyOperator;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
 
@@ -11,10 +13,10 @@ public abstract class PropertyConditionRenderer {
 
 	public static void registerPropertyTypeRenderer(Class type,
 			PropertyConditionRenderer renderer) {
-		renderers.put(type, renderer);
+			renderers.put(type, renderer);
 	}
 
-	public static PropertyConditionRenderer getRenderer(Class type) {
+	public static PropertyConditionRenderer getRenderer(Class<?> type) {
 		PropertyConditionRenderer propertyConditionRenderer = renderers.get(type);
 		return propertyConditionRenderer;
 	}
@@ -24,5 +26,7 @@ public abstract class PropertyConditionRenderer {
 
 	public abstract void renderOperator(int conditionId, OntoClass owlClass,
 			OntoProperty property, String operator, Renderer renderer);
+	
+	public abstract  List<PropertyOperator> getOperators(boolean isDescriptionOfIndividual);
 
 }

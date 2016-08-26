@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1459678554229" name="http://gridagents.sourceforge.net/AiGGridOntology" uri="AiGGridOntology.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1459678554229" name="http://purl.org/NET/cgo" uri="cgo.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1459678554229" name="http://www.co-ode.org/ontologies/pizza/pizza.owl" uri="pizza.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1459678554229" name="duplicate:http://www.w3.org/2002/07/owl" uri="TAN.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1459678554229" name="duplicate:http://www.w3.org/2002/07/owl" uri="TANCheckk.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1459678554229" name="duplicate:http://www.w3.org/2002/07/owl" uri="test.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1459678554229" name="http://www.w3.org/2006/time" uri="time.owl"/>
+    </group>
+</catalog>

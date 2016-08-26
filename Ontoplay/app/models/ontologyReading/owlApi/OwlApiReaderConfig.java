@@ -1,7 +1,5 @@
 package models.ontologyReading.owlApi;
 
-import java.util.HashMap;
-
 public class OwlApiReaderConfig {
 	private boolean ignorePropsWithNoDomain;
 	private String localFolderPath;

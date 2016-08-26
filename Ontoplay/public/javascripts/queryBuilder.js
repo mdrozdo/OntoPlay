@@ -2,7 +2,7 @@ QB = {};
 
 (function() {
 
-	try { console.log('init console...'); } catch(e) { console = { log: function() {} } }
+	//try { console.log('init console...asd.'); } catch(e) { console = { log: function() {} } }
 	
 	var buildPropertyCondition = function(panel, propertyUri){
 		var propertyCondition = {
@@ -44,23 +44,29 @@ QB = {};
 	};	
 	
 	QB.buildCondition = function(classUri, classConditionPanel) {
-		console.log('CLASS CONDITION PANEL:');
-		console.log(classConditionPanel);
-		console.log('CLASS:');
-		console.log(classUri);
+		//console.log("********************");
+		//console.log(classURi);
+		//console.log("********************");
+		
+	
+		//console.log('CLASS CONDITION PANEL:');
+		//console.log(classConditionPanel);
+		//console.log('CLASS:');
+		//console.log(classUri);
 		var classCondition = {
 			classUri : classUri,
 			propertyConditions : []
 		};
 
-		console.log(classConditionPanel.children('.condition-panel'));
+		//console.log(classConditionPanel.children('.condition-panel'));
 		classConditionPanel
-				.children('.condition-panel')
+				.find('.condition-panel')
 				.each(
 						function(index, panel) {
 							panel = $(panel);
-							console.log('PANEL:')
-							console.log(panel);
+							//console.log("asd "+index);
+							//console.log('PANEL:')
+							//console.log(panel);
 							var propertyUri = $('.property-select', panel)
 									.val();
 							if (propertyUri === 'off')

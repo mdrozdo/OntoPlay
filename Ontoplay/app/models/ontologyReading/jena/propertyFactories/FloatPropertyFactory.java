@@ -3,8 +3,6 @@ package models.ontologyReading.jena.propertyFactories;
 import models.ontologyModel.OntoProperty;
 import models.ontologyReading.jena.OwlPropertyFactory;
 import models.properties.FloatProperty;
-import models.properties.IntegerProperty;
-
 import com.hp.hpl.jena.ontology.OntProperty;
 
 public class FloatPropertyFactory extends OwlPropertyFactory {
@@ -20,12 +18,14 @@ public class FloatPropertyFactory extends OwlPropertyFactory {
 		
 		String rangeUri = ontProperty.getRange().getURI();
 		return rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#float") || 
-				rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal");
+				rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal") ||
+				rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#double") ||
+				rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#boolean");
 	}
 
 	@Override
 	public OntoProperty createProperty(OntProperty ontProperty) {
-		return new FloatProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getRange().getURI());
+		return new FloatProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getRange().getURI(),ontProperty.getLabel(""));
 	}
 
 }

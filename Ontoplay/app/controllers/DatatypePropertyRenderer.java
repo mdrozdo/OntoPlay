@@ -1,20 +1,22 @@
 package controllers;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import models.PropertyOperator;
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;
+import play.Logger.ALogger;
 
 public class DatatypePropertyRenderer extends PropertyConditionRenderer {
 	
 	private Map<String, PropertyValueRenderer> valueRenderers = new HashMap<String, PropertyValueRenderer>();
 	private List<PropertyOperator> operators = new ArrayList<PropertyOperator>();
 	
+	@Override
 	public void renderProperty(int conditionId, OntoClass owlClass, OntoProperty prop, boolean isDescriptionOfIndividual, Renderer renderer) {
 		Map<String, Object> args = new LinkedHashMap<String, Object>();
 		args.put("conditionId", conditionId);
@@ -29,10 +31,13 @@ public class DatatypePropertyRenderer extends PropertyConditionRenderer {
 	}
 
 	private List<PropertyOperator> getOperatorsForIndividual() {
+		ALogger log = play.Logger.of("application");
 		List<PropertyOperator> filteredOperators = new ArrayList<PropertyOperator>();
 		for (PropertyOperator propertyOperator : operators) {
-			if(propertyOperator.canDescribeIndividual()){
+			log.info(propertyOperator.getName());
+			if(propertyOperator.canDescribeIndividual()){				
 				filteredOperators.add(propertyOperator);
+				
 			}
 		}
 		return filteredOperators;
@@ -60,5 +65,15 @@ public class DatatypePropertyRenderer extends PropertyConditionRenderer {
 			PropertyValueRenderer propertyValueRenderer) {
 		registerPropertyOperator(operatorName, operatorDescription, false, propertyValueRenderer);
 	}
+
+	@Override
+	public List<PropertyOperator> getOperators(boolean isDescriptionOfIndividual) {
+		if(!isDescriptionOfIndividual)
+			return operators;
+		else
+			return getOperatorsForIndividual();
+	}
+
+
 
 }
