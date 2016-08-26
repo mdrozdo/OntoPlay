@@ -1,0 +1,35 @@
+@import models.PropertyOperator
+@import java.util.ArrayList
+
+@(conditionId : Integer, classUri : String, propertyUri : String, operators : ArrayList[PropertyOperator])
+
+<select name='operator-select' class='operator-select'>
+	<option value='off'>Select an operator</option>
+	@operators.map{p =>
+			<option value='@p.getName()'>@p.getDescription()</option> 
+		}
+</select>
+<div class='value-condition'></div>
+<script type='text/javascript'>
+	$(function(){
+	var select = $('#condition-@conditionId .operator-select');
+	console.log(select);
+	select.bind('change', function(event){
+		var operator = $(':selected', select).val();
+		var getValueConditionAction = jsRoutes.controllers.Constraints.getValueCondition(@conditionId, '@classUri', '@propertyUri', operator);
+		console.log(operator);
+		if(operator === 'off'){
+			$('#condition-@conditionId .value-condition').html('');
+			return;
+		}		
+
+		$.ajax(getValueConditionAction)
+		.done( function(data){
+			$('#condition-@conditionId .value-condition').html(data);
+		})
+		.fail( function(){
+			alert('ERRORROROROR!!!');
+		});	
+	});
+});
+</script>
