@@ -1,4 +1,4 @@
-package controllers;
+package ontoplay.controllers;
 
 import models.ontologyModel.OntoClass;
 import models.ontologyModel.OntoProperty;

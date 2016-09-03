@@ -1,4 +1,4 @@
-package controllers;
+package ontoplay.controllers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

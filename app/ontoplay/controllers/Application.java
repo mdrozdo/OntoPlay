@@ -1,4 +1,4 @@
-package controllers;
+package ontoplay.controllers;
 
 import play.mvc.*;
 

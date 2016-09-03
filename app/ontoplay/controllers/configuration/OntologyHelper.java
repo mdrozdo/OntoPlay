@@ -1,4 +1,4 @@
-package controllers.configuration;
+package ontoplay.controllers.configuration;
 
 import jadeOWL.base.OntologyManager;
 
