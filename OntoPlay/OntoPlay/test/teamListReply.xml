@@ -1,0 +1,629 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.jadeOWL.org/answers/agent/CICAgent/692231549#"
+     xml:base="http://www.jadeOWL.org/answers/agent/CICAgent/692231549"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:AiGGridOntology="http://gridagents.sourceforge.net/AiGGridOntology#"
+     xmlns:answers="http://www.jadeOWL.org/answers/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:cgo="http://purl.org/NET/cgo#">
+    <owl:Ontology rdf:about="http://www.jadeOWL.org/answers/agent/CICAgent/692231549"/>
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture -->
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The CPU&#39;s architecture (platform).</rdfs:comment>
+        <rdfs:range rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/NET/cgo#CPU"/>
+                    <rdf:Description rdf:about="http://purl.org/NET/cgo#ComputingComponent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasFileSystem -->
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasFileSystem">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The file system of the storage space.</rdfs:comment>
+        <rdfs:range rdf:resource="http://purl.org/NET/cgo#FileSystem"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#StorageSpace"/>
+    </owl:ObjectProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasInstalledSoftware -->
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasInstalledSoftware">
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#GridComponent"/>
+        <rdfs:range rdf:resource="http://purl.org/NET/cgo#Software"/>
+    </owl:ObjectProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasMemory -->
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasMemory">
+        <rdfs:range rdf:resource="http://purl.org/NET/cgo#Memory"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/NET/cgo#StorageElement"/>
+                    <rdf:Description rdf:about="http://purl.org/NET/cgo#WorkerNode"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasOperatingSystem -->
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasOperatingSystem">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An operating system installed on the node.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasInstalledSoftware"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#GridComponent"/>
+        <rdfs:range rdf:resource="http://purl.org/NET/cgo#OperatingSystem"/>
+    </owl:ObjectProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasStorageInterface -->
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasStorageInterface">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The storage interface of the space.</dc:title>
+        <rdfs:range rdf:resource="http://purl.org/NET/cgo#StorageInterface"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#StorageSpace"/>
+    </owl:ObjectProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasStorageSpace -->
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasStorageSpace">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A piece of storage space available to the node.</rdfs:comment>
+        <rdfs:range rdf:resource="http://purl.org/NET/cgo#StorageSpace"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/NET/cgo#ComputingElement"/>
+                    <rdf:Description rdf:about="http://purl.org/NET/cgo#StorageElement"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasVendor -->
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasVendor">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The vendor of the CPU.</rdfs:comment>
+        <rdfs:range rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUVendor"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#CPU"/>
+    </owl:ObjectProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#isRunningOS -->
+    <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#isRunningOS">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The operating system currently running on the node.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasOperatingSystem"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#GridComponent"/>
+        <rdfs:range rdf:resource="http://purl.org/NET/cgo#OperatingSystem"/>
+    </owl:ObjectProperty>
+    
+    <!-- http://purl.org/NET/cgo#hasCPU -->
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/cgo#hasCPU"/>
+    
+    <!-- http://purl.org/NET/cgo#hasWN -->
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/cgo#hasWN"/>
+    
+    <!-- http://purl.org/NET/cgo#runningServices -->
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/cgo#runningServices"/>
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasAvailableSize -->
+    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasAvailableSize">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Available size in MB.</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/NET/cgo#Memory"/>
+                    <rdf:Description rdf:about="http://purl.org/NET/cgo#StorageSpace"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasClockSpeed -->
+    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasClockSpeed">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The CPU clock speed in MHz</rdfs:comment>
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#CPU"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasCores -->
+    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasCores">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The number of cores.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#CPU"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasL2CacheSize -->
+    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasL2CacheSize">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The Level 2 cache size (in KB).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#CPU"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasModelName -->
+    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasModelName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The CPU model name as specified by manufacturer.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#CPU"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasName -->
+    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#ComputerSystemConcept"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize -->
+    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Total size in MB.</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/NET/cgo#Memory"/>
+                    <rdf:Description rdf:about="http://purl.org/NET/cgo#StorageSpace"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasVersion -->
+    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasVersion">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#Software"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#isVirtualized -->
+    <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#isVirtualized">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True if the node is a virtual machine. False otherwise.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://purl.org/NET/cgo#WorkerNode"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+    <!-- http://purl.org/NET/cgo#hasName -->
+    <owl:DatatypeProperty rdf:about="http://purl.org/NET/cgo#hasName"/>
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture -->
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#ComputerSystemConcept"/>
+        <owl:disjointWith rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUVendor"/>
+    </owl:Class>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#CPUVendor -->
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#CPUVendor">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#ComputerSystemConcept"/>
+    </owl:Class>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#ComputerSystemConcept -->
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#ComputerSystemConcept"/>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#PhysicalMemory -->
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#PhysicalMemory">
+        <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#Memory"/>
+    </owl:Class>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#X86 -->
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#X86">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture"/>
+    </owl:Class>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#X86_64 -->
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#X86_64">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#X86"/>
+    </owl:Class>
+    
+    <!-- http://www.jadeOWL.org/answers/answerSet -->
+    <owl:Class rdf:about="http://www.jadeOWL.org/answers/answerSet"/>
+    
+    <!-- http://purl.org/NET/cgo#CPU -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#CPU"/>
+    
+    <!-- http://purl.org/NET/cgo#ComputingComponent -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#ComputingComponent"/>
+    
+    <!-- http://purl.org/NET/cgo#ComputingElement -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#ComputingElement"/>
+    
+    <!-- http://purl.org/NET/cgo#Condor -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#Condor"/>
+    
+    <!-- http://purl.org/NET/cgo#FileSystem -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#FileSystem"/>
+    
+    <!-- http://purl.org/NET/cgo#GridComponent -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#GridComponent"/>
+    
+    <!-- http://purl.org/NET/cgo#IDE -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#IDE"/>
+    
+    <!-- http://purl.org/NET/cgo#LINUXEXT3 -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#LINUXEXT3"/>
+    
+    <!-- http://purl.org/NET/cgo#Linux -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#Linux"/>
+    
+    <!-- http://purl.org/NET/cgo#Memory -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#Memory"/>
+    
+    <!-- http://purl.org/NET/cgo#OperatingSystem -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#OperatingSystem"/>
+    
+    <!-- http://purl.org/NET/cgo#Software -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#Software"/>
+    
+    <!-- http://purl.org/NET/cgo#StorageElement -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#StorageElement"/>
+    
+    <!-- http://purl.org/NET/cgo#StorageInterface -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#StorageInterface"/>
+    
+    <!-- http://purl.org/NET/cgo#StorageSpace -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#StorageSpace"/>
+    
+    <!-- http://purl.org/NET/cgo#WINNT -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#WINNT"/>
+    
+    <!-- http://purl.org/NET/cgo#Windows -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#Windows"/>
+    
+    <!-- http://purl.org/NET/cgo#WorkerNode -->
+    <owl:Class rdf:about="http://purl.org/NET/cgo#WorkerNode"/>
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#AMD -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#AMD">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUVendor"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#AMD64 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#AMD64">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#X86_64"/>
+        <AiGGridOntology:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AMD64</AiGGridOntology:hasName>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Alpha -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Alpha">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture"/>
+        <AiGGridOntology:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Apha</AiGGridOntology:hasName>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Generic_x86 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Generic_x86">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#X86"/>
+        <AiGGridOntology:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x86</AiGGridOntology:hasName>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#IA_64 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#IA_64">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture"/>
+        <AiGGridOntology:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IA-64</AiGGridOntology:hasName>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#IBM -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#IBM">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUVendor"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Intel -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Intel">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUVendor"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Intel64 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Intel64">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#X86_64"/>
+        <AiGGridOntology:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Intel64</AiGGridOntology:hasName>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#MIPS -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#MIPS">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture"/>
+        <AiGGridOntology:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MIPS</AiGGridOntology:hasName>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#PA_RISC -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#PA_RISC">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture"/>
+        <AiGGridOntology:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PA-RISC</AiGGridOntology:hasName>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#PowerPC -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#PowerPC">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture"/>
+        <AiGGridOntology:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PowerPC</AiGGridOntology:hasName>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#SPARC -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#SPARC">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture"/>
+        <AiGGridOntology:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SPARC</AiGGridOntology:hasName>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#compositeWorker -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#compositeWorker">
+        <rdf:type rdf:resource="http://www.jadeOWL.org/answers/answerSet"/>
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#ComputingElement"/>
+        <cgo:runningServices rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condor"/>
+        <cgo:hasWN rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1"/>
+        <cgo:hasWN rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2"/>
+        <AiGGridOntology:isRunningOS rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#compositeWorker2 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#compositeWorker2">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#ComputingElement"/>
+        <cgo:runningServices rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condor"/>
+        <cgo:hasWN rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode21"/>
+        <cgo:hasWN rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode22"/>
+        <AiGGridOntology:isRunningOS rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#compositeWorker3 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#compositeWorker3">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#ComputingElement"/>
+        <cgo:runningServices rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condor"/>
+        <cgo:hasWN rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode31"/>
+        <cgo:hasWN rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode32"/>
+        <AiGGridOntology:isRunningOS rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#condor -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#condor">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#Condor"/>
+        <AiGGridOntology:isRunningOS rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#WorkerNode"/>
+        <AiGGridOntology:isVirtualized rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</AiGGridOntology:isVirtualized>
+        <AiGGridOntology:hasMemory rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1RAM"/>
+        <AiGGridOntology:hasStorageSpace rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1Storage"/>
+        <AiGGridOntology:isRunningOS rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0"/>
+        <cgo:hasCPU rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#intel_xeon_e7430"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1RAM -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1RAM">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#PhysicalMemory"/>
+        <AiGGridOntology:hasAvailableSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1500</AiGGridOntology:hasAvailableSize>
+        <AiGGridOntology:hasTotalSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3000</AiGGridOntology:hasTotalSize>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1Storage -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1Storage">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#StorageSpace"/>
+        <AiGGridOntology:hasAvailableSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">120000</AiGGridOntology:hasAvailableSize>
+        <AiGGridOntology:hasTotalSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">350000</AiGGridOntology:hasTotalSize>
+        <AiGGridOntology:hasFileSystem rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#ext3"/>
+        <AiGGridOntology:hasStorageInterface rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#ide"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#WorkerNode"/>
+        <AiGGridOntology:isVirtualized rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</AiGGridOntology:isVirtualized>
+        <AiGGridOntology:hasMemory rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2RAM"/>
+        <AiGGridOntology:hasStorageSpace rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2Storage"/>
+        <AiGGridOntology:isRunningOS rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0"/>
+        <cgo:hasCPU rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#intel_xeon_e7430"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode21 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode21">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#WorkerNode"/>
+        <AiGGridOntology:isVirtualized rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</AiGGridOntology:isVirtualized>
+        <AiGGridOntology:hasMemory rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1RAM"/>
+        <AiGGridOntology:hasStorageSpace rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1Storage"/>
+        <AiGGridOntology:isRunningOS rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0"/>
+        <cgo:hasCPU rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#intel_xeon_e7430"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode22 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode22">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#WorkerNode"/>
+        <AiGGridOntology:isVirtualized rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</AiGGridOntology:isVirtualized>
+        <AiGGridOntology:hasMemory rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2RAM"/>
+        <AiGGridOntology:hasStorageSpace rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2Storage"/>
+        <AiGGridOntology:isRunningOS rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0"/>
+        <cgo:hasCPU rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#intel_xeon_e7430"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2RAM -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2RAM">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#PhysicalMemory"/>
+        <AiGGridOntology:hasAvailableSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2000</AiGGridOntology:hasAvailableSize>
+        <AiGGridOntology:hasTotalSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3000</AiGGridOntology:hasTotalSize>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2Storage -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2Storage">
+        <AiGGridOntology:hasTotalSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">250000</AiGGridOntology:hasTotalSize>
+        <AiGGridOntology:hasAvailableSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">70000</AiGGridOntology:hasAvailableSize>
+        <AiGGridOntology:hasFileSystem rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#ext3"/>
+        <AiGGridOntology:hasStorageInterface rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#ide"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode31 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode31">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#WorkerNode"/>
+        <AiGGridOntology:isVirtualized rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</AiGGridOntology:isVirtualized>
+        <AiGGridOntology:hasMemory rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1RAM"/>
+        <AiGGridOntology:hasStorageSpace rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode1Storage"/>
+        <AiGGridOntology:isRunningOS rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0"/>
+        <cgo:hasCPU rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#intel_xeon_e7430"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode32 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode32">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#WorkerNode"/>
+        <AiGGridOntology:isVirtualized rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</AiGGridOntology:isVirtualized>
+        <AiGGridOntology:hasMemory rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2RAM"/>
+        <AiGGridOntology:hasStorageSpace rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2Storage"/>
+        <AiGGridOntology:isRunningOS rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0"/>
+        <cgo:hasCPU rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#intel_xeon_e7430"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#debian_5.0">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#Linux"/>
+        <AiGGridOntology:hasVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5.0</AiGGridOntology:hasVersion>
+        <AiGGridOntology:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Debian GNU/Linux 5.0 (â€žlennyâ€ť)</AiGGridOntology:hasName>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker1RAM -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker1RAM">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#PhysicalMemory"/>
+        <AiGGridOntology:hasAvailableSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2500</AiGGridOntology:hasAvailableSize>
+        <AiGGridOntology:hasTotalSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4000</AiGGridOntology:hasTotalSize>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker1Storage -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker1Storage">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#StorageSpace"/>
+        <AiGGridOntology:hasAvailableSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">25000</AiGGridOntology:hasAvailableSize>
+        <AiGGridOntology:hasTotalSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">300000</AiGGridOntology:hasTotalSize>
+        <AiGGridOntology:hasStorageInterface rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#ide"/>
+        <AiGGridOntology:hasFileSystem rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#winnt"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker2RAM -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker2RAM">
+        <rdf:type rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#PhysicalMemory"/>
+        <AiGGridOntology:hasAvailableSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2700</AiGGridOntology:hasAvailableSize>
+        <AiGGridOntology:hasTotalSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4000</AiGGridOntology:hasTotalSize>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker2Storage -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker2Storage">
+        <AiGGridOntology:hasAvailableSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">27000</AiGGridOntology:hasAvailableSize>
+        <AiGGridOntology:hasTotalSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">320000</AiGGridOntology:hasTotalSize>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#desktopWorkerNode1 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#desktopWorkerNode1">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#StorageElement"/>
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#WorkerNode"/>
+        <AiGGridOntology:isVirtualized rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</AiGGridOntology:isVirtualized>
+        <AiGGridOntology:hasMemory rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker1RAM"/>
+        <AiGGridOntology:hasStorageSpace rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker1Storage"/>
+        <cgo:hasCPU rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#intel_core2duo_e8300"/>
+        <AiGGridOntology:isRunningOS rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#vista_sp2"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#desktopWorkerNode2 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#desktopWorkerNode2">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#StorageElement"/>
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#WorkerNode"/>
+        <AiGGridOntology:isVirtualized rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</AiGGridOntology:isVirtualized>
+        <AiGGridOntology:hasMemory rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker2RAM"/>
+        <AiGGridOntology:hasStorageSpace rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#desktopWorker2Storage"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#ext3 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#ext3">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#LINUXEXT3"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#ide -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#ide">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#IDE"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#intel_core2duo_e8300 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#intel_core2duo_e8300">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#CPU"/>
+        <AiGGridOntology:hasCores rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</AiGGridOntology:hasCores>
+        <AiGGridOntology:hasClockSpeed rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2830</AiGGridOntology:hasClockSpeed>
+        <AiGGridOntology:hasL2CacheSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">6000</AiGGridOntology:hasL2CacheSize>
+        <AiGGridOntology:hasModelName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Intel Core 2 Duo Processor E8300</AiGGridOntology:hasModelName>
+        <cgo:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IntelÂ® Coreâ„˘2 Duo Processor E8300 (6M Cache, 2.83 GHz, 1333 MHz FSB)</cgo:hasName>
+        <AiGGridOntology:hasVendor rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#Intel"/>
+        <AiGGridOntology:hasArchitecture rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#Intel64"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#intel_xeon_e7430 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#intel_xeon_e7430">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#CPU"/>
+        <AiGGridOntology:hasL2CacheSize rdf:datatype="http://www.w3.org/2001/XMLSchema#int">12000</AiGGridOntology:hasL2CacheSize>
+        <AiGGridOntology:hasClockSpeed rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2130</AiGGridOntology:hasClockSpeed>
+        <AiGGridOntology:hasCores rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</AiGGridOntology:hasCores>
+        <AiGGridOntology:hasModelName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Intel Xeon Processor E7430</AiGGridOntology:hasModelName>
+        <AiGGridOntology:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Intel Xeon Processor E7430 (12M Cache, 2.13 GHz, 1066 MHz FSB)</AiGGridOntology:hasName>
+        <AiGGridOntology:hasVendor rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#Intel"/>
+        <AiGGridOntology:hasArchitecture rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#Intel64"/>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#vista_sp2 -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#vista_sp2">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#Windows"/>
+        <AiGGridOntology:hasVersion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6.0.6002.18005.090410-1830</AiGGridOntology:hasVersion>
+        <cgo:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Windows Vista Service Pack 2</cgo:hasName>
+    </owl:NamedIndividual>
+    
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#winnt -->
+    <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#winnt">
+        <rdf:type rdf:resource="http://purl.org/NET/cgo#WINNT"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+<!-- Generated by the OWL API (version 1.3.4.992) http://owlapi.sourceforge.net -->
