@@ -1,4 +1,4 @@
-name := """OntoPlay2"""
+name := """OntoPlay"""
 
 version := "1.0-SNAPSHOT"
 
