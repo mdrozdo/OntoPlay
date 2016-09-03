@@ -1,4 +1,4 @@
-package controllers;
+package ontoplay.controllers;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,4 +1,4 @@
-package controllers.webservices;
+package ontoplay.controllers.webservices;
 
 import java.io.UnsupportedEncodingException;
 
