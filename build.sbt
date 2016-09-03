@@ -2,7 +2,13 @@ name := """OntoPlay-TAN"""
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayJava)
+lazy val module = (project in file("module"))
+    .enablePlugins(PlayJava)
+
+lazy val root = (project in file("."))
+	.enablePlugins(PlayJava)
+	.aggregate(module)
+    .dependsOn(module)
 
 scalaVersion := "2.11.7"
 
