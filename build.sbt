@@ -2,7 +2,7 @@ name := """OntoPlay-TAN"""
 
 version := "1.0-SNAPSHOT"
 
-lazy val module = (project in file("module"))
+lazy val module = (project in file("OntoPlay"))
     .enablePlugins(PlayJava)
 
 lazy val root = (project in file("."))
