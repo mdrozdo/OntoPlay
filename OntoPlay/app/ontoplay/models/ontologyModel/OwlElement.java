@@ -1,4 +1,4 @@
-package models.ontologyModel;
+package ontoplay.models.ontologyModel;
 
 import com.hp.hpl.jena.ontology.Individual;
 

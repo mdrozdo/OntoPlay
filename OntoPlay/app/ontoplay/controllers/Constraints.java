@@ -2,13 +2,13 @@ package ontoplay.controllers;
 
 import java.util.Map;
 
-import models.ConfigurationException;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
 import play.Routes;
 import play.mvc.*;
 
-import views.html.*;
+import ontoplay.views.html.*;
 
 public class Constraints extends OntologyController {
 
@@ -21,12 +21,12 @@ public class Constraints extends OntologyController {
             Routes.javascriptRouter("jsRoutes",
 		        // Routes
 		        //controllers.routes.javascript.Application.condition()//,
-		        controllers.routes.javascript.Constraints.individual(),
-		        controllers.routes.javascript.Constraints.condition(),
-		        controllers.routes.javascript.Constraints.getValueCondition(),
-		        controllers.routes.javascript.Constraints.getPropertyCondition(),
-		        controllers.routes.javascript.Individuals.getPropertyCondition(),
-		        controllers.samples.routes.javascript.OntoPlay.add()
+		        ontoplay.controllers.routes.javascript.Constraints.individual(),
+		        ontoplay.controllers.routes.javascript.Constraints.condition(),
+		        ontoplay.controllers.routes.javascript.Constraints.getValueCondition(),
+		        ontoplay.controllers.routes.javascript.Constraints.getPropertyCondition(),
+		        ontoplay.controllers.routes.javascript.Individuals.getPropertyCondition()
+		        //ontoplay.controllers.samples.routes.javascript.OntoPlay.add()
 		        //controllers.routes.javascript.Application.getPropertyCondition(),
 		        //controllers.routes.javascript.Application.getValueCondition(),
         ));

@@ -1,16 +1,16 @@
-package models.owlGeneration.restrictionFactories;
+package ontoplay.models.owlGeneration.restrictionFactories;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import models.ConfigurationException;
-import models.angular.update.Annotation;
-import models.owlGeneration.IndividualGenerator;
-import models.owlGeneration.RestrictionFactory;
-import models.owlGeneration.ClassRestrictionGenerator;
-import models.propertyConditions.ClassValueCondition;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.angular.update.Annotation;
+import ontoplay.models.owlGeneration.IndividualGenerator;
+import ontoplay.models.owlGeneration.RestrictionFactory;
+import ontoplay.models.owlGeneration.ClassRestrictionGenerator;
+import ontoplay.models.propertyConditions.ClassValueCondition;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;

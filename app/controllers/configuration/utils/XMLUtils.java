@@ -1,4 +1,4 @@
-package ontoplay.controllers.configuration.utils;
+package controllers.configuration.utils;
 
 import java.io.File;
 import java.io.IOException;

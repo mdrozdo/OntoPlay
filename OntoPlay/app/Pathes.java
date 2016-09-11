@@ -1,4 +1,4 @@
-package ontoplay.controllers.configuration;
+package ontoplay;
 
 import play.Play;
 

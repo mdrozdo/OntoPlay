@@ -1,12 +1,12 @@
-package models.ontologyReading.jena;
+package ontoplay.models.ontologyReading.jena;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.hp.hpl.jena.ontology.OntProperty;
 
-import models.InvalidConfigurationException;
-import models.ontologyModel.OntoProperty;
+import ontoplay.models.InvalidConfigurationException;
+import ontoplay.models.ontologyModel.OntoProperty;
 
 public abstract class OwlPropertyFactory {
 	private static List<OwlPropertyFactory> factories = new ArrayList<OwlPropertyFactory>();

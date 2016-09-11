@@ -1,8 +1,8 @@
 import java.lang.reflect.Method;
 
-import controllers.configuration.OntologyHelper;
+import ontoplay.OntologyHelper;
 import controllers.configuration.utils.OntoplayOntologyUtils;
-import models.ontologyReading.jena.JenaOwlReaderConfig;
+import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 import jobs.JenaOwlReaderConfiguration;
 import jobs.OntologyGeneratorConfiguration;
 import jobs.PropertyTypeConfiguration;

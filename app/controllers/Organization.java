@@ -3,10 +3,10 @@ package controllers.samples;
 import java.util.HashMap;
 import java.util.Map;
 
-import models.ClassCondition;
-import models.ConditionDeserializer;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OwlIndividual;
+import ontoplay.models.ClassCondition;
+import ontoplay.models.ConditionDeserializer;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OwlIndividual;
 import play.mvc.Result;
 import org.semanticweb.owlapi.model.OWLOntology;
 
@@ -14,8 +14,8 @@ import org.semanticweb.owlapi.model.OWLOntology;
 
 //import jadeOWL.base.OntologyManager;
 
-import controllers.OntologyController;
-import controllers.configuration.OntologyHelper;
+import ontoplay.controllers.OntologyController;
+import ontoplay.OntologyHelper;
 
 //TODO: This should generate individual describing the configuration, instead of constraints
 public class Organization extends OntologyController {

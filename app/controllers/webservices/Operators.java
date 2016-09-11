@@ -1,14 +1,14 @@
-package ontoplay.controllers.webservices;
+package controllers.webservices;
 
 import java.io.UnsupportedEncodingException;
 
 import com.google.gson.GsonBuilder;
 
-import controllers.OntologyController;
-import controllers.PropertyConditionRenderer;
-import models.ConfigurationException;
-import models.angular.OperatorDTO;
-import models.ontologyModel.OntoProperty;
+import ontoplay.controllers.OntologyController;
+import ontoplay.controllers.PropertyConditionRenderer;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.angular.OperatorDTO;
+import ontoplay.models.ontologyModel.OntoProperty;
 import play.Logger.ALogger;
 import play.mvc.Result;
 

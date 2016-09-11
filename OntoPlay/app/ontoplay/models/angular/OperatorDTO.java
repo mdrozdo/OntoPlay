@@ -1,9 +1,9 @@
-package models.angular;
+package ontoplay.models.angular;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import models.PropertyOperator;
+import ontoplay.models.PropertyOperator;
 
 public class OperatorDTO {
 	

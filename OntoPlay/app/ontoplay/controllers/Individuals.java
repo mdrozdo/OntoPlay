@@ -2,12 +2,12 @@ package ontoplay.controllers;
 
 import java.util.Map;
 
-import controllers.configuration.OntologyHelper;
+import ontoplay.OntologyHelper;
 import jobs.JenaOwlReaderConfiguration;
-import models.ConfigurationException;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
-import models.ontologyReading.jena.JenaOwlReaderConfig;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 import play.mvc.*;
 
 public class Individuals extends OntologyController {

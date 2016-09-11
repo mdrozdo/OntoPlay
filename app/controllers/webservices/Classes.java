@@ -1,15 +1,15 @@
-package ontoplay.controllers.webservices;
+package controllers.webservices;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.GsonBuilder;
 
-import controllers.OntologyController;
-import models.ConfigurationException;
-import models.angular.ClassDTO;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
+import ontoplay.controllers.OntologyController;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.angular.ClassDTO;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
 import play.Logger.ALogger;
 import play.mvc.Result;
 

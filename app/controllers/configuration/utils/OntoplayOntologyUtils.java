@@ -1,4 +1,4 @@
-package ontoplay.controllers.configuration.utils;
+package controllers.configuration.utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,8 +7,8 @@ import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import controllers.configuration.OntologyHelper;
-import controllers.configuration.Pathes;
+import ontoplay.OntologyHelper;
+import ontoplay.Pathes;
 
 /**
  * Read and set ontology configuration.

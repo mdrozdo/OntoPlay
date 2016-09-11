@@ -11,17 +11,17 @@ import java.util.List;
 
 import jobs.PropertyTypeConfiguration;
 import junit.framework.Assert;
-import models.InvalidConfigurationException;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
-import models.ontologyReading.OntologyReader;
-import models.ontologyReading.jena.JenaOwlReader;
-import models.ontologyReading.jena.OwlPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
-import models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
+import ontoplay.models.InvalidConfigurationException;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyReading.OntologyReader;
+import ontoplay.models.ontologyReading.jena.JenaOwlReader;
+import ontoplay.models.ontologyReading.jena.OwlPropertyFactory;
+import ontoplay.models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
+import ontoplay.models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
+import ontoplay.models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
+import ontoplay.models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
+import ontoplay.models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
 
 import org.junit.After;
 import org.junit.Before;

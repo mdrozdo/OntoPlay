@@ -1,4 +1,4 @@
-package ontoplay.controllers.configuration;
+package ontoplay;
 
 import jadeOWL.base.OntologyManager;
 
@@ -10,8 +10,8 @@ import java.io.OutputStream;
 import java.util.Map;
 
 import jobs.JenaOwlReaderConfiguration;
-import models.ontologyReading.OntologyReader;
-import models.ontologyReading.jena.JenaOwlReaderConfig;
+import ontoplay.models.ontologyReading.OntologyReader;
+import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 
 import org.mindswap.pellet.jena.PelletReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;

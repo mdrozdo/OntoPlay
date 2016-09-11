@@ -1,4 +1,4 @@
-package models.ontologyReading.owlApi;
+package ontoplay.models.ontologyReading.owlApi;
 
 public class OwlApiReaderConfig {
 	private boolean ignorePropsWithNoDomain;

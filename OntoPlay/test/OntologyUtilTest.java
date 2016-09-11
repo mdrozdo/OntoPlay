@@ -1,5 +1,5 @@
 import static org.junit.Assert.*;
-import models.OntologyUtils;
+import ontoplay.models.OntologyUtils;
 
 import org.junit.Ignore;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package ontoplay.controllers.configuration.utils;
+package controllers.configuration.utils;
 
 import java.io.IOException;
 import java.rmi.server.UID;
@@ -15,9 +15,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import models.angular.AnnotationCFDTO;
-import models.angular.AnnotationDTO;
-import models.angular.ComponentCF;
+import ontoplay.models.angular.AnnotationCFDTO;
+import ontoplay.models.angular.AnnotationDTO;
+import ontoplay.models.angular.ComponentCF;
 
 
 

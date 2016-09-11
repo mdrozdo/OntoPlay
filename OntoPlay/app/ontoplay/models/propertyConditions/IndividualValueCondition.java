@@ -1,6 +1,6 @@
-package models.propertyConditions;
+package ontoplay.models.propertyConditions;
 
-import models.PropertyValueCondition;
+import ontoplay.models.PropertyValueCondition;
 
 public class IndividualValueCondition extends PropertyValueCondition {
 	private String individualValue;

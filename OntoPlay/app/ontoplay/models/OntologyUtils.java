@@ -1,4 +1,4 @@
-package models;
+package ontoplay.models;
 
 import org.semanticweb.owlapi.model.IRI;
 

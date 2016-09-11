@@ -1,4 +1,4 @@
-package models.angular;
+package ontoplay.models.angular;
 
 /**
  * Annotation data ransfer object. Used in two places : <ul>

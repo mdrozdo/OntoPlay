@@ -1,4 +1,4 @@
-package ontoplay.controllers.webservices;
+package controllers.webservices;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,15 +7,15 @@ import org.semanticweb.owlapi.model.OWLOntology;
 
 import com.google.gson.GsonBuilder;
 
-import controllers.OntologyController;
-import controllers.configuration.OntologyHelper;
-import models.ClassCondition;
-import models.ConditionDeserializer;
-import models.angular.IndividualDTO;
-import models.angular.update.IndividualUpdateModel;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OwlIndividual;
-import models.ontologyReading.OntologyReader;
+import ontoplay.controllers.OntologyController;
+import ontoplay.OntologyHelper;
+import ontoplay.models.ClassCondition;
+import ontoplay.models.ConditionDeserializer;
+import ontoplay.models.angular.IndividualDTO;
+import ontoplay.models.angular.update.IndividualUpdateModel;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OwlIndividual;
+import ontoplay.models.ontologyReading.OntologyReader;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Result;

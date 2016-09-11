@@ -1,6 +1,6 @@
-package models;
+package ontoplay.models;
 
-import models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OntoProperty;
 
 
 public interface PropertyProvider {

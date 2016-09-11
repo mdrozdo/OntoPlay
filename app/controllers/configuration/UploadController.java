@@ -1,10 +1,14 @@
-package ontoplay.controllers.configuration;
+package controllers.configuration;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+
+import ontoplay.OntologyHelper;
+import ontoplay.Pathes;
+
 
 import controllers.configuration.utils.OntoplayOntologyUtils;
 import play.mvc.Controller;
@@ -19,7 +23,7 @@ public class UploadController extends Controller {
 
 	public static Result upload() {
 		MultipartFormData body = request().body().asMultipartFormData();
-		FilePart ontologyFile = body.getFile("ontologyFile");
+		FilePart<File> ontologyFile = body.getFile("ontologyFile");
 		String result = "";
 		if (ontologyFile != null) {
 			result += "file Name " + ontologyFile.getFilename()+"\n";

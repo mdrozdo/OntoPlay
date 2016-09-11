@@ -1,4 +1,4 @@
-package models.angular.update;
+package ontoplay.models.angular.update;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,9 +15,9 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.sparql.pfunction.library.concat;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-import controllers.configuration.OntologyHelper;
-import models.ontologyModel.OwlIndividual;
-import models.ontologyReading.OntologyReader;
+import ontoplay.OntologyHelper;
+import ontoplay.models.ontologyModel.OwlIndividual;
+import ontoplay.models.ontologyReading.OntologyReader;
 
 public class IndividualUpdateModel {
 

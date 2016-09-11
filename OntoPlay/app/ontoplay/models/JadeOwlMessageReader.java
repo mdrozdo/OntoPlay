@@ -1,4 +1,4 @@
-package models;
+package ontoplay.models;
 
 import jade.lang.acl.ACLMessage;
 import jadeOWL.base.OntologyManager;
@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import models.ontologyModel.OwlIndividual;
-import models.ontologyReading.jena.JenaOwlReaderConfig;
+import ontoplay.models.ontologyModel.OwlIndividual;
+import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 
 import org.mindswap.pellet.KnowledgeBase;
 import org.mindswap.pellet.jena.PelletInfGraph;

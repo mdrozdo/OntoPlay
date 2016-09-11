@@ -9,7 +9,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.FileManager;
 
-import controllers.configuration.OntologyHelper;
+import ontoplay.OntologyHelper;
 
 import java.io.InputStream;
 

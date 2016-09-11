@@ -5,11 +5,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import models.PropertyOperator;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
-import models.ontologyReading.OntologyReader;
-import models.ontologyReading.jena.JenaOwlReader;
+import ontoplay.models.PropertyOperator;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyReading.OntologyReader;
+import ontoplay.models.ontologyReading.jena.JenaOwlReader;
 
 public class ObjectPropertyRenderer extends PropertyConditionRenderer {
 

@@ -1,7 +1,7 @@
 @import play.data.Form 
-@import models.ontologyModel.OntoClass 
+@import ontoplay.models.ontologyModel.OntoClass 
 @import java.util.ArrayList 
-@import models.ontologyModel.OwlIndividual
+@import ontoplay.models.ontologyModel.OwlIndividual
 
 @(owlClass: OntoClass, individuals : ArrayList[OwlIndividual])
 @main(owlClass.getLocalName()) {

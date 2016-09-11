@@ -1,10 +1,10 @@
-package models;
+package ontoplay.models;
 
 import java.lang.reflect.Type;
 
-import models.propertyConditions.ClassValueCondition;
-import models.propertyConditions.DatatypePropertyCondition;
-import models.propertyConditions.IndividualValueCondition;
+import ontoplay.models.propertyConditions.ClassValueCondition;
+import ontoplay.models.propertyConditions.DatatypePropertyCondition;
+import ontoplay.models.propertyConditions.IndividualValueCondition;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

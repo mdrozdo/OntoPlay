@@ -2,7 +2,7 @@ package models.tan;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import models.ontologyReading.OntologyReader;
+import ontoplay.models.ontologyReading.OntologyReader;
 
 import org.apache.commons.lang.NullArgumentException;
 

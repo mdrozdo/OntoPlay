@@ -1,4 +1,4 @@
-package controllers.samples;
+package controllers;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -6,11 +6,11 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import models.ClassCondition;
-import models.ConditionDeserializer;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OwlIndividual;
-import models.ontologyReading.OntologyReader;
+import ontoplay.models.ClassCondition;
+import ontoplay.models.ConditionDeserializer;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OwlIndividual;
+import ontoplay.models.ontologyReading.OntologyReader;
 import models.tan.IndividualViewModel;
 import models.tan.Target;
 import play.mvc.Result;
@@ -27,12 +27,26 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.util.OWLEntityRemover;
 
-import controllers.OntologyController;
-import controllers.configuration.OntologyHelper;
+import play.Routes;
+
+import ontoplay.controllers.OntologyController;
+import ontoplay.OntologyHelper;
 
 //TODO: This should generate individual describing the configuration, instead of constraints
 public class OntoPlay extends OntologyController {
 
+	public static Result javascriptRoutes()
+    {
+        response().setContentType("text/javascript");
+        return ok(
+            Routes.javascriptRouter("jsRoutes",
+		        // Routes
+		        //controllers.routes.javascript.Application.condition()//,
+		        controllers.routes.javascript.OntoPlay.add()
+		        //controllers.routes.javascript.Application.getPropertyCondition(),
+		        //controllers.routes.javascript.Application.getValueCondition(),
+        ));
+    }
 	public static Result sendOffer(String targetURI, String offerURI)
 	{
 		try

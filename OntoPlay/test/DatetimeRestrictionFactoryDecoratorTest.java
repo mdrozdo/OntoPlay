@@ -1,10 +1,10 @@
 import java.io.File;
 
-import models.ClassCondition;
-import models.owlGeneration.restrictionFactories.DatetimeRestrictionFactoryDecorator;
-import models.properties.DateTimeProperty;
-import models.properties.OwlDatatypeProperty;
-import models.propertyConditions.DatatypePropertyCondition;
+import ontoplay.models.ClassCondition;
+import ontoplay.models.owlGeneration.restrictionFactories.DatetimeRestrictionFactoryDecorator;
+import ontoplay.models.properties.DateTimeProperty;
+import ontoplay.models.properties.OwlDatatypeProperty;
+import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 import static org.fest.assertions.Assertions.assertThat;
 
 import org.apache.commons.io.FileUtils;

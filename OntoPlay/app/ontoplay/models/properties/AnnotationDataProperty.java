@@ -1,8 +1,8 @@
-package models.properties;
+package ontoplay.models.properties;
 
 import org.semanticweb.owl.model.OWLDataType;
 
-import models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OntoProperty;
 
 public class AnnotationDataProperty extends OwlDatatypeProperty{
 

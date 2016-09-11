@@ -1,11 +1,11 @@
-package models.owlGeneration;
+package ontoplay.models.owlGeneration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import models.ClassCondition;
-import models.ConfigurationException;
-import models.OntologyUtils;
+import ontoplay.models.ClassCondition;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.OntologyUtils;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
 import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;

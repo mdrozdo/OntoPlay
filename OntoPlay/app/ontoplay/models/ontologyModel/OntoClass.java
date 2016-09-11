@@ -1,4 +1,4 @@
-package models.ontologyModel;
+package ontoplay.models.ontologyModel;
 
 import java.util.ArrayList;
 import java.util.List;

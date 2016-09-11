@@ -1,4 +1,4 @@
-package models.ontologyReading.owlApi;
+package ontoplay.models.ontologyReading.owlApi;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -8,17 +8,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import models.PropertyValueCondition;
-import models.angular.AnnotationDTO;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
-import models.ontologyModel.OwlIndividual;
-import models.ontologyReading.OntologyReader;
-import models.ontologyReading.owlApi.propertyFactories.DateTimePropertyFactory;
-import models.ontologyReading.owlApi.propertyFactories.FloatPropertyFactory;
-import models.ontologyReading.owlApi.propertyFactories.IntegerPropertyFactory;
-import models.ontologyReading.owlApi.propertyFactories.ObjectPropertyFactory;
-import models.ontologyReading.owlApi.propertyFactories.StringPropertyFactory;
+import ontoplay.models.PropertyValueCondition;
+import ontoplay.models.angular.AnnotationDTO;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OwlIndividual;
+import ontoplay.models.ontologyReading.OntologyReader;
+import ontoplay.models.ontologyReading.owlApi.propertyFactories.DateTimePropertyFactory;
+import ontoplay.models.ontologyReading.owlApi.propertyFactories.FloatPropertyFactory;
+import ontoplay.models.ontologyReading.owlApi.propertyFactories.IntegerPropertyFactory;
+import ontoplay.models.ontologyReading.owlApi.propertyFactories.ObjectPropertyFactory;
+import ontoplay.models.ontologyReading.owlApi.propertyFactories.StringPropertyFactory;
 
 import org.semanticweb.HermiT.Configuration;
 import org.semanticweb.HermiT.Reasoner;

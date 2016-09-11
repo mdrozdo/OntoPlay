@@ -1,4 +1,4 @@
-package models.ontologyModel;
+package ontoplay.models.ontologyModel;
 
 import java.util.Iterator;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang.NullArgumentException;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
-import models.PropertyValueCondition;
+import ontoplay.models.PropertyValueCondition;
 import com.hp.hpl.jena.ontology.Individual;
 
 

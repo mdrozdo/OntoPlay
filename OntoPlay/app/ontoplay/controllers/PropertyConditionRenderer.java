@@ -3,9 +3,9 @@ package ontoplay.controllers;
 import java.util.HashMap;
 import java.util.List;
 
-import models.PropertyOperator;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
+import ontoplay.models.PropertyOperator;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
 
 public abstract class PropertyConditionRenderer {
 

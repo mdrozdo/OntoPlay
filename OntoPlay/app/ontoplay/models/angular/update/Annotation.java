@@ -1,4 +1,4 @@
-package models.angular.update;
+package ontoplay.models.angular.update;
 /**
  * Represent annotation object on the front end
  * @author Motasem Alwazir

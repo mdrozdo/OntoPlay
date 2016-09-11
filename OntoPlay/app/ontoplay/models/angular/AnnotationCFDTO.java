@@ -1,4 +1,4 @@
-package models.angular;
+package ontoplay.models.angular;
 
 import java.util.ArrayList;
 import java.util.List;

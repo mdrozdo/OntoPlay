@@ -1,4 +1,4 @@
-package models.owlGeneration;
+package ontoplay.models.owlGeneration;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +7,8 @@ import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLIndividual;
 
-import models.ConfigurationException;
-import models.PropertyValueCondition;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.PropertyValueCondition;
 
 
 

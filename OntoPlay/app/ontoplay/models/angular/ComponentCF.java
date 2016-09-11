@@ -1,4 +1,4 @@
-package models.angular;
+package ontoplay.models.angular;
 /**
  * Represent the attributes of the Component Element in the annotation XML configuration file
  * @author Motasem Alwazir

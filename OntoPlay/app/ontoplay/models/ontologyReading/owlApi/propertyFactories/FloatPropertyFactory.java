@@ -1,7 +1,7 @@
-package models.ontologyReading.owlApi.propertyFactories;
+package ontoplay.models.ontologyReading.owlApi.propertyFactories;
 
-import models.ontologyModel.OntoProperty;
-import models.properties.FloatProperty;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.properties.FloatProperty;
 
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLProperty;

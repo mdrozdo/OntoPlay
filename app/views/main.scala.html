@@ -1,4 +1,5 @@
 @import views.html.organization.includes.header 
+
 @(title:String)(content: Html)
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,8 @@
 	
 </body>
 
-<script type="text/javascript" src="@routes.Constraints.javascriptRoutes"></script>
+<script type="text/javascript" src="@ontoplay.controllers.routes.Constraints.javascriptRoutes"></script>
+<script type="text/javascript" src="@routes.OntoPlay.javascriptRoutes"></script>
 <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript" charset="utf-8"></script>
 <script src="@routes.Assets.at("javascripts/json2.js")" type="text/javascript" charset="utf-8"></script>
 <script src="@routes.Assets.at("javascripts/queryBuilder.js")" type="text/javascript" charset="utf-8"></script>

@@ -1,4 +1,4 @@
-package ontoplay.controllers.configuration;
+package controllers.configuration;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -22,10 +22,12 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-import controllers.OntologyController;
+import ontoplay.OntologyHelper;
+import ontoplay.Pathes;
+import ontoplay.controllers.OntologyController;
 import controllers.configuration.utils.OntoplayAnnotationUtils;
-import models.angular.AnnotationDTO;
-import models.angular.OwlElementDTO;
+import ontoplay.models.angular.AnnotationDTO;
+import ontoplay.models.angular.OwlElementDTO;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Result;

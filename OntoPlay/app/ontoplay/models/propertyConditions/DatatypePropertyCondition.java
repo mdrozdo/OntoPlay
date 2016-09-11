@@ -1,7 +1,7 @@
-package models.propertyConditions;
+package ontoplay.models.propertyConditions;
 
-import models.PropertyValueCondition;
-import models.properties.OwlDatatypeProperty;
+import ontoplay.models.PropertyValueCondition;
+import ontoplay.models.properties.OwlDatatypeProperty;
 
 public class DatatypePropertyCondition extends PropertyValueCondition<OwlDatatypeProperty>{
 	private String datatypeValue;
