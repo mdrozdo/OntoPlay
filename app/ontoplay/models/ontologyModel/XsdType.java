@@ -1,4 +1,4 @@
-package models.ontologyModel;
+package ontoplay.models.ontologyModel;
 
 public enum XsdType {
 	String, Integer

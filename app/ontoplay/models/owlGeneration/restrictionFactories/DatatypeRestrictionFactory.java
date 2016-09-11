@@ -1,13 +1,13 @@
-package models.owlGeneration.restrictionFactories;
+package ontoplay.models.owlGeneration.restrictionFactories;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import models.ConfigurationException;
-import models.ontologyModel.OntoProperty;
-import models.owlGeneration.RestrictionFactory;
-import models.propertyConditions.DatatypePropertyCondition;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.owlGeneration.RestrictionFactory;
+import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClassExpression;

@@ -1,9 +1,9 @@
-package models.ontologyReading.jena.propertyFactories;
+package ontoplay.models.ontologyReading.jena.propertyFactories;
 
 
-import models.ontologyModel.OntoProperty;
-import models.ontologyReading.jena.OwlPropertyFactory;
-import models.properties.StringProperty;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyReading.jena.OwlPropertyFactory;
+import ontoplay.models.properties.StringProperty;
 
 import com.hp.hpl.jena.ontology.OntProperty;
 

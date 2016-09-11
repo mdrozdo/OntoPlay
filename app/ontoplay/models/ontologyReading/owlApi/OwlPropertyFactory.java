@@ -1,4 +1,4 @@
-package models.ontologyReading.owlApi;
+package ontoplay.models.ontologyReading.owlApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLProperty;
 
-import models.ontologyModel.OntoProperty;
-import models.properties.StringProperty;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.properties.StringProperty;
 
 public abstract class OwlPropertyFactory {
 	private static List<OwlPropertyFactory> factories = new ArrayList<OwlPropertyFactory>();

@@ -1,10 +1,10 @@
-package models.ontologyReading.jena.propertyFactories;
+package ontoplay.models.ontologyReading.jena.propertyFactories;
 
-import models.Constants;
-import models.ontologyModel.OntoProperty;
-import models.ontologyReading.jena.OwlPropertyFactory;
-import models.properties.AnnotationDataProperty;
-import models.properties.DateTimeProperty;
+import ontoplay.models.Constants;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyReading.jena.OwlPropertyFactory;
+import ontoplay.models.properties.AnnotationDataProperty;
+import ontoplay.models.properties.DateTimeProperty;
 import com.hp.hpl.jena.ontology.OntProperty;
 
 public class AnnotationDataPropertyFactory extends OwlPropertyFactory {

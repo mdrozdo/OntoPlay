@@ -1,4 +1,4 @@
-package models.ontologyModel;
+package ontoplay.models.ontologyModel;
 
 
 public interface OntoProperty extends OwlElement{

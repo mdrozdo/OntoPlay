@@ -1,4 +1,4 @@
-package models;
+package ontoplay.models;
 
 public class ConfigurationException extends Exception {
 

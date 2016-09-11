@@ -16,20 +16,20 @@ import jobs.JenaOwlReaderConfiguration;
 import jobs.PropertyTypeConfiguration;
 import jobs.PropertyTypeConfiguration;
 import junit.framework.Assert;
-import models.ClassCondition;
-import models.ConfigurationException;
-import models.InvalidConfigurationException;
-import models.PropertyOperator;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
-import models.ontologyModel.OwlElement;
-import models.ontologyReading.OntologyReader;
-import models.ontologyReading.jena.JenaOwlReader;
-import models.ontologyReading.jena.JenaOwlReaderConfig;
-import models.properties.OwlObjectProperty;
-import models.propertyConditions.ClassValueCondition;
-import models.propertyConditions.DatatypePropertyCondition;
-import models.propertyConditions.IndividualValueCondition;
+import ontoplay.models.ClassCondition;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.InvalidConfigurationException;
+import ontoplay.models.PropertyOperator;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OwlElement;
+import ontoplay.models.ontologyReading.OntologyReader;
+import ontoplay.models.ontologyReading.jena.JenaOwlReader;
+import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
+import ontoplay.models.properties.OwlObjectProperty;
+import ontoplay.models.propertyConditions.ClassValueCondition;
+import ontoplay.models.propertyConditions.DatatypePropertyCondition;
+import ontoplay.models.propertyConditions.IndividualValueCondition;
 
 import org.apache.commons.io.FileUtils;
 import org.custommonkey.xmlunit.XMLAssert;
@@ -42,9 +42,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import conf.Config;
-import controllers.Constraints;
-import controllers.PropertyConditionRenderer;
-import controllers.Renderer;
+import ontoplay.controllers.Constraints;
+import ontoplay.controllers.PropertyConditionRenderer;
+import ontoplay.controllers.Renderer;
 import static org.fest.assertions.Assertions.assertThat;
 
 //TODO: Create properties manually instead of using kb

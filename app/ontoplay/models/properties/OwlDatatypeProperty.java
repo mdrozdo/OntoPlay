@@ -1,8 +1,8 @@
-package models.properties;
+package ontoplay.models.properties;
 
 import com.hp.hpl.jena.ontology.Individual;
 
-import models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OntoProperty;
 
 public class OwlDatatypeProperty implements OntoProperty{
 	private String namespace;

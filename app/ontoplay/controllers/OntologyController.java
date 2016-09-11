@@ -3,10 +3,10 @@ package ontoplay.controllers;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import controllers.configuration.OntologyHelper;
-import models.ontologyModel.OntoClass;
-import models.ontologyReading.OntologyReader;
-import models.owlGeneration.OntologyGenerator;
+import ontoplay.OntologyHelper;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyReading.OntologyReader;
+import ontoplay.models.owlGeneration.OntologyGenerator;
 import play.mvc.Controller;
 
 public class OntologyController extends Controller {

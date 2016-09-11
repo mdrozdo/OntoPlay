@@ -1,30 +1,30 @@
 package jobs;
 
 import org.semanticweb.owlapi.model.OWLDataFactory;
-import controllers.DatatypePropertyRenderer;
-import controllers.DateTimePropertyValueRenderer;
-import controllers.ObjectPropertyRenderer;
-import controllers.PropertyConditionRenderer;
-import controllers.SimpleDatatypePropertyValueRenderer;
-import models.owlGeneration.IndividualGenerator;
-import models.owlGeneration.OntologyGenerator;
-import models.owlGeneration.RestrictionFactory;
-import models.owlGeneration.ClassRestrictionGenerator;
-import models.owlGeneration.restrictionFactories.ClassValueRestrictionFactory;
-import models.owlGeneration.restrictionFactories.DatatypeRestrictionFactory;
-import models.owlGeneration.restrictionFactories.DatetimeRestrictionFactoryDecorator;
-import models.owlGeneration.restrictionFactories.EqualToRestrictionFactory;
-import models.owlGeneration.restrictionFactories.GreaterThanRestrictionFactory;
-import models.owlGeneration.restrictionFactories.IndividualValueRestrictionFactory;
-import models.owlGeneration.restrictionFactories.LessThanRestrictionFactory;
-import models.properties.DateTimeProperty;
-import models.properties.FloatProperty;
-import models.properties.IntegerProperty;
-import models.properties.OwlObjectProperty;
-import models.properties.StringProperty;
-import models.propertyConditions.ClassValueCondition;
-import models.propertyConditions.DatatypePropertyCondition;
-import models.propertyConditions.IndividualValueCondition;
+import ontoplay.controllers.DatatypePropertyRenderer;
+import ontoplay.controllers.DateTimePropertyValueRenderer;
+import ontoplay.controllers.ObjectPropertyRenderer;
+import ontoplay.controllers.PropertyConditionRenderer;
+import ontoplay.controllers.SimpleDatatypePropertyValueRenderer;
+import ontoplay.models.owlGeneration.IndividualGenerator;
+import ontoplay.models.owlGeneration.OntologyGenerator;
+import ontoplay.models.owlGeneration.RestrictionFactory;
+import ontoplay.models.owlGeneration.ClassRestrictionGenerator;
+import ontoplay.models.owlGeneration.restrictionFactories.ClassValueRestrictionFactory;
+import ontoplay.models.owlGeneration.restrictionFactories.DatatypeRestrictionFactory;
+import ontoplay.models.owlGeneration.restrictionFactories.DatetimeRestrictionFactoryDecorator;
+import ontoplay.models.owlGeneration.restrictionFactories.EqualToRestrictionFactory;
+import ontoplay.models.owlGeneration.restrictionFactories.GreaterThanRestrictionFactory;
+import ontoplay.models.owlGeneration.restrictionFactories.IndividualValueRestrictionFactory;
+import ontoplay.models.owlGeneration.restrictionFactories.LessThanRestrictionFactory;
+import ontoplay.models.properties.DateTimeProperty;
+import ontoplay.models.properties.FloatProperty;
+import ontoplay.models.properties.IntegerProperty;
+import ontoplay.models.properties.OwlObjectProperty;
+import ontoplay.models.properties.StringProperty;
+import ontoplay.models.propertyConditions.ClassValueCondition;
+import ontoplay.models.propertyConditions.DatatypePropertyCondition;
+import ontoplay.models.propertyConditions.IndividualValueCondition;
 
 //@OnApplicationStart
 public class PropertyTypeConfiguration {

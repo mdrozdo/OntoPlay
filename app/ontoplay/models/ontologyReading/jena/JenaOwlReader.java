@@ -1,4 +1,4 @@
-package models.ontologyReading.jena;
+package ontoplay.models.ontologyReading.jena;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,21 +21,21 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-import controllers.configuration.OntologyHelper;
-import models.ConfigurationException;
-import models.InvalidConfigurationException;
-import models.PropertyValueCondition;
-import models.angular.AnnotationDTO;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
-import models.ontologyModel.OwlIndividual;
-import models.ontologyReading.OntologyReader;
-import models.ontologyReading.jena.propertyFactories.AnnotationDataPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
-import models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
-import models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
+import ontoplay.OntologyHelper;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.InvalidConfigurationException;
+import ontoplay.models.PropertyValueCondition;
+import ontoplay.models.angular.AnnotationDTO;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OwlIndividual;
+import ontoplay.models.ontologyReading.OntologyReader;
+import ontoplay.models.ontologyReading.jena.propertyFactories.AnnotationDataPropertyFactory;
+import ontoplay.models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
+import ontoplay.models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
+import ontoplay.models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
+import ontoplay.models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
+import ontoplay.models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
 import play.Logger.ALogger;
 
 public class JenaOwlReader extends OntologyReader{
@@ -158,7 +158,7 @@ public class JenaOwlReader extends OntologyReader{
 	}
 
 	/* (non-Javadoc)
-	 * @see models.ontologyReading.jena.OntologyReader#getIndividualsInRange(models.ontologyModel.OntoClass, models.ontologyModel.OntoProperty)
+	 * @see models.ontologyReading.jena.OntologyReader#getIndividualsInRange(models.ontologyModel.OntoClass, ontoplay.models.ontologyModel.OntoProperty)
 	 */
 	@Override
 	public List<OwlIndividual> getIndividualsInRange(OntoClass owlClass, OntoProperty property) {
@@ -199,7 +199,7 @@ public class JenaOwlReader extends OntologyReader{
 	}
 
 	/* (non-Javadoc)
-	 * @see models.ontologyReading.jena.OntologyReader#getClassesInRange(models.ontologyModel.OntoClass, models.ontologyModel.OntoProperty)
+	 * @see models.ontologyReading.jena.OntologyReader#getClassesInRange(models.ontologyModel.OntoClass, ontoplay.models.ontologyModel.OntoProperty)
 	 */
 	@Override
 	public List<OntoClass> getClassesInRange( OntoProperty property) {

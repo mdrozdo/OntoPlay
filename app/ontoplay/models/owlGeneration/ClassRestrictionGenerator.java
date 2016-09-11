@@ -1,11 +1,11 @@
-package models.owlGeneration;
+package ontoplay.models.owlGeneration;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import models.ClassCondition;
-import models.ConfigurationException;
-import models.PropertyValueCondition;
+import ontoplay.models.ClassCondition;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.PropertyValueCondition;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLClass;

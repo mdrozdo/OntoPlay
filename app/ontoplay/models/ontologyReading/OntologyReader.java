@@ -1,14 +1,14 @@
-package models.ontologyReading;
+package ontoplay.models.ontologyReading;
 
 import java.util.List;
 import java.util.Set;
 
-import models.ConfigurationException;
-import models.PropertyProvider;
-import models.angular.AnnotationDTO;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
-import models.ontologyModel.OwlIndividual;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.PropertyProvider;
+import ontoplay.models.angular.AnnotationDTO;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OwlIndividual;
 
 public abstract class OntologyReader implements PropertyProvider{
 	

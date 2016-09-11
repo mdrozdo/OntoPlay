@@ -1,12 +1,12 @@
-package models.owlGeneration.restrictionFactories;
+package ontoplay.models.owlGeneration.restrictionFactories;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 
-import models.ConfigurationException;
-import models.owlGeneration.RestrictionFactory;
-import models.propertyConditions.DatatypePropertyCondition;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.owlGeneration.RestrictionFactory;
+import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 
 public class DateRestrictionFactory extends DatatypeRestrictionFactory{
 

@@ -1,4 +1,4 @@
-package models.ontologyReading.owlApi.propertyFactories;
+package ontoplay.models.ontologyReading.owlApi.propertyFactories;
 
 import java.util.Set;
 
@@ -9,7 +9,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLProperty;
 import org.semanticweb.owlapi.model.OWLPropertyRange;
 
-import models.ontologyReading.owlApi.OwlPropertyFactory;
+import ontoplay.models.ontologyReading.owlApi.OwlPropertyFactory;
 
 public abstract class SimpleDatatypePropertyFactory extends OwlPropertyFactory {
 

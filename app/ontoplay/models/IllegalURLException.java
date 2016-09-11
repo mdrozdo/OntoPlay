@@ -1,4 +1,4 @@
-package models;
+package ontoplay.models;
 
 public class IllegalURLException extends IllegalArgumentException {
 	private String illegalUrl;

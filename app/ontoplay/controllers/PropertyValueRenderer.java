@@ -1,7 +1,7 @@
 package ontoplay.controllers;
 
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
 
 public interface PropertyValueRenderer {
 	void renderOperator(int conditionId, OntoClass owlClass,

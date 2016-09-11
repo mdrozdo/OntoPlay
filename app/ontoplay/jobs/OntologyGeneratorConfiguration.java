@@ -1,6 +1,6 @@
 package jobs;
 
-import models.owlGeneration.OntologyGenerator;
+import ontoplay.models.owlGeneration.OntologyGenerator;
 
 public class OntologyGeneratorConfiguration {
 	

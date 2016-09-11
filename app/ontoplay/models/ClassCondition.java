@@ -1,10 +1,10 @@
-package models;
+package ontoplay.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import controllers.configuration.OntologyHelper;
-import models.angular.update.Annotation;
+import ontoplay.OntologyHelper;
+import ontoplay.models.angular.update.Annotation;
 
 public class ClassCondition {
 	private String classUri;

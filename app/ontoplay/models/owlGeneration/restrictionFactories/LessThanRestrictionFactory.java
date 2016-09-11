@@ -1,6 +1,6 @@
-package models.owlGeneration.restrictionFactories;
+package ontoplay.models.owlGeneration.restrictionFactories;
 
-import models.propertyConditions.DatatypePropertyCondition;
+import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLClassExpression;

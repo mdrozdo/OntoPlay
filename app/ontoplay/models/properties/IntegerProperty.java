@@ -1,6 +1,6 @@
-package models.properties;
+package ontoplay.models.properties;
 
-import models.Constants;
+import ontoplay.models.Constants;
 
 public class IntegerProperty extends OwlDatatypeProperty {
 	

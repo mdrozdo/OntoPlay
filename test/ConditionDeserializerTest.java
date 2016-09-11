@@ -1,14 +1,14 @@
 import static org.fest.assertions.Assertions.assertThat;
 import junit.framework.Assert;
-import models.ClassCondition;
-import models.ConditionDeserializer;
-import models.PropertyProvider;
-import models.PropertyValueCondition;
-import models.ontologyModel.OntoProperty;
-import models.properties.IntegerProperty;
-import models.propertyConditions.ClassValueCondition;
-import models.propertyConditions.DatatypePropertyCondition;
-import models.propertyConditions.IndividualValueCondition;
+import ontoplay.models.ClassCondition;
+import ontoplay.models.ConditionDeserializer;
+import ontoplay.models.PropertyProvider;
+import ontoplay.models.PropertyValueCondition;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.properties.IntegerProperty;
+import ontoplay.models.propertyConditions.ClassValueCondition;
+import ontoplay.models.propertyConditions.DatatypePropertyCondition;
+import ontoplay.models.propertyConditions.IndividualValueCondition;
 
 import org.fest.assertions.Condition;
 import org.junit.Before;

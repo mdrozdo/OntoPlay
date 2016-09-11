@@ -1,10 +1,10 @@
-package models.angular.update;
+package ontoplay.models.angular.update;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import models.angular.update.Annotation;
-import models.angular.update.PropertyNode;
+import ontoplay.models.angular.update.Annotation;
+import ontoplay.models.angular.update.PropertyNode;
 /**
  * 
  * @author Motasem Alwazir

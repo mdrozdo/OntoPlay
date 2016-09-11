@@ -1,6 +1,6 @@
-package models.angular;
+package ontoplay.models.angular;
 
-import models.ontologyModel.OwlIndividual;
+import ontoplay.models.ontologyModel.OwlIndividual;
 
 public class IndividualDTO extends OwlElementDTO{
 

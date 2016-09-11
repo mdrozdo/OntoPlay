@@ -1,4 +1,4 @@
-package models.owlGeneration.restrictionFactories;
+package ontoplay.models.owlGeneration.restrictionFactories;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,9 +19,9 @@ import org.semanticweb.owlapi.model.OWLDatatype;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
 
-import models.ConfigurationException;
-import models.angular.update.Annotation;
-import models.propertyConditions.DatatypePropertyCondition;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.angular.update.Annotation;
+import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 
 //TODO: Unnecessary inheritance from DatatypeRestrictionFactory. Could be a new interface or something
 public class EqualToRestrictionFactory extends DatatypeRestrictionFactory {

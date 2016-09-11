@@ -6,9 +6,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import models.PropertyOperator;
-import models.ontologyModel.OntoClass;
-import models.ontologyModel.OntoProperty;
+import ontoplay.models.PropertyOperator;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
 import play.Logger.ALogger;
 
 public class DatatypePropertyRenderer extends PropertyConditionRenderer {

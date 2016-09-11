@@ -1,4 +1,4 @@
-package models.ontologyReading.jena;
+package ontoplay.models.ontologyReading.jena;
 
 import java.util.HashMap;
 

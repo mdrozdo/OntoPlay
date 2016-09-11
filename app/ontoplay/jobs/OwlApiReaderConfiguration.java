@@ -1,6 +1,6 @@
 package jobs;
 
-import models.ontologyReading.owlApi.OwlApiReader;
+import ontoplay.models.ontologyReading.owlApi.OwlApiReader;
 
 public class OwlApiReaderConfiguration  {
 	public void doJob() throws Exception {

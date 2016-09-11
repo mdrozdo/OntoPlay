@@ -1,10 +1,10 @@
-package models;
+package ontoplay.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import models.angular.update.Annotation;
-import models.ontologyModel.OntoProperty;
+import ontoplay.models.angular.update.Annotation;
+import ontoplay.models.ontologyModel.OntoProperty;
 
 
 public class PropertyValueCondition<T extends OntoProperty> {

@@ -1,11 +1,11 @@
-package models.owlGeneration;
+package ontoplay.models.owlGeneration;
 
 import java.util.ArrayList;
 import java.util.List;
-import models.ClassCondition;
-import models.ConfigurationException;
-import models.PropertyValueCondition;
-import models.angular.update.Annotation;
+import ontoplay.models.ClassCondition;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.PropertyValueCondition;
+import ontoplay.models.angular.update.Annotation;
 
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;

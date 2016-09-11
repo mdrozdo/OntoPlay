@@ -1,7 +1,7 @@
 package jobs;
 
-import models.ontologyReading.jena.JenaOwlReader;
-import models.ontologyReading.jena.JenaOwlReaderConfig;
+import ontoplay.models.ontologyReading.jena.JenaOwlReader;
+import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 
 public class JenaOwlReaderConfiguration{
 	

@@ -1,4 +1,4 @@
-package models.owlGeneration.restrictionFactories;
+package ontoplay.models.owlGeneration.restrictionFactories;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,10 +17,10 @@ import org.semanticweb.owlapi.model.OWLObjectHasValue;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 
-import models.ConfigurationException;
-import models.angular.update.Annotation;
-import models.owlGeneration.RestrictionFactory;
-import models.propertyConditions.IndividualValueCondition;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.angular.update.Annotation;
+import ontoplay.models.owlGeneration.RestrictionFactory;
+import ontoplay.models.propertyConditions.IndividualValueCondition;
 
 
 public class IndividualValueRestrictionFactory extends RestrictionFactory<IndividualValueCondition> {

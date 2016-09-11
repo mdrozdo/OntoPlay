@@ -1,11 +1,11 @@
-package models.ontologyReading.owlApi.propertyFactories;
+package ontoplay.models.ontologyReading.owlApi.propertyFactories;
 
 
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLProperty;
 
-import models.ontologyModel.OntoProperty;
-import models.properties.StringProperty;
+import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.properties.StringProperty;
 
 public class StringPropertyFactory extends SimpleDatatypePropertyFactory {
 	public StringPropertyFactory(){

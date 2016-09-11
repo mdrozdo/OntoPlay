@@ -1,7 +1,7 @@
-package models.propertyConditions;
+package ontoplay.models.propertyConditions;
 
-import models.ClassCondition;
-import models.PropertyValueCondition;
+import ontoplay.models.ClassCondition;
+import ontoplay.models.PropertyValueCondition;
 
 public class ClassValueCondition extends PropertyValueCondition {
 	private ClassCondition classConstraintValue;
