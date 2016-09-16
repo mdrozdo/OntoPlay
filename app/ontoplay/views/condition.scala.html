@@ -1,0 +1,85 @@
+@import ontoplay.models.ontologyModel.OntoClass
+@import play.data.Form
+
+@(owlClass: OntoClass, boxId: String)
+
+<div class='condition-panel' id='condition-@boxId'>
+	<div class='remove-condition'><a href='#'>remove</a></div>
+
+	<select name="property-select" class='property-select' >
+	        <option value="off">Select a property</option>
+	    	@owlClass.getProperties().map { p =>
+	            <option value="@p.getUri()">@p.getLocalName()</option>
+	        }
+	</select>	
+	<div class='property-condition'></div>
+
+</div>
+<div class='condition-operator'><a href='#'>and</a></div>
+
+<script type='text/javascript'>
+$(function(){
+	var classUri = "@owlClass.getUri()";
+	
+	$('#condition-${_id}>.remove-condition').hide();
+
+	$('#condition-@boxId+.condition-operator>a').bind('click', function(event){
+				
+		jsRoutesOntoPlay.ontoplay.controllers.Constraints.individual(@boxId, classUri).ajax({
+			success: function (data) {
+				$('#condition-@boxId+.condition-operator>a').hide();
+				$('#condition-@boxId+.condition-operator').after(data);
+				$('#condition-@boxId>.remove-condition').show();
+			},
+			error: function(){
+				alert('ERRORROROROR!!!')
+			}
+		});
+		   		
+		return false;
+	});
+
+	$('#condition-${_id}>.remove-condition>a').bind('click', function(event){
+		$('#condition-${_id}').remove();		
+		return false;
+	});
+
+	var select = $('#condition-@boxId .property-select');
+	$('#condition-@boxId .property-select').bind('change', function(event){
+		var propertyUri = $(':selected', select).val();
+		console.log(propertyUri);
+		if(propertyUri === 'off'){
+			$('#condition-@boxId .property-condition').html('');
+			return;
+		}		   
+		
+		$.ajax(jsRoutesOntoPlay.ontoplay.controllers.Constraints.getPropertyCondition(@boxId, classUri, propertyUri))
+			.done(function(data){
+				$('#condition-@boxId .property-condition').html(data);
+			})
+			.fail(function(e){
+				alert("Error! " + e);
+			})
+	});
+
+@*
+	var select = $('#condition-${_id} .property-select');
+	$('#condition-${_id} .property-select').bind('change', function(event){
+		var propertyUri = $(':selected', select).val();
+		console.log(propertyUri);
+		if(propertyUri === 'off'){
+			$('#condition-${_id} .property-condition').html('');
+			return;
+		}
+		
+		var getPropConditionAction = #{jsAction @Constraints.getPropertyCondition(':conditionId', ':classUri', ':propertyUri') /}
+		   
+		$('#condition-${_id} .property-condition').load(getPropConditionAction({
+			conditionId:${_id},
+			classUri:encodeURIComponent('${_class.getUri()}'),
+			propertyUri:encodeURIComponent(propertyUri)
+		}));
+	});
+	*@
+});
+</script>

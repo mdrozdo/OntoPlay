@@ -1,14 +1,6 @@
-name := """OntoPlay-TAN"""
+name := """OntoPlay"""
 
 version := "1.0-SNAPSHOT"
-
-lazy val module = (project in file("OntoPlay"))
-    .enablePlugins(PlayJava)
-
-lazy val root = (project in file("."))
-	.enablePlugins(PlayJava)
-	.aggregate(module)
-    .dependsOn(module)
 
 scalaVersion := "2.11.7"
 
@@ -17,5 +9,7 @@ routesGenerator := StaticRoutesGenerator
 libraryDependencies ++= Seq(
   javaJdbc,
   cache,
-  javaWs
+  javaWs,
+  "com.google.code.gson" % "gson" % "2.2.2",
+    "commons-io" % "commons-io" % "2.4"
 )

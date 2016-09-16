@@ -1,0 +1,23 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+
+# Module routes
+GET /constraints/condition ontoplay.controllers.Constraints.condition(conditionId : Int, classUri: String)
+GET /constraints/individual ontoplay.controllers.Constraints.individual(conditionId : Int, classUri: String)
+GET /constraints/getValueCondition ontoplay.controllers.Constraints.getValueCondition(conditionId : Int, classUri: String, propertyUri : String, operator : String)
+GET /constraints/getPropertyCondition ontoplay.controllers.Constraints.getPropertyCondition(conditionId: Integer, classUri: String, propertyUri: String)
+GET /individuals/getPropertyCondition ontoplay.controllers.Individuals.getPropertyCondition(conditionId: Integer, classUri: String, propertyUri: String)
+
+
+
+# Javascript routing
+GET    /assets/javascripts/ontoplay/routes      ontoplay.controllers.Constraints.javascriptRoutes()
+
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /ontoplay/*file               ontoplay.controllers.Assets.at(path="/public/lib/ontoplay", file)
+
