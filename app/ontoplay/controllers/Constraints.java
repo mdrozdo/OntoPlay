@@ -18,7 +18,7 @@ public class Constraints extends OntologyController {
     {
         response().setContentType("text/javascript");
         return ok(
-            Routes.javascriptRouter("jsRoutes",
+            Routes.javascriptRouter("jsRoutesOntoPlay",
 		        // Routes
 		        //controllers.routes.javascript.Application.condition()//,
 		        ontoplay.controllers.routes.javascript.Constraints.individual(),

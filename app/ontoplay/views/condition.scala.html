@@ -25,7 +25,7 @@ $(function(){
 
 	$('#condition-@boxId+.condition-operator>a').bind('click', function(event){
 				
-		jsRoutes.controllers.Constraints.individual(@boxId, classUri).ajax({
+		jsRoutesOntoPlay.ontoplay.controllers.Constraints.individual(@boxId, classUri).ajax({
 			success: function (data) {
 				$('#condition-@boxId+.condition-operator>a').hide();
 				$('#condition-@boxId+.condition-operator').after(data);
@@ -53,7 +53,7 @@ $(function(){
 			return;
 		}		   
 		
-		$.ajax(jsRoutes.controllers.Constraints.getPropertyCondition(@boxId, classUri, propertyUri))
+		$.ajax(jsRoutesOntoPlay.ontoplay.controllers.Constraints.getPropertyCondition(@boxId, classUri, propertyUri))
 			.done(function(data){
 				$('#condition-@boxId .property-condition').html(data);
 			})

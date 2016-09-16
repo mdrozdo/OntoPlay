@@ -26,7 +26,7 @@
 			return;
 		}		
 
-		jsRoutes.controllers.Constraints.getValueCondition('@conditionId', '@classUri', '@propertyUri', operator).ajax({
+		jsRoutesOntoPlay.ontoplay.controllers.Constraints.getValueCondition('@conditionId', '@classUri', '@propertyUri', operator).ajax({
 			success: function (data) {
 				$('#condition-@conditionId .value-condition').html(data);
 			},
