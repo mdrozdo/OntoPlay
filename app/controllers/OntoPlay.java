@@ -11,8 +11,8 @@ import ontoplay.models.ConditionDeserializer;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OwlIndividual;
 import ontoplay.models.ontologyReading.OntologyReader;
-import models.tan.IndividualViewModel;
-import models.tan.Target;
+import models.IndividualViewModel;
+import models.Target;
 import play.mvc.Result;
 import play.mvc.Results;
 

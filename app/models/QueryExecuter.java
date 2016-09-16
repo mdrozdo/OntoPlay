@@ -1,4 +1,4 @@
-package models.tan;
+package models;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.query.Query;

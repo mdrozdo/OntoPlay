@@ -1,4 +1,4 @@
-package models.tan;
+package models;
 
 public class StringConstants {
 	private static final String ConsumerCountQuery = "Prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> Prefix tan:<http://www.tan.com#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> SELECT (COUNT(?consumer) as ?count) WHERE { SELECT DISTINCT ?consumer WHERE { ?consumer tan:isInterestedIn ?quantifiableInterest; tan:isTargetedBy <%s>.}}";

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-import jobs.JenaOwlReaderConfiguration;
+import ontoplay.jobs.JenaOwlReaderConfiguration;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 

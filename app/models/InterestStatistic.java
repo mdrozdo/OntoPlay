@@ -1,4 +1,4 @@
-package models.tan;
+package models;
 
 public class InterestStatistic {
 	
