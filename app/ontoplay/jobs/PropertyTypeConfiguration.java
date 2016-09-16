@@ -1,4 +1,4 @@
-package jobs;
+package ontoplay.jobs;
 
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import ontoplay.controllers.DatatypePropertyRenderer;

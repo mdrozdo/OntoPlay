@@ -1,4 +1,4 @@
-package jobs;
+package ontoplay.jobs;
 
 import ontoplay.models.ontologyReading.jena.JenaOwlReader;
 import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
