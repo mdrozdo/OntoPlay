@@ -49,7 +49,7 @@ $(function(){
 			alert("Please enter the individual name");
 		}
 		else{
-		$.ajax(jsRoutes.controllers.samples.OntoPlay.add(conditionJson,individualName))
+		$.ajax(jsRoutes.controllers.OntoPlay.add(conditionJson,individualName))
 			.done( function(data){
 				if(data=='ok'){
 					window.location.href="/view/@owlClass.getLocalName()";	

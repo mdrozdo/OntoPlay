@@ -22,10 +22,10 @@
 		}
 
 		@if(isDescriptionOfIndividual){
-			var getValueConditionAction = jsRoutes.controllers.Constraints.individual(@conditionId, classUri);
+			var getValueConditionAction = jsRoutesOntoPlay.ontoplay.controllers.Constraints.individual(@conditionId, classUri);
 			
 		} else{
- 			var getValueConditionAction = jsRoutes.controllers.Constraints.condition(@conditionId, classUri);	
+ 			var getValueConditionAction = jsRoutesOntoPlay.ontoplay.controllers.Constraints.condition(@conditionId, classUri);
 		}
 
 		$.ajax(getValueConditionAction)

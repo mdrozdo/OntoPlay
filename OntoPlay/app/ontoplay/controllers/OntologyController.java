@@ -32,7 +32,7 @@ public class OntologyController extends Controller {
 				parameterTypes[i] = args[i].getClass();
 			}
 
-			Method method = Class.forName("views.html." + templateName)
+			Method method = Class.forName("ontoplay.views.html." + templateName)
 					.getMethod("render", parameterTypes);
 
 			play.twirl.api.Html html = (play.twirl.api.Html) method.invoke(

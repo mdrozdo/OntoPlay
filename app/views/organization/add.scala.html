@@ -76,7 +76,7 @@ $(function(){
 			alert("Please enter the individual name");
 		}
 		else{
-		$.ajax(jsRoutes.controllers.samples.Organization.updateConditions(conditionJson,individualName))
+		$.ajax(jsRoutes.controllers.Organization.updateConditions(conditionJson,individualName))
 			.done( function(data){
 				if(data=='ok'){
 					window.location.href="/view/@owlClass.getLocalName()";}

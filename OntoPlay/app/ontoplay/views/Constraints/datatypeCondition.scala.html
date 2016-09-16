@@ -16,7 +16,7 @@
 	console.log(select);
 	select.bind('change', function(event){
 		var operator = $(':selected', select).val();
-		var getValueConditionAction = jsRoutes.controllers.Constraints.getValueCondition(@conditionId, '@classUri', '@propertyUri', operator);
+		var getValueConditionAction = jsRoutesOntoPlay.ontoplay.controllers.Constraints.getValueCondition(@conditionId, '@classUri', '@propertyUri', operator);
 		console.log(operator);
 		if(operator === 'off'){
 			$('#condition-@conditionId .value-condition').html('');
