@@ -10,6 +10,8 @@ import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyModel.OwlIndividual;
 
+import javax.inject.Singleton;
+
 public abstract class OntologyReader implements PropertyProvider{
 	
 	private static OntologyReader instance;

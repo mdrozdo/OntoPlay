@@ -39,6 +39,9 @@ import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.util.AutoIRIMapper;
 import com.hp.hpl.jena.shared.ConfigException;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class OwlApiReader extends OntologyReader {
 	private final OWLOntology ontology;
 	private final OWLReasoner reasoner;

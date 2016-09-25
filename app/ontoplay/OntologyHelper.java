@@ -25,18 +25,22 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.FileManager;
 
+//TODO: Make this a normal class with non-static methods.
+// TODO: Make the current consts into normal fields, passed in from outside.
+//TODO: Paths should be removed from OntoPlay.
 public class OntologyHelper {
-	
+
+
 	public static String ontologyName="TAN.OWL";
 
 	public static String file = "file:"+Pathes.UPLOADS_PATH+ontologyName;
 
 	public static String fileName = Pathes.UPLOADS_PATH+ontologyName;
-	
+
 	public static String checkFile = "file:samples/TAN/TANCheckk.owl";
-	
+
 	public static String checkFileName = "./samples/TAN/TANCheckk.owl";
-	
+
 
 	public static String checkFilePath = "./samples/OrganizationCheck";
 

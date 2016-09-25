@@ -38,6 +38,9 @@ import ontoplay.models.ontologyReading.jena.propertyFactories.ObjectPropertyFact
 import ontoplay.models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
 import play.Logger.ALogger;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class JenaOwlReader extends OntologyReader{
 	private OntModel model;
 	private String uri;

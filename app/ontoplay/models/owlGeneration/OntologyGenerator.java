@@ -23,6 +23,9 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class OntologyGenerator {
 	private static OntologyGenerator instance;
 	private static OWLDataFactory factory;
