@@ -4,19 +4,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import ontoplay.OntologyHelper;
-import ontoplay.models.ontologyModel.OntoClass;
-import ontoplay.models.ontologyReading.OntologyReader;
-import ontoplay.models.owlGeneration.OntologyGenerator;
 import play.mvc.Controller;
+
+import javax.inject.Inject;
 
 public class OntologyController extends Controller {
 
-	protected static OntologyReader ontologyReader = OntologyReader.getGlobalInstance();
-	protected static OntologyGenerator ontologyGenerator = OntologyGenerator.getGlobalInstance();
-
-	protected static OntoClass getOwlClass(String className) {
-		return ontologyReader.getOwlClass(OntologyHelper.nameSpace + className);
-	}
+	@Inject
+	protected static OntologyHelper ontoHelper;
 
 	protected static class HtmlHolder {
 		public play.twirl.api.Html value;

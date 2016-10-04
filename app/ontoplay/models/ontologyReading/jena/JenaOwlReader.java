@@ -1,6 +1,5 @@
 package ontoplay.models.ontologyReading.jena;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -18,10 +17,8 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-import ontoplay.OntologyHelper;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.InvalidConfigurationException;
 import ontoplay.models.PropertyValueCondition;
@@ -30,20 +27,18 @@ import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyModel.OwlIndividual;
 import ontoplay.models.ontologyReading.OntologyReader;
-import ontoplay.models.ontologyReading.jena.propertyFactories.AnnotationDataPropertyFactory;
 import ontoplay.models.ontologyReading.jena.propertyFactories.DateTimePropertyFactory;
 import ontoplay.models.ontologyReading.jena.propertyFactories.FloatPropertyFactory;
 import ontoplay.models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
 import ontoplay.models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
 import ontoplay.models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
-import play.Logger.ALogger;
 
 import javax.inject.Singleton;
 
 @Singleton
 public class JenaOwlReader extends OntologyReader{
 	private OntModel model;
-	private String uri;
+	private String ontologyNamespace;
 	private boolean ignorePropsWithNoDomain;
 
 	public static void initialize(String uri, JenaOwlReaderConfig config) {
@@ -82,7 +77,7 @@ public class JenaOwlReader extends OntologyReader{
 	private JenaOwlReader(OntModel model) {
 		this.model = model;
 		String namespace = model.getNsPrefixURI("");
-		this.uri = namespace.substring(0, namespace.length() - 1);
+		this.ontologyNamespace = namespace.substring(0, namespace.length() - 1);
 	}
 
 	public JenaOwlReader(OntModel model, JenaOwlReaderConfig config) {
@@ -98,7 +93,7 @@ public class JenaOwlReader extends OntologyReader{
 	@Override
 	public OntoClass getOwlClass(String className) {
 		if (!(className.contains("#"))) {
-			className = String.format("%s#%s", uri, className);
+			className = String.format("%s#%s", ontologyNamespace, className);
 		}
 		OntClass ontClass = model.getOntClass(className);
 		if (ontClass == null)
@@ -265,11 +260,11 @@ public class JenaOwlReader extends OntologyReader{
 	public Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace) {
     	ExtendedIterator<AnnotationProperty> ei=model.listAnnotationProperties();
     	Set<AnnotationDTO> annotations=new HashSet<AnnotationDTO>();
-    	while(ei.hasNext()){
-			AnnotationProperty temp=ei.next();
-			if((temp.getURI().indexOf(OntologyHelper.iriString)>-1)==isFromNameSpace)
-				annotations.add(new AnnotationDTO(temp.getURI(), temp.getLocalName()));
-		}
+    	while(ei.hasNext()) {
+            AnnotationProperty temp = ei.next();
+            if ((temp.getURI().indexOf(ontologyNamespace) > -1) == isFromNameSpace)
+                annotations.add(new AnnotationDTO(temp.getURI(), temp.getLocalName()));
+        }
     	return annotations;
 	}
 }

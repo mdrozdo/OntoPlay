@@ -7,13 +7,14 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Map;
 
 import ontoplay.jobs.JenaOwlReaderConfiguration;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.ontologyModel.OntoClass;
+import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 
-import org.mindswap.pellet.jena.PelletReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
@@ -21,47 +22,47 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.util.FileManager;
-
 //TODO: Make this a normal class with non-static methods.
 // TODO: Make the current consts into normal fields, passed in from outside.
 //TODO: Paths should be removed from OntoPlay.
 public class OntologyHelper {
+	private String ontologyName; //="TAN.OWL";
+    private OntologyReader ontoReader;
 
+    private String file; // = "file:"+Pathes.UPLOADS_PATH+ontologyName;
 
-	public static String ontologyName="TAN.OWL";
+	private String filePath; // = Pathes.UPLOADS_PATH+ontologyName;
 
-	public static String file = "file:"+Pathes.UPLOADS_PATH+ontologyName;
+	private String checkFile; // = "file:samples/TAN/TANCheckk.owl";
 
-	public static String fileName = Pathes.UPLOADS_PATH+ontologyName;
+	private String checkFilePath; // = "./samples/TAN/TANCheckk.owl";
 
-	public static String checkFile = "file:samples/TAN/TANCheckk.owl";
+    private String ontologyNamespace; // = "http://www.tan.com";
 
-	public static String checkFileName = "./samples/TAN/TANCheckk.owl";
+    public OntologyHelper(String fileName, String folderPath, String checkFileName, String checkFolderPath, String ontologyNamespace, OntologyReader ontoReader) {
+        this.ontologyName = fileName;
+        this.ontoReader = ontoReader;
+        this.file = "file:" + folderPath + "/" + fileName;
+        this.filePath = folderPath + "/" + fileName;
+        this.checkFile = "file:" + checkFolderPath + "/" + checkFileName;
+        this.checkFilePath =  checkFolderPath + "/" + checkFileName;
+        this.ontologyNamespace = ontologyNamespace;
+    }
 
-
-	public static String checkFilePath = "./samples/OrganizationCheck";
-
-	public static String nameSpace = "http://www.tan.com#";
-
-	public static String iriString = "http://www.tan.com";
-
-	public static boolean saveOntology(OWLOntology generatedOntology) {
+    public boolean saveOntology(OWLOntology generatedOntology) {
 		OWLOntologyManager OWLmanager = OWLManager.createOWLOntologyManager();
 		OWLOntology originalOntology = null;
 	
 		try {
 			originalOntology = OWLmanager
-					.loadOntologyFromOntologyDocument(new File(fileName));
+					.loadOntologyFromOntologyDocument(new File(filePath));
 		} catch (OWLOntologyCreationException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
 		OntologyManager manager = new OntologyManager();
-		IRI test = IRI.create(iriString);
+		IRI test = IRI.create(ontologyNamespace);
 		OWLOntology newOntology = null;
 
 		try {
@@ -75,7 +76,7 @@ public class OntologyHelper {
 
 		OutputStream out = null;
 		try {
-				out = new FileOutputStream(fileName);
+				out = new FileOutputStream(filePath);
 				OWLmanager.saveOntology(newOntology, out);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -92,19 +93,19 @@ public class OntologyHelper {
 		return true;
 	}
 
-	public static boolean checkOntology(OWLOntology generatedOntology) {
+	public boolean checkOntology(OWLOntology generatedOntology) {
 		try {
 			OWLOntologyManager OWLmanager = OWLManager.createOWLOntologyManager();
 			OWLOntology originalOntology = null;
 			try {
-				originalOntology = OWLmanager.loadOntologyFromOntologyDocument(new File(fileName));
+				originalOntology = OWLmanager.loadOntologyFromOntologyDocument(new File(filePath));
 			} catch (OWLOntologyCreationException e1) {
 				// TODO Auto-generated catch block
 				return false;
 			}
 
 			OntologyManager manager = new OntologyManager();
-			IRI test = IRI.create(iriString);
+			IRI test = IRI.create(ontologyNamespace);
 			OWLOntology newOntology = null;
 			try {
 				newOntology = manager.mergeOntologies(test, originalOntology,generatedOntology);
@@ -115,7 +116,7 @@ public class OntologyHelper {
 			}
 
 			try {
-				OutputStream out = new FileOutputStream(checkFileName);
+				OutputStream out = new FileOutputStream(checkFilePath);
 				//out.write(5);
 				OWLmanager.saveOntology(newOntology, out);
 				try {
@@ -138,14 +139,21 @@ public class OntologyHelper {
 		}
 	}
 
-	public static OntologyReader checkOwlReader() {
+	public OntologyReader checkOwlReader() {
 		new JenaOwlReaderConfiguration().
-		initialize(checkFile, new JenaOwlReaderConfig().useLocalMapping(iriString,checkFileName));
+		initialize(checkFile, new JenaOwlReaderConfig().useLocalMapping(ontologyNamespace, checkFilePath));
 		return OntologyReader.getGlobalInstance();
 	}
 	
-	public static String getComponentIriByName(String name){
-		return nameSpace+name;
+	public String getComponentIriByName(String name){
+		return ontologyNamespace +"#"+name;
 	}
-	
+
+    public OntoClass getOwlClass(String classUri) {
+        return ontoReader.getOwlClass(classUri);
+    }
+
+    public OntoProperty getProperty(String propertyUri) throws ConfigurationException {
+        return ontoReader.getProperty(propertyUri);
+    }
 }

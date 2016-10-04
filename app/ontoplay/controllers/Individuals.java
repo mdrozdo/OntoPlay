@@ -2,12 +2,9 @@ package ontoplay.controllers;
 
 import java.util.Map;
 
-import ontoplay.OntologyHelper;
-import ontoplay.jobs.JenaOwlReaderConfiguration;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
-import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 import play.mvc.*;
 
 public class Individuals extends OntologyController {
@@ -24,11 +21,10 @@ public class Individuals extends OntologyController {
 
 	public static Result getPropertyCondition(int conditionId, String classUri,
 			String propertyUri) throws ConfigurationException {
-		new JenaOwlReaderConfiguration().initialize(OntologyHelper.file,new JenaOwlReaderConfig().useLocalMapping(OntologyHelper.iriString,OntologyHelper.fileName));
-		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
-		
-		
-		OntoProperty property = ontologyReader.getProperty(propertyUri);
+
+		OntoClass owlClass = ontoHelper.getOwlClass(classUri);
+
+		OntoProperty property = ontoHelper.getProperty(propertyUri);
 		
 		//from here I can know the property type (data,object,string ,date);
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
@@ -53,11 +49,11 @@ public class Individuals extends OntologyController {
 // 			String propertyUri, String operator) throws ConfigurationException {
 // 		OntoClass owlClass = getOntologyReader().getOwlClass(classUri);
 // 		OntoProperty property = getOntologyReader().getProperty(propertyUri);
-		
+
 // 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
 // 				.getRenderer(property.getClass());
-		
-// 		conditionRenderer.renderOperator(conditionId, owlClass, property, operator, 
+
+// 		conditionRenderer.renderOperator(conditionId, owlClass, property, operator,
 // 				new Renderer() {
 
 // 					public void renderTemplate(String templateName,

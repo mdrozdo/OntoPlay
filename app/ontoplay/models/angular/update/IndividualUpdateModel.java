@@ -15,8 +15,6 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.sparql.pfunction.library.concat;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-import ontoplay.OntologyHelper;
-import ontoplay.models.ontologyModel.OwlIndividual;
 import ontoplay.models.ontologyReading.OntologyReader;
 
 public class IndividualUpdateModel {
@@ -204,10 +202,6 @@ public class IndividualUpdateModel {
 	}
 
 	private String getIndividualClass(String individualUri) {
-		// check if it's Uri or name
-		if (individualUri.indexOf("#") == -1)
-			individualUri = OntologyHelper.nameSpace + individualUri;
-
 		try {
 			return OntologyReader.getGlobalInstance().getIndividual(individualUri).getIndividual().getOntClass()
 					.getLocalName();

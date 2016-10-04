@@ -1,14 +1,13 @@
 package ontoplay.controllers;
 
-import java.util.Map;
-
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
-import play.Routes;
-import play.mvc.*;
-
 import ontoplay.views.html.*;
+import play.Routes;
+import play.mvc.Result;
+
+import java.util.Map;
 
 public class Constraints extends OntologyController {
 
@@ -33,14 +32,14 @@ public class Constraints extends OntologyController {
     }
 
 	public static Result condition(int conditionId, String classUri) {
-		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
+		OntoClass owlClass = ontoHelper.getOwlClass(classUri);
 		maxConditionId++;
 		int newConditionId = maxConditionId;
 		return ok(condition.render( owlClass, ""+newConditionId));
 	}
 	
 	public static Result individual(int conditionId, String classUri) {
-		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
+		OntoClass owlClass = ontoHelper.getOwlClass(classUri);
 		maxConditionId++;
         int newConditionId = maxConditionId;
         return ok(individual.render( owlClass, ""+newConditionId));
@@ -50,8 +49,8 @@ public class Constraints extends OntologyController {
    public static Result getPropertyCondition(int conditionId, String classUri,
 			String propertyUri) throws ConfigurationException {
 		
-		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
-		OntoProperty property = ontologyReader.getProperty(propertyUri);
+		OntoClass owlClass = ontoHelper.getOwlClass(classUri);
+		OntoProperty property = ontoHelper.getProperty(propertyUri);
 		
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
 				.getRenderer(property.getClass());
@@ -73,9 +72,9 @@ public class Constraints extends OntologyController {
 	public static Result getValueCondition(int conditionId, String classUri,
 			String propertyUri, String operator) throws ConfigurationException {
 		
-		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
+		OntoClass owlClass = ontoHelper.getOwlClass(classUri);
 	
-		OntoProperty property = ontologyReader.getProperty(propertyUri);
+		OntoProperty property = ontoHelper.getProperty(propertyUri);
 		
 		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
 				.getRenderer(property.getClass());
