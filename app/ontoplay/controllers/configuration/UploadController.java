@@ -8,9 +8,7 @@ import org.apache.commons.io.FileUtils;
 
 import ontoplay.OntologyHelper;
 import ontoplay.Pathes;
-
-
-import controllers.configuration.utils.OntoplayOntologyUtils;
+import ontoplay.controllers.configuration.utils.OntoplayOntologyUtils;
 import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
@@ -18,7 +16,7 @@ import play.mvc.Result;
 
 public class UploadController extends Controller {
 	public static Result showUploadPage() {
-		return ok(views.html.configuration.upload.render(OntologyHelper.ontologyName,OntologyHelper.iriString));
+		return ok(ontoplay.views.html.configuration.upload.render(OntologyHelper.ontologyName,OntologyHelper.iriString));
 	}
 
 	public static Result upload() {

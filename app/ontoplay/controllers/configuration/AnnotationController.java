@@ -25,7 +25,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import ontoplay.OntologyHelper;
 import ontoplay.Pathes;
 import ontoplay.controllers.OntologyController;
-import controllers.configuration.utils.OntoplayAnnotationUtils;
+import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
 import ontoplay.models.angular.AnnotationDTO;
 import ontoplay.models.angular.OwlElementDTO;
 import play.data.DynamicForm;
@@ -41,7 +41,7 @@ public class AnnotationController extends OntologyController {
 	static OntoplayAnnotationUtils ontoplayAnnotationUtils=new OntoplayAnnotationUtils(Pathes.Annotation_XML_FILE_PATH);
 	       
 	public static Result showAnnotationCFPage() {
-		return ok(views.html.configuration.annotations.render());
+		return ok(ontoplay.views.html.configuration.annotations.render());
 	}
 	
 	public static Result getAnnotationForCFPage(){
