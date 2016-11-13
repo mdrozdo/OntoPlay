@@ -19,6 +19,16 @@ GET    /assets/javascripts/ontoplay/routes      ontoplay.controllers.Constraints
 GET /uploadOntology  controllers.configuration.UploadController.showUploadPage()
 POST /uploadOntology controllers.configuration.UploadController.upload()
 
+#Annotations configuration
+GET /annotation/configuration/show controllers.configuration.AnnotationController.showAnnotationCFPage()
+GET /annotation/configuration/getAnnotations controllers.configuration.AnnotationController.getAnnotationForCFPage()
+GET /annotation/configuration/getComponenets   controllers.configuration.AnnotationController.getOntologyComponents()
+GET /annotation/configuration/getRelations/:annotationIri controllers.configuration.AnnotationController.getRelationsByAnnotationIri(annotationIri: String)
+POST /annotation/configuration/addRelation 							controllers.configuration.AnnotationController.AddRelation()
+POST /annotation/configuration/deleteRelation 							controllers.configuration.AnnotationController.deleteRelation()
+POST /annotation/configuration/deleteAllRelations 							controllers.configuration.AnnotationController.deleteAllRelations()
+
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /ontoplay/*file               ontoplay.controllers.Assets.at(path="/public/lib/ontoplay", file)
