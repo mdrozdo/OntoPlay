@@ -16,17 +16,17 @@ GET /individuals/getPropertyCondition ontoplay.controllers.Individuals.getProper
 GET    /assets/javascripts/ontoplay/routes      ontoplay.controllers.Constraints.javascriptRoutes()
 
 # Ontology configuration 
-GET /uploadOntology  controllers.configuration.UploadController.showUploadPage()
-POST /uploadOntology controllers.configuration.UploadController.upload()
+GET /uploadOntology  ontoplay.controllers.configuration.UploadController.showUploadPage()
+POST /uploadOntology ontoplay.controllers.configuration.UploadController.upload()
 
 #Annotations configuration
-GET /annotation/configuration/show controllers.configuration.AnnotationController.showAnnotationCFPage()
-GET /annotation/configuration/getAnnotations controllers.configuration.AnnotationController.getAnnotationForCFPage()
-GET /annotation/configuration/getComponenets   controllers.configuration.AnnotationController.getOntologyComponents()
-GET /annotation/configuration/getRelations/:annotationIri controllers.configuration.AnnotationController.getRelationsByAnnotationIri(annotationIri: String)
-POST /annotation/configuration/addRelation 							controllers.configuration.AnnotationController.AddRelation()
-POST /annotation/configuration/deleteRelation 							controllers.configuration.AnnotationController.deleteRelation()
-POST /annotation/configuration/deleteAllRelations 							controllers.configuration.AnnotationController.deleteAllRelations()
+GET /annotation/configuration/show ontoplay.controllers.configuration.AnnotationController.showAnnotationCFPage()
+GET /annotation/configuration/getAnnotations ontoplay.controllers.configuration.AnnotationController.getAnnotationForCFPage()
+GET /annotation/configuration/getComponenets   ontoplay.controllers.configuration.AnnotationController.getOntologyComponents()
+GET /annotation/configuration/getRelations/:annotationIri ontoplay.controllers.configuration.AnnotationController.getRelationsByAnnotationIri(annotationIri: String)
+POST /annotation/configuration/addRelation 							ontoplay.controllers.configuration.AnnotationController.AddRelation()
+POST /annotation/configuration/deleteRelation 							ontoplay.controllers.configuration.AnnotationController.deleteRelation()
+POST /annotation/configuration/deleteAllRelations 							ontoplay.controllers.configuration.AnnotationController.deleteAllRelations()
 
 
 
