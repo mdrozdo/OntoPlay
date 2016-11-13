@@ -1,8 +1,7 @@
-package controllers.configuration.utils;
+package ontoplay.controllers.configuration.utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
