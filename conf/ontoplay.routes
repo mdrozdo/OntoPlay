@@ -15,7 +15,9 @@ GET /individuals/getPropertyCondition ontoplay.controllers.Individuals.getProper
 # Javascript routing
 GET    /assets/javascripts/ontoplay/routes      ontoplay.controllers.Constraints.javascriptRoutes()
 
-
+# Ontology configuration 
+GET /uploadOntology  controllers.configuration.UploadController.showUploadPage()
+POST /uploadOntology controllers.configuration.UploadController.upload()
 
 
 # Map static resources from the /public folder to the /assets URL path
