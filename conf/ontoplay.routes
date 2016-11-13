@@ -29,6 +29,24 @@ POST /annotation/configuration/deleteRelation 							ontoplay.controllers.config
 POST /annotation/configuration/deleteAllRelations 							ontoplay.controllers.configuration.AnnotationController.deleteAllRelations()
 
 
+#properties
+GET /properties/class/:className 		ontoplay.controllers.webservices.Properties.getPropertiesByClassName(className: String)
+GET /properties/operators/:propertyUrl ontoplay.controllers.webservices.Operators.getOpertors(propertyUrl: String)
+
+#annotations
+GET /annotationProperties/get/:componentUri ontoplay.controllers.webservices.Annotations.getAnnotationPropertyByUri(componentUri: String)
+
+
+#classes
+GET /class/property/:propertyUri		ontoplay.controllers.webservices.Classes.getClassesByProperty(propertyUri: String)
+
+
+#individuals
+GET /individuals/class/:className ontoplay.controllers.webservices.Individuals.getIndividualsByClassName(className: String)
+POST /individuals/save ontoplay.controllers.webservices.Individuals.addIndividual()
+GET /individuals/update/:individualName ontoplay.controllers.webservices.Individuals.updateIndividual(individualName: String)
+
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /ontoplay/*file               ontoplay.controllers.Assets.at(path="/public", file)
