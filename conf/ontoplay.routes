@@ -31,5 +31,5 @@ POST /annotation/configuration/deleteAllRelations 							ontoplay.controllers.co
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /ontoplay/*file               ontoplay.controllers.Assets.at(path="/public/lib/ontoplay", file)
+GET     /ontoplay/*file               ontoplay.controllers.Assets.at(path="/public", file)
 
