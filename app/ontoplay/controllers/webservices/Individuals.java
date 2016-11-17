@@ -46,6 +46,7 @@ public class Individuals extends OntologyController {
 		String individualName = dynamicForm.get("name");
 
 		try {
+			
 			ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
 			OWLOntology generatedOntology = ontologyGenerator
 					.convertToOwlIndividualOntology(OntologyHelper.nameSpace + individualName, condition);
@@ -65,11 +66,9 @@ public class Individuals extends OntologyController {
 			OntoClass owlClass = checkOntologyReader.getOwlClass(OntologyHelper.nameSpace + "Offer");
 			OntologyHelper.saveOntology(generatedOntology);
 			// Fix nested individuals
-
 			return ok("ok");
 		} catch (Exception e) {
-			e.printStackTrace();
-			return ok("Error");
+			return ok(e.getMessage());
 		}
 	}
 
