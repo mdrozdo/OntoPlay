@@ -64,6 +64,7 @@ public class OntologyGenerator {
 	}
 	
 	private OntologyGenerator() {
+	
 		classRestrictionGenerator = new ClassRestrictionGenerator(factory);
 		individualGenerator = new IndividualGenerator(factory);
 	}
@@ -111,9 +112,15 @@ public class OntologyGenerator {
 		OWLOntology destinationOntology;
 		try {
 			IRI iri = IRI.create(individualUri);
-			String ontologyIRI = OntologyUtils.getNamespace(iri);
+			IRI ontologyIRI = IRI.create(OntologyUtils.getNamespace(iri));
 			
-			destinationOntology = manager.createOntology(IRI.create(ontologyIRI));
+			for(OWLOntology managerOwlOntology:manager.getOntologies()){
+				if(managerOwlOntology.getOntologyID().getOntologyIRI().
+						equals(ontologyIRI)){
+							manager.removeOntology(managerOwlOntology);
+						}
+			}
+			destinationOntology = manager.createOntology(ontologyIRI);
 
 			List<OWLAxiom> axioms = getIndividualGenerator().convertToOntIndividual(individualUri, condition);
 			
