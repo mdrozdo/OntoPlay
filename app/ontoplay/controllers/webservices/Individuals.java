@@ -34,7 +34,7 @@ public class Individuals extends OntologyController {
 			}
 			return ok(new GsonBuilder().create().toJson(individualDTOs));
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println("Error getting class individuals "+e.toString());
 			return badRequest();
 		}
 	}
@@ -46,11 +46,9 @@ public class Individuals extends OntologyController {
 		String individualName = dynamicForm.get("name");
 
 		try {
-			
 			ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
 			OWLOntology generatedOntology = ontologyGenerator
 					.convertToOwlIndividualOntology(OntologyHelper.nameSpace + individualName, condition);
-
 			try {
 				OwlIndividual individual = ontologyReader.getIndividual(OntologyHelper.nameSpace + individualName);
 				if (individual != null)
@@ -68,24 +66,26 @@ public class Individuals extends OntologyController {
 			// Fix nested individuals
 			return ok("ok");
 		} catch (Exception e) {
+			System.out.println("Exception ocurred when adding individual: "+e.getMessage());
 			return ok(e.getMessage());
 		}
 	}
 
 	public static Result updateIndividual(String individualName) {
-	//	try {
-			OwlIndividual individual = OntologyReader.getGlobalInstance()
-					.getIndividual(OntologyHelper.nameSpace + individualName);
-			if (individual == null || individual.getIndividual() == null) {
-				return ok("Individual Not Found");
-			}
-			IndividualUpdateModel ind = new IndividualUpdateModel(individual.getIndividual());
+		// try {
+		OwlIndividual individual = OntologyReader.getGlobalInstance()
+				.getIndividual(OntologyHelper.nameSpace + individualName);
+		if (individual == null || individual.getIndividual() == null) {
+			return ok("Individual Not Found");
+		}
+		IndividualUpdateModel ind = new IndividualUpdateModel(individual.getIndividual());
 
-			return ok(new GsonBuilder().create().toJson(ind.getUpdateIndividual()));
-//		} catch (Exception e) {
-	//		System.out.println("Error in getting datat to update " + e.toString());
-		//	return ok("Error");
-//		}
+		return ok(new GsonBuilder().create().toJson(ind.getUpdateIndividual()));
+		// } catch (Exception e) {
+		// System.out.println("Error in getting datat to update " +
+		// e.toString());
+		// return ok("Error");
+		// }
 	}
 
 }
