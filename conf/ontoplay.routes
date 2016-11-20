@@ -31,7 +31,7 @@ POST /annotation/configuration/deleteAllRelations 							ontoplay.controllers.co
 
 #properties
 GET /properties/class/:className 		ontoplay.controllers.webservices.Properties.getPropertiesByClassName(className: String)
-GET /properties/operators/:propertyUrl ontoplay.controllers.webservices.Operators.getOpertors(propertyUrl: String)
+GET /properties/operators/:propertyUrl ontoplay.controllers.webservices.Operators.getOpertors(propertyUrl: String,isDescriptionOfIndividual: Boolean)
 
 #annotations
 GET /annotationProperties/get/:componentUri ontoplay.controllers.webservices.Annotations.getAnnotationPropertyByUri(componentUri: String)

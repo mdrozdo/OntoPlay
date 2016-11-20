@@ -14,16 +14,19 @@ import play.mvc.Result;
 
 public class Operators extends OntologyController{
 
-		public static Result getOpertors(String propertyUri){
+		public static Result getOpertors(String propertyUri,boolean isDescriptionOfIndividual){
 			try{
 				propertyUri= java.net.URLDecoder.decode(propertyUri, "UTF-8");
 				ALogger log=play.Logger.of("application");
 			OntoProperty property = ontologyReader.getProperty(propertyUri);
-			log.info(propertyUri+" " +property.getClass());
+			log.info("Getting opertor for "+propertyUri+" of the class "+property.getClass());
+		
 			
 			PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
 					.getRenderer(property.getClass());
-			OperatorDTO operatorDTO=new OperatorDTO(getInputType(property.getClass()),conditionRenderer.getOperators(true));
+			
+			OperatorDTO operatorDTO=new OperatorDTO(getInputType(property.getClass()),
+					conditionRenderer.getOperators(isDescriptionOfIndividual));
 			return ok(new GsonBuilder().create().toJson(operatorDTO));
 			
 			}catch(ConfigurationException e){

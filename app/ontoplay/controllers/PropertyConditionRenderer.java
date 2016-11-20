@@ -9,7 +9,8 @@ import ontoplay.models.ontologyModel.OntoProperty;
 
 public abstract class PropertyConditionRenderer {
 
-	private static HashMap<Class, PropertyConditionRenderer> renderers = new HashMap<Class, PropertyConditionRenderer>();
+	private static HashMap<Class, PropertyConditionRenderer> renderers = 
+			new HashMap<Class, PropertyConditionRenderer>();
 
 	public static void registerPropertyTypeRenderer(Class type,
 			PropertyConditionRenderer renderer) {

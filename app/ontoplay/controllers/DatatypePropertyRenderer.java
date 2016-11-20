@@ -9,7 +9,6 @@ import java.util.Map;
 import ontoplay.models.PropertyOperator;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
-import play.Logger.ALogger;
 
 public class DatatypePropertyRenderer extends PropertyConditionRenderer {
 	
@@ -31,13 +30,10 @@ public class DatatypePropertyRenderer extends PropertyConditionRenderer {
 	}
 
 	private List<PropertyOperator> getOperatorsForIndividual() {
-		ALogger log = play.Logger.of("application");
 		List<PropertyOperator> filteredOperators = new ArrayList<PropertyOperator>();
 		for (PropertyOperator propertyOperator : operators) {
-			log.info(propertyOperator.getName());
 			if(propertyOperator.canDescribeIndividual()){				
 				filteredOperators.add(propertyOperator);
-				
 			}
 		}
 		return filteredOperators;

@@ -72,7 +72,6 @@ public class EqualToRestrictionFactory extends DatatypeRestrictionFactory {
 		}
 		if (annotations.size() != 0) {
 			OWLAxiom ax;
-		System.out.println(condition.getPropertyUri()+" "+ individual.isAnonymous());
 			if(!individual.isAnonymous())
 			 ax = factory.getOWLDataPropertyAssertionAxiom(conditionProperty, individual,
 					factory.getOWLLiteral(condition.getDatatypeValue()), annotations);
