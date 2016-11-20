@@ -3,13 +3,21 @@ package ontoplay.controllers.webservices;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.semanticweb.owlapi.model.OWLOntology;
+
 import com.google.gson.GsonBuilder;
 
+import ontoplay.OntologyHelper;
 import ontoplay.controllers.OntologyController;
+import ontoplay.models.ClassCondition;
+import ontoplay.models.ConditionDeserializer;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.angular.ClassDTO;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyReading.OntologyReader;
+import play.data.DynamicForm;
+import play.data.Form;
 import play.mvc.Result;
 
 public class Classes extends OntologyController{
@@ -27,4 +35,26 @@ public class Classes extends OntologyController{
 			return badRequest();
 		}
 		}
+	
+	public static Result addClassExpression() {
+		@SuppressWarnings("deprecation")
+		DynamicForm dynamicForm = Form.form().bindFromRequest();
+		String conditionJson = dynamicForm.get("conditionJson");
+		String classExpressionName = dynamicForm.get("name");
+		try {
+		ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
+		OWLOntology generatedOntology=
+				ontologyGenerator.convertToOwlClassOntology(classExpressionName, condition);
+			if (generatedOntology == null)
+				return ok("Ontology is null");
+			OntologyHelper.checkOntology(generatedOntology);
+			OntologyReader checkOntologyReader = OntologyHelper.checkOwlReader();
+			OntologyHelper.saveOntology(generatedOntology);
+			return ok("ok");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("qwe");
+			return ok(e.getMessage());
+		}
+	}
 }
