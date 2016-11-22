@@ -12,6 +12,8 @@ import ontoplay.models.ontologyModel.OwlIndividual;
 
 public abstract class OntologyReader implements PropertyProvider{
 	
+	public static String rdfURI="http://www.w3.org/2002/07/";
+	
 	private static OntologyReader instance;
 	
 	public static void setGlobalInstance(OntologyReader reader) {

@@ -44,7 +44,7 @@ public class Classes extends OntologyController{
 		try {
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
 		OWLOntology generatedOntology=
-				ontologyGenerator.convertToOwlClassOntology(classExpressionName, condition);
+				ontologyGenerator.convertToOwlClassOntology(OntologyHelper.nameSpace +classExpressionName, condition);
 			if (generatedOntology == null)
 				return ok("Ontology is null");
 			OntologyHelper.checkOntology(generatedOntology);
