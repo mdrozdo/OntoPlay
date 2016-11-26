@@ -36,56 +36,35 @@ import ontoplay.models.ontologyReading.jena.propertyFactories.StringPropertyFact
 import javax.inject.Singleton;
 
 @Singleton
-public class JenaOwlReader extends OntologyReader{
+public class JenaOwlReader implements OntologyReader{
 	private OntModel model;
 	private String ontologyNamespace;
 	private boolean ignorePropsWithNoDomain;
 
-	public static void initialize(String uri, JenaOwlReaderConfig config) {
-		setGlobalInstance(loadFromFile(uri, config));
-		
+	public JenaOwlReader(String uri, List<FolderMapping> localMappings, boolean ignorePropsWithNoDomain){
+		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
+		if (localMappings != null) {
+			OntDocumentManager dm = model.getDocumentManager();
+
+			for (FolderMapping mapping : localMappings) {
+				dm.addAltEntry(mapping.getUri(), mapping.getFolderPath());
+			}
+		}
+
+		model.read(uri);
+
+		this.model = model;
+		String namespace = model.getNsPrefixURI("");
+		this.ontologyNamespace = namespace.substring(0, namespace.length() - 1);
+		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
+
 		OwlPropertyFactory.registerPropertyFactory(new IntegerPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new FloatPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new DateTimePropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new StringPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new ObjectPropertyFactory());
-		//old way to display annotation properties
-		//	OwlPropertyFactory.registerPropertyFactory(new AnnotationDataPropertyFactory());
-		
-
 	}
 
-	public static JenaOwlReader loadFromFile(String uri, JenaOwlReaderConfig config) {
-		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
-		if (config != null) {
-			OntDocumentManager dm = model.getDocumentManager();
-						
-			for (Map.Entry<String, String> mapping : config.getLocalMappings().entrySet()) {
-				dm.addAltEntry(mapping.getKey(), mapping.getValue());
-			}
-		}
-		
-		model.read(uri);
-
-		return new JenaOwlReader(model, config);
-	}
-
-	public static OntologyReader loadFromFile(String uri) {
-		return loadFromFile(uri, null);
-	}
-
-	private JenaOwlReader(OntModel model) {
-		this.model = model;
-		String namespace = model.getNsPrefixURI("");
-		this.ontologyNamespace = namespace.substring(0, namespace.length() - 1);
-	}
-
-	public JenaOwlReader(OntModel model, JenaOwlReaderConfig config) {
-		this(model);
-		if (config != null) {
-			ignorePropsWithNoDomain = config.isIgnorePropsWithNoDomain();
-		}
-	}
 
 	/* (non-Javadoc)
 	 * @see models.ontologyReading.jena.OntologyReader#getOwlClass(java.lang.String)

@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import ontoplay.jobs.JenaOwlReaderConfiguration;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
@@ -22,6 +21,8 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
+import javax.inject.Named;
+
 //TODO: Make this a normal class with non-static methods.
 // TODO: Make the current consts into normal fields, passed in from outside.
 //TODO: Paths should be removed from OntoPlay.
@@ -30,16 +31,18 @@ public class OntologyHelper {
     private OntologyReader ontoReader;
 
     private String file; // = "file:"+Pathes.UPLOADS_PATH+ontologyName;
-
 	private String filePath; // = Pathes.UPLOADS_PATH+ontologyName;
-
 	private String checkFile; // = "file:samples/TAN/TANCheckk.owl";
-
 	private String checkFilePath; // = "./samples/TAN/TANCheckk.owl";
-
     private String ontologyNamespace; // = "http://www.tan.com";
 
-    public OntologyHelper(String fileName, String folderPath, String checkFileName, String checkFolderPath, String ontologyNamespace, OntologyReader ontoReader) {
+    public OntologyHelper(
+    		@Named("ontoplay.fileName") String fileName,
+			@Named("ontoplay.folderPath") String folderPath,
+			@Named("ontoplay.checkFileName") String checkFileName,
+			@Named("ontoplay.checkFolderPath") String checkFolderPath,
+			@Named("ontoplay.ontologyNamespace") String ontologyNamespace,
+			OntologyReader ontoReader) {
         this.ontologyName = fileName;
         this.ontoReader = ontoReader;
         this.file = "file:" + folderPath + "/" + fileName;
@@ -140,8 +143,7 @@ public class OntologyHelper {
 	}
 
 	public OntologyReader checkOwlReader() {
-		new JenaOwlReaderConfiguration().
-		initialize(checkFile, new JenaOwlReaderConfig().useLocalMapping(ontologyNamespace, checkFilePath));
+		new JenaOwlReaderConfiguration().initialize(checkFile, new JenaOwlReaderConfig().useLocalMapping(ontologyNamespace, checkFilePath));
 		return OntologyReader.getGlobalInstance();
 	}
 	

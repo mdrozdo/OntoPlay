@@ -12,30 +12,20 @@ import ontoplay.models.ontologyModel.OwlIndividual;
 
 import javax.inject.Singleton;
 
-public abstract class OntologyReader implements PropertyProvider{
+public interface OntologyReader extends PropertyProvider{
 	
-	private static OntologyReader instance;
-	
-	public static void setGlobalInstance(OntologyReader reader) {
-		instance = reader;
-	}
-
-	public static OntologyReader getGlobalInstance() {
-		return instance;
-	}
-	
-	public abstract OntoClass getOwlClass(String className);
+	OntoClass getOwlClass(String className);
 
 	@Override
-	public abstract OntoProperty getProperty(String propertyUri) throws ConfigurationException;
+	OntoProperty getProperty(String propertyUri) throws ConfigurationException;
 
-	public abstract List<OwlIndividual> getIndividualsInRange(OntoClass owlClass, OntoProperty property);
+	List<OwlIndividual> getIndividualsInRange(OntoClass owlClass, OntoProperty property);
 
-	public abstract List<OntoClass> getClassesInRange( OntoProperty property);
+	List<OntoClass> getClassesInRange(OntoProperty property);
 	
-	public abstract List<OwlIndividual> getIndividuals(OntoClass owlClass);
+	List<OwlIndividual> getIndividuals(OntoClass owlClass);
 	
-	public abstract OwlIndividual getIndividual(String name);
-	public abstract Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace);
+	OwlIndividual getIndividual(String name);
+	Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace);
 
 }
