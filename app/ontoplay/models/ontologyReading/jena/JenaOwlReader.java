@@ -58,6 +58,7 @@ public class JenaOwlReader implements OntologyReader{
 		this.ontologyNamespace = namespace.substring(0, namespace.length() - 1);
 		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
 
+		//TODO: Make this non-static
 		OwlPropertyFactory.registerPropertyFactory(new IntegerPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new FloatPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new DateTimePropertyFactory());
