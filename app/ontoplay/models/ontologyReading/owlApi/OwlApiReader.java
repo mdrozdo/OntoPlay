@@ -14,6 +14,7 @@ import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyModel.OwlIndividual;
 import ontoplay.models.ontologyReading.OntologyReader;
+import ontoplay.models.ontologyReading.jena.FolderMapping;
 import ontoplay.models.ontologyReading.owlApi.propertyFactories.DateTimePropertyFactory;
 import ontoplay.models.ontologyReading.owlApi.propertyFactories.FloatPropertyFactory;
 import ontoplay.models.ontologyReading.owlApi.propertyFactories.IntegerPropertyFactory;
@@ -38,55 +39,50 @@ import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.util.AutoIRIMapper;
 import com.hp.hpl.jena.shared.ConfigException;
+import uk.ac.manchester.cs.owl.owlapi.OWLOntologyIRIMapperImpl;
 
 import javax.inject.Singleton;
 
 @Singleton
-public class OwlApiReader extends OntologyReader {
+public class OwlApiReader implements OntologyReader {
 	private final OWLOntology ontology;
 	private final OWLReasoner reasoner;
 	private final OWLOntologyManager manager;
 	private final OWLDataFactory factory;
 	private String uri;
 	private boolean ignorePropsWithNoDomain;
-	
-	public static void initialize(String uri, String localOntologyFolder) {
-		initialize(uri, new OwlApiReaderConfig().useLocalFolder(localOntologyFolder));
-	}
-	
-	public static void initialize(String uri, OwlApiReaderConfig config) {
-		setGlobalInstance(loadFromFile(uri, config));
-		
+
+	public OwlApiReader(String uri, List<FolderMapping> localMappings, boolean ignorePropsWithNoDomain) {
+
+		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+		OWLOntologyIRIMapperImpl iriMapper = new OWLOntologyIRIMapperImpl();
+		for (FolderMapping mapping : localMappings) {
+			iriMapper.addMapping(IRI.create(mapping.getUri()), IRI.create(mapping.getFolderPath()));
+		}
+		manager.addIRIMapper(iriMapper);
+		OWLOntology ontology = null;
+		try {
+			ontology = manager.loadOntologyFromOntologyDocument(new File(uri));
+		} catch (OWLOntologyCreationException e) {
+			e.printStackTrace();
+		}
+		Configuration hermitConfig = new Configuration();
+		hermitConfig.ignoreUnsupportedDatatypes = true;
+		Reasoner hermitReasoner = new Reasoner(hermitConfig, ontology);
+
+		this.manager = manager;
+		this.ontology = ontology;
+		this.reasoner = hermitReasoner;
+		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
+		this.factory = manager.getOWLDataFactory();
+		this.uri = ontology.getOntologyID().getOntologyIRI().toString();
+
+		//TODO:Make this non static and move initialization to module.
 		OwlPropertyFactory.registerPropertyFactory(new IntegerPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new FloatPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new DateTimePropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new StringPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new ObjectPropertyFactory());		
-	}
-	
-	
-
-	public static OwlApiReader loadFromFile(String filePath, OwlApiReaderConfig config) {
-		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-		manager.addIRIMapper(new AutoIRIMapper(new File(config.getLocalFolderPath()), true));
-		try{
-			OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new File(filePath));
-			Configuration hermitConfig = new Configuration();
-			hermitConfig.ignoreUnsupportedDatatypes = true;
-			Reasoner hermitReasoner = new Reasoner(hermitConfig, ontology); 
-			return new OwlApiReader(manager, ontology, hermitReasoner, config.isIgnorePropsWithNoDomain());
-		} catch (OWLOntologyCreationException e) {
-			throw new ConfigException("Failed to load ontology.", e);
-		}		
-	}
-	
-	public OwlApiReader(OWLOntologyManager manager, OWLOntology ontology, OWLReasoner reasoner, boolean ignorePropsWithNoDomain) {
-		this.manager = manager;
-		this.ontology = ontology;
-		this.reasoner = reasoner;
-		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
-		this.factory = manager.getOWLDataFactory();
-		this.uri = ontology.getOntologyID().getOntologyIRI().toString();
 	}
 
 	@Override
