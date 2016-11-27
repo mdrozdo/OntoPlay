@@ -51,5 +51,5 @@ GET /add/:className			ontoplay.controllers.Operations.process(className: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /ontoplay/*file               ontoplay.controllers.Assets.at(path="/public", file)
+GET     /ontoplay/*file               ontoplay.controllers.Assets.at(path="/public/lib/OntoPlay", file)
 

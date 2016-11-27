@@ -14,7 +14,7 @@
 			closeDialog();
 		
         	if($scope.data.property!='off'){
-        		Services.getOperators(encodeURIComponent($scope.data.property)).then(function(data){
+        		Services.getOperators(encodeURIComponent($scope.data.property),Services.isAddIndividual()).then(function(data){
 					$scope.operators=data.operators;
 					$scope.data.inputType=data.inputType;
 					},onError);

@@ -16,8 +16,8 @@
         });
 	}
 	
-	var getOperators=function(propertyUri){
-		 return $http.get('/properties/operators/' + propertyUri).then(function(response){
+	var getOperators=function(propertyUri,isDescriptionOfIndividual){
+		 return $http.get('/properties/operators/' + propertyUri+'/'+isDescriptionOfIndividual).then(function(response){
             return response.data;
           
         });
@@ -30,10 +30,14 @@
         });
 	}
 	
-	var updateIndividual=function(data,individualName){
-	
-		var dataToBeSend={'conditionJson':data,'name':individualName};
-			 return $http.post('/individuals/save', dataToBeSend).then(function(response){
+	var add=function(data,elementName){
+		var url='';
+		if(isAddIndividual())
+			url='/individuals/save';
+		else
+			url="/class/save";
+		var dataToBeSend={'conditionJson':data,'name':elementName};
+			 return $http.post(url, dataToBeSend).then(function(response){
             return response.data;
           
         });
@@ -46,6 +50,12 @@
 		});
 		
 	}
+	
+	var isAddIndividual=function(){
+		if(window.location.pathname.startsWith("/addClassExpression"))
+			return false;
+		return true;
+	}
     
  
     
@@ -54,8 +64,9 @@
 	  getProperties:getProperties,
 	  getOperators:getOperators,
 	  getClasses:getClasses,
-	  update:updateIndividual,
-	  getAnnotationProperties:getAnnotationProperties
+	  add:add,
+	  getAnnotationProperties:getAnnotationProperties,
+	  isAddIndividual:isAddIndividual
     };
   }
    var app = angular.module('Ontoplay');
