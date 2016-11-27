@@ -14,6 +14,11 @@ public class OntologyController extends Controller {
 	protected static OntologyReader ontologyReader = OntologyReader.getGlobalInstance();
 	protected static OntologyGenerator ontologyGenerator = OntologyGenerator.getGlobalInstance();
 
+	public static void setObjects(){
+		ontologyReader = OntologyReader.getGlobalInstance();
+		 ontologyGenerator = OntologyGenerator.getGlobalInstance();
+	}
+	
 	protected static OntoClass getOwlClass(String className) {
 		return ontologyReader.getOwlClass(OntologyHelper.nameSpace + className);
 	}

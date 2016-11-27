@@ -27,7 +27,7 @@ import com.hp.hpl.jena.util.FileManager;
 
 public class OntologyHelper {
 	
-	public static String ontologyName="TAN.OWL";
+	public static String ontologyName="";
 
 	public static String file = "file:"+Pathes.UPLOADS_PATH+ontologyName;
 

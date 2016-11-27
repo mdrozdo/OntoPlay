@@ -8,7 +8,12 @@ import org.apache.commons.io.FileUtils;
 
 import ontoplay.OntologyHelper;
 import ontoplay.Pathes;
+import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.configuration.utils.OntoplayOntologyUtils;
+import ontoplay.jobs.JenaOwlReaderConfiguration;
+import ontoplay.jobs.OntologyGeneratorConfiguration;
+import ontoplay.jobs.PropertyTypeConfiguration;
+import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
@@ -45,11 +50,12 @@ public class UploadController extends Controller {
 			OntoplayOntologyUtils.setOntologyInTheXml(ontologyFile.getFilename(),uri);
 			OntoplayOntologyUtils.setOntologyCF();
 			OntoplayOntologyUtils.resetAnnotationCF();
+				new JenaOwlReaderConfiguration().initialize(OntologyHelper.file,new JenaOwlReaderConfig().useLocalMapping(OntologyHelper.iriString,OntologyHelper.fileName));
+				OntologyController.setObjects();
 			return ok("File uploaded \n "+result+"\n URI "+uri);
+			
 		} else {
 			flash("error", "Missing file");
-
-			// return redirect(routes.Application.index());
 			return ok("Error");
 		}
 	}

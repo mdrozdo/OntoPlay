@@ -9,6 +9,8 @@ import org.w3c.dom.NodeList;
 
 import ontoplay.OntologyHelper;
 import ontoplay.Pathes;
+import ontoplay.jobs.JenaOwlReaderConfiguration;
+import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 
 /**
  * Read and set ontology configuration.
@@ -56,12 +58,12 @@ public class OntoplayOntologyUtils {
 	 */
 	public static void resetAnnotationCF() {
 		File original=new File(Pathes.Annotation_xml_original);
-		File current =new File(Pathes.Annotation_XML_FILE_PATH);
-		current.delete();
+		File currentFile =new File(Pathes.Annotation_XML_FILE_PATH);
 		 try {
-				FileUtils.moveFile(original, current);
+			 currentFile.delete();
+				FileUtils.copyFile(original, currentFile);
 			} catch (IOException e) {
-				System.out.println("Error replacing ontology");
+				System.out.println("Error replacing Annotation file "+e.toString());
 			}
 	}
 
