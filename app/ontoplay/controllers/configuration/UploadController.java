@@ -6,10 +6,10 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 
-import ontoplay.OntologyHelper;
-import ontoplay.Pathes;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.configuration.utils.OntoplayOntologyUtils;
+import ontoplay.controllers.utils.OntologyHelper;
+import ontoplay.controllers.utils.Pathes;
 import ontoplay.jobs.JenaOwlReaderConfiguration;
 import ontoplay.jobs.OntologyGeneratorConfiguration;
 import ontoplay.jobs.PropertyTypeConfiguration;

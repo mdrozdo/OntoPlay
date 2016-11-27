@@ -2,7 +2,7 @@ package ontoplay.controllers;
 
 import java.util.Map;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyHelper;
 import ontoplay.jobs.JenaOwlReaderConfiguration;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.ontologyModel.OntoClass;

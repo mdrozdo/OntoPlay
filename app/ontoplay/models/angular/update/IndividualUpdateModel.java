@@ -15,7 +15,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.sparql.pfunction.library.concat;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyHelper;
 import ontoplay.models.ontologyModel.OwlIndividual;
 import ontoplay.models.ontologyReading.OntologyReader;
 

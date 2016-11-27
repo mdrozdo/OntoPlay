@@ -7,8 +7,8 @@ import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import ontoplay.OntologyHelper;
-import ontoplay.Pathes;
+import ontoplay.controllers.utils.OntologyHelper;
+import ontoplay.controllers.utils.Pathes;
 import ontoplay.jobs.JenaOwlReaderConfiguration;
 import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 

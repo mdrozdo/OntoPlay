@@ -1,4 +1,4 @@
-package ontoplay;
+package ontoplay.controllers.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -3,7 +3,7 @@ package ontoplay.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyHelper;
 import ontoplay.models.angular.update.Annotation;
 
 public class ClassCondition {

@@ -7,8 +7,8 @@ import java.util.Set;
 
 import com.google.gson.GsonBuilder;
 
-import ontoplay.OntologyHelper;
 import ontoplay.controllers.OntologyController;
+import ontoplay.controllers.utils.OntologyHelper;
 import ontoplay.models.angular.AnnotationDTO;
 import play.mvc.Result;
 /**

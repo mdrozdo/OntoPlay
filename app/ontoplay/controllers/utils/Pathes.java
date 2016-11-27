@@ -1,4 +1,4 @@
-package ontoplay;
+package ontoplay.controllers.utils;
 
 import play.Play;
 

@@ -3,7 +3,7 @@ package ontoplay.controllers;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyHelper;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.owlGeneration.OntologyGenerator;
