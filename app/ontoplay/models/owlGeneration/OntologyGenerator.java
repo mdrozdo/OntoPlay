@@ -2,11 +2,7 @@ package ontoplay.models.owlGeneration;
 
 
 import java.util.List;
-import ontoplay.models.ClassCondition;
-import ontoplay.models.ConfigurationException;
-import ontoplay.models.OntologyUtils;
 
-import org.openjena.atlas.logging.Log;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
 import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
@@ -23,6 +19,10 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+
+import ontoplay.models.ClassCondition;
+import ontoplay.models.ConfigurationException;
+import ontoplay.models.OntologyUtils;
 
 public class OntologyGenerator {
 	private static OntologyGenerator instance;
@@ -72,7 +72,6 @@ public class OntologyGenerator {
 	public OWLOntology convertToOwlClassOntology(String classUri, ClassCondition condition) {
 		OWLOntology destinationOntology;
 		try {
-			System.out.println("qqqqqqqqqqqqqqqqq "+classUri);
 			IRI classIri = IRI.create(classUri);
 			IRI ontologyIRI = IRI.create(OntologyUtils.getNamespace(classIri));
 			clearManagerFromOntologies(ontologyIRI);
