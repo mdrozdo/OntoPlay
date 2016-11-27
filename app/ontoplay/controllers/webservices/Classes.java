@@ -8,7 +8,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import com.google.gson.GsonBuilder;
 
 import ontoplay.controllers.OntologyController;
-import ontoplay.controllers.utils.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConditionDeserializer;
 import ontoplay.models.ConfigurationException;
@@ -44,12 +44,12 @@ public class Classes extends OntologyController{
 		try {
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
 		OWLOntology generatedOntology=
-				ontologyGenerator.convertToOwlClassOntology(OntologyHelper.nameSpace +classExpressionName, condition);
+				ontologyGenerator.convertToOwlClassOntology(OntologyUtils.nameSpace +classExpressionName, condition);
 			if (generatedOntology == null)
 				return ok("Ontology is null");
-			OntologyHelper.checkOntology(generatedOntology);
-			OntologyReader checkOntologyReader = OntologyHelper.checkOwlReader();
-			OntologyHelper.saveOntology(generatedOntology);
+			OntologyUtils.checkOntology(generatedOntology);
+			OntologyReader checkOntologyReader = OntologyUtils.checkOwlReader();
+			OntologyUtils.saveOntology(generatedOntology);
 			return ok("ok");
 		} catch (Exception e) {
 			e.printStackTrace();

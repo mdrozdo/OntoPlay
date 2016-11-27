@@ -8,7 +8,7 @@ import java.util.Set;
 import com.google.gson.GsonBuilder;
 
 import ontoplay.controllers.OntologyController;
-import ontoplay.controllers.utils.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.angular.AnnotationDTO;
 import play.mvc.Result;
 /**
@@ -22,8 +22,8 @@ public class Annotations extends OntologyController{
 	public static Result getAnnotationPropertyByUri(String componentUri){
 		try {
 			componentUri= java.net.URLDecoder.decode(componentUri, "UTF-8");
-			if(componentUri.indexOf(OntologyHelper.nameSpace)==-1)
-				componentUri=OntologyHelper.nameSpace+componentUri;
+			if(componentUri.indexOf(OntologyUtils.nameSpace)==-1)
+				componentUri=OntologyUtils.nameSpace+componentUri;
 		} catch (UnsupportedEncodingException e1) {
 			System.out.println("Error decoding annotaitons from xml " +e1.toString());
 		}

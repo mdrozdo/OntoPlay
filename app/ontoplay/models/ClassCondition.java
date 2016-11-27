@@ -3,7 +3,7 @@ package ontoplay.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import ontoplay.controllers.utils.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.angular.update.Annotation;
 
 public class ClassCondition {
@@ -27,7 +27,7 @@ public class ClassCondition {
 	public void setClassUri(String classUri){
 		System.out.println("hello "+classUri);
 		if(classUri.indexOf("#")==-1){
-			classUri=OntologyHelper.nameSpace+classUri;
+			classUri=OntologyUtils.nameSpace+classUri;
 			System.out.println("bye "+classUri);
 		}
 		this.classUri=classUri;

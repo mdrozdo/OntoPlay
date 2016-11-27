@@ -18,17 +18,17 @@ import ontoplay.jobs.JenaOwlReaderConfiguration;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 
-public class OntologyHelper {
+public class OntologyUtils {
 
 	public static String ontologyName = "";
 
-	public static String file = "file:" + Pathes.UPLOADS_PATH + ontologyName;
+	public static String file = "file:" + PathesUtils.UPLOADS_PATH + ontologyName;
 
-	public static String fileName = Pathes.UPLOADS_PATH + ontologyName;
+	public static String fileName = PathesUtils.UPLOADS_PATH + ontologyName;
 
-	public static String checkFile = "file:" + Pathes.UPLOADS_PATH + "Check" + ontologyName;
+	public static String checkFile = "file:" + PathesUtils.UPLOADS_PATH + "Check" + ontologyName;
 
-	public static String checkFileName = Pathes.UPLOADS_PATH + "Check" + ontologyName;
+	public static String checkFileName = PathesUtils.UPLOADS_PATH + "Check" + ontologyName;
 
 	public static String nameSpace = "";
 
@@ -94,7 +94,7 @@ public class OntologyHelper {
 				System.out.print("Error at OntologyHelper.checkOntology 94" + e.getMessage());
 				return false;
 			}
-			checkFileName = Pathes.UPLOADS_PATH + "Check" + ontologyName;
+			checkFileName = PathesUtils.UPLOADS_PATH + "Check" + ontologyName;
 			OutputStream out = null;
 			try {
 				out = new FileOutputStream(checkFileName);
@@ -123,7 +123,7 @@ public class OntologyHelper {
 	}
 
 	public static OntologyReader checkOwlReader() {
-		checkFile = "file:" + Pathes.UPLOADS_PATH + "Check" + ontologyName;
+		checkFile = "file:" + PathesUtils.UPLOADS_PATH + "Check" + ontologyName;
 		new JenaOwlReaderConfiguration().initialize(checkFile,
 				new JenaOwlReaderConfig().useLocalMapping(iriString, checkFileName));
 		return OntologyReader.getGlobalInstance();

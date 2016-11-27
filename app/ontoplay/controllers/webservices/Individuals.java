@@ -8,7 +8,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import com.google.gson.GsonBuilder;
 
 import ontoplay.controllers.OntologyController;
-import ontoplay.controllers.utils.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConditionDeserializer;
 import ontoplay.models.angular.IndividualDTO;
@@ -48,9 +48,9 @@ public class Individuals extends OntologyController {
 		try {
 			ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
 			OWLOntology generatedOntology = ontologyGenerator
-					.convertToOwlIndividualOntology(OntologyHelper.nameSpace + individualName, condition);
+					.convertToOwlIndividualOntology(OntologyUtils.nameSpace + individualName, condition);
 			try {
-				OwlIndividual individual = ontologyReader.getIndividual(OntologyHelper.nameSpace + individualName);
+				OwlIndividual individual = ontologyReader.getIndividual(OntologyUtils.nameSpace + individualName);
 				if (individual != null)
 					return ok("Indvidual name is already used");
 			} catch (Exception e) {
@@ -59,10 +59,10 @@ public class Individuals extends OntologyController {
 			if (generatedOntology == null)
 				return ok("Ontology is null");
 
-			OntologyHelper.checkOntology(generatedOntology);
-			OntologyReader checkOntologyReader = OntologyHelper.checkOwlReader();
-			OntoClass owlClass = checkOntologyReader.getOwlClass(OntologyHelper.nameSpace + "Offer");
-			OntologyHelper.saveOntology(generatedOntology);
+			OntologyUtils.checkOntology(generatedOntology);
+			OntologyReader checkOntologyReader = OntologyUtils.checkOwlReader();
+			OntoClass owlClass = checkOntologyReader.getOwlClass(OntologyUtils.nameSpace + "Offer");
+			OntologyUtils.saveOntology(generatedOntology);
 			// Fix nested individuals
 			return ok("ok");
 		} catch (Exception e) {
@@ -74,7 +74,7 @@ public class Individuals extends OntologyController {
 	public static Result updateIndividual(String individualName) {
 		// try {
 		OwlIndividual individual = OntologyReader.getGlobalInstance()
-				.getIndividual(OntologyHelper.nameSpace + individualName);
+				.getIndividual(OntologyUtils.nameSpace + individualName);
 		if (individual == null || individual.getIndividual() == null) {
 			return ok("Individual Not Found");
 		}

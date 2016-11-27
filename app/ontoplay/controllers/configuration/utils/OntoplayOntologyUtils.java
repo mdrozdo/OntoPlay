@@ -7,8 +7,8 @@ import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import ontoplay.controllers.utils.OntologyHelper;
-import ontoplay.controllers.utils.Pathes;
+import ontoplay.controllers.utils.OntologyUtils;
+import ontoplay.controllers.utils.PathesUtils;
 import ontoplay.jobs.JenaOwlReaderConfiguration;
 import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 
@@ -22,7 +22,7 @@ public class OntoplayOntologyUtils {
 	public static void setOntologyInTheXml(String newOntologyName, String iri) {
 			
 		   try {
-				XMLUtils xmlUtils = new XMLUtils(Pathes.ONTOLOGY_XML_FILE_PATH);
+				XMLUtils xmlUtils = new XMLUtils(PathesUtils.ONTOLOGY_XML_FILE_PATH);
 				NodeList nodeList = xmlUtils.getElementsbyName("ontology");
 				Element element = (Element)nodeList.item(0);
 				element.setAttribute("name", newOntologyName);
@@ -39,16 +39,16 @@ public class OntoplayOntologyUtils {
 		//we need to read the ontology name from the XML CF
 		try {
 
-			XMLUtils xmlUtils = new XMLUtils(Pathes.ONTOLOGY_XML_FILE_PATH);
+			XMLUtils xmlUtils = new XMLUtils(PathesUtils.ONTOLOGY_XML_FILE_PATH);
 			NodeList nodeList = xmlUtils.getElementsbyName("ontology");
 			Element element = (Element)nodeList.item(0);
 			String ontologyName=element.getAttribute("name");
 			String ontologyIri=element.getAttribute("iri");
-			OntologyHelper.ontologyName=ontologyName;
-			OntologyHelper.fileName = Pathes.UPLOADS_PATH+ontologyName;
-			OntologyHelper.file = "file:"+Pathes.UPLOADS_PATH+ontologyName;
-			OntologyHelper.iriString=ontologyIri;
-			OntologyHelper.nameSpace=ontologyIri+"#";
+			OntologyUtils.ontologyName=ontologyName;
+			OntologyUtils.fileName = PathesUtils.UPLOADS_PATH+ontologyName;
+			OntologyUtils.file = "file:"+PathesUtils.UPLOADS_PATH+ontologyName;
+			OntologyUtils.iriString=ontologyIri;
+			OntologyUtils.nameSpace=ontologyIri+"#";
 		}catch(Exception e){
 			
 		}
@@ -57,8 +57,8 @@ public class OntoplayOntologyUtils {
 	 * To replace the current annotation configuration with the original (empty and structured) one
 	 */
 	public static void resetAnnotationCF() {
-		File original=new File(Pathes.Annotation_xml_original);
-		File currentFile =new File(Pathes.Annotation_XML_FILE_PATH);
+		File original=new File(PathesUtils.Annotation_xml_original);
+		File currentFile =new File(PathesUtils.Annotation_XML_FILE_PATH);
 		 try {
 			 currentFile.delete();
 				FileUtils.copyFile(original, currentFile);

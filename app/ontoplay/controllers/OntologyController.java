@@ -3,7 +3,7 @@ package ontoplay.controllers;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import ontoplay.controllers.utils.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.owlGeneration.OntologyGenerator;
@@ -20,7 +20,7 @@ public class OntologyController extends Controller {
 	}
 	
 	protected static OntoClass getOwlClass(String className) {
-		return ontologyReader.getOwlClass(OntologyHelper.nameSpace + className);
+		return ontologyReader.getOwlClass(OntologyUtils.nameSpace + className);
 	}
 
 	protected static class HtmlHolder {

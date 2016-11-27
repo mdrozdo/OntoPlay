@@ -21,7 +21,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
-import ontoplay.controllers.utils.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.InvalidConfigurationException;
 import ontoplay.models.PropertyValueCondition;
@@ -264,7 +264,7 @@ public class JenaOwlReader extends OntologyReader{
     	Set<AnnotationDTO> annotations=new HashSet<AnnotationDTO>();
     	while(ei.hasNext()){
 			AnnotationProperty temp=ei.next();
-			if((temp.getURI().indexOf(OntologyHelper.iriString)>-1)==isFromNameSpace)
+			if((temp.getURI().indexOf(OntologyUtils.iriString)>-1)==isFromNameSpace)
 				annotations.add(new AnnotationDTO(temp.getURI(), temp.getLocalName()));
 		}
     	return annotations;

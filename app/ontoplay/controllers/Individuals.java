@@ -2,7 +2,7 @@ package ontoplay.controllers;
 
 import java.util.Map;
 
-import ontoplay.controllers.utils.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.jobs.JenaOwlReaderConfiguration;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.ontologyModel.OntoClass;
@@ -24,7 +24,7 @@ public class Individuals extends OntologyController {
 
 	public static Result getPropertyCondition(int conditionId, String classUri,
 			String propertyUri) throws ConfigurationException {
-		new JenaOwlReaderConfiguration().initialize(OntologyHelper.file,new JenaOwlReaderConfig().useLocalMapping(OntologyHelper.iriString,OntologyHelper.fileName));
+		new JenaOwlReaderConfiguration().initialize(OntologyUtils.file,new JenaOwlReaderConfig().useLocalMapping(OntologyUtils.iriString,OntologyUtils.fileName));
 		OntoClass owlClass = ontologyReader.getOwlClass(classUri);
 		
 		

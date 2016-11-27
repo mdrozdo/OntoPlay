@@ -2,7 +2,7 @@ package ontoplay.controllers.utils;
 
 import play.Play;
 
-public class Pathes {
+public class PathesUtils {
 	public static final String CONFIGURATION_PATH=Play.application().path().getAbsolutePath()+"/OntoPlay/configuration/";
 	public static final String UPLOADS_PATH=CONFIGURATION_PATH+"uploads/";
 	public static final String ONTOLOGY_XML_FILE_PATH=CONFIGURATION_PATH+"OntologyCF.xml";

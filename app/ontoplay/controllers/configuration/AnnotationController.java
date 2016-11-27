@@ -24,8 +24,8 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
-import ontoplay.controllers.utils.OntologyHelper;
-import ontoplay.controllers.utils.Pathes;
+import ontoplay.controllers.utils.OntologyUtils;
+import ontoplay.controllers.utils.PathesUtils;
 import ontoplay.models.angular.AnnotationDTO;
 import ontoplay.models.angular.OwlElementDTO;
 import play.data.DynamicForm;
@@ -38,7 +38,7 @@ import play.mvc.Result;
  *
  */
 public class AnnotationController extends OntologyController {
-	static OntoplayAnnotationUtils ontoplayAnnotationUtils=new OntoplayAnnotationUtils(Pathes.Annotation_XML_FILE_PATH);
+	static OntoplayAnnotationUtils ontoplayAnnotationUtils=new OntoplayAnnotationUtils(PathesUtils.Annotation_XML_FILE_PATH);
 	       
 	public static Result showAnnotationCFPage() {
 		return ok(ontoplay.views.html.configuration.annotations.render());
@@ -56,7 +56,7 @@ public class AnnotationController extends OntologyController {
 	 */	
 	public static Result getOntologyComponents(){
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
-    	FileManager.get().readModel(model,new File(OntologyHelper.fileName).toURI().toString());
+    	FileManager.get().readModel(model,new File(OntologyUtils.fileName).toURI().toString());
     	Map<String,List<OwlElementDTO>> results=new HashMap<String,List<OwlElementDTO>>();
     	
     	ExtendedIterator<OntClass> classes=model.listClasses();
@@ -94,7 +94,7 @@ public class AnnotationController extends OntologyController {
 	}
 	
 	private static boolean isFromTheOntologyNameSpace(String uri){
-		return uri.indexOf(OntologyHelper.nameSpace)!=-1;
+		return uri.indexOf(OntologyUtils.nameSpace)!=-1;
 	}
 	
 	public static Result getRelationsByAnnotationIri(String annotationIri){
