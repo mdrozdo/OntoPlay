@@ -1,4 +1,6 @@
-@*@main("Ontology configuration") { *@
+@import ontoplay.views.html.ontoplayMain; 
+
+@ontoplayMain("Ontology annotation configuration"){ 
 <style>
 .labels span {
 	display: inline-block;
@@ -12,7 +14,7 @@
       charset="utf-8"></script>
 	      <script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/configuration/ServicesCF.js")" type="text/javascript"
       charset="utf-8"></script>
- 	
+ 	}{
 	<div ng-app="OntoplayConfiguration"  ng-controller="AnnotationsCFController">
 		<h4>Annotation Property Configuration</h4>
 		<p>Choose an annotation property  to manage the configuration for that property</p>	
@@ -100,3 +102,5 @@
 			<button ng-disabled="currentRelationType=='off'" style="width:20%" ng-click="addAnnotation()" class="btn btn-success" >Add</button>
 		</div>
 	</div>
+	
+})
