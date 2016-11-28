@@ -94,7 +94,7 @@ public class AnnotationController extends OntologyController {
 	}
 	
 	private static boolean isFromTheOntologyNameSpace(String uri){
-		return uri.indexOf(OntologyUtils.nameSpace)!=-1;
+		return uri!=null && uri.indexOf(OntologyUtils.nameSpace)!=-1;
 	}
 	
 	public static Result getRelationsByAnnotationIri(String annotationIri){
