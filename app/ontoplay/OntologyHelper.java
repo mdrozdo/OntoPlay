@@ -7,12 +7,16 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyReading.OntologyReader;
-import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
+import ontoplay.models.ontologyReading.OntologyReaderFactory;
+import ontoplay.models.ontologyReading.jena.FolderMapping;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
@@ -29,23 +33,26 @@ import javax.inject.Named;
 public class OntologyHelper {
 	private String ontologyName; //="TAN.OWL";
     private OntologyReader ontoReader;
+	private OntologyReaderFactory ontoReaderFactory;
 
-    private String file; // = "file:"+Pathes.UPLOADS_PATH+ontologyName;
+	private String file; // = "file:"+Pathes.UPLOADS_PATH+ontologyName;
 	private String filePath; // = Pathes.UPLOADS_PATH+ontologyName;
 	private String checkFile; // = "file:samples/TAN/TANCheckk.owl";
 	private String checkFilePath; // = "./samples/TAN/TANCheckk.owl";
     private String ontologyNamespace; // = "http://www.tan.com";
 
     public OntologyHelper(
-    		@Named("ontoplay.fileName") String fileName,
+			@Named("ontoplay.fileName") String fileName,
 			@Named("ontoplay.folderPath") String folderPath,
 			@Named("ontoplay.checkFileName") String checkFileName,
 			@Named("ontoplay.checkFolderPath") String checkFolderPath,
 			@Named("ontoplay.ontologyNamespace") String ontologyNamespace,
-			OntologyReader ontoReader) {
+			OntologyReader ontoReader,
+			OntologyReaderFactory ontoReaderFactory) {
         this.ontologyName = fileName;
         this.ontoReader = ontoReader;
-        this.file = "file:" + folderPath + "/" + fileName;
+		this.ontoReaderFactory = ontoReaderFactory;
+		this.file = "file:" + folderPath + "/" + fileName;
         this.filePath = folderPath + "/" + fileName;
         this.checkFile = "file:" + checkFolderPath + "/" + checkFileName;
         this.checkFilePath =  checkFolderPath + "/" + checkFileName;
@@ -143,8 +150,8 @@ public class OntologyHelper {
 	}
 
 	public OntologyReader checkOwlReader() {
-		new JenaOwlReaderConfiguration().initialize(checkFile, new JenaOwlReaderConfig().useLocalMapping(ontologyNamespace, checkFilePath));
-		return OntologyReader.getGlobalInstance();
+		List<FolderMapping> mappings = Arrays.asList(new FolderMapping(ontologyNamespace, checkFilePath));
+		return ontoReaderFactory.create(checkFile, mappings, false);
 	}
 	
 	public String getComponentIriByName(String name){

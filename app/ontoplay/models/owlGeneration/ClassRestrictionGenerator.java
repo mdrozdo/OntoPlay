@@ -3,6 +3,8 @@ package ontoplay.models.owlGeneration;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.google.inject.assistedinject.Assisted;
+import com.google.inject.assistedinject.AssistedInject;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.PropertyValueCondition;
@@ -12,11 +14,16 @@ import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 
+import javax.inject.Inject;
+
 public class ClassRestrictionGenerator{
-	
+
+	private RestrictionFactoryProvider restrictionFactoryProvider;
 	private final OWLDataFactory factory;
 
-	public ClassRestrictionGenerator(OWLDataFactory factory){
+	@Inject
+	public ClassRestrictionGenerator(RestrictionFactoryProvider restrictionFactoryProvider, OWLDataFactory factory){
+		this.restrictionFactoryProvider = restrictionFactoryProvider;
 		this.factory = factory;
 	}
 	
@@ -28,7 +35,7 @@ public class ClassRestrictionGenerator{
 		intersectionElements.add(conditionClass);
 		
 		for (PropertyValueCondition cond : condition.getPropertyConditions()) {
-			RestrictionFactory restrictionFactory = RestrictionFactory.getRestrictionFactory(cond);
+			RestrictionFactory restrictionFactory = restrictionFactoryProvider.getRestrictionFactory(cond);
 			OWLClassExpression restriction = restrictionFactory.createRestriction(cond);
 			intersectionElements.add(restriction);
 		}

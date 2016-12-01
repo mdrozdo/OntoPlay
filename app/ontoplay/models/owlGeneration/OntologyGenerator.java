@@ -27,11 +27,10 @@ import javax.inject.Singleton;
 
 @Singleton
 public class OntologyGenerator {
-	private static OntologyGenerator instance;
-	private static OWLDataFactory factory;
-	private static OWLOntologyManager manager;
+	private OWLDataFactory factory;
+	private OWLOntologyManager manager;
 	
-	private final ClassRestrictionGenerator classRestrictionGenerator;
+	private ClassRestrictionGenerator classRestrictionGenerator;
 	private IndividualGenerator individualGenerator;
 
 	public ClassRestrictionGenerator getClassRestrictionGenerator() {
@@ -42,33 +41,18 @@ public class OntologyGenerator {
 		return individualGenerator;
 	}
 	
-	public static void setGlobalInstance(OntologyGenerator kb) {
-		instance = kb;
-	}
-
-	public static OntologyGenerator getGlobalInstance() {
-		return instance;
-	}
-	
-	public static OWLDataFactory getOwlApiFactory(){
+	public OWLDataFactory getOwlApiFactory(){
 		return factory;
 	}
-	
 
-	public static void initialize(String uri, String localOntologyFolder) {
-		setGlobalInstance(loadFromFile(uri, localOntologyFolder));
-	}
-
-	public static OntologyGenerator loadFromFile(String uri, String localOntologyFolder) {
+	public OntologyGenerator(ClassRestrictionGeneratorFactory classGenFactory, IndividualGeneratorFactory individualGenFactory){
+		//Should these be injected?
 		manager = OWLManager.createOWLOntologyManager();
 		factory = manager.getOWLDataFactory();
-		
-		return new OntologyGenerator();
-	}
-	
-	private OntologyGenerator() {
-		classRestrictionGenerator = new ClassRestrictionGenerator(factory);
-		individualGenerator = new IndividualGenerator(factory);
+
+		//Should these be created from a Guice factory?
+		classRestrictionGenerator = classGenFactory.create(factory);
+		individualGenerator = individualGenFactory.create(factory);
 	}
 
 	public OWLOntology convertToOwlClassOntology(String classUri, ClassCondition condition) {

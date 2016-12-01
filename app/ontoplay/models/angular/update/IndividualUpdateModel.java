@@ -22,6 +22,7 @@ public class IndividualUpdateModel {
 	private Individual individual;
 	private OntClass ontClass;
 	private UpdateIndividualDTO updateIndividual;
+	private OntologyReader ontoReader;
 
 	public String getClassUri() {
 		return ontClass.getURI();
@@ -52,7 +53,8 @@ public class IndividualUpdateModel {
 		return functionalDataValues;
 	}
 
-	public IndividualUpdateModel(Individual individual) {
+	public IndividualUpdateModel(Individual individual, OntologyReader ontoReader) {
+		this.ontoReader = ontoReader;
 		System.out.println("asdqwe");
 		if (individual == null)
 			throw new NullArgumentException("inidividual");
@@ -190,7 +192,7 @@ public class IndividualUpdateModel {
 	}
 
 	private Resource getResourceFromURI(RDFNode node) {
-		return OntologyReader.getGlobalInstance().getIndividual(node.asResource().getURI()).getIndividual();
+		return ontoReader.getIndividual(node.asResource().getURI()).getIndividual();
 	}
 
 	private String getPropertyName(OntProperty prop) {
@@ -203,7 +205,7 @@ public class IndividualUpdateModel {
 
 	private String getIndividualClass(String individualUri) {
 		try {
-			return OntologyReader.getGlobalInstance().getIndividual(individualUri).getIndividual().getOntClass()
+			return ontoReader.getIndividual(individualUri).getIndividual().getOntClass()
 					.getLocalName();
 
 		} catch (Exception e) {

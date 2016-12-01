@@ -11,8 +11,8 @@ import java.util.Map;
 import java.util.Set;
 
 import ontoplay.models.ontologyModel.OwlIndividual;
-import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 
+import ontoplay.models.ontologyReading.jena.FolderMapping;
 import org.mindswap.pellet.KnowledgeBase;
 import org.mindswap.pellet.jena.PelletInfGraph;
 import org.semanticweb.owlapi.model.IRI;
@@ -46,12 +46,12 @@ public class JadeOwlMessageReader {
 
 	
 	private OntologyManager ontologyManager;
-	public JadeOwlMessageReader(JenaOwlReaderConfig config) {
+	public JadeOwlMessageReader(List<FolderMapping> mappings) {
 		this.ontologyManager = new OntologyManager();
-		if (config != null) {
+		if (mappings != null) {
 			
-			for (Map.Entry<String, String> mapping : config.getLocalMappings().entrySet()) {
-				ontologyManager.addIRIMapping(mapping.getKey(), mapping.getValue());
+			for (FolderMapping mapping : mappings) {
+				ontologyManager.addIRIMapping(mapping.getUri(), mapping.getFolderPath());
 			}
 		}
 	}
@@ -182,7 +182,7 @@ public class JadeOwlMessageReader {
 		}
 		return filteredTeams;
 	}
-	public static void initialize(JenaOwlReaderConfig mappingConfig) {
+	public static void initialize(List<FolderMapping> mappingConfig) {
 		setGlobalInstance(new JadeOwlMessageReader(mappingConfig));		
 	}	
 }

@@ -15,13 +15,17 @@ import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDeclarationAxiom;
 import org.semanticweb.owlapi.model.OWLIndividual;
-import org.semanticweb.owlapi.model.OWLObjectProperty;
+
+import javax.inject.Inject;
 
 public class IndividualGenerator{
-	
+
+	private RestrictionFactoryProvider restrictionFactoryProvider;
 	private final OWLDataFactory factory;
 
-	public IndividualGenerator(OWLDataFactory factory){
+	@Inject
+	public IndividualGenerator(RestrictionFactoryProvider restrictionFactoryProvider, OWLDataFactory factory){
+		this.restrictionFactoryProvider = restrictionFactoryProvider;
 		this.factory = factory;
 	}
 	
@@ -56,7 +60,7 @@ public class IndividualGenerator{
 		
 		//properies axioms
 		for (PropertyValueCondition cond : condition.getPropertyConditions()) {
-			RestrictionFactory restrictionFactory = RestrictionFactory.getRestrictionFactory(cond);
+			RestrictionFactory restrictionFactory = restrictionFactoryProvider.getRestrictionFactory(cond);
 			List<OWLAxiom> propertyAxioms = restrictionFactory.createIndividualValue(cond, individual);
 			individualAxioms.addAll(propertyAxioms);
 		}
