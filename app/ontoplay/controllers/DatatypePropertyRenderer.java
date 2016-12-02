@@ -11,7 +11,7 @@ import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import play.Logger.ALogger;
 
-public class DatatypePropertyRenderer extends PropertyConditionRenderer {
+public class DatatypePropertyRenderer implements PropertyConditionRenderer {
 	
 	private Map<String, PropertyValueRenderer> valueRenderers = new HashMap<String, PropertyValueRenderer>();
 	private List<PropertyOperator> operators = new ArrayList<PropertyOperator>();

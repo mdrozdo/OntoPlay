@@ -23,7 +23,7 @@ import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
 
 
-public class ClassValueRestrictionFactory extends RestrictionFactory<ClassValueCondition> {
+public class ClassValueRestrictionFactory implements RestrictionFactory<ClassValueCondition> {
 	private final OWLDataFactory factory;
 	private final ClassRestrictionGenerator classRestrictionGenerator;
 	private final IndividualGenerator individualGenerator;

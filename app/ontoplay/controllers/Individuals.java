@@ -5,11 +5,21 @@ import java.util.Map;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.owlGeneration.PropertyConditionRendererProvider;
 import play.mvc.*;
+
+import javax.inject.Inject;
 
 public class Individuals extends OntologyController {
 
 	private static int maxConditionId = 1;
+	private PropertyConditionRendererProvider conditionRendererProvider;
+
+	@Inject
+	public Individuals(PropertyConditionRendererProvider conditionRendererProvider){
+
+		this.conditionRendererProvider = conditionRendererProvider;
+	}
 
 	//TODO: Is this method used?
 	// public static void individual(int conditionId, String classUri) {
@@ -19,7 +29,7 @@ public class Individuals extends OntologyController {
 	// 	//TODO: render(newConditionId, owlClass);
 	// }
 
-	public static Result getPropertyCondition(int conditionId, String classUri,
+	public Result getPropertyCondition(int conditionId, String classUri,
 			String propertyUri) throws ConfigurationException {
 
 		OntoClass owlClass = ontoHelper.getOwlClass(classUri);
@@ -27,8 +37,8 @@ public class Individuals extends OntologyController {
 		OntoProperty property = ontoHelper.getProperty(propertyUri);
 		
 		//from here I can know the property type (data,object,string ,date);
-		PropertyConditionRenderer conditionRenderer = PropertyConditionRenderer
-				.getRenderer(property.getClass());
+		PropertyConditionRenderer conditionRenderer = conditionRendererProvider
+				.getRenderer(property);
 		
 		
 		final HtmlHolder holder = new HtmlHolder();

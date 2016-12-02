@@ -6,18 +6,17 @@ import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
+import ontoplay.controllers.*;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.jena.JenaOwlReader;
 import ontoplay.models.owlGeneration.*;
 import ontoplay.models.owlGeneration.restrictionFactories.*;
-import ontoplay.models.properties.DateTimeProperty;
-import ontoplay.models.properties.FloatProperty;
-import ontoplay.models.properties.IntegerProperty;
-import ontoplay.models.properties.StringProperty;
+import ontoplay.models.properties.*;
 import ontoplay.models.propertyConditions.ClassValueCondition;
 import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 import ontoplay.models.propertyConditions.IndividualValueCondition;
 import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLObjectProperty;
 import play.Configuration;
 import play.Environment;
 
@@ -48,6 +47,9 @@ public class Module extends AbstractModule{
         bind(new TypeLiteral<RestrictionFactory<IndividualValueCondition>>(){}).to(IndividualValueRestrictionFactory.class).in(Singleton.class);
         bind(new TypeLiteral<RestrictionFactory<ClassValueCondition>>(){}).to(ClassValueRestrictionFactory.class);
 
+
+        bind(new TypeLiteral<PropertyConditionRenderer<OwlObjectProperty>>(){}).to(ObjectPropertyRenderer.class);
+
 //        install(new FactoryModuleBuilder()
 //                .implement(ClassRestrictionGenerator.class, ClassRestrictionGenerator.class)
 //                .build(ClassRestrictionGeneratorFactory.class));
@@ -75,6 +77,41 @@ public class Module extends AbstractModule{
 
         return topLevelFactory;
     }
+
+    @Provides
+    private PropertyConditionRenderer<StringProperty> createStringPropertyRenderer() {
+        DatatypePropertyRenderer stringPropertyRenderer = new DatatypePropertyRenderer();
+        stringPropertyRenderer.registerPropertyOperator("equalTo", "is equal to ", true,  new SimpleDatatypePropertyValueRenderer());
+        return stringPropertyRenderer;
+    }
+
+    @Provides
+    private PropertyConditionRenderer<IntegerProperty> createIntegerPropertyRenderer() {
+        DatatypePropertyRenderer integerPropertyRenderer = new DatatypePropertyRenderer();
+        integerPropertyRenderer.registerPropertyOperator("equalTo", "is equal to ", true, new SimpleDatatypePropertyValueRenderer());
+        integerPropertyRenderer.registerPropertyOperator("greaterThan", "is greater than ", new SimpleDatatypePropertyValueRenderer());
+        integerPropertyRenderer.registerPropertyOperator("lessThan", "is less than ", new SimpleDatatypePropertyValueRenderer());
+        return integerPropertyRenderer;
+    }
+
+    @Provides
+    private PropertyConditionRenderer<FloatProperty> createFloatPropertyRenderer() {
+        DatatypePropertyRenderer floatPropertyRenderer = new DatatypePropertyRenderer();
+        floatPropertyRenderer.registerPropertyOperator("equalTo", "is equal to ", true, new SimpleDatatypePropertyValueRenderer());
+        floatPropertyRenderer.registerPropertyOperator("greaterThan", "is greater than ", new SimpleDatatypePropertyValueRenderer());
+        floatPropertyRenderer.registerPropertyOperator("lessThan", "is less than ", new SimpleDatatypePropertyValueRenderer());
+        return floatPropertyRenderer;
+    }
+
+    @Provides
+    private PropertyConditionRenderer<DateTimeProperty> createDateTimePropertyRenderer() {
+        DatatypePropertyRenderer floatPropertyRenderer = new DatatypePropertyRenderer();
+        floatPropertyRenderer.registerPropertyOperator("equalTo", "is equal to ", true, new DateTimePropertyValueRenderer());
+        floatPropertyRenderer.registerPropertyOperator("greaterThan", "is greater than ", new DateTimePropertyValueRenderer());
+        floatPropertyRenderer.registerPropertyOperator("lessThan", "is less than ", new DateTimePropertyValueRenderer());
+        return floatPropertyRenderer;
+    }
+
 
     @Provides @Singleton
     private OWLDataFactory createDataFactory(OntologyGenerator gen){

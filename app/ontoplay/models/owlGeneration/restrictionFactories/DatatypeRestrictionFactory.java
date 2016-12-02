@@ -16,7 +16,7 @@ import org.semanticweb.owlapi.model.OWLIndividual;
 
 
 
-public class DatatypeRestrictionFactory extends RestrictionFactory<DatatypePropertyCondition>{
+public class DatatypeRestrictionFactory implements RestrictionFactory<DatatypePropertyCondition>{
 	private Map<Class, Map<String, DatatypeRestrictionFactory>> factoryRegistry = new HashMap<Class, Map<String, DatatypeRestrictionFactory>>();	
 	
 	@Override

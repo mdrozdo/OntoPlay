@@ -23,7 +23,7 @@ import ontoplay.models.owlGeneration.RestrictionFactory;
 import ontoplay.models.propertyConditions.IndividualValueCondition;
 
 
-public class IndividualValueRestrictionFactory extends RestrictionFactory<IndividualValueCondition> {
+public class IndividualValueRestrictionFactory implements RestrictionFactory<IndividualValueCondition> {
 	private final OWLDataFactory factory;
 	
 	public IndividualValueRestrictionFactory(OWLDataFactory factory) {

@@ -12,8 +12,8 @@ import ontoplay.models.PropertyValueCondition;
 
 
 
-public abstract class RestrictionFactory<T extends PropertyValueCondition> {
+public interface RestrictionFactory<T extends PropertyValueCondition> {
 
-	public abstract OWLClassExpression createRestriction(T condition) throws ConfigurationException;
-	public abstract List<OWLAxiom> createIndividualValue(T condition, OWLIndividual individual) throws ConfigurationException;
+	OWLClassExpression createRestriction(T condition) throws ConfigurationException;
+	List<OWLAxiom> createIndividualValue(T condition, OWLIndividual individual) throws ConfigurationException;
 }

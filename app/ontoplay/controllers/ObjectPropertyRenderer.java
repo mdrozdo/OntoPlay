@@ -10,8 +10,9 @@ import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.jena.JenaOwlReader;
+import ontoplay.models.properties.OwlObjectProperty;
 
-public class ObjectPropertyRenderer extends PropertyConditionRenderer {
+public class ObjectPropertyRenderer implements PropertyConditionRenderer<OwlObjectProperty> {
 
 	private OntologyReader ontoReader;
 
@@ -21,7 +22,7 @@ public class ObjectPropertyRenderer extends PropertyConditionRenderer {
 	}
 
 	@Override
-	public void renderProperty(int conditionId, OntoClass owlClass, OntoProperty prop, boolean isDescriptionOfIndividual, 
+	public void renderProperty(int conditionId, OntoClass owlClass, OwlObjectProperty prop, boolean isDescriptionOfIndividual,
 			Renderer renderer) {
 		Map<String, Object> args = new LinkedHashMap<String, Object>();
 		args.put("conditionId", conditionId);
@@ -34,7 +35,7 @@ public class ObjectPropertyRenderer extends PropertyConditionRenderer {
 
 	@Override
 	public void renderOperator(int conditionId, OntoClass owlClass,
-			OntoProperty property, String operator, Renderer renderer) {
+							   OwlObjectProperty property, String operator, Renderer renderer) {
 		if (operator.equals("equalToIndividual")) {
 			renderIndividualValueCondition(conditionId, owlClass, property, operator, renderer);
 		} else if (operator.equals("constrainedBy")) {
