@@ -12,10 +12,13 @@ import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.jena.JenaOwlReader;
 import ontoplay.models.properties.OwlObjectProperty;
 
+import javax.inject.Inject;
+
 public class ObjectPropertyRenderer implements PropertyConditionRenderer<OwlObjectProperty> {
 
 	private OntologyReader ontoReader;
 
+	@Inject
 	public ObjectPropertyRenderer(OntologyReader ontoReader){
 
 		this.ontoReader = ontoReader;

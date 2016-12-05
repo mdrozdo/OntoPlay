@@ -23,6 +23,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
@@ -33,18 +34,7 @@ public class OntologyGenerator {
 	private ClassRestrictionGenerator classRestrictionGenerator;
 	private IndividualGenerator individualGenerator;
 
-	public ClassRestrictionGenerator getClassRestrictionGenerator() {
-		return classRestrictionGenerator;
-	}
-	
-	public IndividualGenerator getIndividualGenerator() {
-		return individualGenerator;
-	}
-	
-	public OWLDataFactory getOwlApiFactory(){
-		return factory;
-	}
-
+	@Inject
 	public OntologyGenerator(ClassRestrictionGeneratorFactory classGenFactory, IndividualGeneratorFactory individualGenFactory){
 		//Should these be injected?
 		manager = OWLManager.createOWLOntologyManager();
@@ -53,6 +43,19 @@ public class OntologyGenerator {
 		//Should these be created from a Guice factory?
 		classRestrictionGenerator = classGenFactory.create(factory);
 		individualGenerator = individualGenFactory.create(factory);
+	}
+
+
+	public ClassRestrictionGenerator getClassRestrictionGenerator() {
+		return classRestrictionGenerator;
+	}
+
+	public IndividualGenerator getIndividualGenerator() {
+		return individualGenerator;
+	}
+
+	public OWLDataFactory getOwlApiFactory(){
+		return factory;
 	}
 
 	public OWLOntology convertToOwlClassOntology(String classUri, ClassCondition condition) {

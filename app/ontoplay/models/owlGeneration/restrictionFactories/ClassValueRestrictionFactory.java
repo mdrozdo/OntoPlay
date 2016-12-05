@@ -22,6 +22,8 @@ import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom;
 
+import javax.inject.Inject;
+
 
 public class ClassValueRestrictionFactory implements RestrictionFactory<ClassValueCondition> {
 	private final OWLDataFactory factory;
@@ -29,7 +31,8 @@ public class ClassValueRestrictionFactory implements RestrictionFactory<ClassVal
 	private final IndividualGenerator individualGenerator;
 	
 	//TODO: Extract some small interface from OWLApiKB just for generating class restrictions
-	public ClassValueRestrictionFactory(ClassRestrictionGenerator classRestrictionGenerator, IndividualGenerator individualGenerator, 
+	@Inject
+	public ClassValueRestrictionFactory(ClassRestrictionGenerator classRestrictionGenerator, IndividualGenerator individualGenerator,
 			OWLDataFactory factory) {
 		this.classRestrictionGenerator = classRestrictionGenerator;
 		this.individualGenerator = individualGenerator;

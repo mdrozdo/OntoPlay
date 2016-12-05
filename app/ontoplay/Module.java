@@ -33,9 +33,9 @@ public class Module extends AbstractModule{
     private Map<String, String> ontoplayProperties;
 
     public Module(Environment environment, Configuration configuration){
-        ontoplayProperties = configuration.subKeys().stream()
-                .filter(k->k.startsWith("ontoplay"))
-                .collect(Collectors.toMap(k->k, k-> configuration.getString(k)));
+        ontoplayProperties = configuration.getConfig("ontoplay").subKeys().stream()
+                .collect(Collectors.toMap(k->k,
+                        k-> "ontoplay" + configuration.getString(k)));
     }
 
     @Override

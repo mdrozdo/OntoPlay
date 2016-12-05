@@ -22,10 +22,13 @@ import ontoplay.models.angular.update.Annotation;
 import ontoplay.models.owlGeneration.RestrictionFactory;
 import ontoplay.models.propertyConditions.IndividualValueCondition;
 
+import javax.inject.Inject;
+
 
 public class IndividualValueRestrictionFactory implements RestrictionFactory<IndividualValueCondition> {
 	private final OWLDataFactory factory;
-	
+
+	@Inject
 	public IndividualValueRestrictionFactory(OWLDataFactory factory) {
 		this.factory = factory;
 	}

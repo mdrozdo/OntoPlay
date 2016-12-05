@@ -33,14 +33,15 @@ import ontoplay.models.ontologyReading.jena.propertyFactories.IntegerPropertyFac
 import ontoplay.models.ontologyReading.jena.propertyFactories.ObjectPropertyFactory;
 import ontoplay.models.ontologyReading.jena.propertyFactories.StringPropertyFactory;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
-@Singleton
 public class JenaOwlReader implements OntologyReader{
 	private OntModel model;
 	private String ontologyNamespace;
 	private boolean ignorePropsWithNoDomain;
 
+	@Inject
 	public JenaOwlReader(String uri, List<FolderMapping> localMappings, boolean ignorePropsWithNoDomain){
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
 		if (localMappings != null) {
