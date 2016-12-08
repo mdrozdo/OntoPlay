@@ -50,12 +50,12 @@ public class Module extends AbstractModule{
 
         bind(new TypeLiteral<PropertyConditionRenderer<OwlObjectProperty>>(){}).to(ObjectPropertyRenderer.class);
 
-//        install(new FactoryModuleBuilder()
-//                .implement(ClassRestrictionGenerator.class, ClassRestrictionGenerator.class)
-//                .build(ClassRestrictionGeneratorFactory.class));
-//        install(new FactoryModuleBuilder()
-//                .implement(IndividualGenerator.class, IndividualGenerator.class)
-//                .build(IndividualGeneratorFactory.class));
+        install(new FactoryModuleBuilder()
+                .implement(ClassRestrictionGenerator.class, ClassRestrictionGenerator.class)
+                .build(ClassRestrictionGeneratorFactory.class));
+        install(new FactoryModuleBuilder()
+                .implement(IndividualGenerator.class, IndividualGenerator.class)
+                .build(IndividualGeneratorFactory.class));
     }
 
     @Provides @Singleton
@@ -76,6 +76,13 @@ public class Module extends AbstractModule{
                 new DatetimeRestrictionFactoryDecorator(new GreaterThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#dateTime", factory)));
 
         return topLevelFactory;
+    }
+
+    //TODO: Implement properly
+    @Provides
+    private JenaOwlReader createJenaReader(WSClient ws){
+
+        return new JenaOwlReader(ws, "http://www.w3.org/TR/owl-guide/wine.rdf", null, false);
     }
 
     @Provides
