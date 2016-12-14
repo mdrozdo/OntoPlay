@@ -14,6 +14,7 @@ public class Assets {
     }
     
     public Action<AnyContent> at(String path, String file) {
+
         return assets.at(path, file, false);
     }
 }

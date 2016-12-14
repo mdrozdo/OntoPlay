@@ -80,9 +80,9 @@ public class Module extends AbstractModule{
 
     //TODO: Implement properly
     @Provides
-    private JenaOwlReader createJenaReader(WSClient ws){
+    private JenaOwlReader createJenaReader(){
 
-        return new JenaOwlReader(ws, "http://www.w3.org/TR/owl-guide/wine.rdf", null, false);
+        return new JenaOwlReader("http://www.w3.org/TR/owl-guide/wine.rdf", null, false);
     }
 
     @Provides
