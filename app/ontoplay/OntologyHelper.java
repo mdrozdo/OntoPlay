@@ -25,6 +25,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 //TODO: Make this a normal class with non-static methods.
@@ -41,6 +42,7 @@ public class OntologyHelper {
 	private String checkFilePath; // = "./samples/TAN/TANCheckk.owl";
     private String ontologyNamespace; // = "http://www.tan.com";
 
+	@Inject
     public OntologyHelper(
 			@Named("ontoplay.fileName") String fileName,
 			@Named("ontoplay.folderPath") String folderPath,

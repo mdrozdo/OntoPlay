@@ -2,6 +2,7 @@ package ontoplay.controllers;
 
 import java.util.Map;
 
+import ontoplay.OntologyHelper;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
@@ -16,8 +17,8 @@ public class Individuals extends OntologyController {
 	private PropertyConditionRendererProvider conditionRendererProvider;
 
 	@Inject
-	public Individuals(PropertyConditionRendererProvider conditionRendererProvider){
-
+	public Individuals(OntologyHelper ontologyHelper, PropertyConditionRendererProvider conditionRendererProvider){
+		super(ontologyHelper);
 		this.conditionRendererProvider = conditionRendererProvider;
 	}
 

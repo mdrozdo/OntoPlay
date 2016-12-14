@@ -10,8 +10,7 @@ import javax.inject.Inject;
 
 public class OntologyController extends Controller {
 
-	@Inject
-	protected static OntologyHelper ontoHelper;
+	protected OntologyHelper ontoHelper;
 
 	protected static class HtmlHolder {
 		public play.twirl.api.Html value;
@@ -49,8 +48,9 @@ public class OntologyController extends Controller {
 		}
 	}
 
-	public OntologyController() {
+	public OntologyController(OntologyHelper ontoHelper) {
 		super();
+		this.ontoHelper = ontoHelper;
 	}
 
 }

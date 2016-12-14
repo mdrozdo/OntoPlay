@@ -1,5 +1,6 @@
 package ontoplay.controllers;
 
+import ontoplay.OntologyHelper;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
@@ -17,8 +18,8 @@ public class Constraints extends OntologyController {
 	private PropertyConditionRendererProvider conditionRendererProvider;
 
 	@Inject
-	public Constraints(PropertyConditionRendererProvider conditionRendererProvider){
-
+	public Constraints(OntologyHelper ontologyHelper, PropertyConditionRendererProvider conditionRendererProvider){
+		super(ontologyHelper);
 		this.conditionRendererProvider = conditionRendererProvider;
 	}
 
