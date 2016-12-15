@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.inject.assistedinject.Assisted;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
 
 import com.hp.hpl.jena.ontology.AnnotationProperty;
@@ -42,7 +43,7 @@ public class JenaOwlReader implements OntologyReader{
 	private boolean ignorePropsWithNoDomain;
 
 	@Inject
-	public JenaOwlReader(String uri, List<FolderMapping> localMappings, boolean ignorePropsWithNoDomain){
+	public JenaOwlReader(@Assisted String uri, @Assisted List<FolderMapping> localMappings, @Assisted boolean ignorePropsWithNoDomain){
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
 		if (localMappings != null) {
 			OntDocumentManager dm = model.getDocumentManager();

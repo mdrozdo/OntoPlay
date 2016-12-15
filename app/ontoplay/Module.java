@@ -8,6 +8,7 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
 import ontoplay.controllers.*;
 import ontoplay.models.ontologyReading.OntologyReader;
+import ontoplay.models.ontologyReading.OntologyReaderFactory;
 import ontoplay.models.ontologyReading.jena.JenaOwlReader;
 import ontoplay.models.owlGeneration.*;
 import ontoplay.models.owlGeneration.restrictionFactories.*;
@@ -33,9 +34,10 @@ public class Module extends AbstractModule{
     private Map<String, String> ontoplayProperties;
 
     public Module(Environment environment, Configuration configuration){
-        ontoplayProperties = configuration.getConfig("ontoplay").subKeys().stream()
-                .collect(Collectors.toMap(k->k,
-                        k-> "ontoplay" + configuration.getString(k)));
+        Configuration ontoplayConfig = configuration.getConfig("ontoplay");
+        ontoplayProperties = ontoplayConfig.subKeys().stream()
+                .collect(Collectors.toMap(k-> "ontoplay." + k,
+                        k-> ontoplayConfig.getString(k)));
     }
 
     @Override
@@ -47,7 +49,6 @@ public class Module extends AbstractModule{
         bind(new TypeLiteral<RestrictionFactory<IndividualValueCondition>>(){}).to(IndividualValueRestrictionFactory.class).in(Singleton.class);
         bind(new TypeLiteral<RestrictionFactory<ClassValueCondition>>(){}).to(ClassValueRestrictionFactory.class);
 
-
         bind(new TypeLiteral<PropertyConditionRenderer<OwlObjectProperty>>(){}).to(ObjectPropertyRenderer.class);
 
         install(new FactoryModuleBuilder()
@@ -56,6 +57,9 @@ public class Module extends AbstractModule{
         install(new FactoryModuleBuilder()
                 .implement(IndividualGenerator.class, IndividualGenerator.class)
                 .build(IndividualGeneratorFactory.class));
+        install(new FactoryModuleBuilder()
+                .implement(OntologyReader.class, JenaOwlReader.class)
+                .build(OntologyReaderFactory.class));
     }
 
     @Provides @Singleton
