@@ -3,6 +3,7 @@ package ontoplay.models.owlGeneration;
 import com.google.inject.Injector;
 import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
+import com.google.inject.util.Types;
 import ontoplay.controllers.PropertyConditionRenderer;
 import ontoplay.models.ontologyModel.OntoProperty;
 
@@ -22,6 +23,6 @@ public class PropertyConditionRendererProvider {
     }
 
     public <U extends OntoProperty> PropertyConditionRenderer<U> getRenderer(U property) {
-        return injector.getInstance(Key.get(new TypeLiteral<PropertyConditionRenderer<U>>(){}));
+        return (PropertyConditionRenderer<U>) injector.getInstance(Key.get(TypeLiteral.get(Types.newParameterizedType(PropertyConditionRenderer.class, property.getClass()))));
     }
 }
