@@ -10,6 +10,8 @@ import ontoplay.controllers.*;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.OntologyReaderFactory;
 import ontoplay.models.ontologyReading.jena.JenaOwlReader;
+import ontoplay.models.ontologyReading.jena.OwlPropertyFactory;
+import ontoplay.models.ontologyReading.jena.propertyFactories.*;
 import ontoplay.models.owlGeneration.*;
 import ontoplay.models.owlGeneration.restrictionFactories.*;
 import ontoplay.models.properties.*;
@@ -60,6 +62,8 @@ public class Module extends AbstractModule{
         install(new FactoryModuleBuilder()
                 .implement(OntologyReader.class, JenaOwlReader.class)
                 .build(OntologyReaderFactory.class));
+
+
     }
 
     @Provides @Singleton
@@ -82,11 +86,22 @@ public class Module extends AbstractModule{
         return topLevelFactory;
     }
 
+    @Provides @Singleton
+    private OwlPropertyFactory createOwlPropertyFactory(){
+        OwlPropertyFactory topLevelFactory = new OwlPropertyFactory();
+        topLevelFactory.registerPropertyFactory(new IntegerPropertyFactory());
+        topLevelFactory.registerPropertyFactory(new FloatPropertyFactory());
+        topLevelFactory.registerPropertyFactory(new DateTimePropertyFactory());
+        topLevelFactory.registerPropertyFactory(new StringPropertyFactory());
+        topLevelFactory.registerPropertyFactory(new ObjectPropertyFactory());
+        return topLevelFactory;
+    }
+
     //TODO: Implement properly
     @Provides
-    private JenaOwlReader createJenaReader(){
+    private JenaOwlReader createJenaReader(OwlPropertyFactory owlPropertyFactory){
 
-        return new JenaOwlReader("http://www.w3.org/TR/owl-guide/wine.rdf", null, false);
+        return new JenaOwlReader(owlPropertyFactory, "http://www.w3.org/TR/owl-guide/wine.rdf", null, false);
     }
 
     @Provides

@@ -41,9 +41,11 @@ public class JenaOwlReader implements OntologyReader{
 	private OntModel model;
 	private String ontologyNamespace;
 	private boolean ignorePropsWithNoDomain;
+	private OwlPropertyFactory owlPropertyFactory;
 
 	@Inject
-	public JenaOwlReader(@Assisted String uri, @Assisted List<FolderMapping> localMappings, @Assisted boolean ignorePropsWithNoDomain){
+	public JenaOwlReader(OwlPropertyFactory owlPropertyFactory, @Assisted String uri, @Assisted List<FolderMapping> localMappings, @Assisted boolean ignorePropsWithNoDomain){
+		this.owlPropertyFactory = owlPropertyFactory;
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
 		if (localMappings != null) {
 			OntDocumentManager dm = model.getDocumentManager();
@@ -59,13 +61,6 @@ public class JenaOwlReader implements OntologyReader{
 		String namespace = model.getNsPrefixURI("");
 		this.ontologyNamespace = namespace.substring(0, namespace.length() - 1);
 		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
-
-		//TODO: Make this non-static, move configuration to Module
-		OwlPropertyFactory.registerPropertyFactory(new IntegerPropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new FloatPropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new DateTimePropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new StringPropertyFactory());
-		OwlPropertyFactory.registerPropertyFactory(new ObjectPropertyFactory());
 	}
 
 
@@ -134,7 +129,7 @@ public class JenaOwlReader implements OntologyReader{
 	}
 
 	private OntoProperty createProperty(OntProperty prop) {
-		return OwlPropertyFactory.createOwlProperty(prop);
+		return owlPropertyFactory.createProperty(prop);
 	}
 
 	/* (non-Javadoc)
