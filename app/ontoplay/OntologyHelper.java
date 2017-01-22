@@ -28,19 +28,16 @@ import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-//TODO: Make this a normal class with non-static methods.
-// TODO: Make the current consts into normal fields, passed in from outside.
-//TODO: Paths should be removed from OntoPlay.
 public class OntologyHelper {
-	private String ontologyName; //="TAN.OWL";
+	private String ontologyName;
     private OntologyReader ontoReader;
 	private OntologyReaderFactory ontoReaderFactory;
 
-	private String file; // = "file:"+Pathes.UPLOADS_PATH+ontologyName;
-	private String filePath; // = Pathes.UPLOADS_PATH+ontologyName;
-	private String checkFile; // = "file:samples/TAN/TANCheckk.owl";
-	private String checkFilePath; // = "./samples/TAN/TANCheckk.owl";
-    private String ontologyNamespace; // = "http://www.tan.com";
+	private String file;
+	private String filePath;
+	private String checkFile;
+	private String checkFilePath;
+    private String ontologyNamespace;
 
 	@Inject
     public OntologyHelper(

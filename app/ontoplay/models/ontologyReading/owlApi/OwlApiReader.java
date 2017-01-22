@@ -43,6 +43,8 @@ import uk.ac.manchester.cs.owl.owlapi.OWLOntologyIRIMapperImpl;
 
 import javax.inject.Singleton;
 
+
+//This class isn't used by default and serves rather for historical reasons. May be removed in the future if no good use case comes up.
 @Singleton
 public class OwlApiReader implements OntologyReader {
 	private final OWLOntology ontology;
