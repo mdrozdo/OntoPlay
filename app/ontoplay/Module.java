@@ -6,9 +6,11 @@ import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
+import com.typesafe.config.ConfigValue;
 import ontoplay.controllers.*;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.OntologyReaderFactory;
+import ontoplay.models.ontologyReading.jena.FolderMapping;
 import ontoplay.models.ontologyReading.jena.JenaOwlReader;
 import ontoplay.models.ontologyReading.jena.OwlPropertyFactory;
 import ontoplay.models.ontologyReading.jena.propertyFactories.*;
@@ -23,7 +25,7 @@ import org.semanticweb.owlapi.model.OWLObjectProperty;
 import play.Configuration;
 import play.Environment;
 
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.clarkparsia.owlapiv3.OWL.factory;
@@ -34,8 +36,10 @@ import static com.clarkparsia.owlapiv3.OWL.factory;
 public class Module extends AbstractModule{
 
     private Map<String, String> ontoplayProperties;
+    private Configuration configuration;
 
     public Module(Environment environment, Configuration configuration){
+        this.configuration = configuration;
         Configuration ontoplayConfig = configuration.getConfig("ontoplay");
         ontoplayProperties = ontoplayConfig.subKeys().stream()
                 .collect(Collectors.toMap(k-> "ontoplay." + k,
@@ -101,7 +105,26 @@ public class Module extends AbstractModule{
     @Provides
     private JenaOwlReader createJenaReader(OwlPropertyFactory owlPropertyFactory){
 
-        return new JenaOwlReader(owlPropertyFactory, "http://www.w3.org/TR/owl-guide/wine.rdf", null, false);
+        Configuration jenaReaderConfig = configuration.getConfig("jenaReader");
+
+        String uri = jenaReaderConfig.getString("fileUri");
+
+        List<FolderMapping> mappings = readMappingsFromConfig(jenaReaderConfig);
+
+        return new JenaOwlReader(owlPropertyFactory, uri, null, false);
+    }
+
+    private List<FolderMapping> readMappingsFromConfig(Configuration configuration) {
+        Configuration fileMappingsConfig = configuration.getConfig("fileMappings");
+        Set<Map.Entry<String, ConfigValue>> entries = fileMappingsConfig.underlying().entrySet();
+        List<FolderMapping> mappings = new ArrayList<FolderMapping>();
+
+        for (Map.Entry<String, ConfigValue> entry : entries) {
+            FolderMapping mapping = new FolderMapping(entry.getKey(), entry.getValue().render());
+            mappings.add(mapping);
+        }
+
+        return mappings;
     }
 
     @Provides
