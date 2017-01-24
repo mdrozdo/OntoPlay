@@ -1,5 +1,7 @@
 package ontoplay.models.ontologyReading.jena;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -8,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.google.inject.assistedinject.Assisted;
+import com.hp.hpl.jena.util.FileManager;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
 
 import com.hp.hpl.jena.ontology.AnnotationProperty;
@@ -44,7 +47,7 @@ public class JenaOwlReader implements OntologyReader{
 	private OwlPropertyFactory owlPropertyFactory;
 
 	@Inject
-	public JenaOwlReader(OwlPropertyFactory owlPropertyFactory, @Assisted String uri, @Assisted List<FolderMapping> localMappings, @Assisted boolean ignorePropsWithNoDomain){
+	public JenaOwlReader(OwlPropertyFactory owlPropertyFactory, @Assisted String filePath, @Assisted List<FolderMapping> localMappings, @Assisted boolean ignorePropsWithNoDomain) {
 		this.owlPropertyFactory = owlPropertyFactory;
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
 		if (localMappings != null) {
@@ -55,7 +58,12 @@ public class JenaOwlReader implements OntologyReader{
 			}
 		}
 
-		model.read(uri);
+		try(InputStream fileStream = FileManager.get().open(filePath)){
+			model.read(fileStream, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new IllegalArgumentException("Error when reading the file from: "+filePath, e);
+		}
 
 		this.model = model;
 		String namespace = model.getNsPrefixURI("");
@@ -69,7 +77,7 @@ public class JenaOwlReader implements OntologyReader{
 	 */
 	@Override
 	public OntoClass getOwlClass(String className) {
-		if (!(className.contains("#"))) {
+		if (!(className.contains("#"))&& !(className.contains(":"))) {
 			className = String.format("%s#%s", ontologyNamespace, className);
 		}
 		OntClass ontClass = model.getOntClass(className);

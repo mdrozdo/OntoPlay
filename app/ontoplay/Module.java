@@ -101,17 +101,16 @@ public class Module extends AbstractModule{
         return topLevelFactory;
     }
 
-    //TODO: Implement properly
     @Provides
     private JenaOwlReader createJenaReader(OwlPropertyFactory owlPropertyFactory){
 
         Configuration jenaReaderConfig = configuration.getConfig("jenaReader");
 
-        String uri = jenaReaderConfig.getString("fileUri");
+        String uri = jenaReaderConfig.getString("filePath");
 
         List<FolderMapping> mappings = readMappingsFromConfig(jenaReaderConfig);
 
-        return new JenaOwlReader(owlPropertyFactory, uri, null, false);
+        return new JenaOwlReader(owlPropertyFactory, uri, mappings, false);
     }
 
     private List<FolderMapping> readMappingsFromConfig(Configuration configuration) {
