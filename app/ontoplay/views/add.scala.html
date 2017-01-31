@@ -1,6 +1,6 @@
 @import ontoplay.views.html.ontoplayMain; 
-@(className: String)
-@ontoplayMain("Add ".concat(className)){ 
+@(title: String,className: String)
+@ontoplayMain(title){ 
 	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/app.js")" type="text/javascript"
 	charset="utf-8"></script>
 	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/main.js")" type="text/javascript"
@@ -32,25 +32,21 @@
       	 </div>
       	
       <select class="form-control"  ng-model="data.property" ng-change="changedProperty()" 
-      		 class='property-select form-control' >
-      		 <option value="off">Select a property</option>
-      		 <option  ng-repeat="item in properties"  ng-style="item.isAnnotationProperty && {'color': 'blue'}" value={{item.uri}}>{{item.localName}} </option>
+      		 class='property-select form-control'  ng-options="property.uri as property.localName for property in properties">
       	  </select>
       <!-- parent is used because of ng-if-->
-      	  <select class="form-control"  ng-model="$parent.data.operator" ng-change="changedOperator()" ng-if="data.property != 'off'">
-      		 <option value="off">Select an operator</option>
-      		 <option ng-repeat="item in operators" value={{item.realValue}}>{{item.displayValue}}</option>
+      	  <select class="form-control"  ng-model="$parent.data.operator" ng-change="changedOperator()" ng-if="data.property != 'off'"
+			ng-options="item.realValue as item.displayValue for item in operators">
       	  </select>
       <input class="form-control"  type="{{data.inputType}}" ng-if="data.inputType!='object' && data.operator!='off'" ng-model="data.dataValue" /> 
       
-      <select class="form-control"  ng-model="$parent.data.propertyClass" ng-change="changedClass()" ng-if="data.inputType =='object' && data.operator!='off'">
-      		 <option value="off">Select a class</option>
-      		 <option ng-repeat="item in propertyClasses" value={{item.localName}}>{{item.localName}}</option>
+		<select class="form-control"  ng-model="$parent.data.propertyClass" ng-change="changedClass()" ng-if="data.inputType =='object' && data.operator!='off'"
+			ng-options="item.uri as item.localName for item in propertyClasses">
       	  </select>
+
       
-      <select class="form-control"  ng-model="$parent.data.objectValue"  ng-if="data.propertyClass!='off' && propertyIndividuals.length!=0">
-      		 <option value="off">Select an individual</option>
-      		 <option ng-repeat="item in propertyIndividuals" value={{item.uri}}>{{item.localName}}</option>
+      <select class="form-control"  ng-model="$parent.data.objectValue"  ng-if="data.propertyClass!='off' && propertyIndividuals.length!=0"
+		ng-options="item.uri as item.localName for item in propertyIndividuals">
       	  </select>
       	  
       <ol style=" list-style-type: none;">
@@ -79,7 +75,7 @@
 	      </div>
 	      <div class="form-group">
 	         <label for="individualName">{{type}} name:</label>
-	         <input id="elementName" ng-model="elementName" class="form-control" name="elementName" type="text" required="required">
+	         <input ng-disabled="buttonTxt=='Update'" id="elementName" ng-model="elementName" class="form-control" name="elementName" type="text" required="required">
 	      </div>
 	      <from class="form-inline">
 	      <div class="col-sm-18">
@@ -93,7 +89,7 @@
 	      </div>
 	      <div class='condition-operator'> <a ng-click=newItem('@className') href='#'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
 	      <div class='condition-operator'> <a ng-click=showAnnotationFormMainClass('@className')>Describe</a></div>
-	      <input ng-disabled="!elementName " class="btn btn-success" ng-click="add()" type="button" value="Add">
+	      <input ng-disabled="!elementName " class="btn btn-success" ng-click="add()" type="button" value="{{buttonTxt}}">
 	      <pre class="code">{{ data | json }}</pre>
 	      </form>
 	   </div>

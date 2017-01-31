@@ -2,16 +2,25 @@ package ontoplay.controllers.webservices;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import org.apache.commons.lang.NullArgumentException;
 import org.semanticweb.owlapi.model.OWLOntology;
 
 import com.google.gson.GsonBuilder;
+import com.hp.hpl.jena.ontology.AnnotationProperty;
+import com.hp.hpl.jena.rdf.model.ResIterator;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConditionDeserializer;
+import ontoplay.models.angular.AnnotationDTO;
 import ontoplay.models.angular.IndividualDTO;
+import ontoplay.models.angular.update.AnnotationAxiom;
 import ontoplay.models.angular.update.IndividualUpdateModel;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OwlIndividual;
@@ -25,6 +34,7 @@ public class Individuals extends OntologyController {
 	public static Result getIndividualsByClassName(String className) {
 		try {
 			OntoClass owlClass = getOwlClass(className);
+			setObjects();
 			List<OwlIndividual> individuals = ontologyReader.getIndividuals(owlClass);
 
 			List<IndividualDTO> individualDTOs = new ArrayList<IndividualDTO>();
@@ -34,7 +44,7 @@ public class Individuals extends OntologyController {
 			}
 			return ok(new GsonBuilder().create().toJson(individualDTOs));
 		} catch (Exception e) {
-			System.out.println("Error getting class individuals "+e.toString());
+			System.out.println("Error getting class individuals " + e.toString());
 			return badRequest();
 		}
 	}
@@ -61,31 +71,46 @@ public class Individuals extends OntologyController {
 
 			OntologyUtils.checkOntology(generatedOntology);
 			OntologyReader checkOntologyReader = OntologyUtils.checkOwlReader();
-			OntoClass owlClass = checkOntologyReader.getOwlClass(OntologyUtils.nameSpace + "Offer");
 			OntologyUtils.saveOntology(generatedOntology);
 			// Fix nested individuals
 			return ok("ok");
 		} catch (Exception e) {
-			System.out.println("Exception ocurred when adding individual: "+e.getMessage());
+			System.out.println("Exception ocurred when adding individual: " + e.getMessage());
 			return ok(e.getMessage());
 		}
 	}
 
-	public static Result updateIndividual(String individualName) {
-		// try {
-		OwlIndividual individual = OntologyReader.getGlobalInstance()
-				.getIndividual(OntologyUtils.nameSpace + individualName);
-		if (individual == null || individual.getIndividual() == null) {
-			return ok("Individual Not Found");
-		}
-		IndividualUpdateModel ind = new IndividualUpdateModel(individual.getIndividual());
+	public static Result getIndividualData(String individualName) {
+		try {
+			if(!individualName.contains("#")){
+				individualName=OntologyUtils.nameSpace + individualName;
+			}
+			OwlIndividual individual = OntologyReader.getGlobalInstance()
 
-		return ok(new GsonBuilder().create().toJson(ind.getUpdateIndividual()));
-		// } catch (Exception e) {
-		// System.out.println("Error in getting datat to update " +
-		// e.toString());
-		// return ok("Error");
-		// }
+					.getIndividual(individualName);
+
+			if (individual == null || individual.getIndividual() == null) {
+				return ok("Individual Not Found");
+			}
+			Set<AnnotationProperty> annotationProperties = OntologyReader.getGlobalInstance().getAnnotations();
+			
+			IndividualUpdateModel ind = new IndividualUpdateModel(individual.getIndividual(), annotationProperties,
+					AnnotationAxiom.readIterator(OntologyReader.getGlobalInstance().getAnnotationsAxioms()));
+
+			return ok(new GsonBuilder().create().toJson(ind.getUpdateIndividual()));
+		} catch (NullArgumentException e) {
+			return ok("Individual Not Found");
+		} catch (Exception e) {
+			return ok("Individual Not Found " + e.toString());
+		}
+
+	}
+	
+	public static Result deleteIndividualByName(String individualName){
+		if(!individualName.contains("#")){
+			individualName=OntologyUtils.nameSpace + individualName;
+		}
+		return ok(ontologyGenerator.removeIndividual(individualName)+"");
 	}
 
 }

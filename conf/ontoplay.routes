@@ -40,14 +40,15 @@ GET /annotationProperties/get/:componentUri ontoplay.controllers.webservices.Ann
 #classes
 GET /class/property/:propertyUri		ontoplay.controllers.webservices.Classes.getClassesByProperty(propertyUri: String)
 POST /class/save ontoplay.controllers.webservices.Classes.addClassExpression()
-GET /addClassExpression/:className			ontoplay.controllers.Operations.process(className: String)
+GET /addClassExpression/:className			ontoplay.controllers.Operations.add(className: String)
 
 #individuals
 GET /individuals/class/:className ontoplay.controllers.webservices.Individuals.getIndividualsByClassName(className: String)
 POST /individuals/save ontoplay.controllers.webservices.Individuals.addIndividual()
-GET /individuals/update/:individualName ontoplay.controllers.webservices.Individuals.updateIndividual(individualName: String)
-GET /add/:className			ontoplay.controllers.Operations.process(className: String)
-
+GET /individuals/data/:individualName ontoplay.controllers.webservices.Individuals.getIndividualData(individualName: String)
+GET /add/:className			ontoplay.controllers.Operations.add(className: String)
+GET /individuals/update/:className/:individualName ontoplay.controllers.Operations.update(className: String,individualName: String)
+GET /individuals/remove/:individualName ontoplay.controllers.webservices.Individuals.deleteIndividualByName(individualName: String)
 
 
 # Map static resources from the /public folder to the /assets URL path

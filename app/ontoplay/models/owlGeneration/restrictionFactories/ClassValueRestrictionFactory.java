@@ -55,7 +55,6 @@ public class ClassValueRestrictionFactory extends RestrictionFactory<ClassValueC
 		ArrayList<OWLAxiom> result = new ArrayList<OWLAxiom>();
 		result.addAll(nestedAxioms);
 		result.add(assertion);
-		System.out.println("Hello1");
 		List<Annotation> tempAnnotations=condition.getAnnotations();
 		Set<OWLAnnotation> annotations = new HashSet<>();
        for(Annotation condtionAnnotation:tempAnnotations){
@@ -63,7 +62,7 @@ public class ClassValueRestrictionFactory extends RestrictionFactory<ClassValueC
 					.getOWLAnnotationProperty(IRI.create(condtionAnnotation.getUri()));
 
 			annotations.add(factory.getOWLAnnotation(owlAnnotationProperty,
-					factory.getOWLLiteral(condtionAnnotation.getValue())));    	   
+					factory.getOWLLiteral(condtionAnnotation.getValue())));
        }
        
 		if (annotations.size() != 0) {

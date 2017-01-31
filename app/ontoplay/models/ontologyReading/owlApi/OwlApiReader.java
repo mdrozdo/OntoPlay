@@ -37,6 +37,9 @@ import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.util.AutoIRIMapper;
+
+import com.hp.hpl.jena.ontology.AnnotationProperty;
+import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.shared.ConfigException;
 
 public class OwlApiReader extends OntologyReader {
@@ -252,6 +255,18 @@ public class OwlApiReader extends OntologyReader {
 
 	@Override
 	public Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<AnnotationProperty> getAnnotations() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResIterator getAnnotationsAxioms() {
 		// TODO Auto-generated method stub
 		return null;
 	}

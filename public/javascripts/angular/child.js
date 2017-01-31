@@ -63,9 +63,27 @@
         }
         
         $scope.$watch('className',function(oldValue,newValue){
-        	
-        	if(newValue!=null)
+        	$scope.propertyIndividuals=[];
+        	if(newValue!=null){
 				Services.getProperties(newValue).then(function(data){$scope.properties=data;},onError);
+				//Incase of update
+				if($scope.data.operator!='off'){
+					Services.getOperators(encodeURIComponent($scope.data.property),Services.isAddIndividual()).then(function(data){
+					$scope.operators=data.operators;
+					},onError);				
+				}
+				
+				if($scope.data.propertyClass!='off'){
+				Services.getClasses(encodeURIComponent($scope.data.property)).then(function(data){				
+					$scope.propertyClasses=data;
+				},onError);
+				}
+				
+				if($scope.data.objectValue!="off"){			
+				Services.getIndividuals($scope.data.propertyClass).then(function(data){$scope.propertyIndividuals=data;});
+				}
+			}
+				
         });
 		
 			var reset=function(hideOperator,hideDataValue,hideClasses,hideSubNodes){

@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Annotations>
+<Annotation id="-1a7a2a8a:159450402f4:-4930" iri="http://www.co-ode.org/ontologies/pizza/pizza.owl#test" name="test"/>
+<Component id="-1a7a2a8a:159450402f4:-492f" iri="http://www.co-ode.org/ontologies/pizza/pizza.owl#Pizza" name="Pizza" type="Classes"/>
+<Relation annotationId="-1a7a2a8a:159450402f4:-4930" componentId="-1a7a2a8a:159450402f4:-492f" type="number"/>
 </Annotations>

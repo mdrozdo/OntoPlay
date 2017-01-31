@@ -1,6 +1,9 @@
 package ontoplay.models.owlGeneration;
 
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -15,10 +18,12 @@ import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLImportsDeclaration;
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+import org.semanticweb.owlapi.util.OWLEntityRemover;
 
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConfigurationException;
@@ -201,6 +206,25 @@ public class OntologyGenerator {
 			if (managerOwlOntology.getOntologyID().getOntologyIRI().equals(ontologyIRI)) {
 				manager.removeOntology(managerOwlOntology);
 			}
+		}
+	}
+	
+	public boolean removeIndividual(String individualUri){
+		OWLNamedIndividual individual=factory.getOWLNamedIndividual(IRI.create(individualUri));
+		if(individual == null)
+			return false;
+		OWLEntityRemover remover = new OWLEntityRemover(manager,manager.getOntologies());
+		individual.accept(remover);
+		manager.applyChanges(remover.getChanges());	
+		OutputStream out;
+		try {
+			out = new FileOutputStream(ontoplay.controllers.utils.OntologyUtils.fileName);
+	
+		manager.saveOntology(manager.getOntology(IRI.create(ontoplay.controllers.utils.OntologyUtils.nameSpace)), out);
+		out.close();
+		return false;
+		} catch (Exception e) {
+			return false;
 		}
 	}
 

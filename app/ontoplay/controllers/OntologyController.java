@@ -20,7 +20,9 @@ public class OntologyController extends Controller {
 	}
 	
 	protected static OntoClass getOwlClass(String className) {
-		return ontologyReader.getOwlClass(OntologyUtils.nameSpace + className);
+		if(className.indexOf("#")==-1)
+			className=OntologyUtils.nameSpace + className;
+		return ontologyReader.getOwlClass(className);
 	}
 
 	protected static class HtmlHolder {
