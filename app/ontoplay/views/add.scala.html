@@ -1,0 +1,138 @@
+@import ontoplay.views.html.ontoplayMain; 
+@(title: String,className: String)
+@ontoplayMain(title){ 
+	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/app.js")" type="text/javascript"
+	charset="utf-8"></script>
+	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/main.js")" type="text/javascript"
+	charset="utf-8"></script>
+	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/child.js")" type="text/javascript"
+	charset="utf-8"></script>
+	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/AnnotationsController.js")" type="text/javascript"
+	charset="utf-8"></script>
+	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/services.js")" type="text/javascript"
+	charset="utf-8"></script>
+	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/adapter.js")" type="text/javascript"
+	charset="utf-8"></script>
+	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/dialog.js")" type="text/javascript"
+	charset="utf-8"></script>
+	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/json2.js")" type="text/javascript" charset="utf-8"></script>
+	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/queryBuilder.js")" type="text/javascript" charset="utf-8"></script>
+	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/ontoScripts.js")" type="text/javascript" charset="utf-8"></script>
+}{
+	<div ng-app="Ontoplay">
+	   <!-- Nested node template -->
+	   <script type="text/ng-template" id="nodes_renderer.html">
+      <div>
+         <div class='condition-panel' ng-controller="Child" ng-init="className=node.className;data=node">
+      	  
+      <div class='remove-condition'>
+      		 <a ng-click="remove($parent.data,$index)">
+      		 	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      		 </a>
+      	 </div>
+      	
+      <select class="form-control"  ng-model="data.property" ng-change="changedProperty()" 
+      		 class='property-select form-control'  ng-options="property.uri as property.localName for property in properties">
+      	  </select>
+      <!-- parent is used because of ng-if-->
+      	  <select class="form-control"  ng-model="$parent.data.operator" ng-change="changedOperator()" ng-if="data.property != 'off'"
+			ng-options="item.realValue as item.displayValue for item in operators">
+      	  </select>
+      <input class="form-control"  type="{{data.inputType}}" ng-if="data.inputType!='object' && data.operator!='off'" ng-model="data.dataValue" /> 
+      
+		<select class="form-control"  ng-model="$parent.data.propertyClass" ng-change="changedClass()" ng-if="data.inputType =='object' && data.operator!='off'"
+			ng-options="item.uri as item.localName for item in propertyClasses">
+      	  </select>
+
+      
+      <select class="form-control"  ng-model="$parent.data.objectValue"  ng-if="data.propertyClass!='off' && propertyIndividuals.length!=0"
+		ng-options="item.uri as item.localName for item in propertyIndividuals">
+      	  </select>
+      	  
+      <ol style=" list-style-type: none;">
+      		 <li ng-repeat="node in node.nodes"  ng-include="'nodes_renderer.html'" >
+      		 
+      </li>
+      	  </ol>
+      	  <div ng-if="node.nodes && node.nodes.length > 0" class='condition-operator'> 
+      <a ng-click="newSubItem(node,'')" href='#'>
+      <span class="glyphicon glyphicon-plus" aria-hidden="true">
+      </span>
+      </a>
+      <a ng-click="openAnnotationForClass(data.propertyClass)">Describe object</a>
+      </div>
+      <a ng-click="openAnnotationProperties()">Describe property</a>
+      
+         
+      </div>
+      </div>
+   </script>
+	   <div ng-controller="Main"  class="row" ng-init="mainClass='@className'">
+	      <div class="row">
+	         <div class="col-sm-18">
+	            <h3>{{title}}</h3>
+	         </div>
+	      </div>
+	      <div class="form-group">
+	         <label for="individualName">{{type}} name:</label>
+	         <input ng-disabled="buttonTxt=='Update'" id="elementName" ng-model="elementName" class="form-control" name="elementName" type="text" required="required">
+	      </div>
+	      <from class="form-inline">
+	      <div class="col-sm-18">
+	         <div ui-tree >
+	            <ol ui-tree-nodes ng-model="data">
+	               <li ng-repeat="node in data"
+	                  ng-include="'nodes_renderer.html'">
+	               </li>
+	            </ol>
+	         </div>
+	      </div>
+	      <div class='condition-operator'> <a ng-click=newItem('@className') href='#'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
+	      <div class='condition-operator'> <a ng-click=showAnnotationFormMainClass('@className')>Describe</a></div>
+	      <input ng-disabled="!elementName " class="btn btn-success" ng-click="add()" type="button" value="{{buttonTxt}}">
+	      <pre class="code">{{ data | json }}</pre>
+	      </form>
+	   </div>
+	   <div id="dialog" ng-controller="AnnotationsController" title="More describtion" style="display:none">
+	      <h4 ng-if="property">
+	         {{property}} description
+	      </h4>
+	      <table width="100%">
+	         <thead>
+	            <tr>
+	               <th width="40%">Name</th>
+	               <th width="40%">Value</th>
+	               <th width="10%">Action</th>
+	            </tr>
+	         </thead>
+	         <tr ng-repeat="annotation in annotationsProperties">
+	            <td>{{annotation.localName}}</td>
+	            <td>{{annotation.value}}</td>
+	            <td><a ng-click='deleteAnnotation($index)'>
+	               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+	               </a>
+	            </td>
+	         </tr>
+	      </table>
+	      <br><br>  
+	      <div width="100%">
+	         <select ng-change="onChange()" ng-model="tempAnnotation" width="20%">
+	            <option value="off">Select an annotation</option>
+	            <option ng-repeat="item in annotationsOptions" ng-if="!item.isDefault" value={{item.uri}}>{{item.localName}}</option>
+	         </select>
+	         <input ng-disabled="tempAnnotation=='off'" type="{{tempType}}" ng-model="tempValue"/>
+	         <button ng-disabled="tempValue==''" style="width:20%" ng-click="addAnnotation()" class="btn btn-success" >Add</button> 
+	      </div>
+	      <hr>
+	      <button  style="width:20%" ng-click="changeDefaultAnnotationButtonValue()" class="btn btn-success" >{{defaultAnnotationButtonValue}}</button>
+	      <div class='condition-panel' ng-if='defaultAnnotationButtonValue=="less"' width="100%">
+	         <select ng-model="$parent.tempDefaultAnnotation" width="20%">
+	            <option value="off">Select an annotation</option>
+	            <option ng-repeat="item in annotationsOptions" ng-if="item.isDefault" value={{item.uri}}>{{item.localName}}</option>
+	         </select>
+	         <input ng-disabled="tempDefaultAnnotation=='off'" type="text" ng-model="$parent.tempDefaultValue"/>
+	         <button ng-disabled="tempDefaultValue==''" style="width:20%" ng-click="addDefaultAnnotation()" class="btn btn-success" >Add</button> 
+	      </div>
+	   </div>
+	</div>	
+}

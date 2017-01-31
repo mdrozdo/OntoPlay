@@ -256,5 +256,17 @@ public class OwlApiReader implements OntologyReader {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Set<AnnotationProperty> getAnnotations() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResIterator getAnnotationsAxioms() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

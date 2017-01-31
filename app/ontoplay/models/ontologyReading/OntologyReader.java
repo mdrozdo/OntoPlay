@@ -3,6 +3,9 @@ package ontoplay.models.ontologyReading;
 import java.util.List;
 import java.util.Set;
 
+import com.hp.hpl.jena.ontology.AnnotationProperty;
+import com.hp.hpl.jena.rdf.model.ResIterator;
+
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.PropertyProvider;
 import ontoplay.models.angular.AnnotationDTO;
@@ -27,5 +30,7 @@ public interface OntologyReader extends PropertyProvider{
 	
 	OwlIndividual getIndividual(String name);
 	Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace);
+	Set<AnnotationProperty> getAnnotations();
 
+	ResIterator getAnnotationsAxioms();
 }

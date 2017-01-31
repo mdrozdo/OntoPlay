@@ -1,0 +1,61 @@
+@import ontoplay.views.html.ontoplayMain; 
+@(ontologyName:String)(ontologyIri: String)
+
+@ontoplayMain("Ontology configuration"){ 
+	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/fileHelper.js")" type="text/javascript" charset="utf-8"></script>
+		<script>
+	$( "#uploadForm" ).submit(function( event ) {
+		if(!isValidExtension(getFileExtensionByFieldName('fileField'),'owl')){
+			alert( "Invalid file, please check the file and try again" );
+		  	event.preventDefault();
+		  	return;
+		}
+		var iri=$('#iriField').val();
+		if(iri.length==0 || !isURL(iri)){
+			alert( "Invalid IRI, please enter a valid one" );
+		  	event.preventDefault();
+		}
+	});
+
+	
+	function isURL(str) {
+		  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+		  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+		  '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+		  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+		  '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+		  '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+		  return pattern.test(str);
+		}
+	
+	</script>
+	}{
+	<h4>Current Ontology</h4>
+		<ul>
+			<li><b>Ontology </b>@ontologyName</li>
+			<li><b>IRI </b>@ontologyIri</li>
+		</ul>
+	
+	<hr>
+	
+	<h4>Update Ontology</h4>
+	<p>To use the Ontoplay with another Ontology, upload the .owl file and write the IRI of the ontology</p>
+	<br>
+	@helper.form(action = ontoplay.controllers.configuration.routes.UploadController.upload(), 'enctype -> "multipart/form-data"
+		,'class->"form-inline"
+		,'id->"uploadForm"
+		) {
+		<div class="form-group">
+    		<label for="ontologyFile">Ontology file </label>
+    		<input id="fileField" type="file" name="ontologyFile">
+    	</div>
+    	
+    	<div class="form-group">
+    		<label for="ontologyIRI">Ontology IRI </label>
+    		<input id="iriField" type="text" name="ontologyIRI">
+    	</div>
+    	
+        	<input class="btn btn-success" type="submit" value="upload">
+        	
+	}
+} 

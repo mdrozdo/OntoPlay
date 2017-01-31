@@ -66,7 +66,7 @@
             }
         }
 		
-		$scope.update=function(){
+		$scope.add=function(){
 			//validation here (TBD)
 			//var individual={'classUri':$scope.mainClass,'propertyConditions':$scope.data,'annotations':$scope.mainObjectAnnotations};
 			//console.log(individual);
@@ -75,8 +75,17 @@
 				alert("No conditions were found");
 				return;
 			}
-			//Services.update(angular.toJson(individual),$scope.individualName);
-			Services.update(angular.toJson(individual),$scope.individualName);
+			//Services.update(angular.toJson(individual),$scope.elementName);
+			Services.add(angular.toJson(individual),$scope.elementName).then(function(data){
+				if(data=="ok"){
+					alert($scope.type+" was added successfully. You will be redirected to the main "+$scope.mainClass+" page");
+					//window.location.pathname="/view/"+$scope.mainClass;
+				
+				}else{
+					alert("An error occured please try again later\n"+data)
+				}
+					
+			});
 		}
         
         $scope.$on('addChild', function (event, scope,className) {
@@ -99,13 +108,36 @@
 		     $scope.$watch('mainClass',function(oldValue,newValue){
 				 $scope.data = [];
 				 $scope.mainObjectAnnotations=[];
-				 $scope.individualName='';
-        	if(newValue!=null)
-				$scope.data.push(createIndividual(1,newValue));
+				 $scope.elementName='';
+        	if(newValue!=null){
+        		if(window.location.href.indexOf('update')!=-1){
+					
+        			var tempPathParts=window.location.pathname.split('/');
+        			$scope.elementName=tempPathParts[tempPathParts.length-1];
+        			$scope.title="Update individual "+$scope.elementName;
+        			$scope.type="To be updated individual";
+					$scope.buttonTxt="Update";
+					Services.getIndividualDataForUpdate($scope.elementName).then(function(data){
+					$scope.data = data.properties;
+					$scope.mainObjectAnnotations=data.annotations;
+					},function(){alert("Error getting individual data.You will be redirected to the main "+$scope.mainClass+" page");
+					//  window.location.pathname="/view/"+$scope.mainClass;
+					  });
+					
+        		}else{
+				$scope.isAddIndividual=Services.isAddIndividual();
+				$scope.buttonTxt="Add";
+				if($scope.isAddIndividual){
+					$scope.title="Add new individual for "+newValue;
+					$scope.type="Individual";
+				}else{
+					$scope.title="Add new class expression for "+newValue;
+					$scope.type="Class Expression";				
+				}
+			 $scope.data.push(createIndividual(1,newValue));
+			 }
+			 }
 		     });
-		     
-		 
-        
     }]);
 
 }());

@@ -67,11 +67,12 @@ public class IndividualGenerator{
 		for(Annotation ann:condition.getAnnotations()){
 		OWLAnnotationProperty owlAnnotationProperty = factory.getOWLAnnotationProperty(IRI.create(ann.getUri()));
 		OWLAxiom annotationAxiom;
-		if(!individual.isAnonymous())
-		 annotationAxiom=factory.getOWLAnnotationAssertionAxiom(owlAnnotationProperty, individual.asOWLNamedIndividual().getIRI(), factory.getOWLLiteral(ann.getValue()));
-		else
-				 annotationAxiom=factory.getOWLAnnotationAssertionAxiom(owlAnnotationProperty, individual.asOWLAnonymousIndividual(), factory.getOWLLiteral(ann.getValue()));
-		individualAxioms.add(annotationAxiom);
+		if(!individual.isAnonymous()){
+			annotationAxiom=factory.getOWLAnnotationAssertionAxiom(owlAnnotationProperty, individual.asOWLNamedIndividual().getIRI(), factory.getOWLLiteral(ann.getValue()));
+		}else{
+			annotationAxiom=factory.getOWLAnnotationAssertionAxiom(owlAnnotationProperty, individual.asOWLAnonymousIndividual(), factory.getOWLLiteral(ann.getValue()));
+		}
+			individualAxioms.add(annotationAxiom);
 		
 		}
 		

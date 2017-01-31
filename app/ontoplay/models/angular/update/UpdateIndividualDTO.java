@@ -83,5 +83,22 @@ public class UpdateIndividualDTO {
 	}
 	
 	
+	public void addAnnotation( String localName,String uri,String value){
+		Annotation annotation=new Annotation();
+		annotation.setLocalName(localName);
+		annotation.setUri(uri);
+		annotation.setValue(value);
+		try{
+			
+			int lastId=this.annotations.get(this.annotations.size()-1).getId();
+			lastId+=1;
+			annotation.setId(lastId);
+		
+		}catch(Exception e){
+			annotation.setId(1);
+		}
+		this.annotations.add(annotation);
+	
+	}
 	
 }
