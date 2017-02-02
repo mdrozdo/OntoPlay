@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.gson.GsonBuilder;
 
+import ontoplay.OntologyHelper;
 import ontoplay.controllers.OntologyController;
 import ontoplay.models.angular.PropertyDTO;
 import ontoplay.models.ontologyModel.OntoClass;
@@ -19,9 +20,13 @@ import play.mvc.Result;
 
 public class Properties extends OntologyController {
 
-	public static Result getPropertiesByClassName(String className) {
+	public Properties(OntologyHelper ontoHelper) {
+		super(ontoHelper);
+	}
+
+	public Result getPropertiesByClassName(String className) {
 		try {
-			OntoClass owlClass = getOwlClass(className);
+			OntoClass owlClass = ontoHelper.getOwlClass(className);
 			List<OntoProperty> properties = owlClass.getProperties();
 			List<PropertyDTO> propertiesDTO = new ArrayList<PropertyDTO>();
 

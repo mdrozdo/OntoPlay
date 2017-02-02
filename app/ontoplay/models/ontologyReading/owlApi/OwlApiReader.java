@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.hp.hpl.jena.ontology.AnnotationProperty;
+import com.hp.hpl.jena.rdf.model.ResIterator;
 import ontoplay.models.PropertyValueCondition;
 import ontoplay.models.angular.AnnotationDTO;
 import ontoplay.models.ontologyModel.OntoClass;

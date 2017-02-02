@@ -3,6 +3,8 @@ package ontoplay.controllers.webservices;
 import java.util.ArrayList;
 import java.util.List;
 
+import ontoplay.OntologyHelper;
+import ontoplay.models.owlGeneration.OntologyGenerator;
 import org.semanticweb.owlapi.model.OWLOntology;
 
 import com.google.gson.GsonBuilder;
@@ -21,7 +23,17 @@ import play.data.Form;
 import play.mvc.Result;
 
 public class Classes extends OntologyController{
-	public static Result getClassesByProperty(String propertyUri){
+
+	private OntologyReader ontologyReader;
+	private OntologyGenerator ontologyGenerator;
+
+	public Classes(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntologyGenerator ontologyGenerator){
+		super(ontologyHelper);
+		this.ontologyReader = ontologyReader;
+		this.ontologyGenerator = ontologyGenerator;
+	}
+
+	public Result getClassesByProperty(String propertyUri){
 		try{
 	
 		OntoProperty property = ontologyReader.getProperty(propertyUri);
@@ -36,7 +48,7 @@ public class Classes extends OntologyController{
 		}
 		}
 	
-	public static Result addClassExpression() {
+	public Result addClassExpression() {
 		@SuppressWarnings("deprecation")
 		DynamicForm dynamicForm = Form.form().bindFromRequest();
 		String conditionJson = dynamicForm.get("conditionJson");
@@ -47,8 +59,8 @@ public class Classes extends OntologyController{
 				ontologyGenerator.convertToOwlClassOntology(OntologyUtils.nameSpace +classExpressionName, condition);
 			if (generatedOntology == null)
 				return ok("Ontology is null");
-			OntologyUtils.checkOntology(generatedOntology);
-			OntologyReader checkOntologyReader = OntologyUtils.checkOwlReader();
+			ontoHelper.checkOntology(generatedOntology);
+			OntologyReader checkOntologyReader = ontoHelper.checkOwlReader();
 			OntologyUtils.saveOntology(generatedOntology);
 			return ok("ok");
 		} catch (Exception e) {

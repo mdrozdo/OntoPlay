@@ -127,7 +127,7 @@ public class IndividualUpdateModel {
 					propertyNode.setOperator("describedWith");
 					propertyNode.setInputType("object");
 					propertyNode.setObjectValue("off");
-					IndividualUpdateModel temp = new IndividualUpdateModel(tempInd, annotationProperties,this.annotationAxiomsList);
+					IndividualUpdateModel temp = new IndividualUpdateModel(tempInd, ontoReader, annotationProperties,this.annotationAxiomsList);
 					List<PropertyNode> nodes = temp.getUpdateIndividual().getProperties();
 					if (nodes != null && nodes.size() > 0) {
 						propertyNode.setPropertyClass(nodes.get(0).getClassName());

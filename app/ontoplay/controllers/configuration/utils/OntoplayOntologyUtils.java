@@ -9,8 +9,6 @@ import org.w3c.dom.NodeList;
 
 import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.controllers.utils.PathesUtils;
-import ontoplay.jobs.JenaOwlReaderConfiguration;
-import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 
 /**
  * Read and set ontology configuration.

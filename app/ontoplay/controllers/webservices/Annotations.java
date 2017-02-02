@@ -7,9 +7,12 @@ import java.util.Set;
 
 import com.google.gson.GsonBuilder;
 
+import ontoplay.OntologyHelper;
 import ontoplay.controllers.OntologyController;
+import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
 import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.angular.AnnotationDTO;
+import ontoplay.models.ontologyReading.OntologyReader;
 import play.mvc.Result;
 /**
  * 
@@ -17,9 +20,17 @@ import play.mvc.Result;
  *
  */
 public class Annotations extends OntologyController{
+
+	private OntologyReader ontologyReader;
+	private OntoplayAnnotationUtils ontoplayAnnotationUtils;
+
+	public Annotations(OntologyHelper ontoHelper, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils) {
+		super(ontoHelper);
+		this.ontologyReader = ontologyReader;
+		this.ontoplayAnnotationUtils = ontoplayAnnotationUtils;
+	}
 	
-	
-	public static Result getAnnotationPropertyByUri(String componentUri){
+	public Result getAnnotationPropertyByUri(String componentUri){
 		try {
 			componentUri= java.net.URLDecoder.decode(componentUri, "UTF-8");
 			if(componentUri.indexOf(OntologyUtils.nameSpace)==-1)
@@ -30,13 +41,14 @@ public class Annotations extends OntologyController{
 		List<AnnotationDTO> annotations=new ArrayList<AnnotationDTO>();
 
 		// add annotations from the xml
-		try{
-			List<AnnotationDTO> xmlAnnotations=ontoplay.controllers.configuration.AnnotationController.getAnnotationsByComponentUri(componentUri);
-			for(AnnotationDTO temp:xmlAnnotations){
+		try {
+			List<AnnotationDTO> xmlAnnotations = ontoplayAnnotationUtils.getAnnotationForComponentByComponentUri(componentUri);
+
+			for (AnnotationDTO temp : xmlAnnotations) {
 				annotations.add(temp);
 			}
-		}	catch(Exception e){
-			System.out.println("Error getting annotaitons from xml " +e.toString());
+		}	catch(Exception e) {
+			System.out.println("Error getting annotaitons from xml " + e.toString());
 		}
 		
 		Set<AnnotationDTO> defaultAnnotations=ontologyReader.getAnnotations(false);

@@ -4,21 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import ontoplay.OntologyHelper;
+import ontoplay.models.owlGeneration.OntologyGenerator;
 import org.apache.commons.lang.NullArgumentException;
 import org.semanticweb.owlapi.model.OWLOntology;
 
 import com.google.gson.GsonBuilder;
 import com.hp.hpl.jena.ontology.AnnotationProperty;
-import com.hp.hpl.jena.rdf.model.ResIterator;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConditionDeserializer;
-import ontoplay.models.angular.AnnotationDTO;
 import ontoplay.models.angular.IndividualDTO;
 import ontoplay.models.angular.update.AnnotationAxiom;
 import ontoplay.models.angular.update.IndividualUpdateModel;
@@ -31,10 +28,22 @@ import play.mvc.Result;
 
 public class Individuals extends OntologyController {
 
-	public static Result getIndividualsByClassName(String className) {
+	private final OntologyReader ontologyReader;
+	private OntologyGenerator ontologyGenerator;
+
+	public Individuals(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntologyGenerator generator){
+		super(ontologyHelper);
+		this.ontologyReader = ontologyReader;
+
+		this.ontologyGenerator = generator;
+	}
+
+	public Result getIndividualsByClassName(String className) {
 		try {
-			OntoClass owlClass = getOwlClass(className);
-			setObjects();
+			OntoClass owlClass = ontoHelper.getOwlClass(className);
+
+			//TODO: What was this one?
+			//setObjects();
 			List<OwlIndividual> individuals = ontologyReader.getIndividuals(owlClass);
 
 			List<IndividualDTO> individualDTOs = new ArrayList<IndividualDTO>();
@@ -49,7 +58,7 @@ public class Individuals extends OntologyController {
 		}
 	}
 
-	public static Result addIndividual() {
+	public Result addIndividual() {
 		@SuppressWarnings("deprecation")
 		DynamicForm dynamicForm = Form.form().bindFromRequest();
 		String conditionJson = dynamicForm.get("conditionJson");
@@ -69,8 +78,8 @@ public class Individuals extends OntologyController {
 			if (generatedOntology == null)
 				return ok("Ontology is null");
 
-			OntologyUtils.checkOntology(generatedOntology);
-			OntologyReader checkOntologyReader = OntologyUtils.checkOwlReader();
+			ontoHelper.checkOntology(generatedOntology);
+			OntologyReader checkOntologyReader = ontoHelper.checkOwlReader();
 			OntologyUtils.saveOntology(generatedOntology);
 			// Fix nested individuals
 			return ok("ok");
@@ -80,22 +89,20 @@ public class Individuals extends OntologyController {
 		}
 	}
 
-	public static Result getIndividualData(String individualName) {
+	public Result getIndividualData(String individualName) {
 		try {
 			if(!individualName.contains("#")){
 				individualName=OntologyUtils.nameSpace + individualName;
 			}
-			OwlIndividual individual = OntologyReader.getGlobalInstance()
-
-					.getIndividual(individualName);
+			OwlIndividual individual = ontologyReader.getIndividual(individualName);
 
 			if (individual == null || individual.getIndividual() == null) {
 				return ok("Individual Not Found");
 			}
-			Set<AnnotationProperty> annotationProperties = OntologyReader.getGlobalInstance().getAnnotations();
+			Set<AnnotationProperty> annotationProperties = ontologyReader.getAnnotations();
 			
-			IndividualUpdateModel ind = new IndividualUpdateModel(individual.getIndividual(), annotationProperties,
-					AnnotationAxiom.readIterator(OntologyReader.getGlobalInstance().getAnnotationsAxioms()));
+			IndividualUpdateModel ind = new IndividualUpdateModel(individual.getIndividual(), ontologyReader, annotationProperties,
+					AnnotationAxiom.readIterator(ontologyReader.getAnnotationsAxioms()));
 
 			return ok(new GsonBuilder().create().toJson(ind.getUpdateIndividual()));
 		} catch (NullArgumentException e) {
@@ -106,7 +113,7 @@ public class Individuals extends OntologyController {
 
 	}
 	
-	public static Result deleteIndividualByName(String individualName){
+	public Result deleteIndividualByName(String individualName){
 		if(!individualName.contains("#")){
 			individualName=OntologyUtils.nameSpace + individualName;
 		}

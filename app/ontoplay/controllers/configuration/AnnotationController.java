@@ -10,6 +10,8 @@ import java.util.Set;
 
 import javax.xml.xpath.XPathExpressionException;
 
+import ontoplay.OntologyHelper;
+import ontoplay.models.ontologyReading.OntologyReader;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
 
 import com.google.gson.GsonBuilder;
@@ -38,13 +40,20 @@ import play.mvc.Result;
  *
  */
 public class AnnotationController extends OntologyController {
-	static OntoplayAnnotationUtils ontoplayAnnotationUtils=new OntoplayAnnotationUtils(PathesUtils.Annotation_XML_FILE_PATH);
-	       
-	public static Result showAnnotationCFPage() {
+	//TODO: Move this creation to module and path to config.
+	private OntoplayAnnotationUtils ontoplayAnnotationUtils=new OntoplayAnnotationUtils(PathesUtils.Annotation_XML_FILE_PATH);
+	private OntologyReader ontologyReader;
+
+	public AnnotationController(OntologyHelper ontologyHelper, OntologyReader ontologyReader){
+		super(ontologyHelper);
+		this.ontologyReader = ontologyReader;
+	}
+
+	public Result showAnnotationCFPage() {
 		return ok(ontoplay.views.html.configuration.annotations.render());
 	}
 	
-	public static Result getAnnotationForCFPage(){
+	public Result getAnnotationForCFPage(){
     	
     	Set<AnnotationDTO> annotations=ontologyReader.getAnnotations(true);
 		return ok(new GsonBuilder().create().toJson(annotations));
@@ -54,7 +63,7 @@ public class AnnotationController extends OntologyController {
 	 * @return 
 	 * @return classes, object properties and data properties as JSON object
 	 */	
-	public static Result getOntologyComponents(){
+	public Result getOntologyComponents(){
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
     	FileManager.get().readModel(model,new File(OntologyUtils.fileName).toURI().toString());
     	Map<String,List<OwlElementDTO>> results=new HashMap<String,List<OwlElementDTO>>();
@@ -93,11 +102,11 @@ public class AnnotationController extends OntologyController {
     	return ok(new GsonBuilder().create().toJson(results));
 	}
 	
-	private static boolean isFromTheOntologyNameSpace(String uri){
+	private boolean isFromTheOntologyNameSpace(String uri){
 		return uri!=null && uri.indexOf(OntologyUtils.nameSpace)!=-1;
 	}
 	
-	public static Result getRelationsByAnnotationIri(String annotationIri){
+	public Result getRelationsByAnnotationIri(String annotationIri){
 		try {
 			annotationIri= java.net.URLDecoder.decode(annotationIri, "UTF-8");
 			return ok(new GsonBuilder().create().toJson(ontoplayAnnotationUtils.getComponentsByAnnotation(annotationIri)));
@@ -107,7 +116,7 @@ public class AnnotationController extends OntologyController {
 		}
 	}
 	
-	public static Result AddRelation(){
+	public Result AddRelation(){
 		DynamicForm dynamicForm = Form.form().bindFromRequest();
 		String annotationIri=dynamicForm.get("annotationIri");
 		String annotationName=dynamicForm.get("annotationName");
@@ -126,7 +135,7 @@ public class AnnotationController extends OntologyController {
 		
 	}
 	
-	public static Result deleteRelation(){
+	public Result deleteRelation(){
 		DynamicForm dynamicForm = Form.form().bindFromRequest();
 		String annotationId=dynamicForm.get("annotationId");
 		String componentId=dynamicForm.get("componentId");
@@ -143,7 +152,7 @@ public class AnnotationController extends OntologyController {
 		return object;
 	}
 	
-	public static Result deleteAllRelations(){
+	public Result deleteAllRelations(){
 		DynamicForm dynamicForm = Form.form().bindFromRequest();
 		String annotationId=dynamicForm.get("annotationId");
 		try{
@@ -154,7 +163,7 @@ public class AnnotationController extends OntologyController {
 		}
 	}
 	
-	public static List<AnnotationDTO> getAnnotationsByComponentUri(String componentUri) throws XPathExpressionException{
+	private List<AnnotationDTO> getAnnotationsByComponentUri(String componentUri) throws XPathExpressionException{
 		
 		return ontoplayAnnotationUtils.getAnnotationForComponentByComponentUri(componentUri);
 	}

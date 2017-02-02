@@ -27,6 +27,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import ontoplay.models.ClassCondition;
+import org.semanticweb.owlapi.util.OWLEntityRemover;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

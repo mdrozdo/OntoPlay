@@ -28,7 +28,6 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.OWL2;
 import com.hp.hpl.jena.vocabulary.RDF;
 
-import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.InvalidConfigurationException;
 import ontoplay.models.PropertyValueCondition;
@@ -50,6 +49,7 @@ import javax.inject.Singleton;
 public class JenaOwlReader implements OntologyReader{
 	private OntModel model;
 	private String ontologyNamespace;
+	private String iriString;
 	private boolean ignorePropsWithNoDomain;
 	private OwlPropertyFactory owlPropertyFactory;
 
@@ -74,6 +74,7 @@ public class JenaOwlReader implements OntologyReader{
 
 		this.model = model;
 		String namespace = model.getNsPrefixURI("");
+		this.iriString = namespace;
 		this.ontologyNamespace = namespace.substring(0, namespace.length() - 1);
 		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
 	}
@@ -258,7 +259,7 @@ public class JenaOwlReader implements OntologyReader{
 		Set<AnnotationDTO> annotations = new HashSet<AnnotationDTO>();
 		while (ei.hasNext()) {
 			AnnotationProperty temp = ei.next();
-			if (temp.getURI().indexOf(OntologyUtils.iriString) > -1 && isOnlyFromNameSpace) {
+			if (temp.getURI().indexOf(this.iriString) > -1 && isOnlyFromNameSpace) {
 				annotations.add(new AnnotationDTO(temp.getURI(), temp.getLocalName()));
 			}
 			if (!isOnlyFromNameSpace) {
