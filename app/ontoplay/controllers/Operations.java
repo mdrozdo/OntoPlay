@@ -4,9 +4,12 @@ import ontoplay.OntologyHelper;
 import ontoplay.models.ontologyModel.OntoClass;
 import play.mvc.Result;
 
+import javax.inject.Inject;
+
 
 public class Operations extends OntologyController {
 
+	@Inject
 	public Operations(OntologyHelper ontologyHelper) {
 		super(ontologyHelper);
 	}

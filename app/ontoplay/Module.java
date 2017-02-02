@@ -8,6 +8,7 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
 import com.typesafe.config.ConfigValue;
 import ontoplay.controllers.*;
+import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.OntologyReaderFactory;
 import ontoplay.models.ontologyReading.jena.FolderMapping;
@@ -113,6 +114,15 @@ public class Module extends AbstractModule{
         return new JenaOwlReader(owlPropertyFactory, uri, mappings, false);
     }
 
+    @Provides
+    private OntoplayAnnotationUtils createOntoplayAnnotationUtils(){
+        //TODO: Check if this makes sense (probably not)
+        Configuration jenaReaderConfig = configuration.getConfig("jenaReader");
+
+        String uri = jenaReaderConfig.getString("filePath");
+        return new OntoplayAnnotationUtils(uri);
+    }
+
     private List<FolderMapping> readMappingsFromConfig(Configuration configuration) {
         Configuration fileMappingsConfig = configuration.getConfig("fileMappings");
         Set<Map.Entry<String, ConfigValue>> entries = fileMappingsConfig.underlying().entrySet();
@@ -161,7 +171,7 @@ public class Module extends AbstractModule{
     }
 
 
-    @Provides @Singleton
+    @Provides
     private OWLDataFactory createDataFactory(OntologyGenerator gen){
         return gen.getOwlApiFactory();
     }

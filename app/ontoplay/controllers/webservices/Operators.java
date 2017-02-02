@@ -14,10 +14,13 @@ import ontoplay.models.owlGeneration.PropertyConditionRendererProvider;
 import play.Logger.ALogger;
 import play.mvc.Result;
 
+import javax.inject.Inject;
+
 public class Operators extends OntologyController{
 
 	private final PropertyConditionRendererProvider conditionRendererProvider;
 
+	@Inject
 	public Operators(OntologyHelper ontoHelper, PropertyConditionRendererProvider conditionRendererProvider) {
 		super(ontoHelper);
 		this.conditionRendererProvider = conditionRendererProvider;

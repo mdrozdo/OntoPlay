@@ -7,9 +7,7 @@ import java.util.Set;
 
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.angular.update.Annotation;
-import ontoplay.models.owlGeneration.IndividualGenerator;
-import ontoplay.models.owlGeneration.RestrictionFactory;
-import ontoplay.models.owlGeneration.ClassRestrictionGenerator;
+import ontoplay.models.owlGeneration.*;
 import ontoplay.models.propertyConditions.ClassValueCondition;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
@@ -32,10 +30,10 @@ public class ClassValueRestrictionFactory implements RestrictionFactory<ClassVal
 	
 	//TODO: Extract some small interface from OWLApiKB just for generating class restrictions
 	@Inject
-	public ClassValueRestrictionFactory(ClassRestrictionGenerator classRestrictionGenerator, IndividualGenerator individualGenerator,
-			OWLDataFactory factory) {
-		this.classRestrictionGenerator = classRestrictionGenerator;
-		this.individualGenerator = individualGenerator;
+	public ClassValueRestrictionFactory(ClassRestrictionGeneratorFactory classRestrictionGeneratorFactory, IndividualGeneratorFactory individualGeneratorFactory,
+										OWLDataFactory factory) {
+		this.classRestrictionGenerator = classRestrictionGeneratorFactory.create(factory);
+		this.individualGenerator = individualGeneratorFactory.create(factory);
 		this.factory = factory;
 	}
 	

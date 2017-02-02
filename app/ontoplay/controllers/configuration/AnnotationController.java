@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.inject.Inject;
 import javax.xml.xpath.XPathExpressionException;
 
 import ontoplay.OntologyHelper;
@@ -40,13 +41,14 @@ import play.mvc.Result;
  *
  */
 public class AnnotationController extends OntologyController {
-	//TODO: Move this creation to module and path to config.
-	private OntoplayAnnotationUtils ontoplayAnnotationUtils=new OntoplayAnnotationUtils(PathesUtils.Annotation_XML_FILE_PATH);
+	private OntoplayAnnotationUtils ontoplayAnnotationUtils;
 	private OntologyReader ontologyReader;
 
-	public AnnotationController(OntologyHelper ontologyHelper, OntologyReader ontologyReader){
+	@Inject
+	public AnnotationController(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils){
 		super(ontologyHelper);
 		this.ontologyReader = ontologyReader;
+		this.ontoplayAnnotationUtils = ontoplayAnnotationUtils;
 	}
 
 	public Result showAnnotationCFPage() {
@@ -161,11 +163,6 @@ public class AnnotationController extends OntologyController {
 		}catch(Exception e){
 			return badRequest();
 		}
-	}
-	
-	private List<AnnotationDTO> getAnnotationsByComponentUri(String componentUri) throws XPathExpressionException{
-		
-		return ontoplayAnnotationUtils.getAnnotationForComponentByComponentUri(componentUri);
 	}
 
 }

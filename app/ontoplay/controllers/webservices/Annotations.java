@@ -14,6 +14,9 @@ import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.angular.AnnotationDTO;
 import ontoplay.models.ontologyReading.OntologyReader;
 import play.mvc.Result;
+
+import javax.inject.Inject;
+
 /**
  * 
  * @author Motasem Alwazir
@@ -24,6 +27,7 @@ public class Annotations extends OntologyController{
 	private OntologyReader ontologyReader;
 	private OntoplayAnnotationUtils ontoplayAnnotationUtils;
 
+	@Inject
 	public Annotations(OntologyHelper ontoHelper, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils) {
 		super(ontoHelper);
 		this.ontologyReader = ontologyReader;

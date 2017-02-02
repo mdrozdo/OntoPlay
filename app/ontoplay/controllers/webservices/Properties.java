@@ -12,6 +12,8 @@ import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import play.mvc.Result;
 
+import javax.inject.Inject;
+
 /**
  * 
  * @author Motasem Alwazir
@@ -20,6 +22,7 @@ import play.mvc.Result;
 
 public class Properties extends OntologyController {
 
+	@Inject
 	public Properties(OntologyHelper ontoHelper) {
 		super(ontoHelper);
 	}

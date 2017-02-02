@@ -22,11 +22,14 @@ import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Result;
 
+import javax.inject.Inject;
+
 public class Classes extends OntologyController{
 
 	private OntologyReader ontologyReader;
 	private OntologyGenerator ontologyGenerator;
 
+    @Inject
 	public Classes(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntologyGenerator ontologyGenerator){
 		super(ontologyHelper);
 		this.ontologyReader = ontologyReader;

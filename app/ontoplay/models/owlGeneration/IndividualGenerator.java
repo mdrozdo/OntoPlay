@@ -2,6 +2,8 @@ package ontoplay.models.owlGeneration;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.inject.assistedinject.Assisted;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.PropertyValueCondition;
@@ -24,7 +26,7 @@ public class IndividualGenerator{
 	private final OWLDataFactory factory;
 
 	@Inject
-	public IndividualGenerator(RestrictionFactoryProvider restrictionFactoryProvider, OWLDataFactory factory){
+	public IndividualGenerator(RestrictionFactoryProvider restrictionFactoryProvider, @Assisted OWLDataFactory factory){
 		this.restrictionFactoryProvider = restrictionFactoryProvider;
 		this.factory = factory;
 	}

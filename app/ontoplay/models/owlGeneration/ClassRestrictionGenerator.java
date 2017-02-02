@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.google.inject.assistedinject.Assisted;
-import com.google.inject.assistedinject.AssistedInject;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.PropertyValueCondition;
@@ -22,7 +21,7 @@ public class ClassRestrictionGenerator{
 	private final OWLDataFactory factory;
 
 	@Inject
-	public ClassRestrictionGenerator(RestrictionFactoryProvider restrictionFactoryProvider, OWLDataFactory factory){
+	public ClassRestrictionGenerator(RestrictionFactoryProvider restrictionFactoryProvider, @Assisted OWLDataFactory factory){
 		this.restrictionFactoryProvider = restrictionFactoryProvider;
 		this.factory = factory;
 	}
