@@ -3,15 +3,11 @@ package ontoplay.models.ontologyReading.jena;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import com.google.inject.assistedinject.Assisted;
 import com.hp.hpl.jena.util.FileManager;
+import ontoplay.OntoplayConfig;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
 
 import com.hp.hpl.jena.ontology.AnnotationProperty;
@@ -47,6 +43,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 public class JenaOwlReader implements OntologyReader{
+	private final OntoplayConfig config;
 	private OntModel model;
 	private String ontologyNamespace;
 	private String iriString;
@@ -54,9 +51,25 @@ public class JenaOwlReader implements OntologyReader{
 	private OwlPropertyFactory owlPropertyFactory;
 
 	@Inject
-	public JenaOwlReader(OwlPropertyFactory owlPropertyFactory, @Assisted String filePath, @Assisted List<FolderMapping> localMappings, @Assisted boolean ignorePropsWithNoDomain) {
+	public JenaOwlReader(OwlPropertyFactory owlPropertyFactory, OntoplayConfig config, @Assisted boolean ignorePropsWithNoDomain) {
 		this.owlPropertyFactory = owlPropertyFactory;
+		this.config = config;
+		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
+
+		config.addObserver(new Observer() {
+			@Override
+			public void update(Observable o, Object arg) {
+				readModel();
+			}
+		});
+
+		readModel();
+	}
+
+	private void readModel() {
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
+		List<FolderMapping> localMappings = config.getMappings();
+		String filePath = config.getOntologyFilePath();
 		if (localMappings != null) {
 			OntDocumentManager dm = model.getDocumentManager();
 
@@ -76,7 +89,6 @@ public class JenaOwlReader implements OntologyReader{
 		String namespace = model.getNsPrefixURI("");
 		this.iriString = namespace;
 		this.ontologyNamespace = namespace.substring(0, namespace.length() - 1);
-		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
 	}
 
 
@@ -98,12 +110,12 @@ public class JenaOwlReader implements OntologyReader{
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see models.PropertyProvider#getProperty(java.lang.String)
 	 */
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * models.ontologyReading.jena.OntologyReader#getProperty(java.lang.String)
 	 */
@@ -194,7 +206,7 @@ public class JenaOwlReader implements OntologyReader{
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see models.ontologyReading.jena.OntologyReader#getClassesInRange(models.
 	 * ontologyModel.OntoClass, ontoplay.models.ontologyModel.OntoProperty)
 	 */
@@ -284,5 +296,10 @@ public class JenaOwlReader implements OntologyReader{
 	@Override
 	public ResIterator getAnnotationsAxioms() {
 		return model.listSubjectsWithProperty( RDF.type, OWL2.Axiom );
+	}
+
+	@Override
+	public String getOntologyNamespace() {
+		return ontologyNamespace;
 	}
 }

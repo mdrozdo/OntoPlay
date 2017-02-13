@@ -28,40 +28,31 @@ import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-public class OntologyHelper {
-	private String ontologyName;
-    private OntologyReader ontoReader;
-	private OntologyReaderFactory ontoReaderFactory;
+import static ontoplay.controllers.utils.OntologyUtils.checkFileName;
+import static ontoplay.controllers.utils.OntologyUtils.fileName;
 
-	private String file;
-	private String filePath;
-	private String checkFile;
-	private String checkFilePath;
-    private String ontologyNamespace;
+public class OntologyHelper {
+	private final OntologyReader ontoReader;
+	private final OntologyReaderFactory ontoReaderFactory;
+	private final OntoplayConfig config;
 
 	@Inject
     public OntologyHelper(
-			@Named("ontoplay.fileName") String fileName,
-			@Named("ontoplay.folderPath") String folderPath,
-			@Named("ontoplay.checkFileName") String checkFileName,
-			@Named("ontoplay.checkFolderPath") String checkFolderPath,
-			@Named("ontoplay.ontologyNamespace") String ontologyNamespace,
+			OntoplayConfig config,
 			OntologyReader ontoReader,
 			OntologyReaderFactory ontoReaderFactory) {
-        this.ontologyName = fileName;
         this.ontoReader = ontoReader;
 		this.ontoReaderFactory = ontoReaderFactory;
-		this.file = "file:" + folderPath + "/" + fileName;
-        this.filePath = folderPath + "/" + fileName;
-        this.checkFile = "file:" + checkFolderPath + "/" + checkFileName;
-        this.checkFilePath =  checkFolderPath + "/" + checkFileName;
-        this.ontologyNamespace = ontologyNamespace;
+		this.config = config;
     }
 
     public boolean saveOntology(OWLOntology generatedOntology) {
 		OWLOntologyManager OWLmanager = OWLManager.createOWLOntologyManager();
 		OWLOntology originalOntology = null;
-	
+
+		String filePath = config.getOntologyFilePath();
+		String ontologyNamespace = ontoReader.getOntologyNamespace();
+
 		try {
 			originalOntology = OWLmanager
 					.loadOntologyFromOntologyDocument(new File(filePath));
@@ -106,6 +97,10 @@ public class OntologyHelper {
 		try {
 			OWLOntologyManager OWLmanager = OWLManager.createOWLOntologyManager();
 			OWLOntology originalOntology = null;
+
+			String filePath = config.getOntologyFilePath();
+			String ontologyNamespace = ontoReader.getOntologyNamespace();
+
 			try {
 				originalOntology = OWLmanager.loadOntologyFromOntologyDocument(new File(filePath));
 			} catch (OWLOntologyCreationException e1) {
@@ -123,6 +118,8 @@ public class OntologyHelper {
 				// TODO Auto-generated catch block
 				return false;
 			}
+
+			String checkFilePath = config.getCheckFilePath();
 
 			try {
 				OutputStream out = new FileOutputStream(checkFilePath);
@@ -149,15 +146,13 @@ public class OntologyHelper {
 	}
 
 	public OntologyReader checkOwlReader() {
+		String ontologyNamespace = ontoReader.getOntologyNamespace();
+		String checkFilePath = config.getCheckFilePath();
 		List<FolderMapping> mappings = Arrays.asList(new FolderMapping(ontologyNamespace, checkFilePath));
-		return ontoReaderFactory.create(checkFile, mappings, false);
-	}
-	
-	public String getComponentIriByName(String name){
-		return ontologyNamespace +"#"+name;
+		return ontoReaderFactory.create("file://"+ checkFilePath, mappings, false);
 	}
 
-    public OntoClass getOwlClass(String classUri) {
+	public OntoClass getOwlClass(String classUri) {
         return ontoReader.getOwlClass(classUri);
     }
 

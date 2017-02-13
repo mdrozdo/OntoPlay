@@ -6,7 +6,7 @@ import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
-import com.typesafe.config.ConfigValue;
+import com.typesafe.config.ConfigFactory;
 import ontoplay.controllers.*;
 import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
 import ontoplay.models.ontologyReading.OntologyReader;
@@ -22,35 +22,26 @@ import ontoplay.models.propertyConditions.ClassValueCondition;
 import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 import ontoplay.models.propertyConditions.IndividualValueCondition;
 import org.semanticweb.owlapi.model.OWLDataFactory;
-import org.semanticweb.owlapi.model.OWLObjectProperty;
 import play.Configuration;
 import play.Environment;
 
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static com.clarkparsia.owlapiv3.OWL.factory;
 
 /**
  * Created by michal on 22.11.2016.
  */
 public class Module extends AbstractModule{
 
-    private Map<String, String> ontoplayProperties;
-    private Configuration configuration;
+    private OntoplayConfig configuration;
 
     public Module(Environment environment, Configuration configuration){
-        this.configuration = configuration;
-        Configuration ontoplayConfig = configuration.getConfig("ontoplay");
-        ontoplayProperties = ontoplayConfig.subKeys().stream()
-                .collect(Collectors.toMap(k-> "ontoplay." + k,
-                        k-> ontoplayConfig.getString(k)));
+        com.typesafe.config.Config ontoPlayConfig = ConfigFactory.parseFile(environment.getFile(configuration.getString("ontoplay.config")));
+        this.configuration = new OntoplayConfig(ontoPlayConfig);
+
     }
 
     @Override
     protected void configure() {
-        Names.bindProperties(binder(), ontoplayProperties);
-
         bind(OntologyReader.class).to(JenaOwlReader.class).in(Singleton.class);
 
         bind(new TypeLiteral<RestrictionFactory<IndividualValueCondition>>(){}).to(IndividualValueRestrictionFactory.class).in(Singleton.class);
@@ -69,6 +60,11 @@ public class Module extends AbstractModule{
                 .build(OntologyReaderFactory.class));
 
 
+    }
+
+    @Provides
+    private OntoplayConfig createConfig(){
+        return configuration;
     }
 
     @Provides @Singleton
@@ -104,37 +100,16 @@ public class Module extends AbstractModule{
 
     @Provides
     private JenaOwlReader createJenaReader(OwlPropertyFactory owlPropertyFactory){
-
-        Configuration jenaReaderConfig = configuration.getConfig("jenaReader");
-
-        String uri = jenaReaderConfig.getString("filePath");
-
-        List<FolderMapping> mappings = readMappingsFromConfig(jenaReaderConfig);
-
-        return new JenaOwlReader(owlPropertyFactory, uri, mappings, false);
+        return new JenaOwlReader(owlPropertyFactory, configuration, false);
     }
 
     @Provides
+    @Singleton
     private OntoplayAnnotationUtils createOntoplayAnnotationUtils(){
-        //TODO: Check if this makes sense (probably not)
-        Configuration jenaReaderConfig = configuration.getConfig("jenaReader");
-
-        String uri = jenaReaderConfig.getString("filePath");
+        String uri = configuration.getAnnotationsFilePath();
         return new OntoplayAnnotationUtils(uri);
     }
 
-    private List<FolderMapping> readMappingsFromConfig(Configuration configuration) {
-        Configuration fileMappingsConfig = configuration.getConfig("fileMappings");
-        Set<Map.Entry<String, ConfigValue>> entries = fileMappingsConfig.underlying().entrySet();
-        List<FolderMapping> mappings = new ArrayList<FolderMapping>();
-
-        for (Map.Entry<String, ConfigValue> entry : entries) {
-            FolderMapping mapping = new FolderMapping(entry.getKey(), entry.getValue().render());
-            mappings.add(mapping);
-        }
-
-        return mappings;
-    }
 
     @Provides
     private PropertyConditionRenderer<StringProperty> createStringPropertyRenderer() {

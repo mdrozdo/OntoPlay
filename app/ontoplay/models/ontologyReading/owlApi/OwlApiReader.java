@@ -270,5 +270,10 @@ public class OwlApiReader implements OntologyReader {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	@Override
+	public String getOntologyNamespace() {
+		return uri;
+	}
+
 }

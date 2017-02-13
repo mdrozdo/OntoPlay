@@ -33,4 +33,6 @@ public interface OntologyReader extends PropertyProvider{
 	Set<AnnotationProperty> getAnnotations();
 
 	ResIterator getAnnotationsAxioms();
+
+    String getOntologyNamespace();
 }
