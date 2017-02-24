@@ -52,5 +52,5 @@ GET /individuals/remove/:individualName ontoplay.controllers.webservices.Individ
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               ontoplay.controllers.Assets.at(path="/public/lib/ontoplay", file)
+GET     /ontoplay_assets/*file               ontoplay.controllers.Assets.at(path="/public/lib/ontoplay", file)
 
