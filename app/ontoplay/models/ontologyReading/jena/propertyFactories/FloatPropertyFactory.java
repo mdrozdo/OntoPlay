@@ -19,8 +19,7 @@ public class FloatPropertyFactory extends OwlPropertyFactory {
 		String rangeUri = ontProperty.getRange().getURI();
 		return rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#float") || 
 				rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#decimal") ||
-				rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#double") ||
-				rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#boolean");
+				rangeUri.equalsIgnoreCase("http://www.w3.org/2001/XMLSchema#double");
 	}
 
 	@Override
