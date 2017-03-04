@@ -1,11 +1,10 @@
 package ontoplay;
 
 import com.typesafe.config.Config;
-import com.typesafe.config.ConfigRenderOptions;
 import com.typesafe.config.ConfigValue;
 import com.typesafe.config.ConfigValueFactory;
 import ontoplay.models.ontologyReading.jena.FolderMapping;
-import play.Configuration;
+import play.Environment;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -14,7 +13,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by michal on 09.02.2017.
@@ -60,11 +58,15 @@ public class OntoplayConfig extends Observable{
         List<FolderMapping> mappings = new ArrayList<>();
 
         for (Map.Entry<String, ConfigValue> entry : entries) {
-            FolderMapping mapping = new FolderMapping(entry.getKey(), entry.getValue().render());
+            FolderMapping mapping = new FolderMapping(stripExtraQuotes(entry.getKey()), stripExtraQuotes(entry.getValue().render()));
             mappings.add(mapping);
         }
 
         return mappings;
+    }
+
+    private String stripExtraQuotes(String relativeFilePath){
+        return  relativeFilePath.replaceAll("\"", "");
     }
 
     private void saveConfigToFile() throws IOException {
