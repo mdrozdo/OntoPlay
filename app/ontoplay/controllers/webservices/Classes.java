@@ -28,12 +28,14 @@ public class Classes extends OntologyController{
 
 	private OntologyReader ontologyReader;
 	private OntologyGenerator ontologyGenerator;
+	private OntologyUtils utils;
 
-    @Inject
-	public Classes(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntologyGenerator ontologyGenerator){
+	@Inject
+	public Classes(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntologyGenerator ontologyGenerator, OntologyUtils utils){
 		super(ontologyHelper);
 		this.ontologyReader = ontologyReader;
 		this.ontologyGenerator = ontologyGenerator;
+		this.utils = utils;
 	}
 
 	public Result getClassesByProperty(String propertyUri){
@@ -59,12 +61,12 @@ public class Classes extends OntologyController{
 		try {
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
 		OWLOntology generatedOntology=
-				ontologyGenerator.convertToOwlClassOntology(OntologyUtils.nameSpace +classExpressionName, condition);
+				ontologyGenerator.convertToOwlClassOntology(ontologyReader.getOntologyNamespace() + classExpressionName, condition);
 			if (generatedOntology == null)
 				return ok("Ontology is null");
 			ontoHelper.checkOntology(generatedOntology);
 			OntologyReader checkOntologyReader = ontoHelper.checkOwlReader();
-			OntologyUtils.saveOntology(generatedOntology);
+			utils.saveOntology(generatedOntology);
 			return ok("ok");
 		} catch (Exception e) {
 			e.printStackTrace();

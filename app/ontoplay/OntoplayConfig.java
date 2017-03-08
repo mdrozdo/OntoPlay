@@ -35,13 +35,19 @@ public class OntoplayConfig extends Observable{
         return configuration.getString("filePath");
     }
 
-    public void setOntologyFilePath(String newFilePath) throws IOException {
+    public void updateOntologyConfig(String newFileName, String newUri) throws IOException {
+        String newFilePath = Paths.get(getOntologyFilePath()).getParent().resolve(newFileName).toString();
+
         configuration = configuration.withValue("filePath", ConfigValueFactory.fromAnyRef(newFilePath));
+        configuration = configuration.withValue("ontologyNamespace", ConfigValueFactory.fromAnyRef(newUri));
 
         saveConfigToFile();
         notifyObservers();
     }
 
+    public String getOntologyNamespace() {
+        return configuration.getString("ontologyNamespace");
+    }
 
     public String getAnnotationsFilePath() {
         return configuration.getString("annotationsFilePath");
@@ -72,5 +78,11 @@ public class OntoplayConfig extends Observable{
     private void saveConfigToFile() throws IOException {
         String configString = configuration.root().render();
         Files.write(configFilePath, configString.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+
+    public String getOntologyFileName() {
+        String filePath = getOntologyFilePath();
+        return Paths.get(filePath).getFileName().toString();
     }
 }

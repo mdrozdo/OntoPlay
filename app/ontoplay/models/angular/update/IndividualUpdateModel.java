@@ -170,7 +170,7 @@ public class IndividualUpdateModel {
 	private String getIndividualClass(String individualUri) {
 		// check if it's Uri or name
 		if (individualUri.indexOf("#") == -1)
-			individualUri = OntologyUtils.nameSpace + individualUri;
+			individualUri = ontoReader.getOntologyNamespace() + individualUri;
 
 		try {
 			return ontoReader.getIndividual(individualUri).getIndividual().getOntClass(true)

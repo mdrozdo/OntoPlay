@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.xml.xpath.XPathExpressionException;
 
 import ontoplay.OntologyHelper;
+import ontoplay.OntoplayConfig;
 import ontoplay.models.ontologyReading.OntologyReader;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
 
@@ -42,13 +43,15 @@ import play.mvc.Result;
  */
 public class AnnotationController extends OntologyController {
 	private OntoplayAnnotationUtils ontoplayAnnotationUtils;
+	private OntoplayConfig config;
 	private OntologyReader ontologyReader;
 
 	@Inject
-	public AnnotationController(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils){
+	public AnnotationController(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils, OntoplayConfig config){
 		super(ontologyHelper);
 		this.ontologyReader = ontologyReader;
 		this.ontoplayAnnotationUtils = ontoplayAnnotationUtils;
+		this.config = config;
 	}
 
 	public Result showAnnotationCFPage() {
@@ -67,7 +70,7 @@ public class AnnotationController extends OntologyController {
 	 */	
 	public Result getOntologyComponents(){
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
-    	FileManager.get().readModel(model,new File(OntologyUtils.fileName).toURI().toString());
+    	FileManager.get().readModel(model,new File(config.getOntologyFileName()).toURI().toString());
     	Map<String,List<OwlElementDTO>> results=new HashMap<String,List<OwlElementDTO>>();
     	
     	ExtendedIterator<OntClass> classes=model.listClasses();
@@ -105,7 +108,7 @@ public class AnnotationController extends OntologyController {
 	}
 	
 	private boolean isFromTheOntologyNameSpace(String uri){
-		return uri!=null && uri.indexOf(OntologyUtils.nameSpace)!=-1;
+		return uri!=null && uri.indexOf(config.getOntologyNamespace())!=-1;
 	}
 	
 	public Result getRelationsByAnnotationIri(String annotationIri){

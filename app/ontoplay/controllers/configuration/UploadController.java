@@ -4,23 +4,30 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import ontoplay.OntoplayConfig;
 import org.apache.commons.io.FileUtils;
 
-import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.configuration.utils.OntoplayOntologyUtils;
-import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.controllers.utils.PathesUtils;
-import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
 import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
 
+import javax.inject.Inject;
+
 public class UploadController extends Controller {
+
+	private OntoplayConfig config;
+
+	@Inject
+	public UploadController(OntoplayConfig config){
+		this.config = config;
+	}
 
 	public Result showUploadPage() {
 		//TODO: Take ontologyName and iriString from configuration instead.
-		return ok(ontoplay.views.html.configuration.upload.render(OntologyUtils.ontologyName,OntologyUtils.iriString));
+		return ok(ontoplay.views.html.configuration.upload.render(config.getOntologyFileName(), config.getOntologyNamespace()));
 	}
 
 	public Result upload() {
@@ -46,8 +53,13 @@ public class UploadController extends Controller {
 		      Map<String,String[]> dataPart = request().body().asMultipartFormData().asFormUrlEncoded();
 	          String uri = dataPart.get("ontologyIRI")[0];
 
-			OntoplayOntologyUtils.setOntologyInTheXml(ontologyFile.getFilename(),uri);
-			OntoplayOntologyUtils.setOntologyCF();
+			try {
+				config.updateOntologyConfig(ontologyFile.getFilename(), uri);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return internalServerError("Error updating configuration.");
+			}
+
 			OntoplayOntologyUtils.resetAnnotationCF();
 			//TODO: What to do with the below code?
 				//new JenaOwlReaderConfiguration().initialize(OntologyUtils.file,new JenaOwlReaderConfig().useLocalMapping(OntologyUtils.iriString,OntologyUtils.fileName));

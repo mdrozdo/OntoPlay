@@ -1,17 +1,8 @@
 package ontoplay.controllers.webservices;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import ontoplay.OntologyHelper;
-import ontoplay.models.owlGeneration.OntologyGenerator;
-import org.apache.commons.lang.NullArgumentException;
-import org.semanticweb.owlapi.model.OWLOntology;
-
 import com.google.gson.GsonBuilder;
 import com.hp.hpl.jena.ontology.AnnotationProperty;
-
+import ontoplay.OntologyHelper;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ClassCondition;
@@ -22,23 +13,31 @@ import ontoplay.models.angular.update.IndividualUpdateModel;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OwlIndividual;
 import ontoplay.models.ontologyReading.OntologyReader;
+import ontoplay.models.owlGeneration.OntologyGenerator;
+import org.apache.commons.lang.NullArgumentException;
+import org.semanticweb.owlapi.model.OWLOntology;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class Individuals extends OntologyController {
 
 	private final OntologyReader ontologyReader;
 	private OntologyGenerator ontologyGenerator;
+	private OntologyUtils utils;
 
 	@Inject
-	public Individuals(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntologyGenerator generator){
+	public Individuals(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntologyGenerator generator, OntologyUtils utils){
 		super(ontologyHelper);
 		this.ontologyReader = ontologyReader;
 
 		this.ontologyGenerator = generator;
+		this.utils = utils;
 	}
 
 	public Result getIndividualsByClassName(String className) {
@@ -70,9 +69,9 @@ public class Individuals extends OntologyController {
 		try {
 			ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
 			OWLOntology generatedOntology = ontologyGenerator
-					.convertToOwlIndividualOntology(OntologyUtils.nameSpace + individualName, condition);
+					.convertToOwlIndividualOntology(ontologyReader.getOntologyNamespace() + individualName, condition);
 			try {
-				OwlIndividual individual = ontologyReader.getIndividual(OntologyUtils.nameSpace + individualName);
+				OwlIndividual individual = ontologyReader.getIndividual(ontologyReader.getOntologyNamespace() + individualName);
 				if (individual != null)
 					return ok("Indvidual name is already used");
 			} catch (Exception e) {
@@ -83,7 +82,7 @@ public class Individuals extends OntologyController {
 
 			ontoHelper.checkOntology(generatedOntology);
 			OntologyReader checkOntologyReader = ontoHelper.checkOwlReader();
-			OntologyUtils.saveOntology(generatedOntology);
+			utils.saveOntology(generatedOntology);
 			// Fix nested individuals
 			return ok("ok");
 		} catch (Exception e) {
@@ -95,7 +94,7 @@ public class Individuals extends OntologyController {
 	public Result getIndividualData(String individualName) {
 		try {
 			if(!individualName.contains("#")){
-				individualName=OntologyUtils.nameSpace + individualName;
+				individualName = ontologyReader.getOntologyNamespace() + individualName;
 			}
 			OwlIndividual individual = ontologyReader.getIndividual(individualName);
 
@@ -117,8 +116,8 @@ public class Individuals extends OntologyController {
 	}
 	
 	public Result deleteIndividualByName(String individualName){
-		if(!individualName.contains("#")){
-			individualName=OntologyUtils.nameSpace + individualName;
+		if(!individualName.contains("#")) {
+			individualName = ontologyReader.getOntologyNamespace() + individualName;
 		}
 		return ok(ontologyGenerator.removeIndividual(individualName)+"");
 	}

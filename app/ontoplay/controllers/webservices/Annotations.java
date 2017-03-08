@@ -36,11 +36,12 @@ public class Annotations extends OntologyController{
 	
 	public Result getAnnotationPropertyByUri(String componentUri){
 		try {
-			componentUri= java.net.URLDecoder.decode(componentUri, "UTF-8");
-			if(componentUri.indexOf(OntologyUtils.nameSpace)==-1)
-				componentUri=OntologyUtils.nameSpace+componentUri;
+			componentUri = java.net.URLDecoder.decode(componentUri, "UTF-8");
+			String namespace = ontologyReader.getOntologyNamespace();
+			if (componentUri.indexOf(namespace) == -1)
+				componentUri = namespace + componentUri;
 		} catch (UnsupportedEncodingException e1) {
-			System.out.println("Error decoding annotaitons from xml " +e1.toString());
+			System.out.println("Error decoding annotaitons from xml " + e1.toString());
 		}
 		List<AnnotationDTO> annotations=new ArrayList<AnnotationDTO>();
 

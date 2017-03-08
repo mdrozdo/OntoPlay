@@ -16,41 +16,6 @@ import ontoplay.controllers.utils.PathesUtils;
  *
  */
 public class OntoplayOntologyUtils {
-
-	public static void setOntologyInTheXml(String newOntologyName, String iri) {
-			
-		   try {
-				XMLUtils xmlUtils = new XMLUtils(PathesUtils.ONTOLOGY_XML_FILE_PATH);
-				NodeList nodeList = xmlUtils.getElementsbyName("ontology");
-				Element element = (Element)nodeList.item(0);
-				element.setAttribute("name", newOntologyName);
-				element.setAttribute("iri", iri);
-				xmlUtils.prettyPrint();
-		   }catch(Exception e){
-			   System.out.println("Error "+e.toString());
-			   e.printStackTrace(System.out);
-		   }
-
-	}
-
-	public static void setOntologyCF() {
-		//we need to read the ontology name from the XML CF
-		try {
-
-			XMLUtils xmlUtils = new XMLUtils(PathesUtils.ONTOLOGY_XML_FILE_PATH);
-			NodeList nodeList = xmlUtils.getElementsbyName("ontology");
-			Element element = (Element)nodeList.item(0);
-			String ontologyName=element.getAttribute("name");
-			String ontologyIri=element.getAttribute("iri");
-			OntologyUtils.ontologyName=ontologyName;
-			OntologyUtils.fileName = PathesUtils.UPLOADS_PATH+ontologyName;
-			OntologyUtils.file = "file:"+PathesUtils.UPLOADS_PATH+ontologyName;
-			OntologyUtils.iriString=ontologyIri;
-			OntologyUtils.nameSpace=ontologyIri+"#";
-		}catch(Exception e){
-			
-		}
-	}
 	/**
 	 * To replace the current annotation configuration with the original (empty and structured) one
 	 */
