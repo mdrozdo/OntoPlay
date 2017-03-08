@@ -1,35 +1,19 @@
 package ontoplay;
 
 import jadeOWL.base.OntologyManager;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.OntologyReaderFactory;
 import ontoplay.models.ontologyReading.jena.FolderMapping;
-
 import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
-import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+import org.semanticweb.owlapi.model.*;
 
 import javax.inject.Inject;
-import javax.inject.Named;
-
-import static ontoplay.controllers.utils.OntologyUtils.checkFileName;
-import static ontoplay.controllers.utils.OntologyUtils.fileName;
+import java.io.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class OntologyHelper {
 	private final OntologyReader ontoReader;

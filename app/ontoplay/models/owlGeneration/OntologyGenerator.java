@@ -3,6 +3,8 @@ package ontoplay.models.owlGeneration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import ontoplay.OntoplayConfig;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.OntologyUtils;
@@ -39,9 +41,11 @@ public class OntologyGenerator {
 	
 	private ClassRestrictionGenerator classRestrictionGenerator;
 	private IndividualGenerator individualGenerator;
+	private OntoplayConfig config;
 
 	@Inject
-	public OntologyGenerator(ClassRestrictionGeneratorFactory classGenFactory, IndividualGeneratorFactory individualGenFactory){
+	public OntologyGenerator(ClassRestrictionGeneratorFactory classGenFactory, IndividualGeneratorFactory individualGenFactory, OntoplayConfig config){
+		this.config = config;
 		//Should these be injected?
 		manager = OWLManager.createOWLOntologyManager();
 		factory = manager.getOWLDataFactory();
@@ -68,7 +72,7 @@ public class OntologyGenerator {
 		OWLOntology destinationOntology;
 		try {
 			IRI classIri = IRI.create(classUri);
-			IRI ontologyIRI = IRI.create(OntologyUtils.getNamespace(classIri));
+			IRI ontologyIRI = IRI.create(getNamespace(classIri));
 			clearManagerFromOntologies(ontologyIRI);
 
 			destinationOntology = manager.createOntology(ontologyIRI);
@@ -103,7 +107,7 @@ public class OntologyGenerator {
 		OWLOntology destinationOntology;
 		try {
 			IRI iri = IRI.create(individualUri);
-			IRI ontologyIRI = IRI.create(OntologyUtils.getNamespace(iri));
+			IRI ontologyIRI = IRI.create(getNamespace(iri));
 			clearManagerFromOntologies(ontologyIRI);
 			destinationOntology = manager.createOntology(ontologyIRI);
 
@@ -138,7 +142,7 @@ public class OntologyGenerator {
 		for (OWLAxiom axiom : axioms) {
 			for (OWLEntity ent : axiom.getSignature()) {
 
-				IRI ontoIRI = IRI.create(OntologyUtils.getNamespace(ent.getIRI()));
+				IRI ontoIRI = IRI.create(getNamespace(ent.getIRI()));
 
 				OWLImportsDeclaration importsDeclaration = factory.getOWLImportsDeclaration(ontoIRI);
 				if (!ontoIRI.toString().contains("XMLSchema")
@@ -164,6 +168,14 @@ public class OntologyGenerator {
 		OWLAxiom equivalentClassAxiom = 
 				factory.getOWLEquivalentClassesAxiom(resultClass, resultExpression);
 		manager.addAxiom(destinationOntology, equivalentClassAxiom);
+	}
+
+	private String getNamespace(IRI iri){
+		String namespace = iri.getStart();
+		if(namespace.endsWith("#") || namespace.endsWith("/")){
+			namespace = namespace.substring(0, namespace.length()-1);
+		}
+		return namespace;
 	}
 
 	private String serializeToString(OWLOntology destinationOntology) throws OWLOntologyStorageException {
@@ -208,9 +220,9 @@ public class OntologyGenerator {
 		manager.applyChanges(remover.getChanges());	
 		OutputStream out;
 		try {
-			out = new FileOutputStream(ontoplay.controllers.utils.OntologyUtils.fileName);
+			out = new FileOutputStream(config.getOntologyFilePath());
 	
-		manager.saveOntology(manager.getOntology(IRI.create(ontoplay.controllers.utils.OntologyUtils.nameSpace)), out);
+		manager.saveOntology(manager.getOntology(IRI.create(config.getOntologyNamespace())), out);
 		out.close();
 		return false;
 		} catch (Exception e) {

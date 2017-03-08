@@ -9,6 +9,7 @@ import com.google.inject.name.Names;
 import com.typesafe.config.ConfigFactory;
 import ontoplay.controllers.*;
 import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.OntologyReaderFactory;
 import ontoplay.models.ontologyReading.jena.FolderMapping;
