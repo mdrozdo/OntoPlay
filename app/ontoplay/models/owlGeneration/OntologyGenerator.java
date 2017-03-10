@@ -7,7 +7,6 @@ import java.util.List;
 import ontoplay.OntoplayConfig;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConfigurationException;
-import ontoplay.models.OntologyUtils;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
