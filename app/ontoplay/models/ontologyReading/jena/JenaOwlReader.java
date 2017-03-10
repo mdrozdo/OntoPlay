@@ -46,7 +46,6 @@ public class JenaOwlReader implements OntologyReader{
 	private final OntoplayConfig config;
 	private OntModel model;
 	private String ontologyNamespace;
-	private String iriString;
 	private boolean ignorePropsWithNoDomain;
 	private OwlPropertyFactory owlPropertyFactory;
 
@@ -69,7 +68,6 @@ public class JenaOwlReader implements OntologyReader{
 	private void readModel() {
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
 		List<FolderMapping> localMappings = config.getMappings();
-		String filePath = config.getOntologyFilePath();
 		if (localMappings != null) {
 			OntDocumentManager dm = model.getDocumentManager();
 
@@ -78,6 +76,7 @@ public class JenaOwlReader implements OntologyReader{
 			}
 		}
 
+		String filePath = config.getOntologyFilePath();
 		try(InputStream fileStream = FileManager.get().open(filePath)){
 			model.read(fileStream, null);
 		} catch (IOException e) {
@@ -87,7 +86,6 @@ public class JenaOwlReader implements OntologyReader{
 
 		this.model = model;
 		String namespace = model.getNsPrefixURI("");
-		this.iriString = namespace;
 		this.ontologyNamespace = namespace.substring(0, namespace.length() - 1);
 	}
 
@@ -271,7 +269,7 @@ public class JenaOwlReader implements OntologyReader{
 		Set<AnnotationDTO> annotations = new HashSet<AnnotationDTO>();
 		while (ei.hasNext()) {
 			AnnotationProperty temp = ei.next();
-			if (temp.getURI().indexOf(this.iriString) > -1 && isOnlyFromNameSpace) {
+			if (temp.getURI().indexOf(this.ontologyNamespace) > -1 && isOnlyFromNameSpace) {
 				annotations.add(new AnnotationDTO(temp.getURI(), temp.getLocalName()));
 			}
 			if (!isOnlyFromNameSpace) {

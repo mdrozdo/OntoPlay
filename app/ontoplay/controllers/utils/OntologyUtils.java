@@ -1,24 +1,17 @@
 package ontoplay.controllers.utils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Observable;
-import java.util.Observer;
 
 import ontoplay.OntoplayConfig;
+import ontoplay.models.ontologyReading.jena.FolderMapping;
 import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
-import org.semanticweb.owlapi.model.OWLOntologyStorageException;
+import org.semanticweb.owlapi.model.*;
 
 import jadeOWL.base.OntologyManager;
-import ontoplay.models.ontologyReading.OntologyReader;
-import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
+import uk.ac.manchester.cs.owl.owlapi.OWLOntologyIRIMapperImpl;
 
 import javax.inject.Inject;
 
@@ -43,12 +36,23 @@ public class OntologyUtils {
 		this.config = config;
 	}
 
+	public String joinNamespaceAndName(String namespace, String name){
+		return String.format("%s#%s", namespace, name);
+	}
+
 	public boolean saveOntology(OWLOntology generatedOntology) {
-		OWLOntologyManager OWLmanager = OWLManager.createOWLOntologyManager();
+		OWLOntologyManager owlManager = OWLManager.createOWLOntologyManager();
 		OWLOntology originalOntology = null;
 
 		try {
-			originalOntology = OWLmanager.loadOntologyFromOntologyDocument(new File(config.getOntologyFilePath()));
+			OWLOntologyIRIMapperImpl iriMapper = new OWLOntologyIRIMapperImpl();
+			for (FolderMapping mapping : config.getMappings()) {
+				iriMapper.addMapping(IRI.create(mapping.getUri()), IRI.create(mapping.getFolderPath()));
+			}
+			owlManager.addIRIMapper(iriMapper);
+
+			originalOntology = owlManager.loadOntologyFromOntologyDocument(new File(config.getOntologyFilePath()));
+
 		} catch (OWLOntologyCreationException e1) {
 			System.out.print("Error at OntologyHelper.saveOntology 47" + e1.getMessage());
 			e1.printStackTrace();
@@ -67,8 +71,9 @@ public class OntologyUtils {
 
 		OutputStream out = null;
 		try {
+			OWLOntologyFormat originalFormat = owlManager.getOntologyFormat(originalOntology);
 			out = new FileOutputStream(config.getOntologyFilePath());
-			OWLmanager.saveOntology(newOntology, out);
+			owlManager.saveOntology(newOntology, originalFormat, out);
 		} catch (Exception e) {
 			System.out.print("Error at OntologyHelper.saveOntology 66" + e.getMessage());
 			e.printStackTrace();
@@ -82,5 +87,13 @@ public class OntologyUtils {
 			}
 		}
 		return true;
+	}
+
+	public String nameToUri(String name, String ontologyNamespace) {
+		if (name.contains("#")) {
+			return name;
+		} else {
+			return joinNamespaceAndName(ontologyNamespace,name);
+		}
 	}
 }

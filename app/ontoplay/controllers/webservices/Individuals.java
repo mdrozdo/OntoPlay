@@ -68,10 +68,11 @@ public class Individuals extends OntologyController {
 
 		try {
 			ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
+			String individualUri = utils.joinNamespaceAndName(ontologyReader.getOntologyNamespace(), individualName);
 			OWLOntology generatedOntology = ontologyGenerator
-					.convertToOwlIndividualOntology(ontologyReader.getOntologyNamespace() + individualName, condition);
+					.convertToOwlIndividualOntology(individualUri, condition);
 			try {
-				OwlIndividual individual = ontologyReader.getIndividual(ontologyReader.getOntologyNamespace() + individualName);
+				OwlIndividual individual = ontologyReader.getIndividual(individualUri);
 				if (individual != null)
 					return ok("Indvidual name is already used");
 			} catch (Exception e) {
@@ -93,9 +94,7 @@ public class Individuals extends OntologyController {
 
 	public Result getIndividualData(String individualName) {
 		try {
-			if(!individualName.contains("#")){
-				individualName = ontologyReader.getOntologyNamespace() + individualName;
-			}
+			individualName = utils.nameToUri(individualName, ontologyReader.getOntologyNamespace());
 			OwlIndividual individual = ontologyReader.getIndividual(individualName);
 
 			if (individual == null || individual.getIndividual() == null) {
@@ -116,9 +115,8 @@ public class Individuals extends OntologyController {
 	}
 	
 	public Result deleteIndividualByName(String individualName){
-		if(!individualName.contains("#")) {
-			individualName = ontologyReader.getOntologyNamespace() + individualName;
-		}
+		individualName = utils.nameToUri(individualName, ontologyReader.getOntologyNamespace());
+
 		return ok(ontologyGenerator.removeIndividual(individualName)+"");
 	}
 

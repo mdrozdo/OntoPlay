@@ -61,7 +61,7 @@ public class Classes extends OntologyController{
 		try {
 		ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
 		OWLOntology generatedOntology=
-				ontologyGenerator.convertToOwlClassOntology(ontologyReader.getOntologyNamespace() + classExpressionName, condition);
+				ontologyGenerator.convertToOwlClassOntology(utils.joinNamespaceAndName(ontologyReader.getOntologyNamespace(), classExpressionName), condition);
 			if (generatedOntology == null)
 				return ok("Ontology is null");
 			ontoHelper.checkOntology(generatedOntology);
