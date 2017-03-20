@@ -1,0 +1,44 @@
+<div>
+    <div class='condition-panel' ng-controller="Child" ng-init="className=node.className;data=node">
+
+        <div class='remove-condition'>
+            <a ng-click="remove($parent.data,$index)">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <select class="form-control"  ng-model="data.property" ng-change="changedProperty()"
+                class='property-select form-control'  ng-options="property.uri as property.localName for property in properties">
+        </select>
+        <!-- parent is used because of ng-if-->
+        <select class="form-control"  ng-model="$parent.data.operator" ng-change="changedOperator()" ng-if="data.property != 'off'"
+                ng-options="item.realValue as item.displayValue for item in operators">
+        </select>
+        <input class="form-control"  type="{{data.inputType}}" ng-if="data.inputType!='object' && data.operator!='off'" ng-model="data.dataValue" />
+
+        <select class="form-control"  ng-model="$parent.data.propertyClass" ng-change="changedClass()" ng-if="data.inputType =='object' && data.operator!='off'"
+                ng-options="item.uri as item.localName for item in propertyClasses">
+        </select>
+
+
+        <select class="form-control"  ng-model="$parent.data.objectValue"  ng-if="data.propertyClass!='off' && propertyIndividuals.length!=0"
+                ng-options="item.uri as item.localName for item in propertyIndividuals">
+        </select>
+
+        <ol style=" list-style-type: none;">
+            <li ng-repeat="node in node.nodes"  ng-include="'nodes_renderer.html'" >
+
+            </li>
+        </ol>
+        <div ng-if="node.nodes && node.nodes.length > 0" class='condition-operator'>
+            <a ng-click="newSubItem(node,'')" href='#'>
+      <span class="glyphicon glyphicon-plus" aria-hidden="true">
+      </span>
+            </a>
+            <a ng-click="openAnnotationForClass(data.propertyClass)">Describe object</a>
+        </div>
+        <a ng-click="openAnnotationProperties()">Describe property</a>
+
+
+    </div>
+</div>

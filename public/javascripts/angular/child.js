@@ -87,27 +87,27 @@
         });
 		
 			var reset=function(hideOperator,hideDataValue,hideClasses,hideSubNodes){
-			if(hideOperator){
-					$scope.data.operator="off";
-					$scope.data.inputType='';
-					$scope.data.annotations=[];
-					$scope.data.objectAnnotations=[];
-				}
-			if(hideDataValue)
-				$scope.data.dataValue="";
-			if(hideClasses){
-				$scope.data.propertyClass="off";
-				$scope.propertyClasses=[];
-				$scope.data.objectAnnotations=[];
-			}
-			if(hideSubNodes){
-				$scope.data.objectValue="off";
-				$scope.propertyIndividuals=[];
-				$scope.data.nodes=[];
-				$scope.data.objectAnnotations=[];
-			}
-			
-		}
+                if(hideOperator){
+                        $scope.data.operator="off";
+                        $scope.data.inputType='';
+                        $scope.data.annotations=[];
+                        $scope.data.objectAnnotations=[];
+                    }
+                if(hideDataValue)
+                    $scope.data.dataValue="";
+                if(hideClasses){
+                    $scope.data.propertyClass="off";
+                    $scope.propertyClasses=[];
+                    $scope.data.objectAnnotations=[];
+                }
+                if(hideSubNodes){
+                    $scope.data.objectValue="off";
+                    $scope.propertyIndividuals=[];
+                    $scope.data.nodes=[];
+                    $scope.data.objectAnnotations=[];
+                }
+
+            }
 			
 			$scope.openAnnotationProperties=function(){
 				if($scope.data.property=='off'){
