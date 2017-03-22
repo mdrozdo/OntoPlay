@@ -1,0 +1,7 @@
+@import ontoplay.views.html.add;
+@(title: String, className: String)
+@add(title, className, true){
+	   <label for="individualName">Individual name:</label>
+	   <input ng-disabled="buttonTxt=='Update'" id="elementName" ng-model="elementName" class="form-control" name="elementName" type="text" required="required">
+
+}

@@ -2,7 +2,7 @@
 Reuse common part for mapping view*@
 
 @import ontoplay.views.html.ontoplayMain;
-@(title: String,className: String)
+@(title: String, className: String, isIndividual: Boolean)(formHeader: Html)
 @ontoplayMain(title){ 
 	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/app.js")" type="text/javascript"
 	charset="utf-8"></script>
@@ -24,15 +24,14 @@ Reuse common part for mapping view*@
 }{
 	<div ng-app="Ontoplay">
 
-	   <div ng-controller="Main"  class="row" ng-init="mainClass='@className'">
+	   <div ng-controller="Main"  class="row" ng-init="mainClass='@className'; isAddIndividual=@isIndividual">
 	      <div class="row">
 	         <div class="col-sm-18">
-	            <h3>{{title}}</h3>
+	            <h3>@title</h3>
 	         </div>
 	      </div>
 	      <div class="form-group">
-	         <label for="individualName">{{type}} name:</label>
-	         <input ng-disabled="buttonTxt=='Update'" id="elementName" ng-model="elementName" class="form-control" name="elementName" type="text" required="required">
+	         @formHeader
 	      </div>
 	      <form class="form-inline">
 	      <div class="col-sm-18">
@@ -50,7 +49,7 @@ Reuse common part for mapping view*@
 	      <pre class="code">{{ data | json }}</pre>
 	      </form>
 	   </div>
-	   <div id="dialog" ng-controller="AnnotationsController" title="More describtion" style="display:none">
+	   <div id="dialog" ng-controller="AnnotationsController" title="More description" style="display:none">
 	      <h4 ng-if="property">
 	         {{property}} description
 	      </h4>

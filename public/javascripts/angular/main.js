@@ -84,60 +84,52 @@
 				}else{
 					alert("An error occured please try again later\n"+data)
 				}
-					
+
 			});
 		}
-        
+
         $scope.$on('addChild', function (event, scope,className) {
         	scope.nodes=[];
         	$scope.newSubItem(scope,className);
         	});
-        
-        $scope.$on('deleteChild', function (event, scope) {	
-        	scope.nodes=[];
-        	});
-        	
-        	$scope.showAnnotationFormMainClass=function(className){
-        	
-        		if(typeof className === 'undefined' || className=='' ){
-					return;
-				}							
-				$rootScope.$broadcast("showDialog", $scope.mainObjectAnnotations,className);
-			}
-        		
-		     $scope.$watch('mainClass',function(oldValue,newValue){
-				 $scope.data = [];
-				 $scope.mainObjectAnnotations=[];
-				 $scope.elementName='';
-        	if(newValue!=null){
-        		if(window.location.href.indexOf('update')!=-1){
-					
-        			var tempPathParts=window.location.pathname.split('/');
-        			$scope.elementName=tempPathParts[tempPathParts.length-1];
-        			$scope.title="Update individual "+$scope.elementName;
-        			$scope.type="To be updated individual";
-					$scope.buttonTxt="Update";
-					Services.getIndividualDataForUpdate($scope.elementName).then(function(data){
-					$scope.data = data.properties;
-					$scope.mainObjectAnnotations=data.annotations;
-					},function(){alert("Error getting individual data.You will be redirected to the main "+$scope.mainClass+" page");
-					//  window.location.pathname="/view/"+$scope.mainClass;
-					  });
-					
-        		}else{
-				$scope.isAddIndividual=Services.isAddIndividual();
-				$scope.buttonTxt="Add";
-				if($scope.isAddIndividual){
-					$scope.title="Add new individual for "+newValue;
-					$scope.type="Individual";
-				}else{
-					$scope.title="Add new class expression for "+newValue;
-					$scope.type="Class Expression";				
-				}
-			 $scope.data.push(createIndividual(1,newValue));
-			 }
-			 }
-		     });
-    }]);
 
+        $scope.$on('deleteChild', function (event, scope) {
+        	scope.nodes=[];
+        });
+
+        $scope.showAnnotationFormMainClass=function(className){
+
+            if(typeof className === 'undefined' || className=='' ){
+                return;
+            }
+            $rootScope.$broadcast("showDialog", $scope.mainObjectAnnotations,className);
+        }
+
+         $scope.$watch('mainClass',function(oldValue,newValue){
+            $scope.data = [];
+            $scope.mainObjectAnnotations=[];
+            $scope.elementName='';
+            if(newValue!=null){
+                if(window.location.href.indexOf('update')!=-1){
+
+                    var tempPathParts=window.location.pathname.split('/');
+                    $scope.elementName=tempPathParts[tempPathParts.length-1];
+                    $scope.title="Update individual "+$scope.elementName;
+                    $scope.type="To be updated individual";
+                    $scope.buttonTxt="Update";
+                    Services.getIndividualDataForUpdate($scope.elementName).then(function(data){
+                        $scope.data = data.properties;
+                        $scope.mainObjectAnnotations=data.annotations;
+                    },function(){
+                        alert("Error getting individual data.You will be redirected to the main "+$scope.mainClass+" page");
+                    //  window.location.pathname="/view/"+$scope.mainClass;
+                    });
+
+                }else{
+                    $scope.buttonTxt="Add";
+                    $scope.data.push(createIndividual(1,newValue));
+                }
+            }
+        });
+    }]);
 }());
