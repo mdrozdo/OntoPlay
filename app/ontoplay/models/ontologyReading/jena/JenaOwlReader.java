@@ -300,4 +300,14 @@ public class JenaOwlReader implements OntologyReader{
 	public String getOntologyNamespace() {
 		return ontologyNamespace;
 	}
+
+	@Override
+	public List<OntoClass> getClasses() {
+		List<OntoClass> classes = new ArrayList<>();
+		OntClass thing = model.getOntClass("http://www.w3.org/2002/07/owl#Thing");
+
+		fillWithSubClasses(classes, thing);
+
+		return classes;
+	}
 }

@@ -39,8 +39,10 @@ GET /annotationProperties/get/:componentUri ontoplay.controllers.webservices.Ann
 
 #classes
 GET /class/property/:propertyUri		ontoplay.controllers.webservices.Classes.getClassesByProperty(propertyUri: String)
-POST /class/save ontoplay.controllers.webservices.Classes.addClassExpression()
-GET /addClassExpression/:className			ontoplay.controllers.Operations.addClassExpression(className: String)
+GET /class		                        ontoplay.controllers.webservices.Classes.getClasses()
+POST /class/save                        ontoplay.controllers.webservices.Classes.addClassExpression()
+GET /addClassExpression/:className		ontoplay.controllers.Operations.addClassExpression(className: String)
+GET /addClassMapping/:className		ontoplay.controllers.Operations.addClassMapping(className: String)
 
 #individuals
 GET /individuals/class/:className ontoplay.controllers.webservices.Individuals.getIndividualsByClassName(className: String)

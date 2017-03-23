@@ -40,18 +40,27 @@
         });
 	}
 	
-	var getClasses=function(className){
-		 return $http.get('/class/property/' + className).then(function(response){
+	var getClasses=function(propertyName){
+		 return $http.get('/class/property/' + propertyName).then(function(response){
           var data= response.data;		  
 		  data.unshift({"uri":"off","localName":"Select a class"});		
 		  return data;
           
         });
 	}
+
+	var getAllClasses=function(){
+    		 return $http.get('/class').then(function(response){
+              var data= response.data;
+    		  //data.unshift({"uri":"off","localName":"Select a class"});
+    		  return data;
+
+            });
+    	}
 	
-	var add=function(data,elementName){
+	var add=function(data,elementName, isAddIndividual){
 		var url='';
-		if(isAddIndividual())
+		if(isAddIndividual)
 			url='/individuals/save';
 		else
 			url="/class/save";
@@ -69,13 +78,6 @@
 		});
 		
 	}
-	
-	var isAddIndividual=function(){
-		if(window.location.pathname.startsWith("/addClassExpression"))
-			return false;
-		return true;
-	}
-    
  
     
     return {
@@ -85,8 +87,8 @@
 	  getClasses:getClasses,
 	  add:add,
 	  getAnnotationProperties:getAnnotationProperties,
-	  isAddIndividual:isAddIndividual,
-	  getIndividualDataForUpdate:getIndividualDataForUpdate
+	  getIndividualDataForUpdate:getIndividualDataForUpdate,
+	  getAllClasses:getAllClasses
     };
   }
    var app = angular.module('Ontoplay');

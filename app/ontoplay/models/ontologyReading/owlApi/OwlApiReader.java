@@ -276,4 +276,9 @@ public class OwlApiReader implements OntologyReader {
 		return uri;
 	}
 
+	@Override
+	public List<OntoClass> getClasses() {
+		return null;
+	}
+
 }

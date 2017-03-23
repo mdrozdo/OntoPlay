@@ -35,4 +35,6 @@ public interface OntologyReader extends PropertyProvider{
 	ResIterator getAnnotationsAxioms();
 
     String getOntologyNamespace();
+
+    List<OntoClass> getClasses();
 }

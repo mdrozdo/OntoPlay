@@ -76,7 +76,7 @@
 				return;
 			}
 			//Services.update(angular.toJson(individual),$scope.elementName);
-			Services.add(angular.toJson(individual),$scope.elementName).then(function(data){
+			Services.add(angular.toJson(individual),$scope.elementName, $scope.isAddIndividual).then(function(data){
 				if(data=="ok"){
 					alert($scope.type+" was added successfully. You will be redirected to the main "+$scope.mainClass+" page");
 					//window.location.pathname="/view/"+$scope.mainClass;
@@ -105,10 +105,10 @@
             $rootScope.$broadcast("showDialog", $scope.mainObjectAnnotations,className);
         }
 
-         $scope.$watch('mainClass',function(oldValue,newValue){
+         $scope.$watch('mainClass',function(newValue, oldValue){
             $scope.data = [];
             $scope.mainObjectAnnotations=[];
-            $scope.elementName='';
+            //$scope.elementName='';    //TODO: Can I actually get rid of this? Causes issues if I'm changing main class when defining a mapping
             if(newValue!=null){
                 if(window.location.href.indexOf('update')!=-1){
 
@@ -131,5 +131,13 @@
                 }
             }
         });
+
+        var init = function(){
+            return Services.getAllClasses().then(function(classes){
+                $scope.allClasses = classes;
+            })
+        };
+
+        return init();
     }]);
 }());

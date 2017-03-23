@@ -41,17 +41,28 @@ public class Classes extends OntologyController{
 	public Result getClassesByProperty(String propertyUri){
 		try{
 	
-		OntoProperty property = ontologyReader.getProperty(propertyUri);
-		List<OntoClass> classes=ontologyReader.getClassesInRange(property);
-		List<ClassDTO> classesDTO=new ArrayList<ClassDTO>();
-		for (OntoClass owlClass : classes) {
-			classesDTO.add(new ClassDTO(owlClass));			
-		}
-		return ok(new GsonBuilder().create().toJson(classesDTO));
+			OntoProperty property = ontologyReader.getProperty(propertyUri);
+			List<OntoClass> classes=ontologyReader.getClassesInRange(property);
+			List<ClassDTO> classesDTO=new ArrayList<ClassDTO>();
+			for (OntoClass owlClass : classes) {
+				classesDTO.add(new ClassDTO(owlClass));
+			}
+
+			return ok(new GsonBuilder().create().toJson(classesDTO));
 		}catch(ConfigurationException e){
 			return badRequest();
 		}
-		}
+	}
+
+	public Result getClasses(){
+		List<OntoClass> classes=ontologyReader.getClasses();
+		List<ClassDTO> classesDTO=new ArrayList<ClassDTO>();
+		for (OntoClass owlClass : classes) {
+            classesDTO.add(new ClassDTO(owlClass));
+        }
+
+		return ok(new GsonBuilder().create().toJson(classesDTO));
+	}
 	
 	public Result addClassExpression() {
 		@SuppressWarnings("deprecation")
