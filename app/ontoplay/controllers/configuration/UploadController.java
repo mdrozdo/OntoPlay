@@ -7,8 +7,6 @@ import java.util.Map;
 import ontoplay.OntoplayConfig;
 import org.apache.commons.io.FileUtils;
 
-import ontoplay.controllers.configuration.utils.OntoplayOntologyUtils;
-import ontoplay.controllers.utils.PathesUtils;
 import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
@@ -25,8 +23,11 @@ public class UploadController extends Controller {
 		this.config = config;
 	}
 
+	/**
+	 * To replace the current annotation configuration with the original (empty and structured) one
+	 */
+
 	public Result showUploadPage() {
-		//TODO: Take ontologyName and iriString from configuration instead.
 		return ok(ontoplay.views.html.configuration.upload.render(config.getOntologyFileName(), config.getOntologyNamespace()));
 	}
 
@@ -37,10 +38,9 @@ public class UploadController extends Controller {
 		if (ontologyFile != null) {
 			result += "file Name " + ontologyFile.getFilename()+"\n";
 			result += "contentType " + ontologyFile.getContentType()+"\n";
-		
-			//File file = ontologyFile.getFile();
+
 			File file = ontologyFile.getFile();
-		    File destination = new File(PathesUtils.UPLOADS_PATH, ontologyFile.getFilename());
+		    File destination = new File(config.getUploadsPath(), ontologyFile.getFilename());
 		    destination.delete();
 		    try {
 				FileUtils.moveFile(file, destination);
@@ -60,15 +60,26 @@ public class UploadController extends Controller {
 				return internalServerError("Error updating configuration.");
 			}
 
-			OntoplayOntologyUtils.resetAnnotationCF();
-			//TODO: What to do with the below code?
+			resetAnnotationCF();
+			//TODO: What to do with the below code? Check if works as it is.
 				//new JenaOwlReaderConfiguration().initialize(OntologyUtils.file,new JenaOwlReaderConfig().useLocalMapping(OntologyUtils.iriString,OntologyUtils.fileName));
 				//OntologyController.setObjects();
 			return ok("File uploaded \n "+result+"\n URI "+uri);
-			
+
 		} else {
 			flash("error", "Missing file");
 			return ok("Error");
 		}
+	}
+
+	private void resetAnnotationCF() {
+		File original=new File(config.getOriginalAnnotationsFilePath());
+		File currentFile =new File(config.getAnnotationsFilePath());
+		 try {
+			 currentFile.delete();
+				FileUtils.copyFile(original, currentFile);
+			} catch (IOException e) {
+				System.out.println("Error replacing Annotation file "+e.toString());
+			}
 	}
 }

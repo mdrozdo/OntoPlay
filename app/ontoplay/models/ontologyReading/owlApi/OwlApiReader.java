@@ -81,7 +81,7 @@ public class OwlApiReader implements OntologyReader {
 		this.factory = manager.getOWLDataFactory();
 		this.uri = ontology.getOntologyID().getOntologyIRI().toString();
 
-		//TODO:Make this non static and move initialization to module.
+		//TODO: NOT IMPORTANT (class not really used). Make this non static and move initialization to module.
 		OwlPropertyFactory.registerPropertyFactory(new IntegerPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new FloatPropertyFactory());
 		OwlPropertyFactory.registerPropertyFactory(new DateTimePropertyFactory());

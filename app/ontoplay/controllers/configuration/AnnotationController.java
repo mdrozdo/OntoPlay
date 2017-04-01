@@ -28,8 +28,6 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
-import ontoplay.controllers.utils.OntologyUtils;
-import ontoplay.controllers.utils.PathesUtils;
 import ontoplay.models.angular.AnnotationDTO;
 import ontoplay.models.angular.OwlElementDTO;
 import play.data.DynamicForm;

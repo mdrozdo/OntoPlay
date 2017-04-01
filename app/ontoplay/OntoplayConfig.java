@@ -53,9 +53,16 @@ public class OntoplayConfig extends Observable{
         return configuration.getString("annotationsFilePath");
     }
 
+    public String getOriginalAnnotationsFilePath() {
+        return configuration.getString("originalAnnotationsFilePath");
+    }
 
     public String getCheckFilePath() {
         return configuration.getString("checkFilePath");
+    }
+
+    public String getUploadsPath() {
+        return configuration.getString("uploadsPath");
     }
 
     public List<FolderMapping> getMappings() {
@@ -85,4 +92,5 @@ public class OntoplayConfig extends Observable{
         String filePath = getOntologyFilePath();
         return Paths.get(filePath).getFileName().toString();
     }
+
 }

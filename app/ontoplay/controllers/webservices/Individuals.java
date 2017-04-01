@@ -44,8 +44,6 @@ public class Individuals extends OntologyController {
 		try {
 			OntoClass owlClass = ontoHelper.getOwlClass(className);
 
-			//TODO: What was this one?
-			//setObjects();
 			List<OwlIndividual> individuals = ontologyReader.getIndividuals(owlClass);
 
 			List<IndividualDTO> individualDTOs = new ArrayList<IndividualDTO>();
