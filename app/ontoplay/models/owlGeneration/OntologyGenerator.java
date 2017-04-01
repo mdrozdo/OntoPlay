@@ -169,6 +169,15 @@ public class OntologyGenerator {
 		manager.addAxiom(destinationOntology, equivalentClassAxiom);
 	}
 
+	private void addToOntologyAsSubclass(OWLOntology destinationOntology, OWLClassExpression resultExpression,
+									  String conditionUri) {
+		OWLClass resultClass = factory.getOWLClass(IRI.create(conditionUri));
+
+		OWLAxiom subClassOfAxiom =
+				factory.getOWLSubClassOfAxiom(resultClass, resultExpression);
+		manager.addAxiom(destinationOntology, subClassOfAxiom);
+	}
+
 	private String getNamespace(IRI iri){
 		String namespace = iri.getStart();
 		if(namespace.endsWith("#") || namespace.endsWith("/")){
