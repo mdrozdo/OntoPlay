@@ -1,13 +1,12 @@
 package ontoplay.models.owlGeneration;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import ontoplay.OntoplayConfig;
 import ontoplay.models.ClassCondition;
+import ontoplay.models.ClassRelation;
 import ontoplay.models.ConfigurationException;
-import java.io.FileNotFoundException;
+
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -27,7 +26,6 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
-import ontoplay.models.ClassCondition;
 import org.semanticweb.owlapi.util.OWLEntityRemover;
 
 import javax.inject.Inject;
@@ -78,7 +76,12 @@ public class OntologyGenerator {
 
 			OWLClassExpression resultExpression = getClassRestrictionGenerator().convertToOntClass(classUri, condition);
 
-			addToOntologyAsClass(destinationOntology, resultExpression, classUri);
+			if(condition.getClassRelation() == ClassRelation.EQUIVALENT) {
+                addToOntologyAsClass(destinationOntology, resultExpression, classUri);
+            } else if(condition.getClassRelation() == ClassRelation.SUBCLASS){
+			    addToOntologyAsSubclass(destinationOntology, resultExpression, classUri);
+            }
+
 			return destinationOntology;
 
 		} catch (OWLOntologyCreationException e) {

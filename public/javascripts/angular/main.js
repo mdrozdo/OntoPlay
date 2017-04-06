@@ -70,7 +70,7 @@
 			//validation here (TBD)
 			//var individual={'classUri':$scope.mainClass,'propertyConditions':$scope.data,'annotations':$scope.mainObjectAnnotations};
 			//console.log(individual);
-			var individual=Adapter.createClassCondition($scope.mainClass,$scope.data,$scope.mainObjectAnnotations);
+			var individual=Adapter.createClassCondition($scope.mainClass,$scope.data,$scope.mainObjectAnnotations, $scope.classRelation);
 			if(Adapter.isEmpty(individual.propertyConditions)){
 				alert("No conditions were found");
 				return;

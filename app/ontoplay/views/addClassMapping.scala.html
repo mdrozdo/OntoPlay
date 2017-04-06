@@ -1,6 +1,6 @@
 @import ontoplay.views.html.add;
 @(title: String, className: String)
-@add(title, className, false, className){
+@add(title, className, false, className, classRelation = "SUBCLASS"){
 	   	<label for="input_superClass">Map class @className to: </label>
 		<select id="input_superClass" class="form-control"  ng-model="mainClass" ng-options="item.uri as item.localName for item in allClasses" required="required">
 		</select>

@@ -4,10 +4,11 @@
 	   var getClassStructure=function(){
 	    	return {'classUri':'','propertyConditions':'','annotations':''};
 	    }
-	    var createClassCondition=function(classUri,propertyConditions,annotations){
+	    var createClassCondition=function(classUri,propertyConditions,annotations, classRelation){
 	    	var temp=getClassStructure();
 	    	temp.classUri=classUri;
 	    	temp.annotations=annotations;
+	    	temp.classRelation = classRelation;
 	    	temp.propertyConditions=extractProperties(propertyConditions);
 	    	return temp;
 	    }

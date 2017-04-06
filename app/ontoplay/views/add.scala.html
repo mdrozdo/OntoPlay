@@ -1,5 +1,5 @@
 @import ontoplay.views.html.ontoplayMain;
-@(title: String, className: String, isIndividual: Boolean, elementName: String = "")(formHeader: Html)
+@(title: String, className: String, isIndividual: Boolean, elementName: String = "", classRelation: String = "")(formHeader: Html)
 @ontoplayMain(title){ 
 	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/app.js")" type="text/javascript"
 	charset="utf-8"></script>
@@ -21,7 +21,7 @@
 }{
 	<div ng-app="Ontoplay">
 
-	   <div ng-controller="Main"  class="row" ng-init="mainClass='@className'; isAddIndividual=@isIndividual; elementName='@elementName'">
+	   <div ng-controller="Main"  class="row" ng-init="mainClass='@className'; isAddIndividual=@isIndividual; elementName='@elementName'; classRelation='@classRelation'">
 	      <div class="row">
 	         <div class="col-sm-18">
 	            <h3>@title</h3>
