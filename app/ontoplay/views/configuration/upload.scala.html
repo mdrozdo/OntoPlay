@@ -1,7 +1,6 @@
-@import ontoplay.views.html.ontoplayMain; 
-@(ontologyName:String)(ontologyIri: String)
+@(ontologyName:String, ontologyIri: String, layoutTemplate: String => Html => Html => Html)
 
-@ontoplayMain("Ontology configuration"){ 
+@layoutTemplate("Ontology configuration"){
 	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/fileHelper.js")" type="text/javascript" charset="utf-8"></script>
 		<script>
 	$( "#uploadForm" ).submit(function( event ) {

@@ -16,5 +16,6 @@ libraryDependencies ++= Seq(
   "com.github.galigator.openllet" % "openllet-jena" % "2.6.1",
   "com.hermit-reasoner" % "org.semanticweb.hermit" % "1.3.8.4",
   "org.easytesting" % "fest-assert" % "1.4" % "test",
-  "xmlunit" % "xmlunit" % "1.6" % "test"
+  "xmlunit" % "xmlunit" % "1.6" % "test",
+  "org.scala-lang.modules" % "scala-java8-compat_2.11" % "0.8.0"
 )

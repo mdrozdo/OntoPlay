@@ -5,14 +5,19 @@ import java.io.IOException;
 import java.util.Map;
 
 import ontoplay.OntoplayConfig;
+import ontoplay.views.html.ontoplayMain;
+import ontoplay.views.html.ontoplayMain_Scope0;
 import org.apache.commons.io.FileUtils;
 
 import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
+import play.twirl.api.Html;
 
 import javax.inject.Inject;
+
+import static scala.compat.java8.JFunction.*;
 
 public class UploadController extends Controller {
 
@@ -28,7 +33,9 @@ public class UploadController extends Controller {
 	 */
 
 	public Result showUploadPage() {
-		return ok(ontoplay.views.html.configuration.upload.render(config.getOntologyFileName(), config.getOntologyNamespace()));
+
+		return ok(ontoplay.views.html.configuration.upload.render(config.getOntologyFileName(), config.getOntologyNamespace(),
+				func((String s) -> func((Html h1) -> func((Html h2) -> ontoplay.views.html.ontoplayMain2.render(s, h1, h2))))));
 	}
 
 	public Result upload() {
