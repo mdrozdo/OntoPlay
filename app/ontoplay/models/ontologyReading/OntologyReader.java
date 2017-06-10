@@ -3,8 +3,8 @@ package ontoplay.models.ontologyReading;
 import java.util.List;
 import java.util.Set;
 
-import com.hp.hpl.jena.ontology.AnnotationProperty;
-import com.hp.hpl.jena.rdf.model.ResIterator;
+import org.apache.jena.ontology.AnnotationProperty;
+import org.apache.jena.rdf.model.ResIterator;
 
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.PropertyProvider;

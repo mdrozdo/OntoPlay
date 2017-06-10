@@ -1,7 +1,7 @@
 package ontoplay.controllers.webservices;
 
 import com.google.gson.GsonBuilder;
-import com.hp.hpl.jena.ontology.AnnotationProperty;
+import org.apache.jena.ontology.AnnotationProperty;
 import ontoplay.OntologyHelper;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.utils.OntologyUtils;

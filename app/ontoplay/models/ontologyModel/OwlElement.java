@@ -1,6 +1,6 @@
 package ontoplay.models.ontologyModel;
 
-import com.hp.hpl.jena.ontology.Individual;
+import org.apache.jena.ontology.Individual;
 
 
 public interface OwlElement {

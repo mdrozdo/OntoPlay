@@ -8,8 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import com.hp.hpl.jena.ontology.AnnotationProperty;
-import com.hp.hpl.jena.rdf.model.ResIterator;
+import org.apache.jena.ontology.AnnotationProperty;
+import org.apache.jena.rdf.model.ResIterator;
 import ontoplay.models.PropertyValueCondition;
 import ontoplay.models.angular.AnnotationDTO;
 import ontoplay.models.ontologyModel.OntoClass;
@@ -40,7 +40,7 @@ import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.util.AutoIRIMapper;
-import com.hp.hpl.jena.shared.ConfigException;
+import org.apache.jena.shared.ConfigException;
 import uk.ac.manchester.cs.owl.owlapi.OWLOntologyIRIMapperImpl;
 
 import javax.inject.Singleton;
