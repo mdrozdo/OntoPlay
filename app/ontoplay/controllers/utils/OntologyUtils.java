@@ -77,7 +77,7 @@ public class OntologyUtils {
 		OWLOntology newOntology = null;
 
 		try {
-			newOntology = mergeOntologies(generatedOntology.getOntologyID().getOntologyIRI(), originalOntology, generatedOntology);
+			newOntology = mergeOntologies(generatedOntology.getOntologyID().getOntologyIRI().orElse(null), originalOntology, generatedOntology);
 		} catch (org.semanticweb.owlapi.model.OWLOntologyCreationException | OWLOntologyStorageException
 				| IOException e) {
 			System.out.print("Error at OntologyUtils.saveOntology 58 " + e.getMessage());
@@ -86,7 +86,7 @@ public class OntologyUtils {
 
 		OutputStream out = null;
 		try {
-			OWLOntologyFormat originalFormat = owlManager.getOntologyFormat(originalOntology);
+			OWLDocumentFormat originalFormat = owlManager.getOntologyFormat(originalOntology);
 			out = new FileOutputStream(config.getOntologyFilePath());
 			owlManager.saveOntology(newOntology, originalFormat, out);
 		} catch (Exception e) {
@@ -185,7 +185,7 @@ public class OntologyUtils {
 			Set<OWLOntology> imports = ontology.getImports();
 			for (Iterator<OWLOntology> it = imports.iterator(); it.hasNext(); ) {
 				OWLOntology onto = it.next();
-				addImportToOntology(mergedOntology, onto.getOntologyID().getOntologyIRI());
+				addImportToOntology(mergedOntology, onto.getOntologyID().getOntologyIRI().orElse(null));
 			}
 		}
 		return mergedOntology;

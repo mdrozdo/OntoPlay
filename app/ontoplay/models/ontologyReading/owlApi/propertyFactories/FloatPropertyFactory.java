@@ -13,6 +13,6 @@ public class FloatPropertyFactory extends SimpleDatatypePropertyFactory {
 
 	@Override
 	public OntoProperty createProperty(OWLOntology onto, OWLProperty property) {
-		return new FloatProperty(property.getIRI().getStart(), property.getIRI().getFragment(),"");
+		return new FloatProperty(property.getIRI().getNamespace(), property.getIRI().getFragment(),"");
 	}
 }

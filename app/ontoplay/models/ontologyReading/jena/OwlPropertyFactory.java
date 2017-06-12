@@ -3,7 +3,7 @@ package ontoplay.models.ontologyReading.jena;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hp.hpl.jena.ontology.OntProperty;
+import org.apache.jena.ontology.OntProperty;
 
 import ontoplay.models.InvalidConfigurationException;
 import ontoplay.models.ontologyModel.OntoProperty;

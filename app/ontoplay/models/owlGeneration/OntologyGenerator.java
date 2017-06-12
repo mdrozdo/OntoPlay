@@ -182,7 +182,7 @@ public class OntologyGenerator {
 	}
 
 	private String getNamespace(IRI iri){
-		String namespace = iri.getStart();
+		String namespace = iri.getNamespace();
 		if(namespace.endsWith("#") || namespace.endsWith("/")){
 			namespace = namespace.substring(0, namespace.length()-1);
 		}
@@ -226,7 +226,7 @@ public class OntologyGenerator {
 		OWLNamedIndividual individual=factory.getOWLNamedIndividual(IRI.create(individualUri));
 		if(individual == null)
 			return false;
-		OWLEntityRemover remover = new OWLEntityRemover(manager,manager.getOntologies());
+		OWLEntityRemover remover = new OWLEntityRemover(manager.ontologies());
 		individual.accept(remover);
 		manager.applyChanges(remover.getChanges());	
 		OutputStream out;

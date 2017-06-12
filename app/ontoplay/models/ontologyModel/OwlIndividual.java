@@ -3,11 +3,10 @@ package ontoplay.models.ontologyModel;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.lang.NullArgumentException;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
 import ontoplay.models.PropertyValueCondition;
-import com.hp.hpl.jena.ontology.Individual;
+import org.apache.jena.ontology.Individual;
 
 
 public class OwlIndividual implements OwlElement{
@@ -20,11 +19,11 @@ public class OwlIndividual implements OwlElement{
 	
 	public OwlIndividual(Individual individual, List<PropertyValueCondition> properties) {
 		if(properties == null){
-			throw new NullArgumentException("properties");
+			throw new IllegalArgumentException("properties");
 		}
 		
 		if(individual == null)
-			throw new NullArgumentException("Individual");
+			throw new IllegalArgumentException("Individual");
 		this.uri = individual.getURI();
 		this.localName = individual.getLocalName();
 		this.properties = properties;
@@ -33,7 +32,7 @@ public class OwlIndividual implements OwlElement{
 	
 	public OwlIndividual(OWLNamedIndividual individual, List<PropertyValueCondition> properties) {
 		if(properties == null){
-			throw new NullArgumentException("properties");
+			throw new IllegalArgumentException("properties");
 		}
 		this.uri = individual.getIRI().toString();
 		this.localName = individual.getIRI().getFragment();

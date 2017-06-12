@@ -14,7 +14,7 @@ public class StringPropertyFactory extends SimpleDatatypePropertyFactory {
 	
 	@Override
 	public OntoProperty createProperty(OWLOntology onto, OWLProperty property) {
-		return new StringProperty(property.getIRI().getStart(), property.getIRI().getFragment(),"");
+		return new StringProperty(property.getIRI().getNamespace(), property.getIRI().getFragment(),"");
 	}
 
 }

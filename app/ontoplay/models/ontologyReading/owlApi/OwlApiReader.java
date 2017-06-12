@@ -7,9 +7,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import com.hp.hpl.jena.ontology.AnnotationProperty;
-import com.hp.hpl.jena.rdf.model.ResIterator;
+import org.apache.jena.ontology.AnnotationProperty;
+import org.apache.jena.rdf.model.ResIterator;
 import ontoplay.models.PropertyValueCondition;
 import ontoplay.models.angular.AnnotationDTO;
 import ontoplay.models.ontologyModel.OntoClass;
@@ -39,8 +40,9 @@ import org.semanticweb.owlapi.model.OWLProperty;
 import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
+import org.semanticweb.owlapi.search.Searcher;
 import org.semanticweb.owlapi.util.AutoIRIMapper;
-import com.hp.hpl.jena.shared.ConfigException;
+import org.apache.jena.shared.ConfigException;
 import uk.ac.manchester.cs.owl.owlapi.OWLOntologyIRIMapperImpl;
 
 import javax.inject.Singleton;
@@ -148,7 +150,7 @@ public class OwlApiReader implements OntologyReader {
 		
 		List<OntoProperty> classProperties = getClassProperties(owlClass); 
 		
-		return new OntoClass(owlClass.getIRI().getStart(), owlClass.getIRI().getFragment(), classProperties, null);		
+		return new OntoClass(owlClass.getIRI().getNamespace(), owlClass.getIRI().getFragment(), classProperties, null);
 	}
 
 	private List<OntoProperty> getClassProperties(OWLClass owlClass) {
@@ -172,7 +174,8 @@ public class OwlApiReader implements OntologyReader {
 		
 		// OWL doesn't specify that operands of a unionOf domain should be regarded as property domains, 
 		// so additionally we have to also parse the domain manually
-		Set domains = owlProperty.getDomains(ontology.getImportsClosure());
+
+		Set domains = Searcher.domain(ontology.objectPropertyDomainAxioms(owlProperty.asObjectPropertyExpression())).collect(Collectors.toSet());
 
 		for (Iterator iterator = domains.iterator(); iterator.hasNext();) {
 			OWLClassExpression domainExpression = (OWLClassExpression) iterator.next();

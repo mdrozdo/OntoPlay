@@ -21,7 +21,7 @@ public abstract class OwlPropertyFactory {
 			if(fact.canCreateProperty(onto, property))
 				return fact.createProperty(onto, property);
 		}
-		return new StringProperty(property.getIRI().getStart(), property.getIRI().getFragment(),"");
+		return new StringProperty(property.getIRI().getNamespace(), property.getIRI().getFragment(),"");
 		//throw new InvalidConfigurationException(String.format("Failed to create a property description object for property: %s. No property factory has been found to handle the property type: %s.", property.getIRI(), property.getRanges(onto)));
 	}
 	

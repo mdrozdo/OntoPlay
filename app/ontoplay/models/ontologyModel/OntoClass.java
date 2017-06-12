@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.semanticweb.owlapi.model.IRI;
-import com.hp.hpl.jena.ontology.Individual;
-import com.hp.hpl.jena.ontology.OntClass;
+import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntClass;
 
 public class OntoClass implements OwlElement {
 

@@ -13,7 +13,7 @@ public class DateTimePropertyFactory extends SimpleDatatypePropertyFactory {
 
 	@Override
 	public OntoProperty createProperty(OWLOntology onto, OWLProperty property) {
-		return new DateTimeProperty(property.getIRI().getStart(), property.getIRI().getFragment(),"");
+		return new DateTimeProperty(property.getIRI().getNamespace(), property.getIRI().getFragment(),"");
 	}
 
 }

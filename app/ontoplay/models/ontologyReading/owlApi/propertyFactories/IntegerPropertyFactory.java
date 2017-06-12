@@ -15,6 +15,6 @@ public class IntegerPropertyFactory extends SimpleDatatypePropertyFactory {
 
 	@Override
 	public OntoProperty createProperty(OWLOntology onto, OWLProperty property) {
-		return new IntegerProperty(property.getIRI().getStart(), property.getIRI().getFragment(),"");
+		return new IntegerProperty(property.getIRI().getNamespace(), property.getIRI().getFragment(),"");
 	}
 }

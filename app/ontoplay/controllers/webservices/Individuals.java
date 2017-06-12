@@ -1,7 +1,7 @@
 package ontoplay.controllers.webservices;
 
 import com.google.gson.GsonBuilder;
-import com.hp.hpl.jena.ontology.AnnotationProperty;
+import org.apache.jena.ontology.AnnotationProperty;
 import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.utils.OntologyUtils;
@@ -14,7 +14,6 @@ import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OwlIndividual;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.owlGeneration.OntologyGenerator;
-import org.apache.commons.lang.NullArgumentException;
 import org.semanticweb.owlapi.model.OWLOntology;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -104,7 +103,7 @@ public class Individuals extends OntologyController {
 					AnnotationAxiom.readIterator(ontologyReader.getAnnotationsAxioms()));
 
 			return ok(new GsonBuilder().create().toJson(ind.getUpdateIndividual()));
-		} catch (NullArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			return ok("Individual Not Found");
 		} catch (Exception e) {
 			return ok("Individual Not Found " + e.toString());

@@ -1,6 +1,7 @@
 package ontoplay.models.ontologyReading.owlApi.propertyFactories;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataRange;
@@ -10,6 +11,7 @@ import org.semanticweb.owlapi.model.OWLProperty;
 import org.semanticweb.owlapi.model.OWLPropertyRange;
 
 import ontoplay.models.ontologyReading.owlApi.OwlPropertyFactory;
+import org.semanticweb.owlapi.search.EntitySearcher;
 
 public abstract class SimpleDatatypePropertyFactory extends OwlPropertyFactory {
 
@@ -26,16 +28,16 @@ public abstract class SimpleDatatypePropertyFactory extends OwlPropertyFactory {
 			return false;
 		OWLDataProperty dataProperty = property.asOWLDataProperty();
 		
-		Set<OWLDataRange> ranges = dataProperty.getRanges(onto.getImports());
+		Set<OWLDataRange> ranges = EntitySearcher.getRanges(dataProperty, onto.getImportsClosure().stream()).collect(Collectors.toSet());
 		if(ranges.size() > 1){
 			return false;
-		}		
-		
+		}
+
 		for (OWLPropertyRange range : ranges) {
 			Set<OWLDatatype> rangeDatatypes = range.getDatatypesInSignature();
 			if(rangeDatatypes.size() > 1)
 				return false;
-			
+
 			for (OWLDatatype datatype : rangeDatatypes) {
 				String rangeUri = datatype.getIRI().toString();
 				for (int i = 0; i < rangeUris.length; i++) {

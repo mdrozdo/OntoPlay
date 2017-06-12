@@ -15,7 +15,7 @@ public class ObjectPropertyFactory extends OwlPropertyFactory {
 
 	@Override
 	public OntoProperty createProperty(OWLOntology onto, OWLProperty property) {
-		return new OwlObjectProperty(property.getIRI().getStart(), property.getIRI().getFragment(),"");
+		return new OwlObjectProperty(property.getIRI().getNamespace(), property.getIRI().getFragment(),"");
 	}
 
 }
