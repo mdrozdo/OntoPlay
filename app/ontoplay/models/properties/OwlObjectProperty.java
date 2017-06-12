@@ -1,6 +1,6 @@
 package ontoplay.models.properties;
 
-import org.apache.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.Individual;
 
 import ontoplay.models.ontologyModel.OntoProperty;
 

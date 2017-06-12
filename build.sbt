@@ -10,5 +10,5 @@ libraryDependencies ++= Seq(
   cache,
   javaWs,
   "com.google.code.gson" % "gson" % "2.2.2",
-    "commons-io" % "commons-io" % "2.4"
+  "commons-io" % "commons-io" % "2.4"
 )

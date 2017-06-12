@@ -7,7 +7,7 @@ import org.apache.commons.lang.NullArgumentException;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
 import ontoplay.models.PropertyValueCondition;
-import org.apache.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.Individual;
 
 
 public class OwlIndividual implements OwlElement{

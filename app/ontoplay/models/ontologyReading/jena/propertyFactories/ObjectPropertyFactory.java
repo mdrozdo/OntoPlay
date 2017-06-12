@@ -4,7 +4,7 @@ import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyReading.jena.OwlPropertyFactory;
 import ontoplay.models.properties.OwlObjectProperty;
 
-import org.apache.jena.ontology.OntProperty;
+import com.hp.hpl.jena.ontology.OntProperty;
 
 public class ObjectPropertyFactory extends OwlPropertyFactory {
 
