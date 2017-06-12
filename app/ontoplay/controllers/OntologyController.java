@@ -3,14 +3,12 @@ package ontoplay.controllers;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import play.mvc.Controller;
-
-import javax.inject.Inject;
 
 public class OntologyController extends Controller {
 
-	protected OntologyHelper ontoHelper;
+	protected OntologyUtils ontologyUtils;
 
 	protected static class HtmlHolder {
 		public play.twirl.api.Html value;
@@ -48,9 +46,9 @@ public class OntologyController extends Controller {
 		}
 	}
 
-	public OntologyController(OntologyHelper ontoHelper) {
+	public OntologyController(OntologyUtils ontologyUtils) {
 		super();
-		this.ontoHelper = ontoHelper;
+		this.ontologyUtils = ontologyUtils;
 	}
 
 }

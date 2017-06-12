@@ -2,7 +2,7 @@ package ontoplay.controllers;
 
 import java.util.Map;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
@@ -17,17 +17,17 @@ public class Individuals extends OntologyController {
 	private PropertyConditionRendererProvider conditionRendererProvider;
 
 	@Inject
-	public Individuals(OntologyHelper ontologyHelper, PropertyConditionRendererProvider conditionRendererProvider){
-		super(ontologyHelper);
+	public Individuals(OntologyUtils ontologyUtils, PropertyConditionRendererProvider conditionRendererProvider){
+		super(ontologyUtils);
 		this.conditionRendererProvider = conditionRendererProvider;
 	}
 
 	public Result getPropertyCondition(int conditionId, String classUri,
 			String propertyUri) throws ConfigurationException {
 
-		OntoClass owlClass = ontoHelper.getOwlClass(classUri);
+		OntoClass owlClass = ontologyUtils.getOwlClass(classUri);
 
-		OntoProperty property = ontoHelper.getProperty(propertyUri);
+		OntoProperty property = ontologyUtils.getProperty(propertyUri);
 		
 		//from here I can know the property type (data,object,string ,date);
 		PropertyConditionRenderer conditionRenderer = conditionRendererProvider

@@ -3,7 +3,7 @@ package ontoplay.controllers.webservices;
 import java.util.ArrayList;
 import java.util.List;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.owlGeneration.OntologyGenerator;
 import org.semanticweb.owlapi.model.OWLOntology;
 
@@ -31,8 +31,8 @@ public class Classes extends OntologyController{
 	private OntologyUtils utils;
 
 	@Inject
-	public Classes(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntologyGenerator ontologyGenerator, OntologyUtils utils){
-		super(ontologyHelper);
+	public Classes(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntologyGenerator ontologyGenerator, OntologyUtils utils){
+		super(ontologyUtils);
 		this.ontologyReader = ontologyReader;
 		this.ontologyGenerator = ontologyGenerator;
 		this.utils = utils;
@@ -75,8 +75,8 @@ public class Classes extends OntologyController{
 				ontologyGenerator.convertToOwlClassOntology(utils.joinNamespaceAndName(ontologyReader.getOntologyNamespace(), classExpressionName), condition);
 			if (generatedOntology == null)
 				return ok("Ontology is null");
-			ontoHelper.checkOntology(generatedOntology);
-			OntologyReader checkOntologyReader = ontoHelper.checkOwlReader();
+			ontologyUtils.checkOntology(generatedOntology);
+			OntologyReader checkOntologyReader = ontologyUtils.checkOwlReader();
 			utils.saveOntology(generatedOntology);
 			return ok("ok");
 		} catch (Exception e) {

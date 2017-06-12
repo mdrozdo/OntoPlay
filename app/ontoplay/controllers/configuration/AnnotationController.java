@@ -11,7 +11,7 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.xml.xpath.XPathExpressionException;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.OntoplayConfig;
 import ontoplay.models.ontologyReading.OntologyReader;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
@@ -45,8 +45,8 @@ public class AnnotationController extends OntologyController {
 	private OntologyReader ontologyReader;
 
 	@Inject
-	public AnnotationController(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils, OntoplayConfig config){
-		super(ontologyHelper);
+	public AnnotationController(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils, OntoplayConfig config){
+		super(ontologyUtils);
 		this.ontologyReader = ontologyReader;
 		this.ontoplayAnnotationUtils = ontoplayAnnotationUtils;
 		this.config = config;

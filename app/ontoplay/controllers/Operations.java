@@ -1,6 +1,6 @@
 package ontoplay.controllers;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ontologyModel.OntoClass;
 import play.mvc.Result;
 
@@ -10,14 +10,14 @@ import javax.inject.Inject;
 public class Operations extends OntologyController {
 
 	@Inject
-	public Operations(OntologyHelper ontologyHelper) {
-		super(ontologyHelper);
+	public Operations(OntologyUtils ontologyUtils) {
+		super(ontologyUtils);
 	}
 
 	public Result add(String className) {
 
 		try {
-			OntoClass owlClass = ontoHelper.getOwlClass(className);
+			OntoClass owlClass = ontologyUtils.getOwlClass(className);
 
 			if (owlClass == null) {
 				return ok("Class Not Found");
@@ -33,7 +33,7 @@ public class Operations extends OntologyController {
 	public Result addClassExpression(String className) {
 
 		try {
-			OntoClass owlClass = ontoHelper.getOwlClass(className);
+			OntoClass owlClass = ontologyUtils.getOwlClass(className);
 
 			if (owlClass == null) {
 				return ok("Class Not Found");
@@ -49,7 +49,7 @@ public class Operations extends OntologyController {
 	public Result addClassMapping(String className) {
 
 		try {
-			OntoClass owlClass = ontoHelper.getOwlClass(className);
+			OntoClass owlClass = ontologyUtils.getOwlClass(className);
 
 			if (owlClass == null) {
 				return ok("Class Not Found");
@@ -65,7 +65,7 @@ public class Operations extends OntologyController {
 	public Result update(String className, String individualName) {
 
 		try {
-			OntoClass owlClass = ontoHelper.getOwlClass(className);
+			OntoClass owlClass = ontologyUtils.getOwlClass(className);
 
 			if (owlClass == null) {
 				return ok("Class Not Found");

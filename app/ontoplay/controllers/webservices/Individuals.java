@@ -2,7 +2,7 @@ package ontoplay.controllers.webservices;
 
 import com.google.gson.GsonBuilder;
 import com.hp.hpl.jena.ontology.AnnotationProperty;
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ClassCondition;
@@ -32,8 +32,8 @@ public class Individuals extends OntologyController {
 	private OntologyUtils utils;
 
 	@Inject
-	public Individuals(OntologyHelper ontologyHelper, OntologyReader ontologyReader, OntologyGenerator generator, OntologyUtils utils){
-		super(ontologyHelper);
+	public Individuals(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntologyGenerator generator, OntologyUtils utils){
+		super(ontologyUtils);
 		this.ontologyReader = ontologyReader;
 
 		this.ontologyGenerator = generator;
@@ -42,7 +42,7 @@ public class Individuals extends OntologyController {
 
 	public Result getIndividualsByClassName(String className) {
 		try {
-			OntoClass owlClass = ontoHelper.getOwlClass(className);
+			OntoClass owlClass = ontologyUtils.getOwlClass(className);
 
 			List<OwlIndividual> individuals = ontologyReader.getIndividuals(owlClass);
 
@@ -79,8 +79,8 @@ public class Individuals extends OntologyController {
 			if (generatedOntology == null)
 				return ok("Ontology is null");
 
-			ontoHelper.checkOntology(generatedOntology);
-			OntologyReader checkOntologyReader = ontoHelper.checkOwlReader();
+			ontologyUtils.checkOntology(generatedOntology);
+			OntologyReader checkOntologyReader = ontologyUtils.checkOwlReader();
 			utils.saveOntology(generatedOntology);
 			// Fix nested individuals
 			return ok("ok");

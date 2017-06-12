@@ -7,7 +7,7 @@ import java.util.Set;
 
 import com.google.gson.GsonBuilder;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
 import ontoplay.controllers.utils.OntologyUtils;
@@ -28,7 +28,7 @@ public class Annotations extends OntologyController{
 	private OntoplayAnnotationUtils ontoplayAnnotationUtils;
 
 	@Inject
-	public Annotations(OntologyHelper ontoHelper, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils) {
+	public Annotations(OntologyUtils ontoHelper, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils) {
 		super(ontoHelper);
 		this.ontologyReader = ontologyReader;
 		this.ontoplayAnnotationUtils = ontoplayAnnotationUtils;

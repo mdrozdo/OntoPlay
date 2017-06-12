@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 import com.google.gson.GsonBuilder;
 
-import ontoplay.OntologyHelper;
+import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.PropertyConditionRenderer;
 import ontoplay.models.ConfigurationException;
@@ -21,7 +21,7 @@ public class Operators extends OntologyController{
 	private final PropertyConditionRendererProvider conditionRendererProvider;
 
 	@Inject
-	public Operators(OntologyHelper ontoHelper, PropertyConditionRendererProvider conditionRendererProvider) {
+	public Operators(OntologyUtils ontoHelper, PropertyConditionRendererProvider conditionRendererProvider) {
 		super(ontoHelper);
 		this.conditionRendererProvider = conditionRendererProvider;
 	}
@@ -30,7 +30,7 @@ public class Operators extends OntologyController{
 			try{
 				propertyUri= java.net.URLDecoder.decode(propertyUri, "UTF-8");
 				ALogger log=play.Logger.of("application");
-			OntoProperty property = ontoHelper.getProperty(propertyUri);
+			OntoProperty property = ontologyUtils.getProperty(propertyUri);
 			log.info("Getting opertor for "+propertyUri+" of the class "+property.getClass());
 		
 			
