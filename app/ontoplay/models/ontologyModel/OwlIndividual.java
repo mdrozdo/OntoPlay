@@ -53,7 +53,6 @@ public class OwlIndividual implements OwlElement{
 		return uri;
 	}
 	
-	@Override
 	public Individual getIndividual(){
 		return individual;
 	}

@@ -29,6 +29,11 @@ public class ConditionDeserializerTest {
 			return "";
 		}
 
+		@Override
+		public String getLabel() {
+			return "";
+		}
+
 		public String getUri() {
 			return uri;
 		}

@@ -10,7 +10,7 @@ import ontoplay.models.ConfigurationException;
 import ontoplay.models.owlGeneration.RestrictionFactory;
 import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 
-public class FakeRestrictionFactory extends RestrictionFactory<DatatypePropertyCondition> {
+public class FakeRestrictionFactory implements RestrictionFactory<DatatypePropertyCondition> {
 	
 	private DatatypePropertyCondition receivedCondition;
 

@@ -31,10 +31,4 @@ public class OwlObjectProperty implements OntoProperty {
 		return String.format("%s%s", namespace, localName);
 	}
 
-	@Override
-	public Individual getIndividual() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

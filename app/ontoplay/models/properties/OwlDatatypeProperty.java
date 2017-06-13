@@ -35,10 +35,4 @@ public class OwlDatatypeProperty implements OntoProperty{
 	public String getUri(){
 		return String.format("%s%s", namespace, localName);
 	}
-
-	@Override
-	public Individual getIndividual() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

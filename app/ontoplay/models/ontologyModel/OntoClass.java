@@ -93,10 +93,4 @@ public class OntoClass implements OwlElement {
 		return label;
 	}
 
-	@Override
-	public Individual getIndividual() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
