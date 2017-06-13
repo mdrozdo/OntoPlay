@@ -25,7 +25,7 @@ public class DatetimeRestrictionFactoryDecorator extends DatatypeRestrictionFact
 		DateTime datetime = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm").parseDateTime(condition.getDatatypeValue().trim());
 		
 		//10/26/2001 00:00 
-		condition.setDatatypeValue(datetime.toString("s")); //toString(ISODateTimeFormat.dateHourMinuteSecond()));
+		condition.setDatatypeValue(datetime.toString(ISODateTimeFormat.dateHourMinuteSecond()));
 		return restrictionFactory.createRestriction(condition);
 	}
 	

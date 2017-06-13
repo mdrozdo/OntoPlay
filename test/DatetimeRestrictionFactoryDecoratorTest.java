@@ -1,18 +1,9 @@
-import java.io.File;
-
-import ontoplay.models.ClassCondition;
+import fakes.FakeRestrictionFactory;
 import ontoplay.models.owlGeneration.restrictionFactories.DatetimeRestrictionFactoryDecorator;
-import ontoplay.models.properties.DateTimeProperty;
-import ontoplay.models.properties.OwlDatatypeProperty;
 import ontoplay.models.propertyConditions.DatatypePropertyCondition;
-import static org.fest.assertions.Assertions.assertThat;
-
-import org.apache.commons.io.FileUtils;
-import org.custommonkey.xmlunit.XMLAssert;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import fakes.FakeRestrictionFactory;
+import static org.fest.assertions.Assertions.assertThat;
 
 public class DatetimeRestrictionFactoryDecoratorTest {
 
