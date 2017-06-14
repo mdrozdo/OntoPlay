@@ -10,7 +10,7 @@ public class OwlObjectProperty implements OntoProperty {
 	private String localName;
 	private String label;
 
-	public OwlObjectProperty(String namespace, String localName,String label) {
+	public OwlObjectProperty(String namespace, String localName, String label) {
 		this.namespace = namespace;
 		this.localName = localName;
 		this.label=label;

@@ -1,0 +1,1770 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:tan="http://www.tan.com#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:temporal="http://purl.org/dc/terms/temporal#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <Ontology rdf:about="http://www.tan.com"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
+
+    <AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral"/>
+    
+
+
+    <!-- http://www.w3.org/1999/02/22rdfsyntaxns#PlainLiteral -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/1999/02/22rdfsyntaxns#PlainLiteral"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#boolean -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#boolean"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#date -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#dateTime -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#dateTimeStamp -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#double -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#double"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#int -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#int"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#integer -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#integer"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#string -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#string"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.tan.com#hasAreas -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasAreas">
+        <inverseOf rdf:resource="http://www.tan.com#isContainedIn"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Place"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Place"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasAudience -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasAudience">
+        <rdfs:domain rdf:resource="http://www.tan.com#Category"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Consumer"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasCategory -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasCategory">
+        <rdfs:domain rdf:resource="http://www.tan.com#Offer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Category"/>
+        <propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.tan.com#hasCategory"/>
+            <rdf:Description rdf:about="http://www.tan.com#hasParentCategory"/>
+        </propertyChainAxiom>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasChildren -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasChildren">
+        <inverseOf rdf:resource="http://www.tan.com#hasParent"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Consumer"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasGender -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasGender">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Gender"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasInterest -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasInterest">
+        <rdfs:domain rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Category"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasManufacturer -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasManufacturer">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <inverseOf rdf:resource="http://www.tan.com#ownsProduct"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Product"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Organization"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasOffer -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasOffer">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Target"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Offer"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasParent -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasParent">
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Consumer"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasParentCategory -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasParentCategory">
+        <inverseOf rdf:resource="http://www.tan.com#hasSubCategories"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Category"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Category"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasSpouse -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasSpouse">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Consumer"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasSubCategories -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasSubCategories">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Category"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Category"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasTarget -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasTarget">
+        <rdfs:domain rdf:resource="http://www.tan.com#Organization"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Target"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#hasTargetInterest -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#hasTargetInterest">
+        <rdfs:domain rdf:resource="http://www.tan.com#TargetInterest"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Category"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#isContainedIn -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#isContainedIn">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Place"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Place"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#isInterestedIn -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#isInterestedIn">
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#isLocatedIn -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#isLocatedIn">
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Place"/>
+        <propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.tan.com#isLocatedIn"/>
+            <rdf:Description rdf:about="http://www.tan.com#isContainedIn"/>
+        </propertyChainAxiom>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#isOffered -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#isOffered">
+        <inverseOf rdf:resource="http://www.tan.com#itemOffered"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Product"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Offer"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#isOfferedBy -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#isOfferedBy">
+        <inverseOf rdf:resource="http://www.tan.com#makesOffer"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Offer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Organization"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#isTargetedBy -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#isTargetedBy">
+        <inverseOf rdf:resource="http://www.tan.com#isTargetingConsumer"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Target"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#isTargetingConsumer -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#isTargetingConsumer">
+        <rdfs:domain rdf:resource="http://www.tan.com#Target"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Consumer"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#isTargetingGender -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#isTargetingGender">
+        <rdfs:domain rdf:resource="http://www.tan.com#Target"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Gender"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#isTargetingInterest -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#isTargetingInterest">
+        <rdfs:domain rdf:resource="http://www.tan.com#Target"/>
+        <rdfs:range rdf:resource="http://www.tan.com#TargetInterest"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#isTargetingPlace -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#isTargetingPlace">
+        <rdfs:domain rdf:resource="http://www.tan.com#Target"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Place"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#itemOffered -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#itemOffered">
+        <rdfs:domain rdf:resource="http://www.tan.com#Offer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Product"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#makesOffer -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#makesOffer">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Organization"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Offer"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#ownsDevice -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#ownsDevice">
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Device"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#ownsProduct -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#ownsProduct">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Organization"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Product"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.tan.com#receivedOffers -->
+
+    <ObjectProperty rdf:about="http://www.tan.com#receivedOffers">
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.tan.com#Offer"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <ObjectProperty rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.tan.com#hasAge -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasAge">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hasAge</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasColor -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasColor">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasDescription -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasDescription">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasFamilyName -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasFamilyName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasGivenName -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasGivenName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasHeight -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasHeight">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasLevel -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasLevel">
+        <rdfs:domain rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasMaximumLevel -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasMaximumLevel">
+        <rdfs:domain rdf:resource="http://www.tan.com#TargetInterest"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasMinimumLevel -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasMinimumLevel">
+        <rdfs:domain rdf:resource="http://www.tan.com#TargetInterest"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasMotherTongue -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasMotherTongue">
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasName -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasPrice -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasPrice">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Offer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasReleaseDate -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasReleaseDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Product"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasType -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasType">
+        <rdfs:domain rdf:resource="http://www.tan.com#Device"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#hasWeight -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#hasWeight">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#isCitizenOf -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#isCitizenOf">
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#isMarried -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#isMarried">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">isMarried</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#isOfferSent -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#isOfferSent">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Target"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#isParent -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#isParent">
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#isResidingIn -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#isResidingIn">
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">isResidingIn</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#isTargetingLanguage -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#isTargetingLanguage">
+        <rdfs:domain rdf:resource="http://www.tan.com#Target"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#isTargetingMaxAge -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#isTargetingMaxAge">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Target"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#isTargetingMinAge -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#isTargetingMinAge">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.tan.com#Target"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.tan.com#knowsLanguage -->
+
+    <DatatypeProperty rdf:about="http://www.tan.com#knowsLanguage">
+        <rdfs:domain rdf:resource="http://www.tan.com#Consumer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topDataProperty -->
+
+    <DatatypeProperty rdf:about="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.tan.com#Category -->
+
+    <Class rdf:about="http://www.tan.com#Category"/>
+    
+
+
+    <!-- http://www.tan.com#City -->
+
+    <Class rdf:about="http://www.tan.com#City">
+        <rdfs:subClassOf rdf:resource="http://www.tan.com#Place"/>
+    </Class>
+    
+
+
+    <!-- http://www.tan.com#Consumer -->
+
+    <Class rdf:about="http://www.tan.com#Consumer"/>
+    
+
+
+    <!-- http://www.tan.com#Continent -->
+
+    <Class rdf:about="http://www.tan.com#Continent">
+        <rdfs:subClassOf rdf:resource="http://www.tan.com#Place"/>
+    </Class>
+    
+
+
+    <!-- http://www.tan.com#Country -->
+
+    <Class rdf:about="http://www.tan.com#Country">
+        <rdfs:subClassOf rdf:resource="http://www.tan.com#Place"/>
+    </Class>
+    
+
+
+    <!-- http://www.tan.com#Device -->
+
+    <Class rdf:about="http://www.tan.com#Device"/>
+    
+
+
+    <!-- http://www.tan.com#Gender -->
+
+    <Class rdf:about="http://www.tan.com#Gender"/>
+    
+
+
+    <!-- http://www.tan.com#Offer -->
+
+    <Class rdf:about="http://www.tan.com#Offer"/>
+    
+
+
+    <!-- http://www.tan.com#Organization -->
+
+    <Class rdf:about="http://www.tan.com#Organization"/>
+    
+
+
+    <!-- http://www.tan.com#Place -->
+
+    <Class rdf:about="http://www.tan.com#Place"/>
+    
+
+
+    <!-- http://www.tan.com#Product -->
+
+    <Class rdf:about="http://www.tan.com#Product"/>
+    
+
+
+    <!-- http://www.tan.com#QuantifiableInterest -->
+
+    <Class rdf:about="http://www.tan.com#QuantifiableInterest"/>
+    
+
+
+    <!-- http://www.tan.com#Target -->
+
+    <Class rdf:about="http://www.tan.com#Target"/>
+    
+
+
+    <!-- http://www.tan.com#TargetInterest -->
+
+    <Class rdf:about="http://www.tan.com#TargetInterest"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <Class rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.tan.com#Berlin -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Berlin">
+        <rdf:type rdf:resource="http://www.tan.com#City"/>
+        <tan:hasParentCategory rdf:resource="http://www.tan.com#Germany"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#BlueColor -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#BlueColor">
+        <rdf:type rdf:resource="http://www.tan.com#Category"/>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BlueColor</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#BlueColor50 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#BlueColor50">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#BlueColor"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">50</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#BlueColor60 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#BlueColor60">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#BlueColor"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">60</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#BlueColor80 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#BlueColor80">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#BlueColor"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">80</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#ClassicalMusic -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#ClassicalMusic">
+        <rdf:type rdf:resource="http://www.tan.com#Category"/>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ClassicalMusic</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Consumer5 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Consumer5">
+        <rdf:type rdf:resource="http://www.tan.com#Consumer"/>
+        <tan:isTargetedBy rdf:resource="http://www.tan.com#TestTarget"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#CookBookTarget -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#CookBookTarget">
+        <rdf:type rdf:resource="http://www.tan.com#TargetInterest"/>
+        <tan:hasTargetInterest rdf:resource="http://www.tan.com#CookBooks"/>
+        <tan:hasMaximumLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">100</tan:hasMaximumLevel>
+        <tan:hasMinimumLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">60</tan:hasMinimumLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#CookBooks -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#CookBooks">
+        <rdf:type rdf:resource="http://www.tan.com#Category"/>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CookBooks</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#CookBooks65 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#CookBooks65">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#CookBooks"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">65</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#CookBooks90 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#CookBooks90">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#CookBooks"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">90</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Europe -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Europe">
+        <rdf:type rdf:resource="http://www.tan.com#Continent"/>
+        <tan:isContainedIn rdf:resource="http://www.tan.com#World"/>
+        <tan:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The entity that represents the European continent as a place in the system.</tan:hasDescription>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Europe</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Gdansk -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Gdansk">
+        <rdf:type rdf:resource="http://www.tan.com#City"/>
+        <tan:isContainedIn rdf:resource="http://www.tan.com#Poland"/>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gdansk</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Germany -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Germany">
+        <rdf:type rdf:resource="http://www.tan.com#Country"/>
+        <tan:hasParentCategory rdf:resource="http://www.tan.com#Europe"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Kindle -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Kindle">
+        <rdf:type rdf:resource="http://www.tan.com#Device"/>
+        <tan:hasType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kindle</tan:hasType>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Male -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Male">
+        <rdf:type rdf:resource="http://www.tan.com#Gender"/>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Music20 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Music20">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#ClassicalMusic"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">20</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Music55 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Music55">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#ClassicalMusic"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">55</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Music90 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Music90">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#ClassicalMusic"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">90</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Poland -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Poland">
+        <rdf:type rdf:resource="http://www.tan.com#Country"/>
+        <tan:isContainedIn rdf:resource="http://www.tan.com#Europe"/>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Poland</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Poznan -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Poznan">
+        <rdf:type rdf:resource="http://www.tan.com#City"/>
+        <tan:isContainedIn rdf:resource="http://www.tan.com#Poland"/>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Poznan</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#RedColor -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#RedColor">
+        <rdf:type rdf:resource="http://www.tan.com#Category"/>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RedColor</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#RedColor40 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#RedColor40">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#RedColor"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">40</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#RedColor80 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#RedColor80">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#RedColor"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">80</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#RedWine -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#RedWine">
+        <rdf:type rdf:resource="http://www.tan.com#Category"/>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RedWine</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#RedWine20 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#RedWine20">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#RedWine"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">20</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#RedWine70 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#RedWine70">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#RedWine"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">70</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#RedWine75 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#RedWine75">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#RedWine"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">75</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#RedWine95 -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#RedWine95">
+        <rdf:type rdf:resource="http://www.tan.com#QuantifiableInterest"/>
+        <tan:hasInterest rdf:resource="http://www.tan.com#RedWine"/>
+        <tan:hasLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#int">95</tan:hasLevel>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Test -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Test">
+        <rdf:type rdf:resource="http://www.tan.com#Consumer"/>
+        <tan:hasGender rdf:resource="http://www.tan.com#Male"/>
+        <tan:hasFamilyName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alwazir</tan:hasFamilyName>
+        <tan:isCitizenOf rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Warsaw</tan:isCitizenOf>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#TestTarget -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#TestTarget">
+        <rdf:type rdf:resource="http://www.tan.com#Target"/>
+        <tan:isTargetingGender rdf:resource="http://www.tan.com#Male"/>
+        <tan:isTargetingInterest rdf:resource="http://www.tan.com#CookBookTarget"/>
+        <tan:isTargetingPlace rdf:resource="http://www.tan.com#Poland"/>
+        <tan:isTargetingLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Polish</tan:isTargetingLanguage>
+        <tan:isTargetingMaxAge rdf:datatype="http://www.w3.org/2001/XMLSchema#int">60</tan:isTargetingMaxAge>
+        <tan:isTargetingMinAge rdf:datatype="http://www.w3.org/2001/XMLSchema#int">22</tan:isTargetingMinAge>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Warsaw -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Warsaw">
+        <rdf:type rdf:resource="http://www.tan.com#City"/>
+        <tan:isContainedIn rdf:resource="http://www.tan.com#Poland"/>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Warsaw</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#World -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#World">
+        <rdf:type rdf:resource="http://www.tan.com#Continent"/>
+        <tan:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The entity that represents the world as a place in the system.</tan:hasDescription>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">World</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- http://www.tan.com#Wroclaw -->
+
+    <NamedIndividual rdf:about="http://www.tan.com#Wroclaw">
+        <rdf:type rdf:resource="http://www.tan.com#City"/>
+        <tan:isContainedIn rdf:resource="http://www.tan.com#Poland"/>
+        <tan:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wroclaw</tan:hasName>
+    </NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="urn:swrl#c">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#o">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#t">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#reqGender">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#reqPlace">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#a">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#maxA">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#minA">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#interest">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#category">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#targetInterest">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#level">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#maxLevel">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#minLevel">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#l">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#qi">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#cat">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#p">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#n">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.tan.com#Consumer"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="http://www.tan.com#Target"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#hasGender"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#reqGender"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://www.tan.com#isLocatedIn"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#reqPlace"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#isTargetingGender"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#reqGender"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="http://www.tan.com#isTargetingPlace"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#reqPlace"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#hasAge"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#a"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="http://www.tan.com#isTargetingMaxAge"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#maxA"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#isTargetingMinAge"/>
+                                                                                        <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                                                                        <swrl:argument2 rdf:resource="urn:swrl#minA"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                                        <rdf:first>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                                                                <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#greaterThanOrEqual"/>
+                                                                                                <swrl:arguments rdf:parseType="Collection">
+                                                                                                    <rdf:Description rdf:about="urn:swrl#maxA"/>
+                                                                                                    <rdf:Description rdf:about="urn:swrl#a"/>
+                                                                                                </swrl:arguments>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:first>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                                                <rdf:first>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                                                                        <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#lessThanOrEqual"/>
+                                                                                                        <swrl:arguments rdf:parseType="Collection">
+                                                                                                            <rdf:Description rdf:about="urn:swrl#minA"/>
+                                                                                                            <rdf:Description rdf:about="urn:swrl#a"/>
+                                                                                                        </swrl:arguments>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:first>
+                                                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#isTargetedBy"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.tan.com#Consumer"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="http://www.tan.com#Target"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#hasInterest"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#interest"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#category"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://www.tan.com#hasTargetInterest"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#targetInterest"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#category"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#isInterestedIn"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#interest"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="http://www.tan.com#isTargetingInterest"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#targetInterest"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#hasLevel"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#interest"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#level"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="http://www.tan.com#hasMaximumLevel"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#targetInterest"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#maxLevel"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#hasMinimumLevel"/>
+                                                                                        <swrl:argument1 rdf:resource="urn:swrl#targetInterest"/>
+                                                                                        <swrl:argument2 rdf:resource="urn:swrl#minLevel"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                                        <rdf:first>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                                                                <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#greaterThanOrEqual"/>
+                                                                                                <swrl:arguments rdf:parseType="Collection">
+                                                                                                    <rdf:Description rdf:about="urn:swrl#maxLevel"/>
+                                                                                                    <rdf:Description rdf:about="urn:swrl#level"/>
+                                                                                                </swrl:arguments>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:first>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                                                <rdf:first>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                                                                        <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#lessThanOrEqual"/>
+                                                                                                        <swrl:arguments rdf:parseType="Collection">
+                                                                                                            <rdf:Description rdf:about="urn:swrl#minLevel"/>
+                                                                                                            <rdf:Description rdf:about="urn:swrl#level"/>
+                                                                                                        </swrl:arguments>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:first>
+                                                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#isTargetedBy"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.tan.com#Consumer"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="http://www.tan.com#Offer"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#o"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://www.tan.com#Target"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://www.tan.com#hasOffer"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#o"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#isTargetedBy"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#receivedOffers"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#o"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.tan.com#Consumer"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="http://www.tan.com#Target"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#isTargetingLanguage"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#l"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://www.tan.com#knowsLanguage"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#l"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#isTargetedBy"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.tan.com#Consumer"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.tan.com#hasInterest"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#qi"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#cat"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#isInterestedIn"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#qi"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#hasAudience"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#cat"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.tan.com#Consumer"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.tan.com#isLocatedIn"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#p"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#hasName"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#n"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.tan.com#isResidingIn"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#n"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.1.3.20151118-2017) https://github.com/owlcs/owlapi -->
+

@@ -19,7 +19,7 @@ public class OntoClass implements OwlElement {
 		this.namespace = namespace;
 		this.localName = name;
 		this.properties = properties;
-		if(ontClass  != null && ontClass.getSuperClass()!=null)
+		if(ontClass != null && ontClass.getSuperClass()!=null)
 			this.superClass = new OntoClass(ontClass.getSuperClass());
 		
 	}

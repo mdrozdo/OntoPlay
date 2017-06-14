@@ -5,14 +5,12 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
-import com.google.inject.name.Names;
 import com.typesafe.config.ConfigFactory;
 import ontoplay.controllers.*;
 import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
-import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.OntologyReaderFactory;
-import ontoplay.models.ontologyReading.jena.FolderMapping;
+import ontoplay.models.ontologyReading.jena.JenaOntologyReaderFactory;
 import ontoplay.models.ontologyReading.jena.JenaOwlReader;
 import ontoplay.models.ontologyReading.jena.OwlPropertyFactory;
 import ontoplay.models.ontologyReading.jena.propertyFactories.*;
@@ -26,8 +24,6 @@ import org.semanticweb.owlapi.model.OWLDataFactory;
 import play.Configuration;
 import play.Environment;
 
-import java.util.*;
-
 /**
  * Created by michal on 22.11.2016.
  */
@@ -37,8 +33,12 @@ public class Module extends AbstractModule{
 
     public Module(Environment environment, Configuration configuration){
         com.typesafe.config.Config ontoPlayConfig = ConfigFactory.parseFile(environment.getFile(configuration.getString("ontoplay.config")));
-        this.configuration = new OntoplayConfig(ontoPlayConfig);
+        this.configuration = new FileOntoplayConfig(ontoPlayConfig);
 
+    }
+
+    public Module(OntoplayConfig config){
+        this.configuration = config;
     }
 
     @Override
@@ -50,15 +50,16 @@ public class Module extends AbstractModule{
 
         bind(new TypeLiteral<PropertyConditionRenderer<OwlObjectProperty>>(){}).to(ObjectPropertyRenderer.class);
 
+        bind(OntologyReaderFactory.class).to(JenaOntologyReaderFactory.class);
         install(new FactoryModuleBuilder()
                 .implement(ClassRestrictionGenerator.class, ClassRestrictionGenerator.class)
                 .build(ClassRestrictionGeneratorFactory.class));
         install(new FactoryModuleBuilder()
                 .implement(IndividualGenerator.class, IndividualGenerator.class)
                 .build(IndividualGeneratorFactory.class));
-        install(new FactoryModuleBuilder()
-                .implement(OntologyReader.class, JenaOwlReader.class)
-                .build(OntologyReaderFactory.class));
+//        install(new FactoryModuleBuilder()
+//                .implement(OntologyReader.class, JenaOwlReader.class)
+//                .build(OntologyReaderFactory.class));
 
 
     }
