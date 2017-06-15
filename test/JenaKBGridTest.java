@@ -39,27 +39,7 @@ public class JenaKBGridTest {
 
     @Before
     public void setup() throws ConfigurationException {
-        OntoplayConfig config = new FakeOntoplayConfig() {
-            @Override
-            public String getOntologyFileName() {
-                return "AiGGridOntology.owl";
-            }
-
-            @Override
-            public String getOntologyFilePath() {
-                return "./AiGGridOntology.owl";
-            }
-
-            @Override
-            public String getOntologyNamespace() {
-                return "http://gridagents.sourceforge.net/AiGGridOntology";
-            }
-
-            @Override
-            public List<FolderMapping> getMappings() {
-                return Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", "./cgo.owl"));
-            }
-        };
+        OntoplayConfig config = new FakeOntoplayConfig();
 
         Injector injector = new GuiceInjectorBuilder()
                 .bindings(new Module(config))
