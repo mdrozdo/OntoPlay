@@ -80,7 +80,9 @@ public class OntologyGenerator {
                 addToOntologyAsClass(destinationOntology, resultExpression, classUri);
             } else if(condition.getClassRelation() == ClassRelation.SUBCLASS){
 			    addToOntologyAsSubclass(destinationOntology, resultExpression, classUri);
-            }
+            } else {
+            	throw new UnsupportedOperationException("Unknown class relation: " + condition.getClassRelation());
+			}
 
 			return destinationOntology;
 

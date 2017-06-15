@@ -17,7 +17,7 @@
                     <rdf:Description rdf:about="http://www.w3.org/2006/time#Instant"/>
                     <Restriction>
                         <onProperty rdf:resource="http://www.w3.org/2006/time#inXSDDateTime"/>
-                        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#datetime">2001-10-26T00:00:00</hasValue>
+                        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2001-10-26T00:00:00</hasValue>
                     </Restriction>
                 </intersectionOf>
             </Class>

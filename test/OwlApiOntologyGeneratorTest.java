@@ -1,53 +1,27 @@
-import java.io.BufferedReader;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import jobs.PropertyTypeConfiguration;
-import jobs.PropertyTypeConfiguration;
-import junit.framework.Assert;
-
+import fakes.FakeOntoplayConfig;
+import ontoplay.Module;
+import ontoplay.OntoplayConfig;
 import ontoplay.models.ClassCondition;
-import ontoplay.models.InvalidConfigurationException;
-import ontoplay.models.ontologyModel.OntoClass;
-import ontoplay.models.ontologyModel.OntoProperty;
-import ontoplay.models.ontologyModel.OwlElement;
-import ontoplay.models.ontologyModel.XsdType;
-import ontoplay.models.ontologyReading.jena.JenaOwlReader;
-import ontoplay.models.ontologyReading.jena.JenaOwlReaderConfig;
-import ontoplay.models.ontologyReading.jena.propertyFactories.IntegerPropertyFactory;
 import ontoplay.models.owlGeneration.OntologyGenerator;
-import ontoplay.models.properties.DateTimeProperty;
-import ontoplay.models.properties.FloatProperty;
-import ontoplay.models.properties.IntegerProperty;
-import ontoplay.models.properties.OwlDatatypeProperty;
-import ontoplay.models.properties.OwlObjectProperty;
-import ontoplay.models.properties.StringProperty;
+import ontoplay.models.properties.*;
 import ontoplay.models.propertyConditions.ClassValueCondition;
 import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 import ontoplay.models.propertyConditions.IndividualValueCondition;
-
 import org.apache.commons.io.FileUtils;
 import org.custommonkey.xmlunit.NamespaceContext;
 import org.custommonkey.xmlunit.SimpleNamespaceContext;
 import org.custommonkey.xmlunit.XMLAssert;
-import org.custommonkey.xmlunit.XMLTestCase;
 import org.custommonkey.xmlunit.XMLUnit;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import play.inject.Injector;
+import play.inject.guice.GuiceInjectorBuilder;
 
-import static org.fest.assertions.Assertions.assertThat;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.HashMap;
 
 public class OwlApiOntologyGeneratorTest {
 	private OntologyGenerator ontologyWriter;
@@ -79,50 +53,65 @@ public class OwlApiOntologyGeneratorTest {
 	}
 
 	private void initializeOntologyGenerator() {
-		ontologyWriter = OntologyGenerator.loadFromFile("file:../Ontology/AiGGridOntology.owl", "../Ontology");
-		try {
-			new PropertyTypeConfiguration().doJob();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		OntoplayConfig config = new FakeOntoplayConfig(){
+			@Override
+			public String getOntologyNamespace() {
+				return "./AiGGridOntology.owl";
+			}
+
+			@Override
+			public String getOntologyFilePath() {
+				return "http://gridagents.sourceforge.net/AiGGridOntology#";
+			}
+		};
+
+		Injector injector = new GuiceInjectorBuilder()
+				.bindings(new Module(config))
+				.injector();
+
+		ontologyWriter = injector.instanceOf(OntologyGenerator.class);
+		//.create("./AiGGridOntology.owl", Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", "./cgo.owl")), true);
 	}
 	
 	@Test
 	public void forDatatypePropertyEqualsCondition_convertToOwlClass_ReturnsCreatedOwlClassDescription() throws Exception {
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
-		OwlDatatypeProperty property = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed");
+		OwlDatatypeProperty property = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed", "");
 		condition.addProperty(createEqualToDatatypeCondition(property, "12345"));
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/datatypeConditionOwlApi.xml"));
+		String expectedOwl = readTestFile("datatypeConditionOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
 		
 	//	System.out.println(actualOwl);
 		XMLAssert.assertXpathExists(classXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(classXpath, expectedOwl, classXpath, actualOwl);		
 	}
-	
+
+	private String readTestFile(String fileName) throws IOException, URISyntaxException {
+		return FileUtils.readFileToString(new File(getClass().getResource(fileName).toURI()));
+	}
+
 	@Test
 	public void forEmptyCondition_convertToOwlIndividual_ReturnsCreatedOwlIndividual() throws Exception {
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/emptyConditionIndividualOwlApi.xml"));
+		String expectedOwl = readTestFile("emptyConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		
 	//	System.out.println(actualOwl);
 		XMLAssert.assertXpathExists(individualXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(individualXpath, expectedOwl, individualXpath, actualOwl);		
 	}
-	
+
 	@Test
 	public void forDatatypePropertyEqualsCondition_convertToOwlIndividual_ReturnsCreatedOwlIndividual() throws Exception {
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
-		OwlDatatypeProperty property = new IntegerProperty("http://purl.org/NET/cgo#", "hasClockSpeed");
+		OwlDatatypeProperty property = new IntegerProperty("http://purl.org/NET/cgo#", "hasClockSpeed", null);
 		condition.addProperty(createEqualToDatatypeCondition(property, "12345"));
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/datatypeConditionIndividualOwlApi.xml"));
+		String expectedOwl = readTestFile("datatypeConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
-		individualXpath = "//owl:NamedIndividual[@IRI='#testIndividual']/..";
+		individualXpath = "//owl:NamedIndividual[@rdf:about='http://bla.org#testIndividual']/..";
 		System.out.println(actualOwl);
 		XMLAssert.assertXpathExists(individualXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(individualXpath, expectedOwl, individualXpath, actualOwl);		
@@ -134,9 +123,9 @@ public class OwlApiOntologyGeneratorTest {
 		OwlDatatypeProperty property = new StringProperty("http://purl.org/NET/cgo#", "hasURIAddress", "http://www.w3.org/2001/XMLSchema#anyURI");
 		condition.addProperty(createEqualToDatatypeCondition(property, "http://localhost/file.txt"));
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/anyURIdatatypeConditionIndividualOwlApi.xml"));
+		String expectedOwl = readTestFile("anyURIdatatypeConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
-		individualXpath = "//owl:NamedIndividual[@IRI='#testIndividual']/..";
+		individualXpath = "//owl:NamedIndividual[@rdf:about='http://bla.org#testIndividual']/..";
 		System.out.println(actualOwl);
 		XMLAssert.assertXpathExists(individualXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(individualXpath, expectedOwl, individualXpath, actualOwl);		
@@ -145,10 +134,10 @@ public class OwlApiOntologyGeneratorTest {
 	@Test
 	public void forDatetimePropertyEqualsCondition_convertToOwlClass_ReturnsCreatedOwlClassDescription() throws Exception {
 		ClassCondition condition = new ClassCondition("http://www.w3.org/2006/time#Instant");
-		OwlDatatypeProperty property = new DateTimeProperty("http://www.w3.org/2006/time#", "inXSDDateTime");
+		OwlDatatypeProperty property = new DateTimeProperty("http://www.w3.org/2006/time#", "inXSDDateTime", null);
 		condition.addProperty(createEqualToDatatypeCondition(property, "10/26/2001 00:00 "));
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/datetimeConditionOwlApi.xml"));
+		String expectedOwl = readTestFile("datetimeConditionOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
 		
 		System.out.println(actualOwl);
@@ -159,10 +148,10 @@ public class OwlApiOntologyGeneratorTest {
 	@Test
 	public void forDecimalPropertyEqualsCondition_convertToOwlClass_ReturnsCreatedOwlClassDescription() throws Exception {
 		ClassCondition condition = new ClassCondition("http://gridagents.sourceforge.net/MOSTOntology#FaultPlaneInfo");
-		OwlDatatypeProperty property = new FloatProperty("http://gridagents.sourceforge.net/MOSTOntology#", "hasDEPTH", "http://www.w3.org/2001/XMLSchema#decimal");
+		OwlDatatypeProperty property = new FloatProperty("http://gridagents.sourceforge.net/MOSTOntology#", "hasDEPTH", "http://www.w3.org/2001/XMLSchema#decimal", "");
 		condition.addProperty(createEqualToDatatypeCondition(property, "10.5"));
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/decimalConditionOwlApi.xml"));
+		String expectedOwl = readTestFile("decimalConditionOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
 		
 		System.out.println(actualOwl);
@@ -176,7 +165,7 @@ public class OwlApiOntologyGeneratorTest {
 		condition.addProperty(new IndividualValueCondition("http://gridagents.sourceforge.net/AiGGridOntology#hasMemory", 
 				"http://gridagents.sourceforge.net/AiGGridOntology#condorWorkerNode2RAM"));
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/individualConditionOwlApi.xml"));
+		String expectedOwl = readTestFile("individualConditionOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
 		XMLAssert.assertXpathExists(classXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(classXpath, expectedOwl, classXpath, actualOwl);		
@@ -190,7 +179,7 @@ public class OwlApiOntologyGeneratorTest {
 		
 		individualXpath = "//owl:NamedIndividual[@IRI='#testIndividual']/..";
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/individualConditionIndividualOwlApi.xml"));
+		String expectedOwl = readTestFile("individualConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		System.out.println(actualOwl);
 		XMLAssert.assertXpathExists(individualXpath, actualOwl);
@@ -203,13 +192,13 @@ public class OwlApiOntologyGeneratorTest {
 		
 		ClassCondition nestedCondition = new  ClassCondition("http://purl.org/NET/cgo#Memory");
 		
-		OwlDatatypeProperty property = new FloatProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasTotalSize");
+		OwlDatatypeProperty property = new FloatProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasTotalSize", null);
 		nestedCondition.addProperty(createEqualToDatatypeCondition(property, "123"));
 		ClassValueCondition valueCondition = new ClassValueCondition("http://gridagents.sourceforge.net/AiGGridOntology#hasMemory", 
 				nestedCondition); 
 		condition.addProperty(valueCondition);
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/classConditionOwlApi.xml"));
+		String expectedOwl = readTestFile("classConditionOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
 		//System.out.print(actualOwl);
 		XMLAssert.assertXpathExists(classXpath, actualOwl);
@@ -224,13 +213,13 @@ public class OwlApiOntologyGeneratorTest {
 		
 		ClassCondition nestedCondition = new  ClassCondition("http://purl.org/NET/cgo#Memory");
 		
-		OwlDatatypeProperty property = new FloatProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasTotalSize");
+		OwlDatatypeProperty property = new FloatProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasTotalSize", null);
 		nestedCondition.addProperty(createEqualToDatatypeCondition(property, "123"));
 		ClassValueCondition valueCondition = new ClassValueCondition("http://gridagents.sourceforge.net/AiGGridOntology#hasMemory", 
 				nestedCondition); 
 		condition.addProperty(valueCondition);
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/objectConditionIndividualOwlApi.xml"));
+		String expectedOwl = readTestFile("objectConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		System.out.print(actualOwl);
 		
@@ -245,13 +234,13 @@ public class OwlApiOntologyGeneratorTest {
 	@Test
 	public void forListOfPropertyConditions_convertToOwlClass_ReturnsCreatedOwlClassDescription() throws Exception {
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
-		OwlDatatypeProperty intProperty = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed");
-		OwlDatatypeProperty stringProperty = new StringProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasName");
+		OwlDatatypeProperty intProperty = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed", null);
+		OwlDatatypeProperty stringProperty = new StringProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasName", null);
 		
 		condition.addProperty(createEqualToDatatypeCondition(intProperty, "12345"));
 		condition.addProperty(createEqualToDatatypeCondition(stringProperty, "abc"));
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/multipleConditionsOwlApi.xml"));
+		String expectedOwl = readTestFile("multipleConditionsOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
 		XMLAssert.assertXpathExists(classXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(classXpath, expectedOwl, classXpath, actualOwl);		
@@ -259,13 +248,13 @@ public class OwlApiOntologyGeneratorTest {
 	
 	@Test
 	public void forGreaterThanCondition_convertToOwlClass_ReturnsCorrectXsdRestriction() throws Exception {
-		OwlDatatypeProperty intProperty = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed");
+		OwlDatatypeProperty intProperty = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed", null);
 		DatatypePropertyCondition propertyCondition = new DatatypePropertyCondition("http://gridagents.sourceforge.net/AiGGridOntology#hasClockSpeed", "greaterThan", "12345");
 		propertyCondition.setProperty(intProperty);
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
 		condition.addProperty(propertyCondition);
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/greaterThanConditionOwlApi.xml"));
+		String expectedOwl = readTestFile("greaterThanConditionOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
 		System.out.println(actualOwl);
 		XMLAssert.assertXpathExists(classXpath, actualOwl);
@@ -274,13 +263,13 @@ public class OwlApiOntologyGeneratorTest {
 	
 	@Test
 	public void forLessThanCondition_convertToOwlClass_ReturnsCorrectXsdRestriction() throws Exception {
-		OwlDatatypeProperty intProperty = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed");
+		OwlDatatypeProperty intProperty = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed", null);
 		DatatypePropertyCondition propertyCondition = new DatatypePropertyCondition("http://gridagents.sourceforge.net/AiGGridOntology#hasClockSpeed", "lessThan", "12345");
 		propertyCondition.setProperty(intProperty);
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
 		condition.addProperty(propertyCondition);
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/lessThanConditionOwlApi.xml"));
+		String expectedOwl = readTestFile("lessThanConditionOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
 		System.out.println(actualOwl);
 		XMLAssert.assertXpathExists(classXpath, actualOwl);
@@ -291,7 +280,7 @@ public class OwlApiOntologyGeneratorTest {
 	public void convertToOwlIndividual_AddsNecessaryImportStatements() throws Exception{
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/emptyConditionIndividualOwlApi.xml"));
+		String expectedOwl = readTestFile("emptyConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		
 		System.out.println(actualOwl);
@@ -303,10 +292,10 @@ public class OwlApiOntologyGeneratorTest {
 	@Test
 	public void convertToOwlIndividual_AddsOnlyUniqueImportStatements() throws Exception{
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
-		OwlDatatypeProperty property = new IntegerProperty("http://purl.org/NET/cgo#", "hasClockSpeed");
+		OwlDatatypeProperty property = new IntegerProperty("http://purl.org/NET/cgo#", "hasClockSpeed", null);
 		condition.addProperty(createEqualToDatatypeCondition(property, "12345"));
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/datatypeConditionIndividualOwlApi.xml"));
+		String expectedOwl = readTestFile("datatypeConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		
 		System.out.println(actualOwl);
@@ -318,10 +307,10 @@ public class OwlApiOntologyGeneratorTest {
 	@Test
 	public void convertToOwlIndividual_SetsOntologyIRI() throws Exception{
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
-		OwlDatatypeProperty property = new IntegerProperty("http://purl.org/NET/cgo#", "hasClockSpeed");
+		OwlDatatypeProperty property = new IntegerProperty("http://purl.org/NET/cgo#", "hasClockSpeed", null);
 		condition.addProperty(createEqualToDatatypeCondition(property, "12345"));
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/datatypeConditionIndividualOwlApi.xml"));
+		String expectedOwl = readTestFile("datatypeConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		
 		System.out.println(actualOwl);
@@ -333,10 +322,10 @@ public class OwlApiOntologyGeneratorTest {
 	@Test
 	public void convertToOwlClass_SetsOntologyIRI() throws Exception{
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
-		OwlDatatypeProperty property = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed");
+		OwlDatatypeProperty property = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed", null);
 		condition.addProperty(createEqualToDatatypeCondition(property, "12345"));
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/datatypeConditionOwlApi.xml"));
+		String expectedOwl = readTestFile("datatypeConditionOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
 		
 		System.out.println(actualOwl);
@@ -348,10 +337,10 @@ public class OwlApiOntologyGeneratorTest {
 	@Test
 	public void convertToOwlClass_AddsNecessaryImportStatements() throws Exception{
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#CPU");
-		OwlDatatypeProperty property = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed");
+		OwlDatatypeProperty property = new IntegerProperty("http://gridagents.sourceforge.net/AiGGridOntology#", "hasClockSpeed", null);
 		condition.addProperty(createEqualToDatatypeCondition(property, "12345"));
 		
-		String expectedOwl = FileUtils.readFileToString(new File("test/datatypeConditionOwlApi.xml"));
+		String expectedOwl = readTestFile("datatypeConditionOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
 		
 		System.out.println(actualOwl);

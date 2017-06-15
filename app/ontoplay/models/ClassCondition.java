@@ -9,7 +9,7 @@ public class ClassCondition {
 	private String classUri;
 	private List<PropertyValueCondition> propertyConditions = new ArrayList<PropertyValueCondition>();
 	private List<Annotation> annotations=new ArrayList<Annotation>();
-	private ClassRelation classRelation;
+	private ClassRelation classRelation = ClassRelation.EQUIVALENT;
 
 	public ClassCondition(){
 
