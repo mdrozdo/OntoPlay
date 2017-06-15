@@ -24,7 +24,7 @@
                                     <rdf:Description rdf:about="http://purl.org/NET/cgo#Memory"/>
                                     <Restriction>
                                         <onProperty rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize"/>
-                                        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">123</hasValue>
+                                        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">123.0</hasValue>
                                     </Restriction>
                                 </intersectionOf>
                             </Class>

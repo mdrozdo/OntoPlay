@@ -40,8 +40,8 @@ public class OwlApiOntologyGeneratorTest {
 	
 	@Before
 	public void setup() {
-		classXpath = "//owl:Class[@rdf:about='http://bla.org/testCondition']";		
-		individualXpath = "//owl:NamedIndividual[@IRI='#testIndividual']";
+		classXpath = "//owl:Class[@rdf:about='http://bla.org/testCondition']";
+		individualXpath = "//owl:NamedIndividual[@rdf:about='http://bla.org#testIndividual']/..";
 		HashMap m = new HashMap();
 	    m.put("owl", "http://www.w3.org/2002/07/owl#");
 	    m.put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
@@ -98,7 +98,7 @@ public class OwlApiOntologyGeneratorTest {
 		String expectedOwl = readTestFile("emptyConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		
-	//	System.out.println(actualOwl);
+		System.out.println(actualOwl);
 		XMLAssert.assertXpathExists(individualXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(individualXpath, expectedOwl, individualXpath, actualOwl);		
 	}
@@ -111,7 +111,6 @@ public class OwlApiOntologyGeneratorTest {
 		
 		String expectedOwl = readTestFile("datatypeConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
-		individualXpath = "//owl:NamedIndividual[@rdf:about='http://bla.org#testIndividual']/..";
 		System.out.println(actualOwl);
 		XMLAssert.assertXpathExists(individualXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(individualXpath, expectedOwl, individualXpath, actualOwl);		
@@ -120,12 +119,11 @@ public class OwlApiOntologyGeneratorTest {
 	@Test
 	public void forAnyURIDatatypePropertyEqualsCondition_convertToOwlIndividual_ReturnsProperXsdType() throws Exception {
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#URL");
-		OwlDatatypeProperty property = new StringProperty("http://purl.org/NET/cgo#", "hasURIAddress", "http://www.w3.org/2001/XMLSchema#anyURI");
+		OwlDatatypeProperty property = new StringProperty("http://purl.org/NET/cgo#", "hasURIAddress", "http://www.w3.org/2001/XMLSchema#anyURI", "");
 		condition.addProperty(createEqualToDatatypeCondition(property, "http://localhost/file.txt"));
 		
 		String expectedOwl = readTestFile("anyURIdatatypeConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
-		individualXpath = "//owl:NamedIndividual[@rdf:about='http://bla.org#testIndividual']/..";
 		System.out.println(actualOwl);
 		XMLAssert.assertXpathExists(individualXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(individualXpath, expectedOwl, individualXpath, actualOwl);		
@@ -176,9 +174,7 @@ public class OwlApiOntologyGeneratorTest {
 		ClassCondition condition = new ClassCondition("http://purl.org/NET/cgo#WorkerNode");
 		condition.addProperty(new IndividualValueCondition("http://gridagents.sourceforge.net/AiGGridOntology#hasMemory", 
 				"http://gridagents.sourceforge.net/AiGGridInstances#condorWorkerNode2RAM"));
-		
-		individualXpath = "//owl:NamedIndividual[@IRI='#testIndividual']/..";
-		
+
 		String expectedOwl = readTestFile("individualConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		System.out.println(actualOwl);
@@ -200,7 +196,7 @@ public class OwlApiOntologyGeneratorTest {
 		
 		String expectedOwl = readTestFile("classConditionOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlClass("http://bla.org/testCondition", condition);
-		//System.out.print(actualOwl);
+		System.out.print(actualOwl);
 		XMLAssert.assertXpathExists(classXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(classXpath, expectedOwl, classXpath, actualOwl);		
 	}
@@ -222,13 +218,9 @@ public class OwlApiOntologyGeneratorTest {
 		String expectedOwl = readTestFile("objectConditionIndividualOwlApi.xml");
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		System.out.print(actualOwl);
-		
-		individualXpath = "//owl:NamedIndividual[@IRI='#testIndividual']/..";			
-		String nestedXpath = "//owl:AnonymousIndividual/..";
+
 		XMLAssert.assertXpathExists(individualXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(individualXpath, expectedOwl, individualXpath, actualOwl);
-		XMLAssert.assertXpathExists(nestedXpath, actualOwl);
-		XMLAssert.assertXpathsEqual(nestedXpath, expectedOwl, nestedXpath, actualOwl);
 	}
 	
 	@Test
@@ -284,7 +276,7 @@ public class OwlApiOntologyGeneratorTest {
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		
 		System.out.println(actualOwl);
-		individualXpath = "//owl:Import";
+		individualXpath = "//owl:imports";
 		XMLAssert.assertXpathExists(individualXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(individualXpath, expectedOwl, individualXpath, actualOwl);		
 	}
@@ -299,7 +291,7 @@ public class OwlApiOntologyGeneratorTest {
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		
 		System.out.println(actualOwl);
-		individualXpath = "//owl:Import";
+		individualXpath = "//owl:imports";
 		XMLAssert.assertXpathExists(individualXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(individualXpath, expectedOwl, individualXpath, actualOwl);		
 	}
@@ -314,7 +306,7 @@ public class OwlApiOntologyGeneratorTest {
 		String actualOwl = ontologyWriter.convertToOwlIndividual("http://bla.org#testIndividual", condition);
 		
 		System.out.println(actualOwl);
-		String ontologyIRIXpath = "//owl:Ontology/@ontologyIRI";
+		String ontologyIRIXpath = "//owl:Ontology/@rdf:about";
 		XMLAssert.assertXpathExists(ontologyIRIXpath, actualOwl);
 		XMLAssert.assertXpathsEqual(ontologyIRIXpath, expectedOwl, ontologyIRIXpath, actualOwl);	
 	}

@@ -9,6 +9,8 @@ import ontoplay.models.ConfigurationException;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.stream.Collectors;
+
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
 import org.semanticweb.owlapi.io.RDFXMLOntologyFormat;
@@ -84,6 +86,10 @@ public class OntologyGenerator {
             	throw new UnsupportedOperationException("Unknown class relation: " + condition.getClassRelation());
 			}
 
+			List<OWLAxiom> axioms = destinationOntology.axioms().collect(Collectors.toList());
+
+			addImportDeclarations(destinationOntology, axioms);
+
 			return destinationOntology;
 
 		} catch (OWLOntologyCreationException e) {
@@ -150,7 +156,7 @@ public class OntologyGenerator {
 
 				OWLImportsDeclaration importsDeclaration = factory.getOWLImportsDeclaration(ontoIRI);
 				if (!ontoIRI.toString().contains("XMLSchema")
-						&& !destinationOntology.getOntologyID().getOntologyIRI().equals(ontoIRI)
+						&& !destinationOntology.getOntologyID().getOntologyIRI().get().equals(ontoIRI)
 						&& !destinationOntology.getImportsDeclarations().contains(importsDeclaration)) {
 					AddImport addImportChange = new AddImport(destinationOntology, importsDeclaration);
 					manager.applyChange(addImportChange);
