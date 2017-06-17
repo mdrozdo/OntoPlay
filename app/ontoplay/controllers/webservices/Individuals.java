@@ -79,7 +79,7 @@ public class Individuals extends OntologyController {
 				return ok("Ontology is null");
 
 			ontologyUtils.checkOntology(generatedOntology);
-			OntologyReader checkOntologyReader = ontologyUtils.checkOwlReader();
+			//OntologyReader checkOntologyReader = ontologyUtils.checkOwlReader();
 			utils.saveOntology(generatedOntology);
 			// Fix nested individuals
 			return ok("ok");

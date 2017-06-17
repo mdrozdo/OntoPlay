@@ -76,7 +76,7 @@ public class Classes extends OntologyController{
 			if (generatedOntology == null)
 				return ok("Ontology is null");
 			ontologyUtils.checkOntology(generatedOntology);
-			OntologyReader checkOntologyReader = ontologyUtils.checkOwlReader();
+			//OntologyReader checkOntologyReader = ontologyUtils.checkOwlReader();
 			utils.saveOntology(generatedOntology);
 			return ok("ok");
 		} catch (Exception e) {
