@@ -1,6 +1,5 @@
-@import ontoplay.views.html.ontoplayMain;
-@(title: String, className: String, isIndividual: Boolean, elementName: String = "", classRelation: String = "")(formHeader: Html)
-@ontoplayMain(title){ 
+@(title: String, className: String, isIndividual: Boolean, elementName: String = "", classRelation: String = "", layoutTemplate: String => Html => Html => Html)(formHeader: Html)
+@layoutTemplate(title){
 	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/app.js")" type="text/javascript"
 	charset="utf-8"></script>
 	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/main.js")" type="text/javascript"

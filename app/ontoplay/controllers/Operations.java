@@ -9,9 +9,12 @@ import javax.inject.Inject;
 
 public class Operations extends OntologyController {
 
+	private MainTemplate mainTemplate;
+
 	@Inject
-	public Operations(OntologyUtils ontologyUtils) {
+	public Operations(OntologyUtils ontologyUtils, MainTemplate mainTemplate) {
 		super(ontologyUtils);
+		this.mainTemplate = mainTemplate;
 	}
 
 	public Result add(String className) {
@@ -23,7 +26,7 @@ public class Operations extends OntologyController {
 				return ok("Class Not Found");
 			}
 
-			return ok(ontoplay.views.html.addIndividual.render("Add new individual for " + className, className));
+			return ok(ontoplay.views.html.addIndividual.render("Add new individual for " + className, className, mainTemplate.getRenderFunction()));
 
 		} catch (Exception e) {
 			return ok("Can't find the required class:/n+" + e.toString());
@@ -39,7 +42,7 @@ public class Operations extends OntologyController {
 				return ok("Class Not Found");
 			}
 
-			return ok(ontoplay.views.html.addClassExpression.render("Add new class expression for " + className, className));
+			return ok(ontoplay.views.html.addClassExpression.render("Add new class expression for " + className, className, mainTemplate.getRenderFunction()));
 
 		} catch (Exception e) {
 			return ok("Can't find the required class:/n+" + e.toString());
@@ -55,7 +58,7 @@ public class Operations extends OntologyController {
 				return ok("Class Not Found");
 			}
 
-			return ok(ontoplay.views.html.addClassMapping.render("Add new class mapping for " + className, className));
+			return ok(ontoplay.views.html.addClassMapping.render("Add new class mapping for " + className, className, mainTemplate.getRenderFunction()));
 
 		} catch (Exception e) {
 			return ok("Can't find the required class:/n+" + e.toString());
@@ -71,7 +74,7 @@ public class Operations extends OntologyController {
 				return ok("Class Not Found");
 			}
 
-			return ok(ontoplay.views.html.addIndividual.render("update " + individualName, className));
+			return ok(ontoplay.views.html.addIndividual.render("update " + individualName, className, mainTemplate.getRenderFunction()));
 
 		} catch (Exception e) {
 			return ok("Can't find the required classs:/n+" + e.toString());
