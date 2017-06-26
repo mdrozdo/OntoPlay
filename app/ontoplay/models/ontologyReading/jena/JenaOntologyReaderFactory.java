@@ -19,7 +19,7 @@ public class JenaOntologyReaderFactory implements OntologyReaderFactory {
     }
 
     @Override
-    public OntologyReader create(String filePath, List<FolderMapping> localMappings, boolean ignorePropsWithNoDomain) {
-        return new JenaOwlReader(owlPropertyFactory, filePath, localMappings, ignorePropsWithNoDomain);
+    public OntologyReader create(String filePath, String ontologyNamespace, List<FolderMapping> localMappings, boolean ignorePropsWithNoDomain) {
+        return new JenaOwlReader(owlPropertyFactory, filePath, ontologyNamespace, localMappings, ignorePropsWithNoDomain);
     }
 }

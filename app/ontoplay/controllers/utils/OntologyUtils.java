@@ -13,7 +13,6 @@ import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.OntologyReaderFactory;
 import ontoplay.models.ontologyReading.jena.FolderMapping;
-import org.apache.commons.io.FileUtils;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 
@@ -43,7 +42,7 @@ public class OntologyUtils {
 		String checkFilePath = config.getCheckFilePath();
 		List<FolderMapping> mappings = Arrays.asList(new FolderMapping(ontologyNamespace, checkFilePath));
 
-		return ontoReaderFactory.create(checkFilePath, mappings, false);
+		return ontoReaderFactory.create(checkFilePath, ontologyNamespace, mappings, false);
 	}
 
 	public OntoClass getOwlClass(String classUri) {

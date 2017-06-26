@@ -10,7 +10,6 @@ import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.OntologyReaderFactory;
 import ontoplay.models.ontologyReading.jena.FolderMapping;
 import ontoplay.models.properties.OwlObjectProperty;
-import org.apache.jena.ontology.Ontology;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -46,7 +45,7 @@ public class JenaKBGridTest {
                 .injector();
 
         kbFactory = injector.instanceOf(OntologyReaderFactory.class);
-        kb = kbFactory.create("./AiGGridOntology.owl", Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", "./cgo.owl")), true);
+        kb = kbFactory.create("./AiGGridOntology.owl", , Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", "./cgo.owl")), true, );
     }
 
     @Test
@@ -102,7 +101,7 @@ public class JenaKBGridTest {
     @Test
     public void withoutIgnoreEmptyDomains_getClass_includesPropertyWithNoDomain() throws Exception {
 
-        OntologyReader specialReader = kbFactory.create("./AiGGridOntology.owl", Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", "./cgo.owl")), false);
+        OntologyReader specialReader = kbFactory.create("./AiGGridOntology.owl", , Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", "./cgo.owl")), false, );
 
         OntoClass memoryClass = specialReader.getOwlClass("http://purl.org/NET/cgo#CPU");
 
@@ -113,7 +112,7 @@ public class JenaKBGridTest {
 
     @Test
     public void withoutIgnoreEmptyDomains_getClass_includesPropertiesWithCorrectDomain() throws Exception {
-        OntologyReader specialReader = kbFactory.create("./AiGGridOntology.owl", Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", "./cgo.owl")), false);
+        OntologyReader specialReader = kbFactory.create("./AiGGridOntology.owl", , Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", "./cgo.owl")), false, );
 
         OntoClass memoryClass = specialReader.getOwlClass("http://purl.org/NET/cgo#CPU");
 
@@ -124,7 +123,7 @@ public class JenaKBGridTest {
 
     @Test
     public void withoutIgnoreEmptyDomains_getClass_excludesPropertyWithIncorrectDomain() throws Exception {
-        OntologyReader specialReader = kbFactory.create("./AiGGridOntology.owl", Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", "./cgo.owl")), false);
+        OntologyReader specialReader = kbFactory.create("./AiGGridOntology.owl", , Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", "./cgo.owl")), false, );
 
         OntoClass memoryClass = specialReader.getOwlClass("http://purl.org/NET/cgo#CPU");
 

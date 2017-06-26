@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.*;
 
 import com.google.inject.assistedinject.Assisted;
+import ontoplay.controllers.utils.OntologyUtils;
 import org.apache.jena.util.FileManager;
 import ontoplay.OntoplayConfig;
 import openllet.jena.PelletReasonerFactory;
@@ -47,21 +48,21 @@ public class JenaOwlReader implements OntologyReader{
 		config.addObserver(new Observer() {
 			@Override
 			public void update(Observable o, Object arg) {
-				readModel(((OntoplayConfig) o).getOntologyFilePath(), ((OntoplayConfig) o).getMappings());
+				readModel(((OntoplayConfig) o).getOntologyFilePath(), ((OntoplayConfig) o).getOntologyNamespace(), ((OntoplayConfig) o).getMappings());
 			}
 		});
 
-		readModel(config.getOntologyFilePath(), config.getMappings());
+		readModel(config.getOntologyFilePath(), config.getOntologyNamespace(), config.getMappings());
 	}
 
-	public JenaOwlReader(OwlPropertyFactory owlPropertyFactory, String filePath, List<FolderMapping> localMappings, boolean ignorePropsWithNoDomain) {
+	public JenaOwlReader(OwlPropertyFactory owlPropertyFactory, String filePath, String ontologyNamespace, List<FolderMapping> localMappings, boolean ignorePropsWithNoDomain) {
 		this.owlPropertyFactory = owlPropertyFactory;
 		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
 
-		readModel(filePath, localMappings);
+		readModel(filePath, ontologyNamespace, localMappings);
 	}
 
-	private void readModel(String filePath, List<FolderMapping> localMappings) {
+	private void readModel(String filePath, String ontologyNamespace, List<FolderMapping> localMappings) {
 		OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
 		if (localMappings != null) {
 			OntDocumentManager dm = model.getDocumentManager();
@@ -79,8 +80,7 @@ public class JenaOwlReader implements OntologyReader{
 		}
 
 		this.model = model;
-		String namespace = model.getNsPrefixURI("");
-		this.ontologyNamespace = namespace.substring(0, namespace.length() - 1);
+		this.ontologyNamespace = ontologyNamespace;
 	}
 
 
@@ -89,15 +89,20 @@ public class JenaOwlReader implements OntologyReader{
 	 */
 	@Override
 	public OntoClass getOwlClass(String className) {
-		if (!(className.contains("#"))&& !(className.contains(":"))) {
-			className = String.format("%s#%s", ontologyNamespace, className);
-		}
+		className = prependNamespaceIfNecessary(className);
 		OntClass ontClass = model.getOntClass(className);
 		if (ontClass == null)
 			return null;
 
 		OntoClass owlClass = new OntoClass(ontClass.getNameSpace(), ontClass.getLocalName(), getProperties(ontClass), ontClass);
 		return owlClass;
+	}
+
+	private String prependNamespaceIfNecessary(String nameOrUri) {
+		if (!(nameOrUri.contains("#"))&& !(nameOrUri.contains(":"))) {
+			nameOrUri = String.format("%s#%s", ontologyNamespace, nameOrUri);
+		}
+		return nameOrUri;
 	}
 
 	/*
@@ -252,7 +257,7 @@ public class JenaOwlReader implements OntologyReader{
 
 	@Override
 	public OwlIndividual getIndividual(String name) {
-		Individual individual = model.getIndividual(name);
+		Individual individual = model.getIndividual(prependNamespaceIfNecessary(name));
 		OwlIndividual owlIndividual = new OwlIndividual(individual, new ArrayList<PropertyValueCondition>());
 		return owlIndividual;
 	}
