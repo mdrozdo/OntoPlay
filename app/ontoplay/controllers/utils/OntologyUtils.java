@@ -22,7 +22,6 @@ import javax.inject.Inject;
 
 public class OntologyUtils {
 
-	private final OWLOntologyManager owlManager;
 	private OntoplayConfig config;
 	private OntologyReader ontoReader;
 	private OntologyReaderFactory ontoReaderFactory;
@@ -34,7 +33,6 @@ public class OntologyUtils {
 		this.config = config;
 		this.ontoReader = ontoReader;
 		this.ontoReaderFactory = ontoReaderFactory;
-		this.owlManager = OWLManager.createOWLOntologyManager();
 	}
 
 	public OntologyReader checkOwlReader() {
@@ -102,6 +100,7 @@ public class OntologyUtils {
 				}
 			}
 		}
+		ontoReader.refreshModel();
 		return true;
 	}
 
@@ -180,6 +179,8 @@ public class OntologyUtils {
 			throw new IllegalArgumentException("There were not enough ontologies to be merged." +
 					"Please, give at least 2 ontologies as parameters");
 		//NEW CODE
+		OWLOntologyManager owlManager = OWLManager.createOWLOntologyManager();
+
 		OWLOntology mergedOntology = owlManager.createOntology(mergedOntologyIRI);
 		for (OWLOntology ontology : ontologies) {
 			owlManager.addAxioms(mergedOntology, ontology.getAxioms());
@@ -196,6 +197,7 @@ public class OntologyUtils {
 		if(importIRI == null) {
 			return false;
 		} else {
+			OWLOntologyManager owlManager = OWLManager.createOWLOntologyManager();
 			OWLImportsDeclaration imports = owlManager.getOWLDataFactory().getOWLImportsDeclaration(importIRI);
 			AddImport addImport = new AddImport(ontology, imports);
 			owlManager.applyChange(addImport);

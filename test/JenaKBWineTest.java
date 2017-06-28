@@ -31,7 +31,7 @@ public class JenaKBWineTest {
 				.injector();
 
 		OntologyReaderFactory kbFactory = injector.instanceOf(OntologyReaderFactory.class);
-		kb = kbFactory.create("./wine.owl", , Arrays.asList(new FolderMapping("http://www.w3.org/TR/2003/PR-owl-guide-20031209/food", "./food.owl")), true, );
+		kb = kbFactory.create("./wine.owl", "http://www.w3.org/TR/2003/PR-owl-guide-20031209/wine", Arrays.asList(new FolderMapping("http://www.w3.org/TR/2003/PR-owl-guide-20031209/food", "./food.owl")), true);
 	}
 
 

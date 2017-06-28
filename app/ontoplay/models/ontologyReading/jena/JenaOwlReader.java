@@ -39,13 +39,15 @@ public class JenaOwlReader implements OntologyReader{
 	private String ontologyNamespace;
 	private boolean ignorePropsWithNoDomain;
 	private OwlPropertyFactory owlPropertyFactory;
+	private OntoplayConfig config;
 
 	@Inject
 	public JenaOwlReader(OwlPropertyFactory owlPropertyFactory, OntoplayConfig config, @Assisted boolean ignorePropsWithNoDomain) {
 		this.owlPropertyFactory = owlPropertyFactory;
 		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
 
-		config.addObserver(new Observer() {
+		this.config = config;
+		this.config.addObserver(new Observer() {
 			@Override
 			public void update(Observable o, Object arg) {
 				readModel(((OntoplayConfig) o).getOntologyFilePath(), ((OntoplayConfig) o).getOntologyNamespace(), ((OntoplayConfig) o).getMappings());
@@ -308,5 +310,10 @@ public class JenaOwlReader implements OntologyReader{
 		fillWithSubClasses(classes, thing);
 
 		return classes;
+	}
+
+	@Override
+	public void refreshModel() {
+		readModel(config.getOntologyFilePath(), config.getOntologyNamespace(), config.getMappings());
 	}
 }

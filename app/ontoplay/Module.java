@@ -102,7 +102,7 @@ public class Module extends AbstractModule{
         return topLevelFactory;
     }
 
-    @Provides
+    @Provides @Singleton
     private JenaOwlReader createJenaReader(OwlPropertyFactory owlPropertyFactory){
         return new JenaOwlReader(owlPropertyFactory, configuration, false);
     }

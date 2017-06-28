@@ -37,4 +37,6 @@ public interface OntologyReader extends PropertyProvider{
     String getOntologyNamespace();
 
     List<OntoClass> getClasses();
+
+    void refreshModel();
 }

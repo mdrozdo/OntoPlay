@@ -284,4 +284,9 @@ public class OwlApiReader implements OntologyReader {
 		return null;
 	}
 
+	@Override
+	public void refreshModel() {
+
+	}
+
 }

@@ -224,7 +224,7 @@ public class OntologyGenerator {
 	 */
 	private void clearManagerFromOntologies(IRI ontologyIRI) {
 		for (OWLOntology managerOwlOntology : manager.getOntologies()) {
-			if (managerOwlOntology.getOntologyID().getOntologyIRI().equals(ontologyIRI)) {
+			if (managerOwlOntology.getOntologyID().getOntologyIRI().get().equals(ontologyIRI)) {
 				manager.removeOntology(managerOwlOntology);
 			}
 		}
