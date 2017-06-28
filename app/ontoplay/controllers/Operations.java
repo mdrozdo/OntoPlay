@@ -26,7 +26,7 @@ public class Operations extends OntologyController {
 				return ok("Class Not Found");
 			}
 
-			return ok(ontoplay.views.html.addIndividual.render("Add new individual for " + className, className, mainTemplate.getRenderFunction()));
+			return ok(ontoplay.views.html.addIndividual.render("Add new individual for " + className, owlClass.getUri(), mainTemplate.getRenderFunction()));
 
 		} catch (Exception e) {
 			return ok("Can't find the required class:/n+" + e.toString());
@@ -42,7 +42,7 @@ public class Operations extends OntologyController {
 				return ok("Class Not Found");
 			}
 
-			return ok(ontoplay.views.html.addClassExpression.render("Add new class expression for " + className, className, mainTemplate.getRenderFunction()));
+			return ok(ontoplay.views.html.addClassExpression.render("Add new class expression for " + className, owlClass.getUri(), mainTemplate.getRenderFunction()));
 
 		} catch (Exception e) {
 			return ok("Can't find the required class:/n+" + e.toString());
@@ -58,7 +58,7 @@ public class Operations extends OntologyController {
 				return ok("Class Not Found");
 			}
 
-			return ok(ontoplay.views.html.addClassMapping.render("Add new class mapping for " + className, className, mainTemplate.getRenderFunction()));
+			return ok(ontoplay.views.html.addClassMapping.render("Add new class mapping for " + className, owlClass.getUri(), mainTemplate.getRenderFunction()));
 
 		} catch (Exception e) {
 			return ok("Can't find the required class:/n+" + e.toString());
@@ -74,7 +74,7 @@ public class Operations extends OntologyController {
 				return ok("Class Not Found");
 			}
 
-			return ok(ontoplay.views.html.addIndividual.render("update " + individualName, className, mainTemplate.getRenderFunction()));
+			return ok(ontoplay.views.html.addIndividual.render("update " + individualName, owlClass.getUri(), mainTemplate.getRenderFunction()));
 
 		} catch (Exception e) {
 			return ok("Can't find the required classs:/n+" + e.toString());
