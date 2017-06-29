@@ -2,6 +2,12 @@
 
 OntoPlay is a flexible interface for ontology-based systems. OntoPlay allows creation of dynamical interfaces that allow ontology-illiterate users to select a class or an individual on the basis of the ontology of the system. Furthermore, the OntoPlay is ontology agnostic and allows for ontology modification without the need for changing the code of the user interface.
 
+The module has been described in several articles:
+* [OntoPlay - A Flexible User-Interface for Ontology-based Systems](http://ceur-ws.org/Vol-918/111110086.pdf)
+* [Graphical Interface for Ontology Mapping with Application to Access Control](https://link.springer.com/chapter/10.1007/978-3-319-54472-4_5)
+* [Implementing Agent-based Resource Management in Tsunami Modeling - Preliminary Considerations](http://www.ibspan.waw.pl/~paprzyck/mp/cvr/research/AiG_papers/DNIS2014.pdf)
+
+
 ## Getting Started
 
 OntoPlay is a [Play Framework](https://playframework.com/) submodule. It is meant to be included in a top level Play application, in the same way as it is used in the [OntoPlay-TAN](https://github.com/mdrozdo/OntoPlay-TAN) project. 
