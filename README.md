@@ -67,5 +67,5 @@ fileMappings={
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This software is licensed under the Apache 2 license - see the [LICENSE](LICENSE) file for details
 
