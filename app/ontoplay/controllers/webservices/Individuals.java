@@ -17,6 +17,7 @@ import ontoplay.models.owlGeneration.OntologyGenerator;
 import org.semanticweb.owlapi.model.OWLOntology;
 import play.data.DynamicForm;
 import play.data.Form;
+import play.data.FormFactory;
 import play.mvc.Result;
 
 import javax.inject.Inject;
@@ -29,14 +30,16 @@ public class Individuals extends OntologyController {
 	private final OntologyReader ontologyReader;
 	private OntologyGenerator ontologyGenerator;
 	private OntologyUtils utils;
+	private FormFactory formFactory;
 
 	@Inject
-	public Individuals(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntologyGenerator generator, OntologyUtils utils){
+	public Individuals(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntologyGenerator generator, OntologyUtils utils, FormFactory formFactory){
 		super(ontologyUtils);
 		this.ontologyReader = ontologyReader;
 
 		this.ontologyGenerator = generator;
 		this.utils = utils;
+		this.formFactory = formFactory;
 	}
 
 	public Result getIndividualsByClassName(String className) {
@@ -59,7 +62,7 @@ public class Individuals extends OntologyController {
 
 	public Result addIndividual() {
 		@SuppressWarnings("deprecation")
-		DynamicForm dynamicForm = Form.form().bindFromRequest();
+		DynamicForm dynamicForm = formFactory.form().bindFromRequest();
 		String conditionJson = dynamicForm.get("conditionJson");
 		String individualName = dynamicForm.get("name");
 

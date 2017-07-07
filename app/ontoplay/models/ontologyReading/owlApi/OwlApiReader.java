@@ -24,8 +24,8 @@ import ontoplay.models.ontologyReading.owlApi.propertyFactories.IntegerPropertyF
 import ontoplay.models.ontologyReading.owlApi.propertyFactories.ObjectPropertyFactory;
 import ontoplay.models.ontologyReading.owlApi.propertyFactories.StringPropertyFactory;
 
-import org.semanticweb.HermiT.Configuration;
-import org.semanticweb.HermiT.Reasoner;
+//import org.semanticweb.HermiT.Configuration;
+//import org.semanticweb.HermiT.Reasoner;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLClass;
@@ -72,13 +72,16 @@ public class OwlApiReader implements OntologyReader {
 		} catch (OWLOntologyCreationException e) {
 			e.printStackTrace();
 		}
-		Configuration hermitConfig = new Configuration();
-		hermitConfig.ignoreUnsupportedDatatypes = true;
-		Reasoner hermitReasoner = new Reasoner(hermitConfig, ontology);
+
+		//Hermit is really obsolete now. Should be replaced with e.g. pellet, but don't have time now. Will throw exceptions further down.
+//		Configuration hermitConfig = new Configuration();
+//		hermitConfig.ignoreUnsupportedDatatypes = true;
+//		Reasoner hermitReasoner = new Reasoner(hermitConfig, ontology);
+		//this.reasoner = hermitReasoner;
+		this.reasoner = null;
 
 		this.manager = manager;
 		this.ontology = ontology;
-		this.reasoner = hermitReasoner;
 		this.ignorePropsWithNoDomain = ignorePropsWithNoDomain;
 		this.factory = manager.getOWLDataFactory();
 		this.uri = ontology.getOntologyID().getOntologyIRI().toString();

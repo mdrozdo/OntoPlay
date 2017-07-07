@@ -20,6 +20,7 @@ import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyReading.OntologyReader;
 import play.data.DynamicForm;
 import play.data.Form;
+import play.data.FormFactory;
 import play.mvc.Result;
 
 import javax.inject.Inject;
@@ -29,13 +30,15 @@ public class Classes extends OntologyController{
 	private OntologyReader ontologyReader;
 	private OntologyGenerator ontologyGenerator;
 	private OntologyUtils utils;
+	private FormFactory formFactory;
 
 	@Inject
-	public Classes(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntologyGenerator ontologyGenerator, OntologyUtils utils){
+	public Classes(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntologyGenerator ontologyGenerator, OntologyUtils utils, FormFactory formFactory){
 		super(ontologyUtils);
 		this.ontologyReader = ontologyReader;
 		this.ontologyGenerator = ontologyGenerator;
 		this.utils = utils;
+		this.formFactory = formFactory;
 	}
 
 	public Result getClassesByProperty(String propertyUri){
@@ -65,8 +68,7 @@ public class Classes extends OntologyController{
 	}
 	
 	public Result addClassExpression() {
-		@SuppressWarnings("deprecation")
-		DynamicForm dynamicForm = Form.form().bindFromRequest();
+		DynamicForm dynamicForm = formFactory.form().bindFromRequest();
 		String conditionJson = dynamicForm.get("conditionJson");
 		String classExpressionName = dynamicForm.get("name");
 		try {

@@ -6,8 +6,8 @@ import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.owlGeneration.PropertyConditionRendererProvider;
 import ontoplay.views.html.*;
-import play.Routes;
 import play.mvc.Result;
+import play.routing.JavaScriptReverseRouter;
 
 import javax.inject.Inject;
 import java.util.Map;
@@ -27,7 +27,7 @@ public class Constraints extends OntologyController {
     {
         response().setContentType("text/javascript");
         return ok(
-            Routes.javascriptRouter("jsRoutesOntoPlay",
+			JavaScriptReverseRouter.create("jsRoutesOntoPlay",
 		        // Routes
 		        //controllers.routes.javascript.Application.condition()//,
 		        ontoplay.controllers.routes.javascript.Constraints.individual(),

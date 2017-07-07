@@ -23,6 +23,9 @@ import ontoplay.models.propertyConditions.IndividualValueCondition;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import play.Configuration;
 import play.Environment;
+import play.Logger;
+
+import java.io.File;
 
 /**
  * Created by michal on 22.11.2016.
@@ -32,8 +35,11 @@ public class Module extends AbstractModule{
     private OntoplayConfig configuration;
 
     public Module(Environment environment, Configuration configuration){
-        com.typesafe.config.Config ontoPlayConfig = ConfigFactory.parseFile(environment.getFile(configuration.getString("ontoplay.config")));
-        this.configuration = new FileOntoplayConfig(ontoPlayConfig);
+        File ontoPlayConfigFile = environment.getFile(configuration.getString("ontoplay.config"));
+
+        Logger.info("Loading ontoplay config from: " + ontoPlayConfigFile.getAbsolutePath());
+
+        this.configuration = new FileOntoplayConfig(ontoPlayConfigFile);
 
     }
 

@@ -32,6 +32,7 @@ import ontoplay.models.angular.AnnotationDTO;
 import ontoplay.models.angular.OwlElementDTO;
 import play.data.DynamicForm;
 import play.data.Form;
+import play.data.FormFactory;
 import play.mvc.Result;
 
 /**
@@ -42,14 +43,16 @@ import play.mvc.Result;
 public class AnnotationController extends OntologyController {
 	private OntoplayAnnotationUtils ontoplayAnnotationUtils;
 	private OntoplayConfig config;
+	private FormFactory formFactory;
 	private OntologyReader ontologyReader;
 
 	@Inject
-	public AnnotationController(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils, OntoplayConfig config){
+	public AnnotationController(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils, OntoplayConfig config, FormFactory formFactory){
 		super(ontologyUtils);
 		this.ontologyReader = ontologyReader;
 		this.ontoplayAnnotationUtils = ontoplayAnnotationUtils;
 		this.config = config;
+		this.formFactory = formFactory;
 	}
 
 	public Result showAnnotationCFPage() {
@@ -120,7 +123,7 @@ public class AnnotationController extends OntologyController {
 	}
 	
 	public Result AddRelation(){
-		DynamicForm dynamicForm = Form.form().bindFromRequest();
+		DynamicForm dynamicForm = formFactory.form().bindFromRequest();
 		String annotationIri=dynamicForm.get("annotationIri");
 		String annotationName=dynamicForm.get("annotationName");
 		String componentIri=dynamicForm.get("componentIri");
@@ -139,7 +142,7 @@ public class AnnotationController extends OntologyController {
 	}
 	
 	public Result deleteRelation(){
-		DynamicForm dynamicForm = Form.form().bindFromRequest();
+		DynamicForm dynamicForm = formFactory.form().bindFromRequest();
 		String annotationId=dynamicForm.get("annotationId");
 		String componentId=dynamicForm.get("componentId");
 		try{
@@ -156,7 +159,7 @@ public class AnnotationController extends OntologyController {
 	}
 	
 	public Result deleteAllRelations(){
-		DynamicForm dynamicForm = Form.form().bindFromRequest();
+		DynamicForm dynamicForm = formFactory.form().bindFromRequest();
 		String annotationId=dynamicForm.get("annotationId");
 		try{
 			ontoplayAnnotationUtils.deleteAllRelationForAnnotaionByAnnotationId(annotationId);

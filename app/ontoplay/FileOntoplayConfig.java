@@ -1,10 +1,12 @@
 package ontoplay;
 
 import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.ConfigValue;
 import com.typesafe.config.ConfigValueFactory;
 import ontoplay.models.ontologyReading.jena.FolderMapping;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -20,14 +22,11 @@ public class FileOntoplayConfig extends Observable implements OntoplayConfig {
     private final Path configFilePath;
     private Config configuration;
 
-    public FileOntoplayConfig(Config configuration) {
-        this.configuration = configuration;
-        try {
-            this.configFilePath = Paths.get(configuration.origin().url().toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Configuration origin is not an URI (??!)", e);
-        }
+    public FileOntoplayConfig(File ontoPlayConfigFile) {
+
+        this.configuration = ConfigFactory.parseFile(ontoPlayConfigFile);
+        this.configFilePath = ontoPlayConfigFile.toPath();
+
     }
 
     @Override
