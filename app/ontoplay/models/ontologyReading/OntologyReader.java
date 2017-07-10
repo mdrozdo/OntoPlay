@@ -1,38 +1,37 @@
 package ontoplay.models.ontologyReading;
 
-import java.util.List;
-import java.util.Set;
-
-import org.apache.jena.ontology.AnnotationProperty;
-import org.apache.jena.rdf.model.ResIterator;
-
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.PropertyProvider;
 import ontoplay.models.angular.AnnotationDTO;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyModel.OwlIndividual;
+import org.apache.jena.ontology.AnnotationProperty;
+import org.apache.jena.rdf.model.ResIterator;
 
-import javax.inject.Singleton;
+import java.util.List;
+import java.util.Set;
 
-public interface OntologyReader extends PropertyProvider{
-	
-	OntoClass getOwlClass(String className);
+public interface OntologyReader extends PropertyProvider {
 
-	@Override
-	OntoProperty getProperty(String propertyUri) throws ConfigurationException;
+    OntoClass getOwlClass(String className);
 
-	List<OwlIndividual> getIndividualsInRange(OntoClass owlClass, OntoProperty property);
+    @Override
+    OntoProperty getProperty(String propertyUri) throws ConfigurationException;
 
-	List<OntoClass> getClassesInRange(OntoProperty property);
-	
-	List<OwlIndividual> getIndividuals(OntoClass owlClass);
-	
-	OwlIndividual getIndividual(String name);
-	Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace);
-	Set<AnnotationProperty> getAnnotations();
+    List<OwlIndividual> getIndividualsInRange(OntoClass owlClass, OntoProperty property);
 
-	ResIterator getAnnotationsAxioms();
+    List<OntoClass> getClassesInRange(OntoProperty property);
+
+    List<OwlIndividual> getIndividuals(OntoClass owlClass);
+
+    OwlIndividual getIndividual(String name);
+
+    Set<AnnotationDTO> getAnnotations(boolean isFromNameSpace);
+
+    Set<AnnotationProperty> getAnnotations();
+
+    ResIterator getAnnotationsAxioms();
 
     String getOntologyNamespace();
 

@@ -13,7 +13,7 @@ public class JenaOntologyReaderFactory implements OntologyReaderFactory {
     private OwlPropertyFactory owlPropertyFactory;
 
     @Inject
-    public JenaOntologyReaderFactory(OwlPropertyFactory owlPropertyFactory){
+    public JenaOntologyReaderFactory(OwlPropertyFactory owlPropertyFactory) {
 
         this.owlPropertyFactory = owlPropertyFactory;
     }

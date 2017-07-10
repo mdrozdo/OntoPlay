@@ -10,7 +10,7 @@ import java.util.Observer;
 /**
  * Created by drozd on 14.06.2017.
  */
-public class FakeOntoplayConfig implements OntoplayConfig{
+public class FakeOntoplayConfig implements OntoplayConfig {
     @Override
     public String getOntologyFilePath() {
         return null;

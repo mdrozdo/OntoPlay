@@ -8,7 +8,6 @@ import ontoplay.models.ontologyReading.jena.FolderMapping;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -84,8 +83,8 @@ public class FileOntoplayConfig extends Observable implements OntoplayConfig {
         return mappings;
     }
 
-    private String stripExtraQuotes(String relativeFilePath){
-        return  relativeFilePath.replaceAll("\"", "");
+    private String stripExtraQuotes(String relativeFilePath) {
+        return relativeFilePath.replaceAll("\"", "");
     }
 
     private void saveConfigToFile() throws IOException {

@@ -1,9 +1,7 @@
 package ontoplay.models.angular.update;
 
-import java.util.Arrays;
-
 public class Property {
-	
+
 	/*
 	 * json object
     "id": 1,
@@ -18,139 +16,135 @@ public class Property {
     "annotations": [],
     "objectAnnotations": []
 	*/
-	
-	private String id;
-	private String className;
-	private String property;
-	private String operator;
-	private String inputType;
-	private String dataValue;
-	private String propertyClass;
-	private String objectValue;
-	private Property[] nodes;
-	private Annotation[] annotation;
-	private Annotation[] objectAnnotations;
-	
-	
-	public Property() {
-		super();
-	}
 
-	public String getId() {
-		return id;
-	}
+    private String id;
+    private String className;
+    private String property;
+    private String operator;
+    private String inputType;
+    private String dataValue;
+    private String propertyClass;
+    private String objectValue;
+    private Property[] nodes;
+    private Annotation[] annotation;
+    private Annotation[] objectAnnotations;
 
-	public void setId(String id) {
-		this.id = id;
-	}
 
-	public String getClassName() {
-		return className;
-	}
+    public Property() {
+        super();
+    }
 
-	public void setClassName(String className) {
-		this.className = className;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getProperty() {
-		return property;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setProperty(String property) {
-		this.property = property;
-	}
+    public String getClassName() {
+        return className;
+    }
 
-	public String getInputType() {
-		return inputType;
-	}
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
-	public void setInputType(String inputType) {
-		this.inputType = inputType;
-	}
+    public String getProperty() {
+        return property;
+    }
 
-	public String getOperator() {
-		return operator;
-	}
+    public void setProperty(String property) {
+        this.property = property;
+    }
 
-	public void setOperator(String operator) {
-		this.operator = operator;
-	}
+    public String getInputType() {
+        return inputType;
+    }
 
-	public String getDataValue() {
-		return dataValue;
-	}
+    public void setInputType(String inputType) {
+        this.inputType = inputType;
+    }
 
-	public void setDataValue(String dataValue) {
-		this.dataValue = dataValue;
-	}
+    public String getOperator() {
+        return operator;
+    }
 
-	public String getPropertyClass() {
-		return propertyClass;
-	}
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
 
-	public void setPropertyClass(String propertyClass) {
-		this.propertyClass = propertyClass;
-	}
+    public String getDataValue() {
+        return dataValue;
+    }
 
-	public String getObjectValue() {
-		return objectValue;
-	}
+    public void setDataValue(String dataValue) {
+        this.dataValue = dataValue;
+    }
 
-	public void setObjectValue(String objectValue) {
-		this.objectValue = objectValue;
-	}
+    public String getPropertyClass() {
+        return propertyClass;
+    }
 
-	public Property[] getNodes() {
-		return nodes;
-	}
+    public void setPropertyClass(String propertyClass) {
+        this.propertyClass = propertyClass;
+    }
 
-	public void setNodes(Property[] nodes) {
-		this.nodes = nodes;
-	}
+    public String getObjectValue() {
+        return objectValue;
+    }
 
-	public Annotation[] getAnnotation() {
-		return annotation;
-	}
+    public void setObjectValue(String objectValue) {
+        this.objectValue = objectValue;
+    }
 
-	public void setAnnotation(Annotation[] annotation) {
-		this.annotation = annotation;
-	}
+    public Property[] getNodes() {
+        return nodes;
+    }
 
-	public Annotation[] getObjectAnnotations() {
-		return objectAnnotations;
-	}
+    public void setNodes(Property[] nodes) {
+        this.nodes = nodes;
+    }
 
-	public void setObjectAnnotations(Annotation[] objectAnnotations) {
-		this.objectAnnotations = objectAnnotations;
-	}
+    public Annotation[] getAnnotation() {
+        return annotation;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder resultBuilder=new StringBuilder();
-		resultBuilder.append("id= ").append(id).append("\n")
-					.append("\t").append("className= ").append(className).append("\n")
-					.append("\t").append("property= ").append(property).append("\n")
-					.append("\t").append("operator= ").append(operator).append("\n")
-					.append("\t").append("inputType= ").append(inputType).append("\n")
-					.append("\t").append("dataValue= ").append(dataValue).append("\n")
-					.append("\t").append("propertyClass= ").append(propertyClass).append("\n")
-					.append("\t").append("objectValue= ").append(objectValue).append("\n");
-			if(nodes!=null&&nodes.length>0){
-					resultBuilder.append("\t").append("properties ").append("\n").append("///////////////////////////")
-					.append("\n");
-			for(Property prop:nodes){
-				resultBuilder.append("\t\t").append(prop.toString()).append("\n")
-				.append("*************").append("\n");
-			}
-			resultBuilder.append("///////////////////////////").append("\n");
-			}
-			return resultBuilder.toString();
-					
-	}
-	
-	
-	
-	
-	
-	
+    public void setAnnotation(Annotation[] annotation) {
+        this.annotation = annotation;
+    }
+
+    public Annotation[] getObjectAnnotations() {
+        return objectAnnotations;
+    }
+
+    public void setObjectAnnotations(Annotation[] objectAnnotations) {
+        this.objectAnnotations = objectAnnotations;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder resultBuilder = new StringBuilder();
+        resultBuilder.append("id= ").append(id).append("\n")
+                .append("\t").append("className= ").append(className).append("\n")
+                .append("\t").append("property= ").append(property).append("\n")
+                .append("\t").append("operator= ").append(operator).append("\n")
+                .append("\t").append("inputType= ").append(inputType).append("\n")
+                .append("\t").append("dataValue= ").append(dataValue).append("\n")
+                .append("\t").append("propertyClass= ").append(propertyClass).append("\n")
+                .append("\t").append("objectValue= ").append(objectValue).append("\n");
+        if (nodes != null && nodes.length > 0) {
+            resultBuilder.append("\t").append("properties ").append("\n").append("///////////////////////////")
+                    .append("\n");
+            for (Property prop : nodes) {
+                resultBuilder.append("\t\t").append(prop.toString()).append("\n")
+                        .append("*************").append("\n");
+            }
+            resultBuilder.append("///////////////////////////").append("\n");
+        }
+        return resultBuilder.toString();
+
+    }
+
+
 }

@@ -9,75 +9,75 @@ import javax.inject.Inject;
 
 public class Operations extends OntologyController {
 
-	private MainTemplate mainTemplate;
+    private MainTemplate mainTemplate;
 
-	@Inject
-	public Operations(OntologyUtils ontologyUtils, MainTemplate mainTemplate) {
-		super(ontologyUtils);
-		this.mainTemplate = mainTemplate;
-	}
+    @Inject
+    public Operations(OntologyUtils ontologyUtils, MainTemplate mainTemplate) {
+        super(ontologyUtils);
+        this.mainTemplate = mainTemplate;
+    }
 
-	public Result add(String className) {
+    public Result add(String className) {
 
-		try {
-			OntoClass owlClass = ontologyUtils.getOwlClass(className);
+        try {
+            OntoClass owlClass = ontologyUtils.getOwlClass(className);
 
-			if (owlClass == null) {
-				return ok("Class Not Found");
-			}
+            if (owlClass == null) {
+                return ok("Class Not Found");
+            }
 
-			return ok(ontoplay.views.html.addIndividual.render("Add new individual for " + className, owlClass.getUri(), mainTemplate.getRenderFunction()));
+            return ok(ontoplay.views.html.addIndividual.render("Add new individual for " + className, owlClass.getUri(), mainTemplate.getRenderFunction()));
 
-		} catch (Exception e) {
-			return ok("Can't find the required class:/n+" + e.toString());
-		}
-	}
+        } catch (Exception e) {
+            return ok("Can't find the required class:/n+" + e.toString());
+        }
+    }
 
-	public Result addClassExpression(String className) {
+    public Result addClassExpression(String className) {
 
-		try {
-			OntoClass owlClass = ontologyUtils.getOwlClass(className);
+        try {
+            OntoClass owlClass = ontologyUtils.getOwlClass(className);
 
-			if (owlClass == null) {
-				return ok("Class Not Found");
-			}
+            if (owlClass == null) {
+                return ok("Class Not Found");
+            }
 
-			return ok(ontoplay.views.html.addClassExpression.render("Add new class expression for " + className, owlClass.getUri(), mainTemplate.getRenderFunction()));
+            return ok(ontoplay.views.html.addClassExpression.render("Add new class expression for " + className, owlClass.getUri(), mainTemplate.getRenderFunction()));
 
-		} catch (Exception e) {
-			return ok("Can't find the required class:/n+" + e.toString());
-		}
-	}
+        } catch (Exception e) {
+            return ok("Can't find the required class:/n+" + e.toString());
+        }
+    }
 
-	public Result addClassMapping(String className) {
+    public Result addClassMapping(String className) {
 
-		try {
-			OntoClass owlClass = ontologyUtils.getOwlClass(className);
+        try {
+            OntoClass owlClass = ontologyUtils.getOwlClass(className);
 
-			if (owlClass == null) {
-				return ok("Class Not Found");
-			}
+            if (owlClass == null) {
+                return ok("Class Not Found");
+            }
 
-			return ok(ontoplay.views.html.addClassMapping.render("Add new class mapping for " + className, owlClass.getUri(), mainTemplate.getRenderFunction()));
+            return ok(ontoplay.views.html.addClassMapping.render("Add new class mapping for " + className, owlClass.getUri(), mainTemplate.getRenderFunction()));
 
-		} catch (Exception e) {
-			return ok("Can't find the required class:/n+" + e.toString());
-		}
-	}
+        } catch (Exception e) {
+            return ok("Can't find the required class:/n+" + e.toString());
+        }
+    }
 
-	public Result update(String className, String individualName) {
+    public Result update(String className, String individualName) {
 
-		try {
-			OntoClass owlClass = ontologyUtils.getOwlClass(className);
+        try {
+            OntoClass owlClass = ontologyUtils.getOwlClass(className);
 
-			if (owlClass == null) {
-				return ok("Class Not Found");
-			}
+            if (owlClass == null) {
+                return ok("Class Not Found");
+            }
 
-			return ok(ontoplay.views.html.addIndividual.render("update " + individualName, owlClass.getUri(), mainTemplate.getRenderFunction()));
+            return ok(ontoplay.views.html.addIndividual.render("update " + individualName, owlClass.getUri(), mainTemplate.getRenderFunction()));
 
-		} catch (Exception e) {
-			return ok("Can't find the required classs:/n+" + e.toString());
-		}
-	}
+        } catch (Exception e) {
+            return ok("Can't find the required classs:/n+" + e.toString());
+        }
+    }
 }

@@ -1,6 +1,5 @@
 package ontoplay.models.owlGeneration;
 
-import ontoplay.models.owlGeneration.ClassRestrictionGenerator;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 
 
