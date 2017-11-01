@@ -66,6 +66,8 @@ public class Module extends AbstractModule {
                 .implement(IndividualGenerator.class, IndividualGenerator.class)
                 .build(IndividualGeneratorFactory.class));
 
+        bind(MainTemplate.class).to(OntoPlayMainTemplate.class);
+
 //        bind(MainTemplate.class).to(OntoPlayMainTemplate.class); //needs to be defined in the main application's module
 //        install(new FactoryModuleBuilder()
 //                .implement(OntologyReader.class, JenaOwlReader.class)

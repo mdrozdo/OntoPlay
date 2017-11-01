@@ -4,11 +4,13 @@ version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.7"
 
+lazy val module = (project in file("."))
+    .enablePlugins(PlayJava)
 
 libraryDependencies ++= Seq(
-  javaJdbc,
-  cache,
-  javaWs,
+  // javaJdbc,
+  // cache,
+  // javaWs,
   "com.google.code.gson" % "gson" % "2.2.2",
   "commons-io" % "commons-io" % "2.4",
   "net.sourceforge.owlapi" % "owlapi-distribution" % "[5.1.0]",
