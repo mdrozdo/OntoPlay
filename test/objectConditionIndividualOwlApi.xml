@@ -96,7 +96,7 @@
     <owl:NamedIndividual rdf:about="http://bla.org#testIndividual">
         <rdf:type rdf:resource="http://purl.org/NET/cgo#WorkerNode"/>
         <AiGGridOntology:hasMemory>
-            <rdf:Description rdf:nodeID="_:genid1">
+            <rdf:Description rdf:nodeID="genid1">
                 <rdf:type rdf:resource="http://purl.org/NET/cgo#Memory"/>
                 <AiGGridOntology:hasTotalSize rdf:datatype="http://www.w3.org/2001/XMLSchema#float">123.0</AiGGridOntology:hasTotalSize>
             </rdf:Description>

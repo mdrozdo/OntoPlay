@@ -17,11 +17,11 @@
     <intersectionOf rdf:parseType="Collection">
       <rdf:Description rdf:about="http://purl.org/NET/cgo#CPU"/>
       <Restriction>
-        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12345</hasValue><!-- TODO: check datatype -->
+        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12345</hasValue>
         <onProperty rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasClockSpeed"/>
       </Restriction>
       <Restriction>
-        <hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">abc</hasValue>
+        <hasValue>abc</hasValue>
         <onProperty rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasName"/>
       </Restriction>
     </intersectionOf>
