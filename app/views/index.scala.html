@@ -1,0 +1,16 @@
+@(layoutTemplate: String => Html => Html => Html)
+
+@layoutTemplate("Welcome to OntoPlay"){
+}{
+<h1>Welcome to OntoPlay</h1>
+<p>OntoPlay is a flexible interface for ontology-based systems. OntoPlay allows creation of dynamical interfaces that allow ontology-illiterate users to select a class or an individual on the basis of the ontology of the system. Furthermore, the OntoPlay is ontology agnostic and allows for ontology modification without the need for changing the code of the user interface.</p>
+
+<p>This page serves as a sample of the functionalities of the module, for more information about the project, including how to add it to your application, please refer to <a href="https://github.com/mdrozdo/OntoPlay">the project site on GitHub</a>.</p>
+
+<ul>
+	<li><a href="@ontoplay.controllers.configuration.routes.UploadController.showUploadPage()">Upload ontology</a></li>
+	<li><a href="@ontoplay.controllers.routes.Operations.addClassExpression("http://purl.org/NET/cgo#WorkerNode")">Create a class expression</a></li>
+	<li><a href="@ontoplay.controllers.routes.Operations.add("http://purl.org/NET/cgo#WorkerNode")">Create an individual</a></li>
+	<li><a href="@ontoplay.controllers.routes.Operations.addClassMapping("http://purl.org/NET/cgo#WorkerNode")">Create a class mapping</a></li>
+</ul>
+}

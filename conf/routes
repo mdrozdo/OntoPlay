@@ -1,2 +1,5 @@
+
+GET     /                           controllers.HomeController.index
+
 #Add ontoplay routes
 ->         /                           ontoplay.Routes
