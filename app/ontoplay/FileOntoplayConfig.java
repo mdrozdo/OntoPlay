@@ -99,4 +99,9 @@ public class FileOntoplayConfig extends Observable implements OntoplayConfig {
         return Paths.get(filePath).getFileName().toString();
     }
 
+    @Override
+    public boolean getIgnorePropertiesWithNoDomain() {
+        return configuration.getBoolean("ignorePropertiesWithNoDomain");
+    }
+
 }

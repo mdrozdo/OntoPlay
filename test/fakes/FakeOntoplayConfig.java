@@ -60,4 +60,9 @@ public class FakeOntoplayConfig implements OntoplayConfig {
     public void addObserver(Observer observer) {
 
     }
+
+    @Override
+    public boolean getIgnorePropertiesWithNoDomain() {
+        return false;
+    }
 }

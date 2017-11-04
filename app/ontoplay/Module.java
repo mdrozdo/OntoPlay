@@ -117,7 +117,7 @@ public class Module extends AbstractModule {
     @Provides
     @Singleton
     private JenaOwlReader createJenaReader(OwlPropertyFactory owlPropertyFactory) {
-        return new JenaOwlReader(owlPropertyFactory, configuration, false);
+        return new JenaOwlReader(owlPropertyFactory, configuration, configuration.getIgnorePropertiesWithNoDomain());
     }
 
     @Provides

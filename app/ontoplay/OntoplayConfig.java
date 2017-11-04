@@ -29,4 +29,6 @@ public interface OntoplayConfig {
     String getOntologyFileName();
 
     void addObserver(Observer observer);
+
+    boolean getIgnorePropertiesWithNoDomain();
 }
