@@ -5,6 +5,8 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
+import ontoplay.FileOntoplayConfig;
+import ontoplay.OntoplayConfig;
 import ontoplay.controllers.*;
 import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
 import ontoplay.models.ontologyReading.OntologyReader;
@@ -66,7 +68,7 @@ public class Module extends AbstractModule {
                 .implement(IndividualGenerator.class, IndividualGenerator.class)
                 .build(IndividualGeneratorFactory.class));
 
-        bind(MainTemplate.class).to(OntoPlayMainTemplate.class);
+        //bind(MainTemplate.class).to(OntoPlayMainTemplate.class);
 
 //        bind(MainTemplate.class).to(OntoPlayMainTemplate.class); //needs to be defined in the main application's module
 //        install(new FactoryModuleBuilder()
