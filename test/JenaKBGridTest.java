@@ -45,7 +45,12 @@ public class JenaKBGridTest {
                 .injector();
 
         kbFactory = injector.instanceOf(OntologyReaderFactory.class);
-        kb = kbFactory.create("./AiGGridOntology.owl", "http://gridagents.sourceforge.net/AiGGridOntology", Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", "./cgo.owl")), true);
+        kb = kbFactory.create(getResourcePath("AiGGridOntology.owl"), "http://gridagents.sourceforge.net/AiGGridOntology",
+                Arrays.asList(new FolderMapping("http://purl.org/NET/cgo", getResourcePath("cgo.owl"))), true);
+    }
+
+    private String getResourcePath(String name) {
+        return getClass().getResource(name).toString();
     }
 
     @Test

@@ -7,6 +7,7 @@ scalaVersion := "2.11.7"
 lazy val module = (project in file("."))
     .enablePlugins(PlayJava)
 
+
 libraryDependencies ++= Seq(
   // javaJdbc,
   // cache,
@@ -23,7 +24,10 @@ libraryDependencies ++= Seq(
     ExclusionRule(organization = "org.slf4j", name = "slf4j-simple")
   ),
 //  "com.hermit-reasoner" % "org.semanticweb.hermit" % "1.3.8.4",
+
   "org.easytesting" % "fest-assert" % "1.4" % "test",
   "xmlunit" % "xmlunit" % "1.6" % "test",
   "org.scala-lang.modules" % "scala-java8-compat_2.11" % "0.8.0"
 )
+
+testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))
