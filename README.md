@@ -1,5 +1,7 @@
 # OntoPlay
 
+[![Build Status](https://travis-ci.org/mdrozdo/OntoPlay.svg?branch=master)](https://travis-ci.org/mdrozdo/OntoPlay)
+
 OntoPlay is a flexible interface for ontology-based systems. OntoPlay allows creation of dynamical interfaces that allow ontology-illiterate users to select a class or an individual on the basis of the ontology of the system. Furthermore, the OntoPlay is ontology agnostic and allows for ontology modification without the need for changing the code of the user interface.
 
 The module has been described in several articles:
@@ -15,6 +17,25 @@ OntoPlay is a [Play Framework](https://playframework.com/) submodule. It is mean
 ### Prerequisites
 
 The project requires installation of the Play Framework (see instructions [here](https://playframework.com/documentation/2.5.x/Installing)).
+
+### Running standalone
+
+The module is meant to be used as a subpackage to other Play applications, but can be run standalone for testing purposes.
+
+To run the standalone application, run the following command from the root folder:
+```
+sbt run -Dconfig.resource=sample.conf
+```
+
+Then, navigate the browser to http://localhost:9000
+
+### Running tests
+
+To run the automated tests, simply execute:
+
+```
+sbt test
+```
 
 ### Installing
 
