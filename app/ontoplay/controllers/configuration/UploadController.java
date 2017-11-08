@@ -15,8 +15,8 @@ import java.util.Map;
 
 public class UploadController extends Controller {
 
-    private OntoplayConfig config;
-    private MainTemplate mainTemplate;
+    private final OntoplayConfig config;
+    private final MainTemplate mainTemplate;
 
     @Inject
     public UploadController(OntoplayConfig config, MainTemplate mainTemplate) {

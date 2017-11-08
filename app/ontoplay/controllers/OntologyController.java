@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 
 public class OntologyController extends Controller {
 
-    protected OntologyUtils ontologyUtils;
+    protected final OntologyUtils ontologyUtils;
 
     public OntologyController(OntologyUtils ontologyUtils) {
         super();

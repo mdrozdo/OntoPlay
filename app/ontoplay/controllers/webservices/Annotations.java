@@ -19,8 +19,8 @@ import java.util.Set;
  */
 public class Annotations extends OntologyController {
 
-    private OntologyReader ontologyReader;
-    private OntoplayAnnotationUtils ontoplayAnnotationUtils;
+    private final OntologyReader ontologyReader;
+    private final OntoplayAnnotationUtils ontoplayAnnotationUtils;
 
     @Inject
     public Annotations(OntologyUtils ontoHelper, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils) {

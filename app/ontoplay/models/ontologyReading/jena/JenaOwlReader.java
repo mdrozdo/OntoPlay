@@ -27,8 +27,8 @@ import java.util.*;
 public class JenaOwlReader implements OntologyReader {
     private OntModel model;
     private String ontologyNamespace;
-    private boolean ignorePropsWithNoDomain;
-    private OwlPropertyFactory owlPropertyFactory;
+    private final boolean ignorePropsWithNoDomain;
+    private final OwlPropertyFactory owlPropertyFactory;
     private OntoplayConfig config;
 
     @Inject

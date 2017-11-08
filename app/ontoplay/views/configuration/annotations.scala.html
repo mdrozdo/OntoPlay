@@ -1,6 +1,6 @@
 @import ontoplay.views.html.ontoplayMain; 
 
-@ontoplayMain("Ontology annotation configuration"){ 
+@ontoplayMain("Ontology annotation configuration"){
 <style>
 .labels span {
 	display: inline-block;
@@ -8,28 +8,28 @@
 }
 </style>
 
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/configuration/app.js")" type="text/javascript"
-      charset="utf-8"></script>
-      <script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/configuration/AnnotationsCFController.js")" type="text/javascript"
-      charset="utf-8"></script>
-	      <script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/configuration/ServicesCF.js")" type="text/javascript"
-      charset="utf-8"></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/angular/configuration/app.js")' type='text/javascript'
+      charset='utf-8'></script>
+      <script src='@ontoplay.controllers.routes.Assets.at("javascripts/angular/configuration/AnnotationsCFController.js")' type='text/javascript'
+      charset='utf-8'></script>
+	      <script src='@ontoplay.controllers.routes.Assets.at("javascripts/angular/configuration/ServicesCF.js")' type='text/javascript'
+      charset='utf-8'></script>
  	}{
-	<div ng-app="OntoplayConfiguration"  ng-controller="AnnotationsCFController">
+	<div ng-app='OntoplayConfiguration'  ng-controller='AnnotationsCFController'>
 		<h4>Annotation Property Configuration</h4>
 		<p>Choose an annotation property  to manage the configuration for that property</p>	
 		<hr>
-		<div style="width:50%;margin:auto;" >
+		<div style='width:50%;margin:auto;' >
 		
-			<Select ng-change="changeAnnotation()" ng-model="currentAnnotationProperty" style="width:70%;font-size:20px"> 
-				<option value='off'>Off</option>
-				<option ng-repeat="item in annotationProperties" value={{item.uri}}>{{item.localName}} </option>
+			<Select ng-change='changeAnnotation()' ng-model='currentAnnotationProperty' style='width:70%;font-size:20px'> 
+				<option value="off">Off</option>
+				<option ng-repeat='item in annotationProperties' value={{item.uri}}>{{item.localName}} </option>
 			</Select>
 		</div>
 		<hr>
 		<h4>Current Configuration</h4>
-		<div class="table-responsive">
-		<table class="table table-hover">
+		<div class='table-responsive'>
+		<table class='table table-hover'>
 							<thead>
 								<tr>
 									
@@ -43,14 +43,14 @@
 							
 
 							<tbody>
-								<tr ng-repeat="component in relationsData.components">
+								<tr ng-repeat='component in relationsData.components'>
 									<td>{{component.componentName}}</td>
 									<td>{{component.componentIri}}</td>
 									<td>{{component.componentType}}</td>
 									<td>{{component.inputType}}</td>
-									<td style="text-align: left">
-            		 						<a ng-click="deleteRelation(relationsData.annotationId,component.componentId)">
-            		 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									<td style='text-align: left'>
+            		 						<a ng-click='deleteRelation(relationsData.annotationId,component.componentId)'>
+            		 							<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
             		 						</a>
             	 					</td>
 								</tr>
@@ -58,48 +58,48 @@
 							</table>
 				
 		</div>
-		<button ng-disabled="currentAnnotationProperty=='off'|| relationsData === undefined || relationsData.components.length==0"  ng-click="deleteAllRelations(relationsData.annotationId)" class="btn btn-success" >Delete all</button>
+		<button ng-disabled='currentAnnotationProperty=="off""" relationsData === undefined "" relationsData.components.length==0'  ng-click='deleteAllRelations(relationsData.annotationId)' class='btn btn-success' >Delete all</button>
 		<hr>
 		<h4>New Configuration</h4>
-		<div class="labels" style="width:75%;margin:auto;">
+		<div class='labels' style='width:75%;margin:auto;'>
 			
 		
-			<span style="width:25%"> 
+			<span style='width:25%'> 
 				Component Type
 			</span>
 
-				<span style="width:25%"> 
+				<span style='width:25%'> 
 				Component
 			</span>
 			
-				<span style="width:10%"> 
+				<span style='width:10%'> 
 				input Type
 			</span>
 			
-				<span style="width:20%"> 
+				<span style='width:20%'> 
 				
 			</span>
 		</div>
 		
-		<div style="width:75%;margin:auto;">
+		<div style='width:75%;margin:auto;'>
 			
 		
-			<Select ng-disabled="currentAnnotationProperty=='off'" ng-change="onComponentTypeChange()" ng-model="currentOntologyComponentsType" style="width:25%;font-size:20px"> 
-				<option value='off'>Off</option>
-				<option ng-repeat="item in OntologyComponentsTypes " value={{item}}>{{item}} </option>
+			<Select ng-disabled='currentAnnotationProperty=="off"' ng-change='onComponentTypeChange()' ng-model='currentOntologyComponentsType' style='width:25%;font-size:20px'> 
+				<option value="off">Off</option>
+				<option ng-repeat='item in OntologyComponentsTypes ' value={{item}}>{{item}} </option>
 			</Select>
 
-			<Select ng-disabled="currentOntologyComponentsType=='off'" ng-model="currentOntologyComponent" style="width:25%;font-size:20px"> 
-				<option value='off'>Off</option>
-				<option ng-repeat="item in currentOntologyComponents" value={{item.uri}}>{{item.localName}} </option>
+			<Select ng-disabled='currentOntologyComponentsType=="off"' ng-model='currentOntologyComponent' style='width:25%;font-size:20px'> 
+				<option value="off">Off</option>
+				<option ng-repeat='item in currentOntologyComponents' value={{item.uri}}>{{item.localName}} </option>
 			</Select>
 			
-			<Select ng-disabled="currentOntologyComponent=='off'" ng-model="currentRelationType" style="width:10%;font-size:20px"> 
-				<option value='off'>Off</option>
-				<option ng-repeat="type in relationTypes" value={{type}}>{{type}} </option>
+			<Select ng-disabled='currentOntologyComponent=="off"' ng-model='currentRelationType' style='width:10%;font-size:20px'> 
+				<option value="off">Off</option>
+				<option ng-repeat='type in relationTypes' value={{type}}>{{type}} </option>
 			</Select>
 			
-			<button ng-disabled="currentRelationType=='off'" style="width:20%" ng-click="addAnnotation()" class="btn btn-success" >Add</button>
+			<button ng-disabled='currentRelationType=="off"' style='width:20%' ng-click='addAnnotation()' class='btn btn-success' >Add</button>
 		</div>
 	</div>
 	

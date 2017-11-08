@@ -20,9 +20,9 @@ import java.util.Set;
 
 public class OntologyUtils {
 
-    private OntoplayConfig config;
-    private OntologyReader ontoReader;
-    private OntologyReaderFactory ontoReaderFactory;
+    private final OntoplayConfig config;
+    private final OntologyReader ontoReader;
+    private final OntologyReaderFactory ontoReaderFactory;
 
     @Inject
     public OntologyUtils(OntoplayConfig config,

@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 public class Operations extends OntologyController {
 
-    private MainTemplate mainTemplate;
+    private final MainTemplate mainTemplate;
 
     @Inject
     public Operations(OntologyUtils ontologyUtils, MainTemplate mainTemplate) {

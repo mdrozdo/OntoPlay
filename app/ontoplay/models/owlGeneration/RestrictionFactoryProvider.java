@@ -14,7 +14,7 @@ import javax.inject.Inject;
  */
 public class RestrictionFactoryProvider {
 
-    private Injector injector;
+    private final Injector injector;
 
     @Inject
     public RestrictionFactoryProvider(Injector injector) {

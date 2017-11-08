@@ -32,14 +32,4 @@ public class DatatypePropertyCondition extends PropertyValueCondition<OwlDatatyp
     public void setOperator(String operator) {
         this.operator = operator;
     }
-
-    @Override
-    public String getPropertyUri() {
-        return super.getPropertyUri();
-    }
-
-    @Override
-    public void setPropertyUri(String propertyUri) {
-        super.setPropertyUri(propertyUri);
-    }
 }

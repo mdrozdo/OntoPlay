@@ -4,9 +4,9 @@ import ontoplay.models.ontologyModel.OntoProperty;
 
 public class OwlObjectProperty implements OntoProperty {
 
-    private String namespace;
-    private String localName;
-    private String label;
+    private final String namespace;
+    private final String localName;
+    private final String label;
 
     public OwlObjectProperty(String namespace, String localName, String label) {
         this.namespace = namespace;

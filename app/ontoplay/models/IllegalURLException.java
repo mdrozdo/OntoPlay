@@ -1,7 +1,7 @@
 package ontoplay.models;
 
 public class IllegalURLException extends IllegalArgumentException {
-    private String illegalUrl;
+    private final String illegalUrl;
 
     public IllegalURLException(String url) {
         super();

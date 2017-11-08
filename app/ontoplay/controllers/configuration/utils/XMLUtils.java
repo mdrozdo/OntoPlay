@@ -28,7 +28,7 @@ import java.util.Map;
  */
 public class XMLUtils {
     private Document xmlDocument;
-    private File xmlFile;
+    private final File xmlFile;
 
     public XMLUtils(String filePath) throws ParserConfigurationException, SAXException, IOException {
         this.xmlFile = new File(filePath);

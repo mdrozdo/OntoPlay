@@ -33,7 +33,7 @@ import java.io.File;
  */
 public class Module extends AbstractModule {
 
-    private OntoplayConfig configuration;
+    private final OntoplayConfig configuration;
 
     public Module(Environment environment, Configuration configuration) {
         File ontoPlayConfigFile = environment.getFile(configuration.getString("ontoplay.config"));

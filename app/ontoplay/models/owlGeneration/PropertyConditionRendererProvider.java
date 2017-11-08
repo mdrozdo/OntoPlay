@@ -14,7 +14,7 @@ import javax.inject.Inject;
  */
 public class PropertyConditionRendererProvider {
 
-    private Injector injector;
+    private final Injector injector;
 
     @Inject
     public PropertyConditionRendererProvider(Injector injector) {

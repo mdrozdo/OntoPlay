@@ -20,12 +20,12 @@ import java.util.stream.Collectors;
 
 @Singleton
 public class OntologyGenerator {
-    private OWLDataFactory factory;
-    private OWLOntologyManager manager;
+    private final OWLDataFactory factory;
+    private final OWLOntologyManager manager;
 
-    private ClassRestrictionGenerator classRestrictionGenerator;
-    private IndividualGenerator individualGenerator;
-    private OntoplayConfig config;
+    private final ClassRestrictionGenerator classRestrictionGenerator;
+    private final IndividualGenerator individualGenerator;
+    private final OntoplayConfig config;
 
     @Inject
     public OntologyGenerator(ClassRestrictionGeneratorFactory classGenFactory, IndividualGeneratorFactory individualGenFactory, OntoplayConfig config) {

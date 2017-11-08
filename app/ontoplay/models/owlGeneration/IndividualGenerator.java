@@ -14,7 +14,7 @@ import java.util.List;
 public class IndividualGenerator {
 
     private final OWLDataFactory factory;
-    private RestrictionFactoryProvider restrictionFactoryProvider;
+    private final RestrictionFactoryProvider restrictionFactoryProvider;
 
     @Inject
     public IndividualGenerator(RestrictionFactoryProvider restrictionFactoryProvider, @Assisted OWLDataFactory factory) {

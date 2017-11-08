@@ -26,9 +26,9 @@ import java.util.Set;
 public class Individuals extends OntologyController {
 
     private final OntologyReader ontologyReader;
-    private OntologyGenerator ontologyGenerator;
-    private OntologyUtils utils;
-    private FormFactory formFactory;
+    private final OntologyGenerator ontologyGenerator;
+    private final OntologyUtils utils;
+    private final FormFactory formFactory;
 
     @Inject
     public Individuals(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntologyGenerator generator, OntologyUtils utils, FormFactory formFactory) {

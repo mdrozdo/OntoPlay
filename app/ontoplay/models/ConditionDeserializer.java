@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
 public class ConditionDeserializer implements
         JsonDeserializer<PropertyValueCondition> {
 
-    private PropertyProvider propertyProvider;
+    private final PropertyProvider propertyProvider;
 
     public ConditionDeserializer(PropertyProvider propertyProvider) {
         this.propertyProvider = propertyProvider;

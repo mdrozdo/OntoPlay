@@ -16,7 +16,7 @@ import java.util.Map;
 public class Constraints extends OntologyController {
 
     private static int maxConditionId = 1;
-    private PropertyConditionRendererProvider conditionRendererProvider;
+    private final PropertyConditionRendererProvider conditionRendererProvider;
 
     @Inject
     public Constraints(OntologyUtils ontologyUtils, PropertyConditionRendererProvider conditionRendererProvider) {

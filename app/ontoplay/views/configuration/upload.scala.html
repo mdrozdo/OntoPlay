@@ -1,7 +1,7 @@
 @(ontologyName:String, ontologyIri: String, layoutTemplate: String => Html => Html => Html)
 
 @layoutTemplate("Ontology configuration"){
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/fileHelper.js")" type="text/javascript" charset="utf-8"></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/fileHelper.js")' type="text/javascript" charset="utf-8"></script>
 		<script>
 	$( "#uploadForm" ).submit(function( event ) {
 		if(!isValidExtension(getFileExtensionByFieldName('fileField'),'owl')){

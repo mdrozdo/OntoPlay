@@ -4,7 +4,7 @@ public class PropertyOperator {
 
     private final String name;
     private final String description;
-    private boolean canDescribeIndividual;
+    private final boolean canDescribeIndividual;
 
     public PropertyOperator(String name, String description, boolean canDescribeIndividual) {
         this.name = name;

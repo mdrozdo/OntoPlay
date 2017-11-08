@@ -1,89 +1,89 @@
 @(title: String, className: String, isIndividual: Boolean, elementName: String = "", classRelation: String = "", layoutTemplate: String => Html => Html => Html)(formHeader: Html)
 @layoutTemplate(title){
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/app.js")" type="text/javascript"
-	charset="utf-8"></script>
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/main.js")" type="text/javascript"
-	charset="utf-8"></script>
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/child.js")" type="text/javascript"
-	charset="utf-8"></script>
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/AnnotationsController.js")" type="text/javascript"
-	charset="utf-8"></script>
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/services.js")" type="text/javascript"
-	charset="utf-8"></script>
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/adapter.js")" type="text/javascript"
-	charset="utf-8"></script>
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/angular/dialog.js")" type="text/javascript"
-	charset="utf-8"></script>
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/json2.js")" type="text/javascript" charset="utf-8"></script>
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/queryBuilder.js")" type="text/javascript" charset="utf-8"></script>
-	<script src="@ontoplay.controllers.routes.Assets.at("javascripts/ontoScripts.js")" type="text/javascript" charset="utf-8"></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/angular/app.js")' type='text/javascript'
+	charset='utf-8'></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/angular/main.js")' type='text/javascript'
+	charset='utf-8'></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/angular/child.js")' type='text/javascript'
+	charset='utf-8'></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/angular/AnnotationsController.js")' type='text/javascript'
+	charset='utf-8'></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/angular/services.js")' type='text/javascript'
+	charset='utf-8'></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/angular/adapter.js")' type='text/javascript'
+	charset='utf-8'></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/angular/dialog.js")' type='text/javascript'
+	charset='utf-8'></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/json2.js")' type='text/javascript' charset='utf-8'></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/queryBuilder.js")' type='text/javascript' charset='utf-8'></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/ontoScripts.js")' type='text/javascript' charset='utf-8'></script>
 }{
-	<div ng-app="Ontoplay">
+	<div ng-app='Ontoplay'>
 
-	   <div ng-controller="Main"  class="row" ng-init="mainClass='@className'; isAddIndividual=@isIndividual; elementName='@elementName'; classRelation='@classRelation'">
-	      <div class="row">
-	         <div class="col-sm-18">
+	   <div ng-controller='Main'  class='row' ng-init='mainClass="@className"; isAddIndividual=@isIndividual; elementName="@elementName"; classRelation="@classRelation"'>
+	      <div class='row'>
+	         <div class='col-sm-18'>
 	            <h3>@title</h3>
 	         </div>
 	      </div>
-	      <div class="form-group">
+	      <div class='form-group'>
 	         @formHeader
 	      </div>
-	      <form class="form-inline">
-	      <div class="col-sm-18">
+	      <form class='form-inline'>
+	      <div class='col-sm-18'>
 	         <div ui-tree >
-	            <ol ui-tree-nodes ng-model="data">
-	               <li ng-repeat="node in data"
-	                  ng-include="'@ontoplay.controllers.routes.Assets.at("templates/nodes_renderer.html")'">
-	               </li>
+	            <ol ui-tree-nodes ng-model='data'>
+	               <li ng-repeat='node in data'
+					   ng-include='"@ontoplay.controllers.routes.Assets.at("templates/nodes_renderer.html")"'>
+					</li>
 	            </ol>
 	         </div>
 	      </div>
-	      <div class='condition-operator'> <a ng-click=newItem('@className') href='#'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
-	      <div class='condition-operator'> <a ng-click=showAnnotationFormMainClass('@className')>Describe</a></div>
-	      <input ng-disabled="!elementName " class="btn btn-success" ng-click="add()" type="button" value="{{buttonTxt}}">
-	      <pre class="code">{{ data | json }}</pre>
+	      <div class="condition-operator"> <a ng-click=newItem("@className") href="#"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></a></div>
+	      <div class="condition-operator"> <a ng-click=showAnnotationFormMainClass("@className")>Describe</a></div>
+	      <input ng-disabled='!elementName ' class='btn btn-success' ng-click='add()' type='button' value='{{buttonTxt}}'>
+	      <pre class='code'>{{ data | json }}</pre>
 	      </form>
 	   </div>
-	   <div id="dialog" ng-controller="AnnotationsController" title="More description" style="display:none">
-	      <h4 ng-if="property">
+	   <div id='dialog' ng-controller='AnnotationsController' title='More description' style='display:none'>
+	      <h4 ng-if='property'>
 	         {{property}} description
 	      </h4>
-	      <table width="100%">
+	      <table width='100%'>
 	         <thead>
 	            <tr>
-	               <th width="40%">Name</th>
-	               <th width="40%">Value</th>
-	               <th width="10%">Action</th>
+	               <th width='40%'>Name</th>
+	               <th width='40%'>Value</th>
+	               <th width='10%'>Action</th>
 	            </tr>
 	         </thead>
-	         <tr ng-repeat="annotation in annotationsProperties">
+	         <tr ng-repeat='annotation in annotationsProperties'>
 	            <td>{{annotation.localName}}</td>
 	            <td>{{annotation.value}}</td>
-	            <td><a ng-click='deleteAnnotation($index)'>
-	               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+	            <td><a ng-click="deleteAnnotation($index)">
+	               <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
 	               </a>
 	            </td>
 	         </tr>
 	      </table>
 	      <br><br>  
-	      <div width="100%">
-	         <select ng-change="onChange()" ng-model="tempAnnotation" width="20%">
-	            <option value="off">Select an annotation</option>
-	            <option ng-repeat="item in annotationsOptions" ng-if="!item.isDefault" value={{item.uri}}>{{item.localName}}</option>
+	      <div width='100%'>
+	         <select ng-change='onChange()' ng-model='tempAnnotation' width='20%'>
+	            <option value='off'>Select an annotation</option>
+	            <option ng-repeat='item in annotationsOptions' ng-if='!item.isDefault' value={{item.uri}}>{{item.localName}}</option>
 	         </select>
-	         <input ng-disabled="tempAnnotation=='off'" type="{{tempType}}" ng-model="tempValue"/>
-	         <button ng-disabled="tempValue==''" style="width:20%" ng-click="addAnnotation()" class="btn btn-success" >Add</button> 
+	         <input ng-disabled='tempAnnotation=="off"' type='{{tempType}}' ng-model='tempValue'/>
+	         <button ng-disabled='tempValue==""' style='width:20%' ng-click='addAnnotation()' class='btn btn-success' >Add</button> 
 	      </div>
 	      <hr>
-	      <button  style="width:20%" ng-click="changeDefaultAnnotationButtonValue()" class="btn btn-success" >{{defaultAnnotationButtonValue}}</button>
-	      <div class='condition-panel' ng-if='defaultAnnotationButtonValue=="less"' width="100%">
-	         <select ng-model="$parent.tempDefaultAnnotation" width="20%">
-	            <option value="off">Select an annotation</option>
-	            <option ng-repeat="item in annotationsOptions" ng-if="item.isDefault" value={{item.uri}}>{{item.localName}}</option>
+	      <button  style='width:20%' ng-click='changeDefaultAnnotationButtonValue()' class='btn btn-success' >{{defaultAnnotationButtonValue}}</button>
+	      <div class="condition-panel" ng-if="defaultAnnotationButtonValue=='less'" width='100%'>
+	         <select ng-model='$parent.tempDefaultAnnotation' width='20%'>
+	            <option value='off'>Select an annotation</option>
+	            <option ng-repeat='item in annotationsOptions' ng-if='item.isDefault' value={{item.uri}}>{{item.localName}}</option>
 	         </select>
-	         <input ng-disabled="tempDefaultAnnotation=='off'" type="text" ng-model="$parent.tempDefaultValue"/>
-	         <button ng-disabled="tempDefaultValue==''" style="width:20%" ng-click="addDefaultAnnotation()" class="btn btn-success" >Add</button> 
+	         <input ng-disabled='tempDefaultAnnotation=="off"' type='text' ng-model='$parent.tempDefaultValue'/>
+	         <button ng-disabled='tempDefaultValue==""' style='width:20%' ng-click='addDefaultAnnotation()' class='btn btn-success' >Add</button> 
 	      </div>
 	   </div>
 	</div>	

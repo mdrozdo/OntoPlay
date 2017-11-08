@@ -8,10 +8,10 @@ import java.util.List;
 
 public class OntoClass implements OwlElement {
 
-    private String localName;
-    private String namespace;
+    private final String localName;
+    private final String namespace;
     private OntoClass superClass;
-    private List<OntoProperty> properties;
+    private final List<OntoProperty> properties;
     private String label;
 
     public OntoClass(String namespace, String name, List<OntoProperty> properties, OntClass ontClass) {

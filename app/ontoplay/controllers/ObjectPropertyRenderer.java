@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ObjectPropertyRenderer implements PropertyConditionRenderer<OwlObjectProperty> {
 
-    private OntologyReader ontoReader;
+    private final OntologyReader ontoReader;
 
     @Inject
     public ObjectPropertyRenderer(OntologyReader ontoReader) {

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OwlPropertyFactory {
-    private List<OwlPropertyFactory> factories = new ArrayList<OwlPropertyFactory>();
+    private final List<OwlPropertyFactory> factories = new ArrayList<OwlPropertyFactory>();
 
     public void registerPropertyFactory(
             OwlPropertyFactory datatypePropertyFactory) {

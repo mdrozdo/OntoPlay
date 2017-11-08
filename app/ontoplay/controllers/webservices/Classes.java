@@ -22,10 +22,10 @@ import java.util.List;
 
 public class Classes extends OntologyController {
 
-    private OntologyReader ontologyReader;
-    private OntologyGenerator ontologyGenerator;
-    private OntologyUtils utils;
-    private FormFactory formFactory;
+    private final OntologyReader ontologyReader;
+    private final OntologyGenerator ontologyGenerator;
+    private final OntologyUtils utils;
+    private final FormFactory formFactory;
 
     @Inject
     public Classes(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntologyGenerator ontologyGenerator, OntologyUtils utils, FormFactory formFactory) {

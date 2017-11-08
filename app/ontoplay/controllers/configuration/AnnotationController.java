@@ -33,10 +33,10 @@ import java.util.*;
  * @author Motasem Alwazir
  */
 public class AnnotationController extends OntologyController {
-    private OntoplayAnnotationUtils ontoplayAnnotationUtils;
-    private OntoplayConfig config;
-    private FormFactory formFactory;
-    private OntologyReader ontologyReader;
+    private final OntoplayAnnotationUtils ontoplayAnnotationUtils;
+    private final OntoplayConfig config;
+    private final FormFactory formFactory;
+    private final OntologyReader ontologyReader;
 
     @Inject
     public AnnotationController(OntologyUtils ontologyUtils, OntologyReader ontologyReader, OntoplayAnnotationUtils ontoplayAnnotationUtils, OntoplayConfig config, FormFactory formFactory) {

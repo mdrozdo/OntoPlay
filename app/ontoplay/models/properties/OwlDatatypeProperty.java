@@ -3,10 +3,10 @@ package ontoplay.models.properties;
 import ontoplay.models.ontologyModel.OntoProperty;
 
 public class OwlDatatypeProperty implements OntoProperty {
-    private String namespace;
-    private String localName;
-    private String datatype;
-    private String label;
+    private final String namespace;
+    private final String localName;
+    private final String datatype;
+    private final String label;
 
     public OwlDatatypeProperty(String namespace, String localName, String datatype, String label) {
         this.namespace = namespace;

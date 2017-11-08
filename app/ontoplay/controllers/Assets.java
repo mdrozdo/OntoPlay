@@ -8,7 +8,7 @@ import play.api.mvc.AnyContent;
 public class Assets {
 
     private final Boolean sampleModeAssetRouting;
-    private controllers.Assets assets;
+    private final controllers.Assets assets;
 
     @Inject
     public Assets(controllers.Assets assets, Configuration configuration) {

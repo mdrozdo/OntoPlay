@@ -34,8 +34,8 @@ public class OwlApiReader implements OntologyReader {
     private final OWLReasoner reasoner;
     private final OWLOntologyManager manager;
     private final OWLDataFactory factory;
-    private String uri;
-    private boolean ignorePropsWithNoDomain;
+    private final String uri;
+    private final boolean ignorePropsWithNoDomain;
 
     public OwlApiReader(String uri, List<FolderMapping> localMappings, boolean ignorePropsWithNoDomain) {
 

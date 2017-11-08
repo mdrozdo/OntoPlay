@@ -20,7 +20,7 @@ public class IndividualUpdateModel {
     private Individual individual;
     private OntClass ontClass;
     private UpdateIndividualDTO updateIndividual;
-    private OntologyReader ontoReader;
+    private final OntologyReader ontoReader;
     private Set<AnnotationProperty> annotationProperties;
 
     public IndividualUpdateModel(Individual individual, OntologyReader ontoReader, Set<AnnotationProperty> annotationProperties, List<AnnotationAxiom> annotationAxiomsList) {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class OwlPropertyFactory {
-    private static List<OwlPropertyFactory> factories = new ArrayList<OwlPropertyFactory>();
+    private static final List<OwlPropertyFactory> factories = new ArrayList<OwlPropertyFactory>();
 
     public static void registerPropertyFactory(
             OwlPropertyFactory datatypePropertyFactory) {

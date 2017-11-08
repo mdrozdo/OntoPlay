@@ -16,7 +16,7 @@ import java.util.Set;
 public class ClassRestrictionGenerator {
 
     private final OWLDataFactory factory;
-    private RestrictionFactoryProvider restrictionFactoryProvider;
+    private final RestrictionFactoryProvider restrictionFactoryProvider;
 
     @Inject
     public ClassRestrictionGenerator(RestrictionFactoryProvider restrictionFactoryProvider, @Assisted OWLDataFactory factory) {

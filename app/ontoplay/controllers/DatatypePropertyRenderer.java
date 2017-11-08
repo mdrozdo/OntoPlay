@@ -9,8 +9,8 @@ import java.util.*;
 
 public class DatatypePropertyRenderer implements PropertyConditionRenderer {
 
-    private Map<String, PropertyValueRenderer> valueRenderers = new HashMap<String, PropertyValueRenderer>();
-    private List<PropertyOperator> operators = new ArrayList<PropertyOperator>();
+    private final Map<String, PropertyValueRenderer> valueRenderers = new HashMap<String, PropertyValueRenderer>();
+    private final List<PropertyOperator> operators = new ArrayList<PropertyOperator>();
 
     @Override
     public void renderProperty(int conditionId, OntoClass owlClass, OntoProperty prop, boolean isDescriptionOfIndividual, Renderer renderer) {

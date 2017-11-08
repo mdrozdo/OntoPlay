@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 public class DatatypeRestrictionFactory implements RestrictionFactory<DatatypePropertyCondition> {
-    private Map<Class, Map<String, DatatypeRestrictionFactory>> factoryRegistry = new HashMap<Class, Map<String, DatatypeRestrictionFactory>>();
+    private final Map<Class, Map<String, DatatypeRestrictionFactory>> factoryRegistry = new HashMap<Class, Map<String, DatatypeRestrictionFactory>>();
 
     @Override
     public OWLClassExpression createRestriction(DatatypePropertyCondition condition) throws ConfigurationException {

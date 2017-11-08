@@ -103,7 +103,7 @@ public class ConditionDeserializerTest {
 
     private class FakeProperty implements OntoProperty {
 
-        private String uri;
+        private final String uri;
 
         public FakeProperty(String uri) {
             this.uri = uri;

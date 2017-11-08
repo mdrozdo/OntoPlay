@@ -10,7 +10,7 @@ import java.util.List;
  * Created by drozd on 15.06.2017.
  */
 public class JenaOntologyReaderFactory implements OntologyReaderFactory {
-    private OwlPropertyFactory owlPropertyFactory;
+    private final OwlPropertyFactory owlPropertyFactory;
 
     @Inject
     public JenaOntologyReaderFactory(OwlPropertyFactory owlPropertyFactory) {
