@@ -14,7 +14,7 @@ libraryDependencies ++= Seq(
   // javaWs,
   "com.google.code.gson" % "gson" % "2.2.2",
   "commons-io" % "commons-io" % "2.4",
-  "net.sourceforge.owlapi" % "owlapi-distribution" % "[5.1.0]",
+  "net.sourceforge.owlapi" % "owlapi-distribution" % "[5.1.3]",
   "com.github.galigator.openllet" % "openllet-owlapi" % "2.6.1" excludeAll(
     ExclusionRule(organization = "org.slf4j", name = "slf4j-api"),
     ExclusionRule(organization = "org.slf4j", name = "slf4j-simple")
