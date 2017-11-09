@@ -18,7 +18,9 @@ The project uses Play version 2.5.x.
 
 ### Prerequisites
 
-The project requires installation of the Play Framework (see instructions [here](https://playframework.com/documentation/2.5.x/Installing)) or the [SBT build tool](https://www.scala-sbt.org/download.html).
+The project requires installation of the Play Framework (see instructions [here](https://playframework.com/documentation/2.5.x/Installing)). 
+
+The following guide assumes creating a new Play application from a seed project and requires prior installation of [sbt 0.13.13 or higher](https://www.scala-sbt.org/download.html).
 
 ### Running standalone
 
