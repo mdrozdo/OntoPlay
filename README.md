@@ -43,18 +43,17 @@ sbt test
 
 ### Installing
 
-To create a new application using OntoPlay, you should follow the steps, adapted from the excellent post -- [How To Create A Module With Play Framework](https://luiscamilo.com/2015/07/26/how-to-create-a-module-with-play-framework/#module/sub-project). In step 2 we assume adding OntoPlay from GitHub using [git subtree](https://medium.com/@porteneuve/mastering-git-subtrees-943d29a798ec), however it's equally possible to simply download the code and copy it into the correct subfolder.
+To create a new application using OntoPlay, you should follow the steps, adapted from the excellent post -- [How To Create A Module With Play Framework](https://luiscamilo.com/2015/07/26/how-to-create-a-module-with-play-framework/#module/sub-project). 
 
 1. Create a new Play application, e.g. using the Play Java template:
 ```
 sbt new playframework/play-java-seed.g8 --branch 2.5.x
 ```
-2. Add the OntoPlay repository as a subtree to your git repo.
-```
-git init
-git remote add ontoplay https://github.com/mdrozdo/OntoPlay.git
-git subtree add --prefix=ontoplay --squash ontoplay master
-```
+Note that the script creates a new folder with the name given during its initialization. After the script completes, change directory to the newly created folder and proceed with the next step.
+
+2. Download the OntoPlay sources and put them in a subfolder called ontoplay.
+If you use Git, you might consider adding the OntoPlay repository as a Git submodule or Git subtree.
+
 3. At this point you should have an empty Play application and a /ontoplay subfolder, including the full OntoPlay repository contents.
 4. You need to add the ontoplay module to the build.sbt file in the main application's folder: 
 
