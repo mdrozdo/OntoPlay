@@ -14,6 +14,8 @@ The module has been described in several articles:
 
 OntoPlay is a [Play Framework](https://playframework.com/) submodule. It is meant to be included in a top level Play application, in the same way as it is used in the [OntoPlay-TAN](https://github.com/mdrozdo/OntoPlay-TAN) project. 
 
+The project uses Play version 2.5.x. 
+
 ### Prerequisites
 
 The project requires installation of the Play Framework (see instructions [here](https://playframework.com/documentation/2.5.x/Installing)) or the [SBT build tool](https://www.scala-sbt.org/download.html).
