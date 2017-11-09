@@ -16,7 +16,7 @@ OntoPlay is a [Play Framework](https://playframework.com/) submodule. It is mean
 
 ### Prerequisites
 
-The project requires installation of the Play Framework (see instructions [here](https://playframework.com/documentation/2.5.x/Installing)).
+The project requires installation of the Play Framework (see instructions [here](https://playframework.com/documentation/2.5.x/Installing)) or the [SBT build tool](https://www.scala-sbt.org/download.html).
 
 ### Running standalone
 
