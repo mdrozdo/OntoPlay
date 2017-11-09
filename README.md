@@ -43,9 +43,9 @@ sbt test
 
 To create a new application using OntoPlay, you should follow the steps, adapted from the excellent post -- [How To Create A Module With Play Framework](https://luiscamilo.com/2015/07/26/how-to-create-a-module-with-play-framework/#module/sub-project). In step 2 we assume adding OntoPlay from GitHub using [git subtree](https://medium.com/@porteneuve/mastering-git-subtrees-943d29a798ec), however it's equally possible to simply download the code and copy it into the correct subfolder.
 
-1. Create a new Play application, e.g. using the play java template:
+1. Create a new Play application, e.g. using the Play Java template:
 ```
-sbt new playframework/play-java-seed.g8
+sbt new playframework/play-java-seed.g8 --branch 2.5.x
 ```
 2. Add the OntoPlay repository as a subtree to your git repo.
 ```
@@ -65,7 +65,19 @@ lazy val root = (project in file("."))
   .aggregate(module)
   .dependsOn(module)
 ```
-5. Add initialization of the OntoPlay Guice module in the main app/Module.java file:
+5. Modify the OntoPlay Guice module in the main app/Module.java file: 
+* add an injected constructor
+```java
+private final Environment environment;
+private final Configuration configuration;
+
+public Module(Environment environment, Configuration configuration) {
+    this.environment = environment;
+    this.configuration = configuration;
+}
+```
+* initialize the ontoplay module in the configure method
+
 ```java
 install(new ontoplay.Module(new play.Environment(environment.underlying()), new play.Configuration(configuration.underlying())));
 bind(MainTemplate.class).to(OntoPlayMainTemplate.class);
