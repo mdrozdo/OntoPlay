@@ -3,13 +3,13 @@
 //For both classes and properties
     angular.module('Ontoplay').controller('AnnotationsController', ['$scope','Services','Dialog', function($scope,Services,Dialog) {
     	$scope.tempType='text';
-        
+        Dialog.create('dialog');
         $scope.$on('showDialog', function (event, annotationsProperties,component) {	
         	$scope.tempAnnotation='off';
         	$scope.tempValue='';
         	$scope.property='';
         	resetDefulatAnnotations();
-        	$scope.annotationsProperties=annotationsProperties;
+        	$scope.annotationsProperties=annotationsProperties;            
         	Dialog.open('dialog');
 			Services.getAnnotationProperties(encodeURIComponent(component)).then(function(data){
 				

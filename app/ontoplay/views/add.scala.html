@@ -45,7 +45,7 @@
 	      <pre class='code'>{{ data | json }}</pre>
 	      </form>
 	   </div>
-	   <div id='dialog' ng-controller='AnnotationsController' title='More description' style='display:none'>
+	   <div id='dialog' ng-controller='AnnotationsController' title='More description'>
 	      <h4 ng-if='property'>
 	         {{property}} description
 	      </h4>
@@ -73,17 +73,17 @@
 	            <option ng-repeat='item in annotationsOptions' ng-if='!item.isDefault' value={{item.uri}}>{{item.localName}}</option>
 	         </select>
 	         <input ng-disabled='tempAnnotation=="off"' type='{{tempType}}' ng-model='tempValue'/>
-	         <button ng-disabled='tempValue==""' style='width:20%' ng-click='addAnnotation()' class='btn btn-success' >Add</button> 
+	         <button ng-disabled='tempValue==""' ng-click='addAnnotation()' class='btn btn-success annotations-btn' >Add</button> 
 	      </div>
 	      <hr>
-	      <button  style='width:20%' ng-click='changeDefaultAnnotationButtonValue()' class='btn btn-success' >{{defaultAnnotationButtonValue}}</button>
+	      <button ng-click='changeDefaultAnnotationButtonValue()' class='btn btn-success annotations-btn' >{{defaultAnnotationButtonValue}}</button>
 	      <div class="condition-panel" ng-if="defaultAnnotationButtonValue=='less'" width='100%'>
 	         <select ng-model='$parent.tempDefaultAnnotation' width='20%'>
 	            <option value='off'>Select an annotation</option>
 	            <option ng-repeat='item in annotationsOptions' ng-if='item.isDefault' value={{item.uri}}>{{item.localName}}</option>
 	         </select>
 	         <input ng-disabled='tempDefaultAnnotation=="off"' type='text' ng-model='$parent.tempDefaultValue'/>
-	         <button ng-disabled='tempDefaultValue==""' style='width:20%' ng-click='addDefaultAnnotation()' class='btn btn-success' >Add</button> 
+	         <button ng-disabled='tempDefaultValue==""' ng-click='addDefaultAnnotation()' class='btn btn-success annotations-btn' >Add</button> 
 	      </div>
 	   </div>
 	</div>	
