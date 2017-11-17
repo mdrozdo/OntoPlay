@@ -1,28 +1,8 @@
 import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
-import com.google.inject.Singleton;
-import com.google.inject.TypeLiteral;
-import com.google.inject.assistedinject.FactoryModuleBuilder;
-import ontoplay.controllers.*;
-import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
-import ontoplay.models.ontologyReading.OntologyReader;
-import ontoplay.models.ontologyReading.OntologyReaderFactory;
-import ontoplay.models.ontologyReading.jena.JenaOntologyReaderFactory;
-import ontoplay.models.ontologyReading.jena.JenaOwlReader;
-import ontoplay.models.ontologyReading.jena.OwlPropertyFactory;
-import ontoplay.models.ontologyReading.jena.propertyFactories.*;
-import ontoplay.models.owlGeneration.*;
-import ontoplay.models.owlGeneration.restrictionFactories.*;
-import ontoplay.models.properties.*;
-import ontoplay.models.propertyConditions.ClassValueCondition;
-import ontoplay.models.propertyConditions.DatatypePropertyCondition;
-import ontoplay.models.propertyConditions.IndividualValueCondition;
-import org.semanticweb.owlapi.model.OWLDataFactory;
+import ontoplay.controllers.MainTemplate;
+import ontoplay.controllers.OntoPlayMainTemplate;
 import play.Configuration;
 import play.Environment;
-import play.Logger;
-
-import java.io.File;
 
 /**
  * Created by michal on 22.11.2016.
