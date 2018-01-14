@@ -29,7 +29,7 @@ public class Operations extends OntologyController {
             return ok(ontoplay.views.html.addIndividual.render("Add new individual for " + className, owlClass.getUri(), mainTemplate.getRenderFunction()));
 
         } catch (Exception e) {
-            return ok("Can't find the required class:/n+" + e.toString());
+            return ok("Can't find the required class:/n/n+" + e.toString());
         }
     }
 
