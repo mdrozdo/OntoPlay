@@ -39,8 +39,8 @@
 	            </ol>
 	         </div>
 	      </div>
-	      <div class="condition-operator"> <a ng-click=newItem("@className") href="#"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></a></div>
-	      <div class="condition-operator"> <a ng-click=showAnnotationFormMainClass("@className")>Describe</a></div>
+	      <div class="condition-operator"> <a ng-click=newItem(className) href="#"><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></a></div>
+	      <div class="condition-operator"> <a ng-click=showAnnotationFormMainClass(className)>Describe</a></div>
 	      <input ng-disabled='!elementName ' class='btn btn-success' ng-click='add()' type='button' value='{{buttonTxt}}'>
 	      <pre class='code'>{{ data | json }}</pre>
 	      </form>

@@ -127,6 +127,7 @@
 
                 }else{
                     $scope.buttonTxt="Add";
+                    $scope.className=newValue;
                     $scope.data.push(createIndividual(1,newValue));
                 }
             }

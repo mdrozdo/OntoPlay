@@ -1,7 +1,10 @@
 @import ontoplay.views.html.add;
 @(title: String, className: String, layoutTemplate: String => Html => Html => Html))
 @add(title, className, true, layoutTemplate = layoutTemplate){
-	   <label for="individualName">Individual name:</label>
-	   <input ng-disabled="buttonTxt=='Update'" id="elementName" ng-model="elementName" class="form-control" name="elementName" type="text" required="required">
+<label for="input_superClass">Create individual of class: </label>
+<select id="input_superClass" class="form-control"  ng-model="mainClass" ng-options="item.uri as item.localName for item in allClasses" required="required"></select>
+
+   <label for="individualName">Individual name:</label>
+   <input ng-disabled="buttonTxt=='Update'" id="elementName" ng-model="elementName" class="form-control" name="elementName" type="text" required="required"/>
 
 }
