@@ -4,20 +4,20 @@
 
 
 # Module routes
-GET /constraints/condition ontoplay.controllers.Constraints.condition(conditionId : Int, classUri: String)
-GET /constraints/individual ontoplay.controllers.Constraints.individual(conditionId : Int, classUri: String)
-GET /constraints/getValueCondition ontoplay.controllers.Constraints.getValueCondition(conditionId : Int, classUri: String, propertyUri : String, operator : String)
-GET /constraints/getPropertyCondition ontoplay.controllers.Constraints.getPropertyCondition(conditionId: Integer, classUri: String, propertyUri: String)
-GET /individuals/getPropertyCondition ontoplay.controllers.Individuals.getPropertyCondition(conditionId: Integer, classUri: String, propertyUri: String)
+GET /api/constraints/condition ontoplay.controllers.Constraints.condition(conditionId : Int, classUri: String)
+GET /api/constraints/individual ontoplay.controllers.Constraints.individual(conditionId : Int, classUri: String)
+GET /api/constraints/getValueCondition ontoplay.controllers.Constraints.getValueCondition(conditionId : Int, classUri: String, propertyUri : String, operator : String)
+GET /api/constraints/getPropertyCondition ontoplay.controllers.Constraints.getPropertyCondition(conditionId: Integer, classUri: String, propertyUri: String)
+GET /api/individuals/getPropertyCondition ontoplay.controllers.Individuals.getPropertyCondition(conditionId: Integer, classUri: String, propertyUri: String)
 
 
 
 # Javascript routing
 GET    /assets/javascripts/ontoplay/routes      ontoplay.controllers.Constraints.javascriptRoutes()
 
-# Ontology configuration 
-GET /uploadOntology  ontoplay.controllers.configuration.UploadController.showUploadPage()
-POST /uploadOntology ontoplay.controllers.configuration.UploadController.upload()
+# Ontology configuration
+GET /api/uploadOntology  ontoplay.controllers.configuration.UploadController.showUploadPage()
+POST /api/uploadOntology ontoplay.controllers.configuration.UploadController.upload()
 
 #Annotations configuration
 GET /annotation/configuration/show ontoplay.controllers.configuration.AnnotationController.showAnnotationCFPage()
@@ -30,27 +30,28 @@ POST /annotation/configuration/deleteAllRelations 							ontoplay.controllers.co
 
 
 #properties
-GET /properties/class/:className 		ontoplay.controllers.webservices.Properties.getPropertiesByClassName(className: String)
-GET /properties/operators/:propertyUrl/:isDescriptionOfIndividual ontoplay.controllers.webservices.Operators.getOpertors(propertyUrl: String,isDescriptionOfIndividual: Boolean)
+GET /api/properties/class/:className 		ontoplay.controllers.webservices.Properties.getPropertiesByClassName(className: String)
+GET /api/properties/operators/:propertyUrl/:isDescriptionOfIndividual ontoplay.controllers.webservices.Operators.getOpertors(propertyUrl: String,isDescriptionOfIndividual: Boolean)
 
 #annotations
-GET /annotationProperties/get/:componentUri ontoplay.controllers.webservices.Annotations.getAnnotationPropertyByUri(componentUri: String)
+GET /api/annotationProperties/get/:componentUri ontoplay.controllers.webservices.Annotations.getAnnotationPropertyByUri(componentUri: String)
 
 
 #classes
-GET /class/property/:propertyUri		ontoplay.controllers.webservices.Classes.getClassesByProperty(propertyUri: String)
-GET /class		                        ontoplay.controllers.webservices.Classes.getClasses()
-POST /class/save                        ontoplay.controllers.webservices.Classes.addClassExpression()
+GET /api/class/property/:propertyUri		ontoplay.controllers.webservices.Classes.getClassesByProperty(propertyUri: String)
+GET /api/class		                        ontoplay.controllers.webservices.Classes.getClasses()
+POST /api/class/save                        ontoplay.controllers.webservices.Classes.addClassExpression()
 GET /addClassExpression/:className		ontoplay.controllers.Operations.addClassExpression(className: String)
 GET /addClassMapping/:className		ontoplay.controllers.Operations.addClassMapping(className: String)
+GET /addClassMappingReact/:className		ontoplay.controllers.Operations.addClassMappingReact(className: String)
 
 #individuals
-GET /individuals/class/:className ontoplay.controllers.webservices.Individuals.getIndividualsByClassName(className: String)
-POST /individuals/save ontoplay.controllers.webservices.Individuals.addIndividual()
-GET /individuals/data/:individualName ontoplay.controllers.webservices.Individuals.getIndividualData(individualName: String)
+GET /api/individuals/class/:className ontoplay.controllers.webservices.Individuals.getIndividualsByClassName(className: String)
+POST /api/individuals/save ontoplay.controllers.webservices.Individuals.addIndividual()
+GET /api/individuals/data/:individualName ontoplay.controllers.webservices.Individuals.getIndividualData(individualName: String)
 GET /add/:className			ontoplay.controllers.Operations.add(className: String)
-GET /individuals/update/:className/:individualName ontoplay.controllers.Operations.update(className: String,individualName: String)
-GET /individuals/remove/:individualName ontoplay.controllers.webservices.Individuals.deleteIndividualByName(individualName: String)
+GET /api/individuals/update/:className/:individualName ontoplay.controllers.Operations.update(className: String,individualName: String)
+GET /api/individuals/remove/:individualName ontoplay.controllers.webservices.Individuals.deleteIndividualByName(individualName: String)
 
 
 # Map static resources from the /public folder to the /assets URL path

@@ -65,6 +65,22 @@ public class Operations extends OntologyController {
         }
     }
 
+    public Result addClassMappingReact(String className) {
+
+        try {
+            OntoClass owlClass = ontologyUtils.getOwlClass(className);
+
+            if (owlClass == null) {
+                return ok("Class Not Found");
+            }
+
+            return ok(ontoplay.views.html.addClassMappingReact.render("Add new class mapping for " + className, owlClass.getUri(), mainTemplate.getRenderFunction()));
+
+        } catch (Exception e) {
+            return ok("Can't find the required class:/n+" + e.toString());
+        }
+    }
+
     public Result update(String className, String individualName) {
 
         try {
