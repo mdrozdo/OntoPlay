@@ -16,6 +16,20 @@ public class OwlElementDTO {
     public OwlElementDTO() {
     }
 
+    @Override
+    public boolean equals(Object other){
+        if (other == null) return false;
+        if (other == this) return true;
+        if (!(other instanceof OwlElementDTO)) return false;
+        OwlElementDTO otherMyClass = (OwlElementDTO)other;
+        return this.uri.equalsIgnoreCase(otherMyClass.uri);
+    }
+
+    @Override
+    public int hashCode() {
+        return uri.hashCode();
+    }
+
     public String getUri() {
         return uri;
     }

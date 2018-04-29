@@ -19,6 +19,7 @@ import play.mvc.Result;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Classes extends OntologyController {
 
@@ -54,12 +55,12 @@ public class Classes extends OntologyController {
 
     public Result getClasses() {
         List<OntoClass> classes = ontologyReader.getClasses();
-        List<ClassDTO> classesDTO = new ArrayList<ClassDTO>();
-        for (OntoClass owlClass : classes) {
-            classesDTO.add(new ClassDTO(owlClass));
-        }
+        Stream<ClassDTO> classesDTO = classes.stream()
+                .map(c -> new ClassDTO(c))
+                .sorted((c1, c2) -> c1.getLocalName().compareTo(c2.getLocalName()))
+                .distinct();
 
-        return ok(new GsonBuilder().create().toJson(classesDTO));
+        return ok(new GsonBuilder().create().toJson(classesDTO.toArray()));
     }
 
     public Result addClassExpression() {

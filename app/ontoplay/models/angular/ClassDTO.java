@@ -7,4 +7,5 @@ public class ClassDTO extends OwlElementDTO {
     public ClassDTO(OntoClass owlClass) {
         super(owlClass.getUri(), owlClass.getLocalName());
     }
+
 }

@@ -1,15 +1,57 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 
-import OntoReact from '../../src'
+import OntoReact, { SelectClass }  from '../../src'
 
 class Demo extends Component {
   state = { loading: false }
 
   render() {
-    return <div>
+    return <div className='container'>
       <h1>onto-react Demo</h1>
-      <OntoReact/>
+      {(
+        React.createElement(
+          OntoReact,
+          {
+            mainClass: 'http://purl.org/NET/cgo#WorkerNode',
+            isIndividual: false,
+            elementName: 'http://purl.org/NET/cgo#WorkerNode',
+            classRelation: 'SUBCLASS',
+            //headerComponentName: 'SelectClass'
+            headerComponent: SelectClass,
+            title: 'Add new class mapping for http://purl.org/NET/cgo#WorkerNode',
+            condition: [
+              {
+                'propertyUri': 'http://gridagents.sourceforge.net/AiGGridOntology#hasGPU',
+                'operator': 'describedWith',
+                'classConstraintValue': {
+                  'classUri': 'http://gridagents.sourceforge.net/AiGGridOntology#GPU',
+                  'propertyConditions': [
+                    {
+                      'propertyUri': 'http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture',
+                      'operator': 'describedWith',
+                      'classConstraintValue': {
+                        'classUri': 'http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture',
+                        'propertyConditions': [
+                          {
+                            'propertyUri': 'http://purl.org/NET/cgo#hasName',
+                            'operator': 'equalTo',
+                            'datatypeValue': 'PowerPC',
+                            'annotations': []
+                          }
+                        ],
+                        'annotations': []
+                      },
+                      'annotations': []
+                    }
+                  ],
+                  'annotations': []
+                },
+                'annotations': []
+              }
+            ]
+          })
+      )}
     </div>
   }
 }
