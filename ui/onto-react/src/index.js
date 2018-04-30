@@ -336,7 +336,7 @@ class ConditionBox extends Component {
   }
 
   isClassRestrictionOperator(operator){
-    return operator === 'isConstrainedBy' || operator === 'isDescribedWith';
+    return operator === 'constrainedBy' || operator === 'isDescribedWith';
   }
 
   render() {
