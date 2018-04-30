@@ -7,7 +7,7 @@ import './main.css'
 class Api {
   getIndividuals(className) {
     return fetch('/api/individuals/class/' + encodeURIComponent(className))
-      .then(response => response.json());      
+      .then(response => response.json());
   }
 
   getProperties(className) {
@@ -16,8 +16,8 @@ class Api {
   }
 
   getOperators(propertyUri, isDescriptionOfIndividual) {
-    return fetch('/api/properties/operators/' + propertyUri + '/' + isDescriptionOfIndividual)
-      .then(response => response.json());    
+    return fetch('/api/properties/operators/' + encodeURIComponent(propertyUri) + '/' + isDescriptionOfIndividual)
+      .then(response => response.json());
   }
 
   getIndividualDataForUpdate(individualName) {
@@ -26,7 +26,7 @@ class Api {
   }
 
   getClasses(propertyName) {
-    return fetch('/api/class/property/' + propertyName)
+    return fetch('/api/class/property/' + encodeURIComponent(propertyName))
       .then(response => response.json());
   }
 
@@ -42,12 +42,12 @@ class Api {
     else
       url = "/class/save";
     var dataToSend = { 'conditionJson': data, 'name': elementName };
-    
+
     return fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(dataToSend),
-        headers: new Headers({'Content-Type': 'application/json'})
-      })
+      method: 'POST',
+      body: JSON.stringify(dataToSend),
+      headers: new Headers({ 'Content-Type': 'application/json' })
+    })
       .then(response => response.json());
   }
 
@@ -63,11 +63,11 @@ class SelectClass extends Component {
 
     this.state = {
       classes: [],
-      selectedClassUri: null
+      selectedClassUri: props.mainClassUri
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const api = new Api();
     return api.getAllClasses()
       .then(classes => {
@@ -77,7 +77,7 @@ class SelectClass extends Component {
       });
   }
 
-  handleChange(event){
+  handleChange(event) {
     const newClassUri = event.target.value;
     this.setState({
       selectedClassUri: newClassUri
@@ -90,10 +90,10 @@ class SelectClass extends Component {
     return (
       <div>
         <label htmlFor='input_superClass'>Map class {this.props.baseClassName} to: </label>
-        <select id='input_superClass' onChange={(e) => this.handleChange(e)} className='form-control' required='required'>
+        <select id='input_superClass' value={this.state.selectedClassUri} onChange={(e) => this.handleChange(e)} className='form-control' required='required'>
           <option key='null' value='null'>Select a class</option>
           {this.state.classes.map((c) => {
-            return <option key={c.uri} value={c.uri}>{c.localName != '' ? c.localName : c.uri }</option>
+            return <option key={c.uri} value={c.uri}>{c.localName != '' ? c.localName : c.uri}</option>
           })}
         </select>
       </div>
@@ -105,23 +105,45 @@ class PropertySelector extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      properties: [
-        {
-          uri: null,
-          name: 'Select a property'
-        }
-      ],
-      selectedPropertyUri: null
-    };
+    this.state = {};
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  loadData(){
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.classUri !== nextProps.classUri) {
+      //Class changed, properties need to be reset.
+      return {
+        properties: [
+          {
+            uri: 'null',
+            localName: 'Select a property'
+          }
+        ],
+        classUri: nextProps.classUri,
+        dataLoaded: false
+      };
+    } else {
+      return null;
+    }
+  }
+
+
+  handleChange(event) {
+    const newPropUri = event.target.value !== 'null' ? event.target.value : null;
+    
+      
+
+    this.props.selectionChanged(newPropUri);
+  }
+
+  loadData() {
     const api = new Api();
-    return api.getProperties(this.props.classUri)
+    return api.getProperties(this.state.classUri)
       .then(properties => {
         this.setState({
-          properties: properties
+          properties: this.state.properties.concat(properties),
+          dataLoaded: true
         })
       });
   }
@@ -130,13 +152,16 @@ class PropertySelector extends Component {
     this.loadData();
   }
 
-  componentDidUpdate(){
-    this.loadData();
+  componentDidUpdate() {
+    if (!this.state.dataLoaded) {
+      //Data was not loaded or was reset.    
+      this.loadData();
+    }
   }
 
   render() {
     return (
-      <select className='form-control' className='property-select form-control'>
+      <select className='property-select form-control' value={this.props.value} onChange={this.handleChange}>
         {this.state.properties.map((p) => {
           return <option key={p.uri} value={p.uri}>{p.localName}</option>;
         })}
@@ -145,23 +170,178 @@ class PropertySelector extends Component {
   }
 }
 
-class ConditionBox extends Component {
+class OperatorSelector extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      condition: props.condition,
-      selectedPropertyUri: null
-    }    
+    this.state = {};
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  propertySelected(p) {
-    this.setState({
-      selectedPropertyUri: p.uri
-    });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.propertyUri !== nextProps.propertyUri) {
+      //Property changed, properties need to be reset.
+      return {
+        operators: [
+          {
+            displayValue: 'Select an operator',
+            realValue: 'null'
+          }
+        ],
+        propertyUri: nextProps.propertyUri,
+        dataLoaded: false
+      };
+    } else {
+      return null;
+    }
+  }
+
+
+  handleChange(event) {
+    const newOperator = event.target.value !== 'null' ? event.target.value : null;
+
+    this.props.selectionChanged(newOperator);
+  }
+
+  loadData() {
+    const api = new Api();
+    return api.getOperators(this.state.propertyUri, this.props.isIndividual)
+      .then(response => {
+        this.setState({
+          operators: this.state.operators.concat(response.operators),
+          inputType: response.inputType,
+          dataLoaded: true
+        })
+      });
+  }
+
+  componentDidMount() {
+    this.loadData();
+  }
+
+  componentDidUpdate() {
+    if (!this.state.dataLoaded) {
+      //Data was not loaded or was reset.    
+      this.loadData();
+    }
   }
 
   render() {
+    return (
+      <select className='form-control' value={this.props.value} onChange={this.handleChange}>
+        {this.state.operators.map((o) => {
+          return <option key={o.realValue} value={o.realValue}>{o.displayValue}</option>;
+        })}
+      </select>
+    );
+  }
+}
+
+class ConditionClassSelector extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.propertyUri !== nextProps.propertyUri) {
+      //Property changed, properties need to be reset.
+      return {
+        classes: [
+          {
+            localName: 'Select a class',
+            uri: 'null'
+          }
+        ],
+        propertyUri: nextProps.propertyUri,
+        dataLoaded: false
+      };
+    } else {
+      return null;
+    }
+  }
+
+
+  handleChange(event) {
+    const newClass = event.target.value !== 'null' ? event.target.value : null;
+
+    this.props.selectionChanged(newClass);
+  }
+
+  loadData() {
+    const api = new Api();
+    return api.getClasses(this.state.propertyUri)
+      .then(response => {
+        this.setState({
+          classes: this.state.classes.concat(response),
+          dataLoaded: true
+        })
+      });
+  }
+
+  componentDidMount() {
+    this.loadData();
+  }
+
+  componentDidUpdate() {
+    if (!this.state.dataLoaded) {
+      //Data was not loaded or was reset.    
+      this.loadData();
+    }
+  }
+
+  render() {
+    return (
+      <select className='form-control' value={this.props.value} onChange={this.handleChange}>
+        {this.state.classes.map((c) => {
+          return <option key={c.uri} value={c.uri}>{c.localName}</option>;
+        })}
+      </select>
+    );
+  }
+}
+
+
+class ConditionBox extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  propertySelected(propUri) {
+    const newCondition = { ...this.props.condition, propertyUri: propUri };
+
+    this.props.conditionChanged(0, newCondition);
+  }
+
+  operatorSelected(operator) {
+    const newCondition = { ...this.props.condition, operator: operator };
+
+    this.props.conditionChanged(0, newCondition);
+  }
+
+  classSelected(classUri) {
+    //TODO: Rethink if this isn't too harsh - maybe it's possible to leave the constraints intact when changing class
+    const newCondition = {
+      ...this.props.condition, classConstraintValue: {
+        classUri: classUri,        
+        propertyConditions: []  
+      }
+    };
+
+    this.props.conditionChanged(0, newCondition);
+  }
+
+  isClassRestrictionOperator(operator){
+    return operator === 'isConstrainedBy' || operator === 'isDescribedWith';
+  }
+
+  render() {
+    const selectedClassUri = this.props.condition.classConstraintValue ? this.props.condition.classConstraintValue.classUri : null;
+    
     return (
       <div className='condition-panel'>
         <div className='remove-condition'>
@@ -169,8 +349,48 @@ class ConditionBox extends Component {
             <span className='glyphicon glyphicon-remove'></span>
           </a>
         </div>
-        <PropertySelector classUri={this.props.classUri} selectionChanged={(p) => this.propertySelected(p)}/>
-        {this.state.selectedPropertyUri && <div>DUPADUPA</div>}
+        <PropertySelector classUri={this.props.classUri} value={this.props.condition.propertyUri} selectionChanged={p => this.propertySelected(p)} />
+        {this.props.condition.propertyUri && 
+          <OperatorSelector isIndividual={this.props.isIndividual} value={this.props.condition.operator} propertyUri={this.props.condition.propertyUri} selectionChanged={o => this.operatorSelected(o)} />
+        }
+        {this.props.condition.operator && this.isClassRestrictionOperator(this.props.condition.operator) && 
+          <ConditionClassSelector value={selectedClassUri} propertyUri={this.props.condition.propertyUri} selectionChanged={c => this.classSelected(c)} />
+        }
+        {selectedClassUri && 
+          <ConstraintsBox conditions={this.props.condition.classConstraintValue.propertyConditions} isIndividual={this.props.isIndividual} classUri={this.props.condition.classConstraintValue.classUri} conditionsChanged={this.conditionsChanged} />
+        }
+      </div>
+    );
+  }
+}
+
+class ConstraintsBox extends Component {
+  constructor(props) {
+    super(props);
+
+    this.conditionChanged = this.conditionChanged.bind(this);
+  }
+
+  // TODO: This is completely untested for >1 conditions
+  conditionChanged(index, condition) {
+    const newConditions = this.props.conditions.map((e, i) => i == index ? condition : e);
+    this.setState({
+      condition: newConditions
+    });
+
+    this.props.conditionsChanged(newConditions);
+  }
+
+  render() {
+    return (
+      <div>
+        <ConditionBox classUri={this.props.classUri} condition={this.props.conditions[0]} conditionChanged={this.conditionChanged} isIndividual={this.props.isIndividual} />
+        <div className='condition-operator'>
+          <a href='#'><span className='glyphicon glyphicon-plus'></span></a>
+        </div>
+        <div className='condition-operator'>
+          <a >Describe</a>
+        </div>        
       </div>
     );
   }
@@ -181,10 +401,11 @@ class OntoReact extends Component {
     super(props);
 
     this.state = {
-      // results: [],
       condition: props.condition,
       mainClassUri: props.mainClass
     };
+
+    this.conditionsChanged = this.conditionsChanged.bind(this);
   }
 
   createHeader(headerName) {
@@ -197,30 +418,29 @@ class OntoReact extends Component {
     return allHeaders[headerName];
   }
 
-  componentDidMount() {
-    // fetch("/api/properties/class/PhysicalMemory")
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     this.setState({ results: data })
-    //   });
-  }
-
-  mainClassChanged(classUri){
+  mainClassChanged(classUri) {
     this.setState({
       mainClassUri: classUri
     })
   }
 
+
+  conditionsChanged(conditions) {
+    this.setState({
+      condition: conditions
+    });
+  }
+
   render() {
-    const results = this.state.results;
     const conditionJson = JSON.stringify(this.state.condition, null, 2);
     const headerComponent = React.createElement(
       this.props.headerComponent ?
         this.props.headerComponent :
         this.createHeader(this.props.headerComponentName),
-        {
-          mainClassChanged: (c) => this.mainClassChanged(c)
-        }
+      {
+        mainClassUri: this.props.mainClass,
+        mainClassChanged: (c) => this.mainClassChanged(c)
+      }
     );
     const title = this.props.title;
 
@@ -235,13 +455,7 @@ class OntoReact extends Component {
           {headerComponent}
         </div>
         <form className='form-inline'>
-          <ConditionBox classUri={this.state.mainClassUri}/>
-          <div className='condition-operator'>
-            <a href='#'><span className='glyphicon glyphicon-plus'></span></a>
-          </div>
-          <div className='condition-operator'>
-            <a >Describe</a>
-          </div>
+          <ConstraintsBox conditions={this.state.condition} isIndividual={this.props.isIndividual} classUri={this.state.mainClassUri} conditionsChanged={this.conditionsChanged} />
           <Button className='btn btn-success'>Save</Button>
           <pre className='code'>{conditionJson}</pre>
         </form>

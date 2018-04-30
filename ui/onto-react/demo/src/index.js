@@ -23,13 +23,13 @@ class Demo extends Component {
             condition: [
               {
                 'propertyUri': 'http://gridagents.sourceforge.net/AiGGridOntology#hasGPU',
-                'operator': 'describedWith',
+                'operator': 'constrainedBy',
                 'classConstraintValue': {
                   'classUri': 'http://gridagents.sourceforge.net/AiGGridOntology#GPU',
                   'propertyConditions': [
                     {
                       'propertyUri': 'http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture',
-                      'operator': 'describedWith',
+                      'operator': 'constrainedBy',
                       'classConstraintValue': {
                         'classUri': 'http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture',
                         'propertyConditions': [

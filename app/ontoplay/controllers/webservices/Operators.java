@@ -32,6 +32,8 @@ public class Operators extends OntologyController {
             return "number";
         else if (classAsString.indexOf("date") > -1)
             return "date";
+        else if (classAsString.indexOf("boolean") > -1)
+            return "checkbox";
         else
             return "text";
     }
