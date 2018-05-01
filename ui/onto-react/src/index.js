@@ -131,19 +131,19 @@ class PropertySelector extends Component {
 
   handleChange(event) {
     const newPropUri = event.target.value !== 'null' ? event.target.value : null;
-    
-      
+
+
 
     this.props.selectionChanged(newPropUri);
   }
 
   loadData() {
     const api = new Api();
+    this.setState({ dataLoaded: true });
     return api.getProperties(this.state.classUri)
       .then(properties => {
         this.setState({
-          properties: this.state.properties.concat(properties),
-          dataLoaded: true
+          properties: this.state.properties.concat(properties)
         })
       });
   }
@@ -206,13 +206,15 @@ class OperatorSelector extends Component {
 
   loadData() {
     const api = new Api();
+    this.setState({ dataLoaded: true });
     return api.getOperators(this.state.propertyUri, this.props.isIndividual)
       .then(response => {
         this.setState({
           operators: this.state.operators.concat(response.operators),
-          inputType: response.inputType,
-          dataLoaded: true
-        })
+          inputType: response.inputType
+        });
+
+        this.props.inputTypeRetrieved(response.inputType);
       });
   }
 
@@ -274,11 +276,11 @@ class ConditionClassSelector extends Component {
 
   loadData() {
     const api = new Api();
+    this.setState({ dataLoaded: true });
     return api.getClasses(this.state.propertyUri)
-      .then(response => {
+      .then(response => {        
         this.setState({
-          classes: this.state.classes.concat(response),
-          dataLoaded: true
+          classes: this.state.classes.concat(response)
         })
       });
   }
@@ -305,10 +307,23 @@ class ConditionClassSelector extends Component {
   }
 }
 
+class DatatypeInput extends Component {  
+  
+  render() {
+    return <input type={this.props.inputType} value={this.props.value} onChange={ev => this.props.valueChanged(ev.target.value)} />
+  }
+}
 
 class ConditionBox extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      inputType: null
+    };
+
+    this.valueChanged = this.valueChanged.bind(this);
+    this.nestedConditionsChanged = this.nestedConditionsChanged.bind(this);
   }
 
   propertySelected(propUri) {
@@ -327,21 +342,51 @@ class ConditionBox extends Component {
     //TODO: Rethink if this isn't too harsh - maybe it's possible to leave the constraints intact when changing class
     const newCondition = {
       ...this.props.condition, classConstraintValue: {
-        classUri: classUri,        
-        propertyConditions: []  
+        classUri: classUri,
+        propertyConditions: [
+          {}
+        ]
       }
     };
 
     this.props.conditionChanged(0, newCondition);
   }
 
-  isClassRestrictionOperator(operator){
+  isClassRestrictionOperator(operator) {
     return operator === 'constrainedBy' || operator === 'isDescribedWith';
+  }
+
+  valueChanged(value) {
+    const newCondition = { ...this.props.condition, datatypeValue: value };
+
+    this.props.conditionChanged(0, newCondition);
+  }
+
+  inputTypeRetrieved(inputType) {
+    this.setState({
+      inputType: inputType
+    });
+  }
+
+  nestedConditionsChanged(newConditions) {
+    const newCondition = {
+      ...this.props.condition, classConstraintValue: {
+        classUri: this.props.condition.classConstraintValue.classUri, //Doesn't change
+        propertyConditions: newConditions
+      }
+    };
+
+    this.props.conditionChanged(0, newCondition);
   }
 
   render() {
     const selectedClassUri = this.props.condition.classConstraintValue ? this.props.condition.classConstraintValue.classUri : null;
-    
+    const operator = this.props.condition.operator;
+
+    const propertyUri = this.props.condition.propertyUri;
+    const inputType = this.state.inputType;
+
+
     return (
       <div className='condition-panel'>
         <div className='remove-condition'>
@@ -349,15 +394,18 @@ class ConditionBox extends Component {
             <span className='glyphicon glyphicon-remove'></span>
           </a>
         </div>
-        <PropertySelector classUri={this.props.classUri} value={this.props.condition.propertyUri} selectionChanged={p => this.propertySelected(p)} />
-        {this.props.condition.propertyUri && 
-          <OperatorSelector isIndividual={this.props.isIndividual} value={this.props.condition.operator} propertyUri={this.props.condition.propertyUri} selectionChanged={o => this.operatorSelected(o)} />
+        <PropertySelector classUri={this.props.classUri} value={propertyUri} selectionChanged={p => this.propertySelected(p)} />
+        {propertyUri &&
+          <OperatorSelector isIndividual={this.props.isIndividual} value={operator} propertyUri={propertyUri} selectionChanged={o => this.operatorSelected(o)} inputTypeRetrieved={i => this.inputTypeRetrieved(i)} />
         }
-        {this.props.condition.operator && this.isClassRestrictionOperator(this.props.condition.operator) && 
-          <ConditionClassSelector value={selectedClassUri} propertyUri={this.props.condition.propertyUri} selectionChanged={c => this.classSelected(c)} />
+        {operator && this.isClassRestrictionOperator(operator) &&
+          <ConditionClassSelector value={selectedClassUri} propertyUri={propertyUri} selectionChanged={c => this.classSelected(c)} />
         }
-        {selectedClassUri && 
-          <ConstraintsBox conditions={this.props.condition.classConstraintValue.propertyConditions} isIndividual={this.props.isIndividual} classUri={this.props.condition.classConstraintValue.classUri} conditionsChanged={this.conditionsChanged} />
+        {operator && !this.isClassRestrictionOperator(operator) &&
+          <DatatypeInput inputType={inputType} value={this.props.condition.datatypeValue} valueChanged={v => this.valueChanged(v)} />
+        }
+        {selectedClassUri &&
+          <ConstraintsBox conditions={this.props.condition.classConstraintValue.propertyConditions} isIndividual={this.props.isIndividual} classUri={this.props.condition.classConstraintValue.classUri} conditionsChanged={this.nestedConditionsChanged} />
         }
       </div>
     );
@@ -390,7 +438,7 @@ class ConstraintsBox extends Component {
         </div>
         <div className='condition-operator'>
           <a >Describe</a>
-        </div>        
+        </div>
       </div>
     );
   }
