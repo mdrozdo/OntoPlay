@@ -161,7 +161,7 @@ class PropertySelector extends Component {
 
   render() {
     return (
-      <select className='property-select form-control' value={this.props.value} onChange={this.handleChange}>
+      <select className='form-control condition-input' value={this.props.value} onChange={this.handleChange}>
         {this.state.properties.map((p) => {
           return <option key={p.uri} value={p.uri}>{p.localName}</option>;
         })}
@@ -231,7 +231,7 @@ class OperatorSelector extends Component {
 
   render() {
     return (
-      <select className='form-control' value={this.props.value} onChange={this.handleChange}>
+      <select className='form-control condition-input' value={this.props.value} onChange={this.handleChange}>
         {this.state.operators.map((o) => {
           return <option key={o.realValue} value={o.realValue}>{o.displayValue}</option>;
         })}
@@ -298,7 +298,7 @@ class ConditionClassSelector extends Component {
 
   render() {
     return (
-      <select className='form-control' value={this.props.value} onChange={this.handleChange}>
+      <select className='form-control condition-input' value={this.props.value} onChange={this.handleChange}>
         {this.state.classes.map((c) => {
           return <option key={c.uri} value={c.uri}>{c.localName}</option>;
         })}
@@ -310,7 +310,7 @@ class ConditionClassSelector extends Component {
 class DatatypeInput extends Component {
 
   render() {
-    return <input type={this.props.inputType} value={this.props.value} onChange={ev => this.props.valueChanged(ev.target.value)} />
+    return <input className='form-control condition-input' type={this.props.inputType} value={this.props.value} onChange={ev => this.props.valueChanged(ev.target.value)} />
   }
 }
 
@@ -388,7 +388,7 @@ class ConditionBox extends Component {
 
 
     return (
-      <div className='condition-panel'>
+      <div className='condition-panel row'>
         <div className='remove-condition'>
           <a>
             <span className='glyphicon glyphicon-remove'></span>
