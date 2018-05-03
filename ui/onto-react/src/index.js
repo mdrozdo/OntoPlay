@@ -160,8 +160,10 @@ class PropertySelector extends Component {
   }
 
   render() {
+    const value = this.props.value ? this.props.value : 'null';
+
     return (
-      <select className='form-control condition-input' value={this.props.value} onChange={this.handleChange}>
+      <select className='form-control condition-input' value={value} onChange={this.handleChange}>
         {this.state.properties.map((p) => {
           return <option key={p.uri} value={p.uri}>{p.localName}</option>;
         })}
@@ -230,8 +232,10 @@ class OperatorSelector extends Component {
   }
 
   render() {
+    const value = this.props.value ? this.props.value : 'null';
+
     return (
-      <select className='form-control condition-input' value={this.props.value} onChange={this.handleChange}>
+      <select className='form-control condition-input' value={value} onChange={this.handleChange}>
         {this.state.operators.map((o) => {
           return <option key={o.realValue} value={o.realValue}>{o.displayValue}</option>;
         })}
@@ -297,9 +301,78 @@ class ConditionClassSelector extends Component {
   }
 
   render() {
+    const value = this.props.value ? this.props.value : 'null';
     return (
-      <select className='form-control condition-input' value={this.props.value} onChange={this.handleChange}>
+      <select className='form-control condition-input' value={value} onChange={this.handleChange}>
         {this.state.classes.map((c) => {
+          return <option key={c.uri} value={c.uri}>{c.localName}</option>;
+        })}
+      </select>
+    );
+  }
+}
+
+class IndividualSelector extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.classUri !== nextProps.classUri) {
+      //Property changed, properties need to be reset.
+      return {
+        individuals: [
+          {
+            localName: 'Select an individual',
+            uri: 'null'
+          }
+        ],
+        classUri: nextProps.classUri,
+        dataLoaded: false
+      };
+    } else {
+      return null;
+    }
+  }
+
+
+  handleChange(event) {
+    const newIndividual = event.target.value !== 'null' ? event.target.value : null;
+
+    this.props.selectionChanged(newIndividual);
+  }
+
+  loadData() {
+    const api = new Api();
+    this.setState({ dataLoaded: true });
+    return api.getIndividuals(this.state.classUri)
+      .then(response => {
+        this.setState({
+          individuals: this.state.individuals.concat(response)
+        })
+      });
+  }
+
+  componentDidMount() {
+    this.loadData();
+  }
+
+  componentDidUpdate() {
+    if (!this.state.dataLoaded) {
+      //Data was not loaded or was reset.    
+      this.loadData();
+    }
+  }
+
+  render() {
+    const value = this.props.value ? this.props.value : 'null';
+    return (
+      <select className='form-control condition-input' value={value} onChange={this.handleChange}>
+        {this.state.individuals.map((c) => {
           return <option key={c.uri} value={c.uri}>{c.localName}</option>;
         })}
       </select>
@@ -338,7 +411,7 @@ class ConditionBox extends Component {
     this.props.conditionChanged(0, newCondition);
   }
 
-  classSelected(classUri) {
+  nestedConditionCreated(classUri) {
     //TODO: Rethink if this isn't too harsh - maybe it's possible to leave the constraints intact when changing class
     const newCondition = {
       ...this.props.condition, classConstraintValue: {
@@ -352,15 +425,34 @@ class ConditionBox extends Component {
     this.props.conditionChanged(0, newCondition);
   }
 
-  isClassRestrictionOperator(operator) {
-    return operator === 'constrainedBy' || operator === 'isDescribedWith';
+  classSelected(classUri) {
+    this.setState({
+      valueClassUri: classUri
+    })
   }
 
+  individualSelected(indUri) {
+    const newCondition = { ...this.props.condition, objectValue: indUri };
+
+    this.props.conditionChanged(0, newCondition);
+  }
+  
   valueChanged(value) {
     const newCondition = { ...this.props.condition, datatypeValue: value };
 
     this.props.conditionChanged(0, newCondition);
   }
+
+
+  isClassRestrictionOperator(operator) {
+    return operator === 'constrainedBy' || operator === 'isDescribedWith';
+  }
+
+  isIndividualOperator(operator){
+    return operator === 'equalToIndividual';
+  }
+
+
 
   inputTypeRetrieved(inputType) {
     this.setState({
@@ -385,6 +477,7 @@ class ConditionBox extends Component {
 
     const propertyUri = this.props.condition.propertyUri;
     const inputType = this.state.inputType;
+    const individualUri = this.props.condition.objectValue;
 
 
     return (
@@ -399,13 +492,19 @@ class ConditionBox extends Component {
           <OperatorSelector isIndividual={this.props.isIndividual} value={operator} propertyUri={propertyUri} selectionChanged={o => this.operatorSelected(o)} inputTypeRetrieved={i => this.inputTypeRetrieved(i)} />
         }
         {operator && this.isClassRestrictionOperator(operator) &&
-          <ConditionClassSelector value={selectedClassUri} propertyUri={propertyUri} selectionChanged={c => this.classSelected(c)} />
+          <ConditionClassSelector value={selectedClassUri} propertyUri={propertyUri} selectionChanged={c => this.nestedConditionCreated(c)} />
         }
-        {operator && !this.isClassRestrictionOperator(operator) &&
+        {operator && this.isIndividualOperator(operator) &&
+          <ConditionClassSelector value={this.state.valueClassUri} propertyUri={propertyUri} selectionChanged={c => this.classSelected(c)} />
+        }
+        {operator && !this.isClassRestrictionOperator(operator) && !this.isIndividualOperator(operator) &&
           <DatatypeInput inputType={inputType} value={this.props.condition.datatypeValue} valueChanged={v => this.valueChanged(v)} />
         }
-        {selectedClassUri &&
-          <ConstraintsBox conditions={this.props.condition.classConstraintValue.propertyConditions} isIndividual={this.props.isIndividual} classUri={this.props.condition.classConstraintValue.classUri} conditionsChanged={this.nestedConditionsChanged} />
+        {this.state.valueClassUri && this.isIndividualOperator(operator) &&
+          <IndividualSelector value={individualUri} classUri={this.state.valueClassUri} selectionChanged={i => this.individualSelected(i)} />
+        }
+        {selectedClassUri && this.isClassRestrictionOperator(operator) &&
+          <ConstraintsBox conditions={this.props.condition.classConstraintValue.propertyConditions} isIndividual={this.props.isIndividual} classUri={selectedClassUri} conditionsChanged={this.nestedConditionsChanged} />
         }
       </div>
     );

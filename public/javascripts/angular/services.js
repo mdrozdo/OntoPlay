@@ -3,9 +3,9 @@
   var Services=function($http){
     
     var getIndividuals=function(className){
-    	var classNameParts=className.split("#");
-    	className=classNameParts[classNameParts.length-1];
-		return $http.get('/api/individuals/class/' + className).then(function(response){
+    	// var classNameParts=className.split("#");
+    	// className=classNameParts[classNameParts.length-1];
+		return $http.get('/api/individuals/class/' + encodeURIComponent(className)).then(function(response){
                  var data=response.data;
 			
 			data.unshift({"uri":"off","localName":"Select an individual"});
