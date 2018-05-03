@@ -278,7 +278,7 @@ class ConditionClassSelector extends Component {
     const api = new Api();
     this.setState({ dataLoaded: true });
     return api.getClasses(this.state.propertyUri)
-      .then(response => {        
+      .then(response => {
         this.setState({
           classes: this.state.classes.concat(response)
         })
@@ -307,8 +307,8 @@ class ConditionClassSelector extends Component {
   }
 }
 
-class DatatypeInput extends Component {  
-  
+class DatatypeInput extends Component {
+
   render() {
     return <input type={this.props.inputType} value={this.props.value} onChange={ev => this.props.valueChanged(ev.target.value)} />
   }
@@ -449,7 +449,10 @@ class OntoReact extends Component {
     super(props);
 
     this.state = {
-      condition: props.condition,
+      condition: props.condition ? props.condition : {
+        classUri: props.mainClass,
+        propertyConditions: [{}]
+      },
       mainClassUri: props.mainClass
     };
 
@@ -467,15 +470,24 @@ class OntoReact extends Component {
   }
 
   mainClassChanged(classUri) {
+    const newCondition = {
+      classUri: classUri,
+      propertyConditions: [
+        {}
+      ]
+    }
+
     this.setState({
-      mainClassUri: classUri
+      mainClassUri: classUri,
+      condition: newCondition
     })
   }
 
 
   conditionsChanged(conditions) {
+    const newCondition = { ...this.state.condition, propertyConditions: conditions };
     this.setState({
-      condition: conditions
+      condition: newCondition
     });
   }
 
@@ -503,7 +515,7 @@ class OntoReact extends Component {
           {headerComponent}
         </div>
         <form className='form-inline'>
-          <ConstraintsBox conditions={this.state.condition} isIndividual={this.props.isIndividual} classUri={this.state.mainClassUri} conditionsChanged={this.conditionsChanged} />
+          <ConstraintsBox conditions={this.state.condition.propertyConditions} isIndividual={this.props.isIndividual} classUri={this.state.condition.classUri} conditionsChanged={this.conditionsChanged} />
           <Button className='btn btn-success'>Save</Button>
           <pre className='code'>{conditionJson}</pre>
         </form>
