@@ -49,13 +49,16 @@ class ConditionBox extends Component {
     }
 
     propertySelected(propUri) {
-        const newCondition = { ...this.props.condition, propertyUri: propUri };
+        const newCondition = { propertyUri: propUri };
 
         this.props.conditionChanged(0, newCondition);
     }
 
     operatorSelected(operator) {
-        const newCondition = { ...this.props.condition, operator: operator };
+        const newCondition = {
+            propertyUri: this.props.condition.propertyUri,
+            operator: operator 
+        };
 
         this.props.conditionChanged(0, newCondition);
     }
@@ -119,6 +122,10 @@ class ConditionBox extends Component {
         this.props.conditionChanged(0, newCondition);
     }
 
+    emptyIfNullOrUndefined(value) {
+        return value ? value : '';
+    }
+
     render() {
         const selectedClassUri = this.props.condition.classConstraintValue ? this.props.condition.classConstraintValue.classUri : null;
         const operator = this.props.condition.operator;
@@ -135,21 +142,21 @@ class ConditionBox extends Component {
                         <span className='glyphicon glyphicon-remove'></span>
                     </a>
                 </div>
-                <PropertySelector classUri={this.props.classUri} value={propertyUri} selectionChanged={p => this.propertySelected(p)} />
+                <PropertySelector classUri={this.props.classUri} value={this.emptyIfNullOrUndefined(propertyUri)} selectionChanged={p => this.propertySelected(p)} />
                 {propertyUri &&
-                    <OperatorSelector isIndividual={this.props.isIndividual} value={operator} propertyUri={propertyUri} selectionChanged={o => this.operatorSelected(o)} inputTypeRetrieved={i => this.inputTypeRetrieved(i)} />
+                    <OperatorSelector isIndividual={this.props.isIndividual} value={this.emptyIfNullOrUndefined(operator)} propertyUri={propertyUri} selectionChanged={o => this.operatorSelected(o)} inputTypeRetrieved={i => this.inputTypeRetrieved(i)} />
                 }
                 {operator && this.isClassRestrictionOperator(operator) &&
-                    <ConditionClassSelector value={selectedClassUri} propertyUri={propertyUri} selectionChanged={c => this.nestedConditionCreated(c)} />
+                    <ConditionClassSelector value={this.emptyIfNullOrUndefined(selectedClassUri)} propertyUri={propertyUri} selectionChanged={c => this.nestedConditionCreated(c)} />
                 }
                 {operator && this.isIndividualOperator(operator) &&
-                    <ConditionClassSelector value={this.state.valueClassUri} propertyUri={propertyUri} selectionChanged={c => this.classSelected(c)} />
+                    <ConditionClassSelector value={this.emptyIfNullOrUndefined(this.state.valueClassUri)} propertyUri={propertyUri} selectionChanged={c => this.classSelected(c)} />
                 }
                 {operator && !this.isClassRestrictionOperator(operator) && !this.isIndividualOperator(operator) &&
-                    <DatatypeInput inputType={inputType} value={this.props.condition.datatypeValue} valueChanged={v => this.valueChanged(v)} />
+                    <DatatypeInput inputType={inputType} value={this.emptyIfNullOrUndefined(this.props.condition.datatypeValue)} valueChanged={v => this.valueChanged(v)} />
                 }
                 {this.state.valueClassUri && this.isIndividualOperator(operator) &&
-                    <IndividualSelector value={individualUri} classUri={this.state.valueClassUri} selectionChanged={i => this.individualSelected(i)} />
+                    <IndividualSelector value={this.emptyIfNullOrUndefined(individualUri)} classUri={this.state.valueClassUri} selectionChanged={i => this.individualSelected(i)} />
                 }
                 {selectedClassUri && this.isClassRestrictionOperator(operator) &&
                     <ConstraintsBox conditions={this.props.condition.classConstraintValue.propertyConditions} isIndividual={this.props.isIndividual} classUri={selectedClassUri} conditionsChanged={this.nestedConditionsChanged} />
