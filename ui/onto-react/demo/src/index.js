@@ -20,39 +20,39 @@ class Demo extends Component {
             //headerComponentName: 'SelectClass'
             headerComponent: SelectClass,
             title: 'Add new class mapping for http://purl.org/NET/cgo#WorkerNode',
-            // condition: {
-            //   "classUri": "http://purl.org/NET/cgo#WorkerNode",
-            //   "propertyConditions":
-            //     [{
-            //       'propertyUri': 'http://gridagents.sourceforge.net/AiGGridOntology#hasGPU',
-            //       'operator': 'constrainedBy',
-            //       'classConstraintValue': {
-            //         'classUri': 'http://gridagents.sourceforge.net/AiGGridOntology#GPU',
-            //         'propertyConditions': [
-            //           {
-            //             'propertyUri': 'http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture',
-            //             'operator': 'constrainedBy',
-            //             'classConstraintValue': {
-            //               'classUri': 'http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture',
-            //               'propertyConditions': [
-            //                 {
-            //                   'propertyUri': 'http://purl.org/NET/cgo#hasName',
-            //                   'operator': 'equalTo',
-            //                   'datatypeValue': 'PowerPC',
-            //                   'annotations': []
-            //                 }
-            //               ],
-            //               'annotations': []
-            //             },
-            //             'annotations': []
-            //           }
-            //         ],
-            //         'annotations': []
-            //       },
-            //       'annotations': []
-            //     }
-            //     ]
-            // }
+            condition: {
+              "classUri": "http://purl.org/NET/cgo#WorkerNode",
+              "propertyConditions":
+                [{
+                  'propertyUri': 'http://gridagents.sourceforge.net/AiGGridOntology#hasGPU',
+                  'operator': 'constrainedBy',
+                  'classConstraintValue': {
+                    'classUri': 'http://gridagents.sourceforge.net/AiGGridOntology#GPU',
+                    'propertyConditions': [
+                      {
+                        'propertyUri': 'http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture',
+                        'operator': 'constrainedBy',
+                        'classConstraintValue': {
+                          'classUri': 'http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture',
+                          'propertyConditions': [
+                            {
+                              'propertyUri': 'http://purl.org/NET/cgo#hasName',
+                              'operator': 'equalTo',
+                              'datatypeValue': 'PowerPC',
+                              'annotations': []
+                            }
+                          ],
+                          'annotations': []
+                        },
+                        'annotations': []
+                      }
+                    ],
+                    'annotations': []
+                  },
+                  'annotations': []
+                }
+                ]
+            }
           })
       )}
     </div>
