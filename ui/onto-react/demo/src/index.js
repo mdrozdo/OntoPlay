@@ -50,6 +50,12 @@ class Demo extends Component {
                     'annotations': []
                   },
                   'annotations': []
+                },
+                {
+                  'propertyUri': 'http://purl.org/NET/cgo#hasName',
+                  'operator': 'equalTo',
+                  'datatypeValue': 'dupa',
+                  'annotations': []
                 }
                 ]
             }

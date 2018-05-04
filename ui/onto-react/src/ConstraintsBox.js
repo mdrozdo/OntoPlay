@@ -8,25 +8,35 @@ class ConstraintsBox extends Component {
     constructor(props) {
         super(props);
 
+        // this.setState({
+        //     nextConditionId: props.propertyConditions.length
+        // });
+
         this.conditionChanged = this.conditionChanged.bind(this);
+        this.handleAddCondition = this.handleAddCondition.bind(this);
     }
 
     // TODO: This is completely untested for >1 conditions
     conditionChanged(index, condition) {
-        const newConditions = this.props.conditions.map((e, i) => i == index ? condition : e);
-        this.setState({
-            condition: newConditions
-        });
+        const newConditions = this.props.propertyConditions.map((e, i) => i == index ? condition : e).filter(e => e !== null);
+        
+        this.props.conditionsChanged(newConditions);
+    }
 
+    handleAddCondition(e) {
+        e.preventDefault();
+        const newConditions = this.props.propertyConditions.concat([{}]);
         this.props.conditionsChanged(newConditions);
     }
 
     render() {
         return (
             <div>
-                <ConditionBox classUri={this.props.classUri} condition={this.props.conditions[0]} conditionChanged={this.conditionChanged} isIndividual={this.props.isIndividual} />
+                {this.props.propertyConditions.map((c, i) => {
+                    return <ConditionBox key={i} index={i} classUri={this.props.classUri} condition={this.props.propertyConditions[i]} conditionChanged={this.conditionChanged} isIndividual={this.props.isIndividual} />;
+                })}
                 <div className='condition-operator'>
-                    <a href='#'><span className='glyphicon glyphicon-plus'></span></a>
+                    <a href='#' onClick={this.handleAddCondition}><span className='glyphicon glyphicon-plus'></span></a>
                 </div>
                 <div className='condition-operator'>
                     <a >Describe</a>
@@ -46,21 +56,22 @@ class ConditionBox extends Component {
 
         this.valueChanged = this.valueChanged.bind(this);
         this.nestedConditionsChanged = this.nestedConditionsChanged.bind(this);
+        this.handleRemoveCondition = this.handleRemoveCondition.bind(this);
     }
 
     propertySelected(propUri) {
         const newCondition = { propertyUri: propUri };
 
-        this.props.conditionChanged(0, newCondition);
+        this.props.conditionChanged(this.props.index, newCondition);
     }
 
     operatorSelected(operator) {
         const newCondition = {
             propertyUri: this.props.condition.propertyUri,
-            operator: operator 
+            operator: operator
         };
 
-        this.props.conditionChanged(0, newCondition);
+        this.props.conditionChanged(this.props.index, newCondition);
     }
 
     nestedConditionCreated(classUri) {
@@ -73,7 +84,7 @@ class ConditionBox extends Component {
             }
         };
 
-        this.props.conditionChanged(0, newCondition);
+        this.props.conditionChanged(this.props.index, newCondition);
     }
 
     classSelected(classUri) {
@@ -85,13 +96,13 @@ class ConditionBox extends Component {
     individualSelected(indUri) {
         const newCondition = { ...this.props.condition, objectValue: indUri };
 
-        this.props.conditionChanged(0, newCondition);
+        this.props.conditionChanged(this.props.index, newCondition);
     }
 
     valueChanged(value) {
         const newCondition = { ...this.props.condition, datatypeValue: value };
 
-        this.props.conditionChanged(0, newCondition);
+        this.props.conditionChanged(this.props.index, newCondition);
     }
 
 
@@ -102,8 +113,6 @@ class ConditionBox extends Component {
     isIndividualOperator(operator) {
         return operator === 'equalToIndividual';
     }
-
-
 
     inputTypeRetrieved(inputType) {
         this.setState({
@@ -119,11 +128,16 @@ class ConditionBox extends Component {
             }
         };
 
-        this.props.conditionChanged(0, newCondition);
+        this.props.conditionChanged(this.props.index, newCondition);
     }
 
     emptyIfNullOrUndefined(value) {
         return value ? value : '';
+    }
+
+    handleRemoveCondition(e) {
+        e.preventDefault();
+        this.props.conditionChanged(this.props.index, null);
     }
 
     render() {
@@ -138,7 +152,7 @@ class ConditionBox extends Component {
         return (
             <div className='condition-panel row'>
                 <div className='remove-condition'>
-                    <a>
+                    <a href="#" onClick={this.handleRemoveCondition}>
                         <span className='glyphicon glyphicon-remove'></span>
                     </a>
                 </div>
@@ -159,7 +173,7 @@ class ConditionBox extends Component {
                     <IndividualSelector value={this.emptyIfNullOrUndefined(individualUri)} classUri={this.state.valueClassUri} selectionChanged={i => this.individualSelected(i)} />
                 }
                 {selectedClassUri && this.isClassRestrictionOperator(operator) &&
-                    <ConstraintsBox conditions={this.props.condition.classConstraintValue.propertyConditions} isIndividual={this.props.isIndividual} classUri={selectedClassUri} conditionsChanged={this.nestedConditionsChanged} />
+                    <ConstraintsBox propertyConditions={this.props.condition.classConstraintValue.propertyConditions} isIndividual={this.props.isIndividual} classUri={selectedClassUri} conditionsChanged={this.nestedConditionsChanged} />
                 }
             </div>
         );

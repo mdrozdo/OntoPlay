@@ -77,7 +77,7 @@ class OntoReact extends Component {
           {headerComponent}
         </div>
         <form className='form-inline'>
-          <ConstraintsBox conditions={this.state.condition.propertyConditions} isIndividual={this.props.isIndividual} classUri={this.state.condition.classUri} conditionsChanged={this.conditionsChanged} />
+          <ConstraintsBox propertyConditions={this.state.condition.propertyConditions} isIndividual={this.props.isIndividual} classUri={this.state.condition.classUri} conditionsChanged={this.conditionsChanged} />
           <Button className='btn btn-success'>Save</Button>
           <pre className='code'>{conditionJson}</pre>
         </form>
