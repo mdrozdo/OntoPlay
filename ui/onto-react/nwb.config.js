@@ -9,6 +9,13 @@ module.exports = {
       }
     }
   },
+  // webpack: {
+  //   extra: {
+  //     output: {
+  //       library: 'ontoReact' 
+  //     }
+  //   }
+  // },
   "devServer": {
     "proxy": {
       "/api": {

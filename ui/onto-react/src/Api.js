@@ -1,4 +1,8 @@
 class Api {
+    constructor(isDescriptionOfIndividual) {
+        this.isDescriptionOfIndividual = isDescriptionOfIndividual;
+    }
+
     getIndividuals(className) {
         return fetch('/api/individuals/class/' + encodeURIComponent(className))
             .then(response => response.json());
@@ -9,8 +13,8 @@ class Api {
             .then(response => response.json());
     }
 
-    getOperators(propertyUri, isDescriptionOfIndividual) {
-        return fetch('/api/properties/operators/' + encodeURIComponent(propertyUri) + '/' + isDescriptionOfIndividual)
+    getOperators(propertyUri) {
+        return fetch('/api/properties/operators/' + encodeURIComponent(propertyUri) + '/' + this.isDescriptionOfIndividual)
             .then(response => response.json());
     }
 
@@ -29,9 +33,9 @@ class Api {
             .then(response => response.json());
     }
 
-    add(data, elementName, isAddIndividual) {
+    add(data, elementName) {
         var url = '';
-        if (isAddIndividual)
+        if (isDescriptionOfIndividual)
             url = '/individuals/save';
         else
             url = "/class/save";

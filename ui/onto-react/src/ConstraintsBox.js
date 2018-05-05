@@ -33,7 +33,7 @@ class ConstraintsBox extends Component {
         return (
             <div>
                 {this.props.propertyConditions.map((c, i) => {
-                    return <ConditionBox key={i} index={i} classUri={this.props.classUri} condition={this.props.propertyConditions[i]} conditionChanged={this.conditionChanged} isIndividual={this.props.isIndividual} />;
+                    return <ConditionBox key={i} index={i} classUri={this.props.classUri} condition={this.props.propertyConditions[i]} conditionChanged={this.conditionChanged} api={this.props.api} />;
                 })}
                 <div className='condition-operator'>
                     <a href='#' onClick={this.handleAddCondition}><span className='glyphicon glyphicon-plus'></span></a>
@@ -156,24 +156,24 @@ class ConditionBox extends Component {
                         <span className='glyphicon glyphicon-remove'></span>
                     </a>
                 </div>
-                <PropertySelector classUri={this.props.classUri} value={this.emptyIfNullOrUndefined(propertyUri)} selectionChanged={p => this.propertySelected(p)} />
+                <PropertySelector api={this.props.api} classUri={this.props.classUri} value={this.emptyIfNullOrUndefined(propertyUri)} selectionChanged={p => this.propertySelected(p)} />
                 {propertyUri &&
-                    <OperatorSelector isIndividual={this.props.isIndividual} value={this.emptyIfNullOrUndefined(operator)} propertyUri={propertyUri} selectionChanged={o => this.operatorSelected(o)} inputTypeRetrieved={i => this.inputTypeRetrieved(i)} />
+                    <OperatorSelector api={this.props.api} value={this.emptyIfNullOrUndefined(operator)} propertyUri={propertyUri} selectionChanged={o => this.operatorSelected(o)} inputTypeRetrieved={i => this.inputTypeRetrieved(i)} />
                 }
                 {operator && this.isClassRestrictionOperator(operator) &&
-                    <ConditionClassSelector value={this.emptyIfNullOrUndefined(selectedClassUri)} propertyUri={propertyUri} selectionChanged={c => this.nestedConditionCreated(c)} />
+                    <ConditionClassSelector api={this.props.api} value={this.emptyIfNullOrUndefined(selectedClassUri)} propertyUri={propertyUri} selectionChanged={c => this.nestedConditionCreated(c)} />
                 }
                 {operator && this.isIndividualOperator(operator) &&
-                    <ConditionClassSelector value={this.emptyIfNullOrUndefined(this.state.valueClassUri)} propertyUri={propertyUri} selectionChanged={c => this.classSelected(c)} />
+                    <ConditionClassSelector api={this.props.api} value={this.emptyIfNullOrUndefined(this.state.valueClassUri)} propertyUri={propertyUri} selectionChanged={c => this.classSelected(c)} />
                 }
                 {operator && !this.isClassRestrictionOperator(operator) && !this.isIndividualOperator(operator) &&
                     <DatatypeInput inputType={inputType} value={this.emptyIfNullOrUndefined(this.props.condition.datatypeValue)} valueChanged={v => this.valueChanged(v)} />
                 }
                 {this.state.valueClassUri && this.isIndividualOperator(operator) &&
-                    <IndividualSelector value={this.emptyIfNullOrUndefined(individualUri)} classUri={this.state.valueClassUri} selectionChanged={i => this.individualSelected(i)} />
+                    <IndividualSelector api={this.props.api} value={this.emptyIfNullOrUndefined(individualUri)} classUri={this.state.valueClassUri} selectionChanged={i => this.individualSelected(i)} />
                 }
                 {selectedClassUri && this.isClassRestrictionOperator(operator) &&
-                    <ConstraintsBox propertyConditions={this.props.condition.classConstraintValue.propertyConditions} isIndividual={this.props.isIndividual} classUri={selectedClassUri} conditionsChanged={this.nestedConditionsChanged} />
+                    <ConstraintsBox propertyConditions={this.props.condition.classConstraintValue.propertyConditions} api={this.props.api} classUri={selectedClassUri} conditionsChanged={this.nestedConditionsChanged} />
                 }
             </div>
         );

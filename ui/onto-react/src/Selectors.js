@@ -7,7 +7,16 @@ class PropertySelector extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            properties: [
+                {
+                    uri: 'null',
+                    localName: 'Select a property'
+                }
+            ],
+            classUri: props.classUri,
+            dataLoaded: false
+        };
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -17,7 +26,7 @@ class PropertySelector extends Component {
             //Class changed, properties need to be reset.
             return {
                 properties: [
-                    {
+                {
                         uri: 'null',
                         localName: 'Select a property'
                     }
@@ -38,9 +47,8 @@ class PropertySelector extends Component {
     }
 
     loadData() {
-        const api = new Api();
         this.setState({ dataLoaded: true });
-        return api.getProperties(this.state.classUri)
+        return this.props.api.getProperties(this.state.classUri)
             .then(properties => {
                 this.setState({
                     properties: this.state.properties.concat(properties)
@@ -76,7 +84,16 @@ class OperatorSelector extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            operators: [
+                {
+                    displayValue: 'Select an operator',
+                    realValue: 'null'
+                }
+            ],
+            propertyUri: props.propertyUri,
+            dataLoaded: false
+        };
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -107,9 +124,8 @@ class OperatorSelector extends Component {
     }
 
     loadData() {
-        const api = new Api();
         this.setState({ dataLoaded: true });
-        return api.getOperators(this.state.propertyUri, this.props.isIndividual)
+        return this.props.api.getOperators(this.state.propertyUri)
             .then(response => {
                 this.setState({
                     operators: this.state.operators.concat(response.operators),
@@ -148,7 +164,16 @@ class ConditionClassSelector extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            classes: [
+                {
+                    localName: 'Select a class',
+                    uri: 'null'
+                }
+            ],
+            propertyUri: props.propertyUri,
+            dataLoaded: false
+        };
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -179,9 +204,8 @@ class ConditionClassSelector extends Component {
     }
 
     loadData() {
-        const api = new Api();
         this.setState({ dataLoaded: true });
-        return api.getClasses(this.state.propertyUri)
+        return this.props.api.getClasses(this.state.propertyUri)
             .then(response => {
                 this.setState({
                     classes: this.state.classes.concat(response)
@@ -216,7 +240,16 @@ class IndividualSelector extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            individuals: [
+                {
+                    localName: 'Select an individual',
+                    uri: 'null'
+                }
+            ],
+            classUri: props.classUri,
+            dataLoaded: false
+        };
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -247,9 +280,8 @@ class IndividualSelector extends Component {
     }
 
     loadData() {
-        const api = new Api();
         this.setState({ dataLoaded: true });
-        return api.getIndividuals(this.state.classUri)
+        return this.props.api.getIndividuals(this.state.classUri)
             .then(response => {
                 this.setState({
                     individuals: this.state.individuals.concat(response)

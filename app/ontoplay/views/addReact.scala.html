@@ -10,13 +10,13 @@
 
 	<script>
         ReactDOM.render(
-					React.createElement(OntoReact, 
+					React.createElement(OntoReact.OntoReact, 
 					{
 						mainClass: '@className',
-						isIndividual: @isIndividual,
 						elementName: '@elementName',
 						classRelation: '@classRelation',
-						headerComponentName: 'SelectClass',
+						headerComponent: OntoReact.SelectClass,
+						api: new OntoReact.Api(@isIndividual),
 						title: '@title'
 					}),
           document.getElementById('onto-react')

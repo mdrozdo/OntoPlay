@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
 import SelectClass from './SelectClass';
 import ConstraintsBox from './ConstraintsBox';
+import Api from './Api';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './main.css';
@@ -77,7 +78,7 @@ class OntoReact extends Component {
           {headerComponent}
         </div>
         <form className='form-inline'>
-          <ConstraintsBox propertyConditions={this.state.condition.propertyConditions} isIndividual={this.props.isIndividual} classUri={this.state.condition.classUri} conditionsChanged={this.conditionsChanged} />
+          <ConstraintsBox propertyConditions={this.state.condition.propertyConditions} api={this.props.api} classUri={this.state.condition.classUri} conditionsChanged={this.conditionsChanged} />
           <Button className='btn btn-success'>Save</Button>
           <pre className='code'>{conditionJson}</pre>
         </form>
@@ -86,5 +87,5 @@ class OntoReact extends Component {
   }
 }
 
-export default OntoReact;
-export { SelectClass };
+// export default ;
+export default { OntoReact, SelectClass, Api };
