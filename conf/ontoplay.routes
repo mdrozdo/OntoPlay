@@ -16,8 +16,8 @@ GET /api/individuals/getPropertyCondition ontoplay.controllers.Individuals.getPr
 GET    /assets/javascripts/ontoplay/routes      ontoplay.controllers.Constraints.javascriptRoutes()
 
 # Ontology configuration
-GET /api/uploadOntology  ontoplay.controllers.configuration.UploadController.showUploadPage()
-POST /api/uploadOntology ontoplay.controllers.configuration.UploadController.upload()
+GET /uploadOntology  ontoplay.controllers.configuration.UploadController.showUploadPage()
+POST /uploadOntology ontoplay.controllers.configuration.UploadController.upload()
 
 #Annotations configuration
 GET /annotation/configuration/show ontoplay.controllers.configuration.AnnotationController.showAnnotationCFPage()

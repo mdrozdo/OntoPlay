@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
-import SelectClass from './SelectClass';
 import ConstraintsBox from './ConstraintsBox';
-import Api from './Api';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './main.css';
@@ -16,20 +14,11 @@ class OntoReact extends Component {
         classUri: props.mainClass,
         propertyConditions: [{}]
       },
-      mainClassUri: props.mainClass
+      elementName: props.elementName
     };
 
     this.conditionsChanged = this.conditionsChanged.bind(this);
-  }
-
-  createHeader(headerName) {
-    // This really sucks. Doesn't seem like I can create a component from string.
-    // Master branch of nwb has a solution for this - exporting multiple components
-    // to UMD (UMD.entry in nwb.config.js), but it's not released yet
-    var allHeaders = {
-      'SelectClass': SelectClass,
-    }
-    return allHeaders[headerName];
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   mainClassChanged(classUri) {
@@ -41,8 +30,14 @@ class OntoReact extends Component {
     }
 
     this.setState({
-      mainClassUri: classUri,
       condition: newCondition
+    })
+  }
+
+
+  elementNameChanged(elementName) {
+    this.setState({
+      elementName: elementName
     })
   }
 
@@ -54,15 +49,25 @@ class OntoReact extends Component {
     });
   }
 
+  handleSubmit() {
+    return this.props.api.add(JSON.stringify(this.state.condition), this.state.elementName)
+    .then(response => {
+      alert(response);
+    })
+  }
+
   render() {
-    const conditionJson = JSON.stringify(this.state.condition, null, 2);
+    const stateJson = JSON.stringify(this.state, null, 2);
+    const name = this.state.elementName;
     const headerComponent = React.createElement(
       this.props.headerComponent ?
         this.props.headerComponent :
         this.createHeader(this.props.headerComponentName),
       {
-        mainClassUri: this.props.mainClass,
-        mainClassChanged: (c) => this.mainClassChanged(c)
+        mainClassUri: this.state.condition.classUri,
+        mainClassChanged: (c) => this.mainClassChanged(c),
+        elementName: this.state.elementName,
+        elementNameChanged: (n) => this.elementNameChanged(n)
       }
     );
     const title = this.props.title;
@@ -79,13 +84,16 @@ class OntoReact extends Component {
         </div>
         <form className='form-inline'>
           <ConstraintsBox propertyConditions={this.state.condition.propertyConditions} api={this.props.api} classUri={this.state.condition.classUri} conditionsChanged={this.conditionsChanged} />
-          <Button className='btn btn-success'>Save</Button>
-          <pre className='code'>{conditionJson}</pre>
+          <Button className='btn btn-success' onClick={this.handleSubmit}>Save</Button>
+          <pre className='code'>{stateJson}</pre>
         </form>
       </div>
-    );
+    );  
   }
 }
 
 // export default ;
-export default { OntoReact, SelectClass, Api };
+import {SelectClassHeader, InputNameHeader, MultiHeader} from './Headers';
+import Api from './Api';
+
+export default { OntoReact, SelectClassHeader, InputNameHeader, MultiHeader, Api };

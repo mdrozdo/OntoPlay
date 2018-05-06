@@ -18,8 +18,8 @@ class Demo extends Component {
             api: false,
             elementName: 'http://purl.org/NET/cgo#WorkerNode',
             classRelation: 'SUBCLASS',
-            //headerComponentName: 'SelectClass'
-            headerComponent: OntoReact.SelectClass,
+            // headerComponent: OntoReact.InputNameHeader('Individual name'),
+            headerComponent: OntoReact.MultiHeader(OntoReact.InputNameHeader('Individual name'), OntoReact.SelectClassHeader('Map class to:')),
             api: new OntoReact.Api(false),
             title: 'Add new class mapping for http://purl.org/NET/cgo#WorkerNode',
             condition: {

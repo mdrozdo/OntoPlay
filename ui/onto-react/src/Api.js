@@ -35,10 +35,10 @@ class Api {
 
     add(data, elementName) {
         var url = '';
-        if (isDescriptionOfIndividual)
-            url = '/individuals/save';
+        if (this.isDescriptionOfIndividual)
+            url = '/api/individuals/save';
         else
-            url = "/class/save";
+            url = "/api/class/save";
         var dataToSend = { 'conditionJson': data, 'name': elementName };
 
         return fetch(url, {
