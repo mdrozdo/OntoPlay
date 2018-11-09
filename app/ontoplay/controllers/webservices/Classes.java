@@ -68,9 +68,12 @@ public class Classes extends OntologyController {
         String conditionJson = dynamicForm.get("conditionJson");
         String classExpressionName = dynamicForm.get("name");
         try {
-            ClassCondition condition = ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
+            ClassCondition condition =  ConditionDeserializer.deserializeCondition(ontologyReader, conditionJson);
+
+            String classUri = utils.nameToUri(classExpressionName, ontologyReader.getOntologyNamespace());
+
             OWLOntology generatedOntology =
-                    ontologyGenerator.convertToOwlClassOntology(utils.joinNamespaceAndName(ontologyReader.getOntologyNamespace(), classExpressionName), condition);
+                    ontologyGenerator.convertToOwlClassOntology(classUri, condition);
             if (generatedOntology == null)
                 return ok("Ontology is null");
             ontologyUtils.checkOntology(generatedOntology);
