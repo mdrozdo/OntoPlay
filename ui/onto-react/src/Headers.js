@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom'
+import React, { Component } from 'react';
 
 import Api from './Api';
 
@@ -9,7 +8,7 @@ const MultiHeader = (Component1, Component2) => (props) => {
             <Component1 {...props} />
             <Component2 {...props} />
         </div>
-    )
+    );
 };
 
 const InputNameHeader = (label) => (props) => {
@@ -18,7 +17,7 @@ const InputNameHeader = (label) => (props) => {
             <label htmlFor='elementName'>{label}</label>
             <input id='elementName' className='form-control' name='elementName' type='text' required='required' value={props.elementName} onChange={ev => props.elementNameChanged(ev.target.value)} />
         </div>
-    )
+    );
 };
 
 const SelectClassHeader = (label) => class extends Component {
@@ -36,7 +35,7 @@ const SelectClassHeader = (label) => class extends Component {
             .then(classes => {
                 this.setState({
                     classes: classes
-                })
+                });
             });
     }
 
@@ -53,12 +52,12 @@ const SelectClassHeader = (label) => class extends Component {
                 <select id='input_superClass' value={this.props.mainClassUri} onChange={(e) => this.handleChange(e)} className='form-control' required='required'>
                     <option key='null' value='null'>Select a class</option>
                     {this.state.classes.map((c) => {
-                        return <option key={c.uri} value={c.uri}>{c.localName != '' ? c.localName : c.uri}</option>
+                        return <option key={c.uri} value={c.uri}>{c.localName != '' ? c.localName : c.uri}</option>;
                     })}
                 </select>
             </div>
         );
     }
-}
+};
 
 export { SelectClassHeader, InputNameHeader, MultiHeader };

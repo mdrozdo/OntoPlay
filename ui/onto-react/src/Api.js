@@ -38,7 +38,7 @@ class Api {
         if (this.isDescriptionOfIndividual)
             url = '/api/individuals/save';
         else
-            url = "/api/class/save";
+            url = '/api/class/save';
         var dataToSend = { 'conditionJson': data, 'name': elementName };
 
         return fetch(url, {
