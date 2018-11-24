@@ -60,6 +60,7 @@ class Demo extends Component {
                                 annotations: [],
                             },
                             {
+                                groupOperator: 'AND',
                                 propertyUri: 'http://purl.org/NET/cgo#hasName',
                                 operator: 'equalTo',
                                 datatypeValue: 'dupa',

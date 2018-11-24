@@ -34,6 +34,11 @@
 	margin-right: 10px;	
 }
 
+.group-operator{
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
 .remove-condition{
 	float: right;
 	margin-right: 10px;
