@@ -44,7 +44,7 @@ class OntoReact extends Component {
         });
     }
 
-    conditionsChanged(conditions) {
+    conditionsChanged(conditions) {      
         const newCondition = {
             ...this.state.condition,
             propertyConditions: conditions,

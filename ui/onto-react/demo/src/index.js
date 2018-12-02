@@ -5,6 +5,85 @@ import OntoReact from '../../src';
 class Demo extends Component {
     state = { loading: false };
 
+    fullCondition = {
+        classUri: 'http://purl.org/NET/cgo#WorkerNode',
+        propertyConditions: {
+            type: 'union',
+            contents: [
+                {
+                    type: 'condition',
+                    propertyUri:
+                        'http://gridagents.sourceforge.net/AiGGridOntology#hasGPU',
+                    operator: 'constrainedBy',
+                    classConstraintValue: {
+                        classUri:
+                            'http://gridagents.sourceforge.net/AiGGridOntology#GPU',
+                        propertyConditions: {
+                            type: 'condition',
+                            propertyUri:
+                                'http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture',
+                            operator: 'constrainedBy',
+                            classConstraintValue: {
+                                classUri:
+                                    'http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture',
+                                propertyConditions: {
+                                    type: 'condition',
+                                    propertyUri:
+                                        'http://purl.org/NET/cgo#hasName',
+                                    operator: 'equalTo',
+                                    datatypeValue: 'PowerPC',
+                                    annotations: [],
+                                },
+                                annotations: [],
+                            },
+                            annotations: [],
+                        },
+                        annotations: [],
+                    },
+                    annotations: [],
+                },
+                {
+                    type: 'intersection',
+                    contents: [
+                        {
+                            type: 'condition',
+                            propertyUri:
+                                'http://purl.org/NET/cgo#hasName',
+                            operator: 'equalTo',
+                            datatypeValue: 'dupa',
+                            annotations: [],
+                        },
+                        {
+                            type: 'condition',
+                            propertyUri:
+                                'http://purl.org/NET/cgo#waitingJobs',
+                            operator: 'equalTo',
+                            datatypeValue: '12',
+                            annotations: [],
+                        },
+                    ],
+                },
+            ],
+        },
+    };
+
+    emptyCondition = {
+        classUri: 'http://purl.org/NET/cgo#WorkerNode',
+        propertyConditions: {}
+    };
+
+    simpleCondition = {
+        classUri: 'http://purl.org/NET/cgo#WorkerNode',
+        propertyConditions: {
+            type: 'condition',
+            propertyUri:
+                'http://purl.org/NET/cgo#waitingJobs',
+            operator: 'equalTo',
+            datatypeValue: '12',
+            annotations: [],
+        }
+    };
+
     render() {
         return (
             <div className='container'>
@@ -22,52 +101,7 @@ class Demo extends Component {
                     api: new OntoReact.Api(false),
                     title:
                         'Add new class mapping for http://purl.org/NET/cgo#WorkerNode',
-                    condition: {
-                        classUri: 'http://purl.org/NET/cgo#WorkerNode',
-                        propertyConditions: [
-                            {
-                                propertyUri:
-                                    'http://gridagents.sourceforge.net/AiGGridOntology#hasGPU',
-                                operator: 'constrainedBy',
-                                classConstraintValue: {
-                                    classUri:
-                                        'http://gridagents.sourceforge.net/AiGGridOntology#GPU',
-                                    propertyConditions: [
-                                        {
-                                            propertyUri:
-                                                'http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture',
-                                            operator: 'constrainedBy',
-                                            classConstraintValue: {
-                                                classUri:
-                                                    'http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture',
-                                                propertyConditions: [
-                                                    {
-                                                        propertyUri:
-                                                            'http://purl.org/NET/cgo#hasName',
-                                                        operator: 'equalTo',
-                                                        datatypeValue:
-                                                            'PowerPC',
-                                                        annotations: [],
-                                                    },
-                                                ],
-                                                annotations: [],
-                                            },
-                                            annotations: [],
-                                        },
-                                    ],
-                                    annotations: [],
-                                },
-                                annotations: [],
-                            },
-                            {
-                                groupOperator: 'AND',
-                                propertyUri: 'http://purl.org/NET/cgo#hasName',
-                                operator: 'equalTo',
-                                datatypeValue: 'dupa',
-                                annotations: [],
-                            },
-                        ],
-                    },
+                    condition: this.simpleCondition,
                 })}
             </div>
         );
