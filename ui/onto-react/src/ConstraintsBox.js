@@ -74,11 +74,26 @@ class ConstraintsBox extends Component {
     }
 
     renderIntersectionBox() {
-        return null;
+        return (
+            <div>
+                <IntersectionBox
+                    classUri={this.props.classUri}
+                    intersection={this.props.propertyConditions}
+                    conditionChanged={this.conditionChanged}
+                    api={this.props.api}
+                />
+                <div className='condition-operator'>
+                    <a href='#' onClick={this.handleAddOrCondition}>
+                        <div>Or</div>
+                    </a>
+                </div>
+            </div>
+        );
     }
 
     render() {
         const constraint = this.props.propertyConditions;
+        console.log(constraint);
         const constraintType = constraint.type;
 
         const boxComponent =
@@ -134,6 +149,73 @@ class UnionBox extends Component {
                 <div className='condition-operator'>
                     <a href='#' onClick={this.handleAddCondition}>
                         <div>Or</div>
+                    </a>
+                </div>
+                {/* Commented out, because annotations are not ported to React.
+                <div className='condition-operator'>
+                    <a>Describe</a>
+                </div> */}
+            </div>
+        );
+    }
+}
+
+class IntersectionBox extends Component {
+    constructor(props) {
+        super(props);
+
+        this.conditionChanged = this.conditionChanged.bind(this);
+        this.handleAddCondition = this.handleAddCondition.bind(this);
+    }
+
+    conditionChanged(index, condition) {
+        const newContents = this.props.intersection.contents
+            .map((e, i) => (i == index ? condition : e))
+            .filter(e => e !== null);
+
+        const newIntersection = {
+            ...this.props.intersection,
+            contents: newContents,
+        };
+
+        this.props.conditionChanged(0, newIntersection);
+    }
+
+    handleAddCondition(e) {
+        e.preventDefault();
+        const newContents = this.props.intersection.contents.concat([{}]);
+
+        const newIntersection = {
+            ...this.props.intersection,
+            contents: newContents,
+        };
+
+        this.props.conditionChanged(0, newIntersection);
+    }
+
+    render() {
+        const contents = this.props.intersection.contents;
+
+        return (
+            <div className='condition-panel row'>
+                {contents.map((c, i) => {
+                    return (
+                        <div key={'cond'+i}>
+                            <ConditionBox
+                                key={i}
+                                index={i}
+                                classUri={this.props.classUri}
+                                condition={contents[i]}
+                                conditionChanged={this.conditionChanged}
+                                api={this.props.api}
+                            />   
+                            { (i < contents.length - 1 ) ? (<div  className='group-operator'>AND</div>) : null}
+                        </div>                     
+                    );
+                })}
+                <div className='condition-operator'>
+                    <a href='#' onClick={this.handleAddCondition}>
+                        <div>And</div>
                     </a>
                 </div>
                 {/* Commented out, because annotations are not ported to React.

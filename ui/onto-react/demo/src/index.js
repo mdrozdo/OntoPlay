@@ -47,16 +47,14 @@ class Demo extends Component {
                     contents: [
                         {
                             type: 'condition',
-                            propertyUri:
-                                'http://purl.org/NET/cgo#hasName',
+                            propertyUri: 'http://purl.org/NET/cgo#hasName',
                             operator: 'equalTo',
                             datatypeValue: 'dupa',
                             annotations: [],
                         },
                         {
                             type: 'condition',
-                            propertyUri:
-                                'http://purl.org/NET/cgo#waitingJobs',
+                            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
                             operator: 'equalTo',
                             datatypeValue: '12',
                             annotations: [],
@@ -69,19 +67,41 @@ class Demo extends Component {
 
     emptyCondition = {
         classUri: 'http://purl.org/NET/cgo#WorkerNode',
-        propertyConditions: {}
+        propertyConditions: {},
     };
 
     simpleCondition = {
         classUri: 'http://purl.org/NET/cgo#WorkerNode',
         propertyConditions: {
             type: 'condition',
-            propertyUri:
-                'http://purl.org/NET/cgo#waitingJobs',
+            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
             operator: 'equalTo',
             datatypeValue: '12',
             annotations: [],
-        }
+        },
+    };
+
+    intersectionCondition = {
+        classUri: 'http://purl.org/NET/cgo#WorkerNode',
+        propertyConditions: {
+            type: 'intersection',
+            contents: [
+                {
+                    type: 'condition',
+                    propertyUri: 'http://purl.org/NET/cgo#hasName',
+                    operator: 'equalTo',
+                    datatypeValue: 'dupa',
+                    annotations: [],
+                },
+                {
+                    type: 'condition',
+                    propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
+                    operator: 'equalTo',
+                    datatypeValue: '12',
+                    annotations: [],
+                },
+            ],
+        },
     };
 
     render() {
@@ -101,7 +121,7 @@ class Demo extends Component {
                     api: new OntoReact.Api(false),
                     title:
                         'Add new class mapping for http://purl.org/NET/cgo#WorkerNode',
-                    condition: this.simpleCondition,
+                    condition: this.intersectionCondition,
                 })}
             </div>
         );
