@@ -104,6 +104,29 @@ class Demo extends Component {
         },
     };
 
+    unionCondition = {
+        classUri: 'http://purl.org/NET/cgo#WorkerNode',
+        propertyConditions: {
+            type: 'union',
+            contents: [
+                {
+                    type: 'condition',
+                    propertyUri: 'http://purl.org/NET/cgo#hasName',
+                    operator: 'equalTo',
+                    datatypeValue: 'dupa',
+                    annotations: [],
+                },
+                {
+                    type: 'condition',
+                    propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
+                    operator: 'equalTo',
+                    datatypeValue: '12',
+                    annotations: [],
+                },
+            ],
+        },
+    };
+
     render() {
         return (
             <div className='container'>
@@ -121,7 +144,7 @@ class Demo extends Component {
                     api: new OntoReact.Api(false),
                     title:
                         'Add new class mapping for http://purl.org/NET/cgo#WorkerNode',
-                    condition: this.intersectionCondition,
+                    condition: this.unionCondition,
                 })}
             </div>
         );

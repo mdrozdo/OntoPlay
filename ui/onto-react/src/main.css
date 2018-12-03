@@ -17,7 +17,7 @@
 
 .condition-panel{	
 	border: 2px solid gray;
-	padding: 5px 5px 20px 5px;
+	padding: 5px 5px 5px 5px;
 	margin: 5px;
 }
 
@@ -32,6 +32,14 @@
 .condition-operator{
 	float: right;
 	margin-right: 10px;	
+}
+
+.condition-internal-operator{
+	float: right;
+	clear: both;
+	margin-top: 15px; 
+	margin-right: 10px;		
+	/* margin-top: 20px; */
 }
 
 .group-operator{
