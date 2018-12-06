@@ -135,7 +135,7 @@ class UnionBox extends Component {
             contents: newContents,
         };
 
-        this.props.conditionChanged(0, newUnion);
+        this.props.conditionChanged(this.props.index, newUnion);
     }
 
     handleAddCondition(e) {
@@ -147,7 +147,7 @@ class UnionBox extends Component {
             contents: newContents,
         };
 
-        this.props.conditionChanged(0, newUnion);
+        this.props.conditionChanged(this.props.index, newUnion);
     }
 
     render() {
@@ -156,22 +156,20 @@ class UnionBox extends Component {
         return (
             <div className='condition-panel row'>
                 {contents.map((c, i) => {
+                    const constraintType = c.type;
+
+                    const boxComponent =
+                        constraintType == 'condition'
+                            ? this.renderConditionBox(i, c)
+                            : constraintType == 'union'
+                                ? this.renderUnionBox(i, c)
+                                : constraintType == 'intersection'
+                                    ? this.renderIntersectionBox(i, c)
+                                    : null; //Unknown value
+
                     return (
                         <div key={'cond' + i}>
-                            <ConditionBox
-                                key={i}
-                                index={i}
-                                classUri={this.props.classUri}
-                                condition={contents[i]}
-                                conditionChanged={this.conditionChanged}
-                                api={this.props.api}
-                            />
-                            {/* <ConstraintsBox
-                                propertyConditions={c}
-                                api={this.props.api}
-                                classUri={this.props.classUri}
-                                conditionsChanged={this.conditionChanged}
-                            /> */}
+                            {boxComponent}
                             {i < contents.length - 1 ? (
                                 <div className='group-operator'>OR</div>
                             ) : null}
@@ -187,6 +185,54 @@ class UnionBox extends Component {
                 <div className='condition-operator'>
                     <a>Describe</a>
                 </div> */}
+            </div>
+        );
+    }
+
+    renderConditionBox(index, condition) {
+        return (
+            <ConditionBox
+                key={index}
+                index={index}
+                classUri={this.props.classUri}
+                condition={condition}
+                conditionChanged={this.conditionChanged}
+                api={this.props.api}
+            />
+        );
+    }
+
+    renderUnionBox(index, condition) {
+        return (
+            <div>
+                <UnionBox
+                    key={index}
+                    index={index}
+                    classUri={this.props.classUri}
+                    union={condition}
+                    conditionChanged={this.conditionChanged}
+                    api={this.props.api}
+                />
+                {/* <div className='condition-operator'>
+                    <a href='#' onClick={this.handleAddOrCondition}>
+                        <div>Or</div>
+                    </a>
+                </div> */}
+            </div>
+        );
+    }
+
+    renderIntersectionBox(index, condition) {
+        return (
+            <div>
+                <IntersectionBox
+                    key={index}
+                    index={index}
+                    classUri={this.props.classUri}
+                    intersection={condition}
+                    conditionChanged={this.conditionChanged}
+                    api={this.props.api}
+                />
             </div>
         );
     }
@@ -210,7 +256,7 @@ class IntersectionBox extends Component {
             contents: newContents,
         };
 
-        this.props.conditionChanged(0, newIntersection);
+        this.props.conditionChanged(this.props.index, newIntersection);
     }
 
     handleAddCondition(e) {
@@ -222,7 +268,7 @@ class IntersectionBox extends Component {
             contents: newContents,
         };
 
-        this.props.conditionChanged(0, newIntersection);
+        this.props.conditionChanged(this.props.index, newIntersection);
     }
 
     render() {
@@ -280,7 +326,7 @@ class ConditionBox extends Component {
 
     static defaultProps = {
         displayBorder: true,
-        displayAndOperator: true
+        displayAndOperator: true,
     };
 
     propertySelected(propUri) {
@@ -371,9 +417,9 @@ class ConditionBox extends Component {
 
     handleAddCondition(e) {
         e.preventDefault();
-        
+
         //TODO: Implement.
-        
+
         this.props.conditionChanged(this.props.index, null);
     }
 
@@ -393,7 +439,11 @@ class ConditionBox extends Component {
                     {this.props.condition.groupOperator}
                 </div>
 
-                <div className={(this.props.displayBorder ? 'condition-panel row' : '')}>
+                <div
+                    className={
+                        this.props.displayBorder ? 'condition-panel row' : ''
+                    }
+                >
                     <div className='remove-condition'>
                         <a href='#' onClick={this.handleRemoveCondition}>
                             <span className='glyphicon glyphicon-remove' />
@@ -477,8 +527,8 @@ class ConditionBox extends Component {
                             <a href='#' onClick={this.handleAddCondition}>
                                 <div>And</div>
                             </a>
-                        </div>)
-                    }
+                        </div>
+                    )}
                 </div>
             </div>
         );
