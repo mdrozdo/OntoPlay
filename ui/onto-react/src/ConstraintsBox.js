@@ -44,11 +44,6 @@ class ConstraintsBox extends Component {
                     conditionChanged={this.conditionChanged}
                     api={this.props.api}
                 />
-                <div className='condition-operator'>
-                    <a href='#' onClick={this.handleAddOrCondition}>
-                        <div>Or</div>
-                    </a>
-                </div>
             </div>
         );
     }
@@ -62,11 +57,6 @@ class ConstraintsBox extends Component {
                     conditionChanged={this.conditionChanged}
                     api={this.props.api}
                 />
-                {/* <div className='condition-operator'>
-                    <a href='#' onClick={this.handleAddOrCondition}>
-                        <div>Or</div>
-                    </a>
-                </div> */}
             </div>
         );
     }
@@ -186,6 +176,7 @@ class UnionBox extends Component {
                 classUri={this.props.classUri}
                 condition={condition}
                 conditionChanged={this.conditionChanged}
+                displayOrOperator={false}
                 api={this.props.api}
             />
         );
@@ -270,6 +261,7 @@ class IntersectionBox extends Component {
                 conditionChanged={this.conditionChanged}
                 displayBorder={false}
                 displayAndOperator={false}
+                displayOrOperator={false}
                 api={this.props.api}
             />
         );
@@ -362,12 +354,14 @@ class ConditionBox extends Component {
         this.valueChanged = this.valueChanged.bind(this);
         this.nestedConditionsChanged = this.nestedConditionsChanged.bind(this);
         this.handleRemoveCondition = this.handleRemoveCondition.bind(this);
-        this.handleAddCondition = this.handleAddCondition.bind(this);
+        this.handleAddAndCondition = this.handleAddAndCondition.bind(this);
+        this.handleAddOrCondition = this.handleAddOrCondition.bind(this);
     }
 
     static defaultProps = {
         displayBorder: true,
         displayAndOperator: true,
+        displayOrOperator: true,
     };
 
     propertySelected(propUri) {
@@ -456,15 +450,23 @@ class ConditionBox extends Component {
         this.props.conditionChanged(this.props.index, null);
     }
 
-    handleAddCondition(e) {
+    handleAddAndCondition(e) {
         e.preventDefault();
 
         const newCondition = {
             type: 'intersection',
-            contents: [
-                {...this.props.condition},
-                {}
-            ]            
+            contents: [{ ...this.props.condition }, {}],
+        };
+
+        this.props.conditionChanged(this.props.index, newCondition);
+    }
+
+    handleAddOrCondition(e) {
+        e.preventDefault();
+
+        const newCondition = {
+            type: 'union',
+            contents: [{ ...this.props.condition }, {}],
         };
 
         this.props.conditionChanged(this.props.index, newCondition);
@@ -571,12 +573,19 @@ class ConditionBox extends Component {
                     )}
                     {this.props.displayAndOperator && (
                         <div className='condition-internal-operator'>
-                            <a href='#' onClick={this.handleAddCondition}>
+                            <a href='#' onClick={this.handleAddAndCondition}>
                                 <div>And</div>
                             </a>
                         </div>
                     )}
                 </div>
+                {this.props.displayOrOperator && (
+                    <div className='condition-operator'>
+                        <a href='#' onClick={this.handleAddOrCondition}>
+                            <div>Or</div>
+                        </a>
+                    </div>
+                )}
             </div>
         );
     }
