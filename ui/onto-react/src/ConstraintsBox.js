@@ -22,7 +22,7 @@ class ConstraintsBox extends Component {
         this.handleAddOrCondition = this.handleAddOrCondition.bind(this);
     }
 
-    // TODO: This is completely untested for >1 conditions
+    //TODO: remove index
     conditionChanged(index, condition) {
         this.props.conditionsChanged(condition);
     }
@@ -58,11 +58,6 @@ class ConstraintsBox extends Component {
                 <div className='condition-operator'>
                     <a href='#' onClick={this.handleAddOrCondition}>
                         <div>Or</div>
-                    </a>
-                </div>
-                <div className='condition-operator'>
-                    <a href='#' onClick={this.handleAddAndCondition}>
-                        <div>And</div>
                     </a>
                 </div>
             </div>
@@ -107,7 +102,6 @@ class ConstraintsBox extends Component {
 
     render() {
         const constraint = this.props.propertyConditions;
-        console.log(constraint);
         const constraintType = constraint.type;
 
         const boxComponent =
@@ -172,6 +166,12 @@ class UnionBox extends Component {
                                 conditionChanged={this.conditionChanged}
                                 api={this.props.api}
                             />
+                            {/* <ConstraintsBox
+                                propertyConditions={c}
+                                api={this.props.api}
+                                classUri={this.props.classUri}
+                                conditionsChanged={this.conditionChanged}
+                            /> */}
                             {i < contents.length - 1 ? (
                                 <div className='group-operator'>OR</div>
                             ) : null}
@@ -239,6 +239,8 @@ class IntersectionBox extends Component {
                                 classUri={this.props.classUri}
                                 condition={contents[i]}
                                 conditionChanged={this.conditionChanged}
+                                displayBorder={false}
+                                displayAndOperator={false}
                                 api={this.props.api}
                             />
                             {i < contents.length - 1 ? (
@@ -275,6 +277,11 @@ class ConditionBox extends Component {
         this.handleRemoveCondition = this.handleRemoveCondition.bind(this);
         this.handleAddCondition = this.handleAddCondition.bind(this);
     }
+
+    static defaultProps = {
+        displayBorder: true,
+        displayAndOperator: true
+    };
 
     propertySelected(propUri) {
         const newCondition = {
@@ -386,7 +393,7 @@ class ConditionBox extends Component {
                     {this.props.condition.groupOperator}
                 </div>
 
-                <div className='condition-panel row'>
+                <div className={(this.props.displayBorder ? 'condition-panel row' : '')}>
                     <div className='remove-condition'>
                         <a href='#' onClick={this.handleRemoveCondition}>
                             <span className='glyphicon glyphicon-remove' />
@@ -465,11 +472,13 @@ class ConditionBox extends Component {
                             conditionsChanged={this.nestedConditionsChanged}
                         />
                     )}
-                    <div className='condition-internal-operator'>
-                        <a href='#' onClick={this.handleAddCondition}>
-                            <div>And</div>
-                        </a>
-                    </div>
+                    {this.props.displayAndOperator && (
+                        <div className='condition-internal-operator'>
+                            <a href='#' onClick={this.handleAddCondition}>
+                                <div>And</div>
+                            </a>
+                        </div>)
+                    }
                 </div>
             </div>
         );
