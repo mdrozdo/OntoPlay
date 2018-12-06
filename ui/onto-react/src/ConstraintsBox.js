@@ -24,7 +24,8 @@ class ConstraintsBox extends Component {
 
     //TODO: remove index
     conditionChanged(index, condition) {
-        this.props.conditionsChanged(condition);
+        const newCondition = condition ? {...condition} : {};
+        this.props.conditionsChanged(newCondition);
     }
 
     handleAddOrCondition(e) {
