@@ -31,18 +31,15 @@ class ConstraintsBox extends Component {
         e.preventDefault();
         const newConditions = {
             type: 'union',
-            contents: [
-                {...this.props.propertyConditions},
-                {}
-            ]
-        };       
-        
+            contents: [{ ...this.props.propertyConditions }, {}],
+        };
+
         this.props.conditionsChanged(newConditions);
     }
 
     renderConditionBox() {
         return (
-            <div>
+            <div className='condition-panel row'>
                 <ConditionBox
                     key={0}
                     index={0}
@@ -75,7 +72,7 @@ class ConstraintsBox extends Component {
 
     renderIntersectionBox() {
         return (
-            <div>
+            <div className='condition-panel row'>
                 <IntersectionBox
                     classUri={this.props.classUri}
                     intersection={this.props.propertyConditions}
@@ -121,12 +118,15 @@ class UnionBox extends Component {
             .map((e, i) => (i == index ? condition : e))
             .filter(e => e !== null);
 
-        const newUnion = {
-            ...this.props.union,
-            contents: newContents,
-        };
+        const newCondition =
+            newContents.length > 1
+                ? {
+                    ...this.props.union,
+                    contents: newContents,
+                }
+                : newContents[0];
 
-        this.props.conditionChanged(this.props.index, newUnion);
+        this.props.conditionChanged(this.props.index, newCondition);
     }
 
     handleAddCondition(e) {
@@ -242,12 +242,15 @@ class IntersectionBox extends Component {
             .map((e, i) => (i == index ? condition : e))
             .filter(e => e !== null);
 
-        const newIntersection = {
-            ...this.props.intersection,
-            contents: newContents,
-        };
+        const newCondition =
+            newContents.length > 1
+                ? {
+                    ...this.props.intersection,
+                    contents: newContents,
+                }
+                : newContents[0];
 
-        this.props.conditionChanged(this.props.index, newIntersection);
+        this.props.conditionChanged(this.props.index, newCondition);
     }
 
     handleAddCondition(e) {
@@ -463,10 +466,7 @@ class ConditionBox extends Component {
 
         const newCondition = {
             type: 'intersection',
-            contents: [
-                {...this.props.condition},
-                {}
-            ]            
+            contents: [{ ...this.props.condition }, {}],
         };
 
         this.props.conditionChanged(this.props.index, newCondition);
