@@ -18,7 +18,7 @@ class ConstraintsBox extends Component {
         // });
 
         this.conditionChanged = this.conditionChanged.bind(this);
-        this.handleAddAndCondition = this.handleAddAndCondition.bind(this);
+        // this.handleAddAndCondition = this.handleAddAndCondition.bind(this);
         this.handleAddOrCondition = this.handleAddOrCondition.bind(this);
     }
 
@@ -27,20 +27,9 @@ class ConstraintsBox extends Component {
         this.props.conditionsChanged(condition);
     }
 
-    handleAddAndCondition(e) {
-        this.addCondition(e, 'AND');
-    }
-
     handleAddOrCondition(e) {
-        this.addCondition(e, 'OR');
-    }
-
-    //TODO: rename groupOperator to something more descriptive - can't think of anything right now :(
-    addCondition(e, groupOperator) {
         e.preventDefault();
-        const newConditions = this.props.propertyConditions.concat([
-            { groupOperator: groupOperator },
-        ]);
+        const newConditions = this.props.propertyConditions.concat([{}]);
         this.props.conditionsChanged(newConditions);
     }
 
@@ -102,10 +91,10 @@ class ConstraintsBox extends Component {
 
     render() {
         const constraint = this.props.propertyConditions;
-        const constraintType = constraint.type;
+        const constraintType = constraint ? constraint.type : null;
 
         const boxComponent =
-            constraintType == 'condition'
+            !constraintType || constraintType == 'condition'
                 ? this.renderConditionBox()
                 : constraintType == 'union'
                     ? this.renderUnionBox()
@@ -156,10 +145,10 @@ class UnionBox extends Component {
         return (
             <div className='condition-panel row'>
                 {contents.map((c, i) => {
-                    const constraintType = c.type;
+                    const constraintType = c.type || null;
 
                     const boxComponent =
-                        constraintType == 'condition'
+                        !constraintType || constraintType == 'condition'
                             ? this.renderConditionBox(i, c)
                             : constraintType == 'union'
                                 ? this.renderUnionBox(i, c)
@@ -271,7 +260,7 @@ class IntersectionBox extends Component {
         this.props.conditionChanged(this.props.index, newIntersection);
     }
 
-    renderCondition(index, condition) {
+    renderConditionBox(index, condition) {
         return (
             <ConditionBox
                 key={index}
@@ -327,10 +316,10 @@ class IntersectionBox extends Component {
         return (
             <div className='condition-panel row'>
                 {contents.map((c, i) => {
-                    const constraintType = c.type;
+                    const constraintType = c.type || null;
 
                     const boxComponent =
-                        constraintType == 'condition'
+                        !constraintType || constraintType == 'condition'
                             ? this.renderConditionBox(i, c)
                             : constraintType == 'union'
                                 ? this.renderUnionBox(i, c)
@@ -470,9 +459,15 @@ class ConditionBox extends Component {
     handleAddCondition(e) {
         e.preventDefault();
 
-        //TODO: Implement.
+        const newCondition = {
+            type: 'intersection',
+            contents: [
+                {...this.props.condition},
+                {}
+            ]            
+        };
 
-        this.props.conditionChanged(this.props.index, null);
+        this.props.conditionChanged(this.props.index, newCondition);
     }
 
     render() {

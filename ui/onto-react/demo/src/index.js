@@ -238,7 +238,7 @@ class Demo extends Component {
                     api: new OntoReact.Api(false),
                     title:
                         'Add new class mapping for http://purl.org/NET/cgo#WorkerNode',
-                    condition: this.intersectionOfUnions,
+                    condition: this.simpleCondition,
                 })}
             </div>
         );
