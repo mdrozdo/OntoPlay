@@ -6,8 +6,7 @@ import ontoplay.models.ontologyModel.OntoProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class PropertyValueCondition<T extends OntoProperty> {
+public class PropertyValueCondition<T extends OntoProperty> implements PropertyCondition {
     private String propertyUri;
     private T property;
     private List<Annotation> annotations = new ArrayList<Annotation>();
@@ -45,4 +44,8 @@ public class PropertyValueCondition<T extends OntoProperty> {
     }
 
 
+    @Override
+    public PropertyConditionType getType() {
+        return PropertyConditionType.CONDITION;
+    }
 }

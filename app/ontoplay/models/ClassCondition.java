@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ClassCondition {
     private String classUri;
-    private final List<PropertyValueCondition> propertyConditions = new ArrayList<PropertyValueCondition>();
+    private PropertyCondition propertyConditions;
     private List<Annotation> annotations = new ArrayList<Annotation>();
     private ClassRelation classRelation = ClassRelation.EQUIVALENT;
 
@@ -35,12 +35,12 @@ public class ClassCondition {
         this.classUri = classUri;
     }
 
-    public List<PropertyValueCondition> getPropertyConditions() {
+    public PropertyCondition getPropertyConditions() {
         return propertyConditions;
     }
 
-    public void addProperty(PropertyValueCondition propertyCondition) {
-        propertyConditions.add(propertyCondition);
+    public void setPropertyConditions(PropertyCondition propertyConditions) {
+        this.propertyConditions = propertyConditions;
     }
 
     public List<Annotation> getAnnotations() {
