@@ -24,7 +24,7 @@ class ConstraintsBox extends Component {
 
     //TODO: remove index
     conditionChanged(index, condition) {
-        const newCondition = condition ? {...condition} : {};
+        const newCondition = condition ? { ...condition } : {};
         this.props.conditionsChanged(newCondition);
     }
 
@@ -89,6 +89,19 @@ class ConstraintsBox extends Component {
         );
     }
 
+    renderValuesBox() {
+        return (
+            <div className='condition-panel row'>
+                <ValuesBox
+                    classUri={this.props.classUri}
+                    values={this.props.propertyConditions}
+                    conditionChanged={this.conditionChanged}
+                    api={this.props.api}
+                />
+            </div>
+        );
+    }
+
     render() {
         const constraint = this.props.propertyConditions;
         const constraintType = constraint ? constraint.type : null;
@@ -100,7 +113,9 @@ class ConstraintsBox extends Component {
                     ? this.renderUnionBox()
                     : constraintType == 'intersection'
                         ? this.renderIntersectionBox()
-                        : null; //Unknown value
+                        : constraintType == 'values'
+                            ? this.renderValuesBox()
+                            : null; //Unknown value
 
         return boxComponent;
     }
@@ -332,6 +347,93 @@ class IntersectionBox extends Component {
                                 : constraintType == 'intersection'
                                     ? this.renderIntersectionBox(i, c)
                                     : null; //Unknown value
+
+                    return (
+                        <div key={'cond' + i}>
+                            {boxComponent}
+                            {i < contents.length - 1 ? (
+                                <div className='group-operator'>AND</div>
+                            ) : null}
+                        </div>
+                    );
+                })}
+                <div className='condition-operator'>
+                    <a href='#' onClick={this.handleAddCondition}>
+                        <div>And</div>
+                    </a>
+                </div>
+                {/* Commented out, because annotations are not ported to React.
+                <div className='condition-operator'>
+                    <a>Describe</a>
+                </div> */}
+            </div>
+        );
+    }
+}
+
+class ValuesBox extends Component {
+    constructor(props) {
+        super(props);
+
+        this.conditionChanged = this.conditionChanged.bind(this);
+        this.handleAddCondition = this.handleAddCondition.bind(this);
+    }
+
+    conditionChanged(index, condition) {
+        const newContents = this.props.values.contents
+            .map((e, i) => (i == index ? condition : e))
+            .filter(e => e !== null);
+
+        const newCondition =
+            newContents.length > 1
+                ? {
+                    ...this.props.values,
+                    contents: newContents,
+                }
+                : newContents[0];
+
+        this.props.conditionChanged(this.props.index, newCondition);
+    }
+
+    handleAddCondition(e) {
+        e.preventDefault();
+        const newContents = this.props.values.contents.concat([{}]);
+
+        const newValues = {
+            ...this.props.values,
+            contents: newContents,
+        };
+
+        this.props.conditionChanged(this.props.index, newValues);
+    }
+
+    renderConditionBox(index, condition) {
+        return (
+            <ConditionBox
+                key={index}
+                index={index}
+                classUri={this.props.classUri}
+                condition={condition}
+                conditionChanged={this.conditionChanged}
+                displayBorder={false}
+                displayAndOperator={false}
+                api={this.props.api}
+            />
+        );
+    }
+
+    render() {
+        const contents = this.props.values.contents;
+
+        return (
+            <div className='condition-panel row'>
+                {contents.map((c, i) => {
+                    const constraintType = c.type || null;
+
+                    const boxComponent =
+                        !constraintType || constraintType == 'condition'
+                            ? this.renderConditionBox(i, c)
+                            : null;
 
                     return (
                         <div key={'cond' + i}>

@@ -315,10 +315,50 @@ class Demo extends Component {
         },
     };
 
+    individualCondition = {
+        classUri: 'http://purl.org/NET/cgo#WorkerNode',
+        propertyConditions: {
+            type: 'values',
+            contents: [
+                {
+                    type: 'condition',
+                    propertyUri: 'http://purl.org/NET/cgo#hasName',
+                    operator: 'equalTo',
+                    datatypeValue: 'dupa',
+                    annotations: [],
+                },
+                {
+                    type: 'condition',
+                    propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
+                    operator: 'equalTo',
+                    datatypeValue: '12',
+                    annotations: [],
+                },
+            ],
+        },
+    };
+
     render() {
         return (
             <div className='container'>
-                <h1>onto-react Demo</h1>
+                <h1>onto-react Demo - Individual</h1>
+                {React.createElement(OntoReact.OntoReact, {
+                    mainClass: 'http://purl.org/NET/cgo#WorkerNode',
+                    //api: false,
+                    elementName: 'http://purl.org/NET/cgo#WorkerNode',
+                    isDescriptionOfIndividual: true,
+                    // headerComponent: OntoReact.InputNameHeader('Individual name'),
+                    headerComponent: OntoReact.MultiHeader(
+                        OntoReact.InputNameHeader('Individual name'),
+                        OntoReact.SelectClassHeader('Of class:')
+                    ),
+                    api: new OntoReact.Api(true),
+                    title:
+                        'Add new individual of class http://purl.org/NET/cgo#WorkerNode',
+                    condition: this.individualCondition,
+                })}
+
+                <h1>onto-react Demo - class</h1>
                 {React.createElement(OntoReact.OntoReact, {
                     mainClass: 'http://purl.org/NET/cgo#WorkerNode',
                     //api: false,
@@ -332,7 +372,7 @@ class Demo extends Component {
                     api: new OntoReact.Api(false),
                     title:
                         'Add new class mapping for http://purl.org/NET/cgo#WorkerNode',
-                    condition: this.intersection,
+                    condition: this.intersectionCondition,
                 })}
             </div>
         );
