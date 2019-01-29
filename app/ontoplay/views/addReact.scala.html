@@ -1,4 +1,5 @@
-@(title: String, className: String, isIndividual: Boolean, elementName: String = "", classRelation: String = "", layoutTemplate: String => Html => Html => Html)(formHeader: Html)
+@(title: String, className: String, isIndividual: Boolean, elementName: String = "", classRelation: String = "", headerComponent: String = "OntoReact.SelectClass", layoutTemplate: String => Html => Html => Html)(formHeader: Html)
+@import org.apache.commons.lang3.StringEscapeUtils.unescapeXml
 @layoutTemplate(title){
 	<!--TODO: Replace with local files-->
 	<script src='https://unpkg.com/react@@16.1.1/umd/react.development.js'></script>
@@ -15,7 +16,7 @@
 						mainClass: '@className',
 						elementName: '@elementName',
 						classRelation: '@classRelation',
-						headerComponent: OntoReact.SelectClass,
+						headerComponent: @Html(headerComponent),
 						api: new OntoReact.Api(@isIndividual),
 						title: '@title'
 					}),

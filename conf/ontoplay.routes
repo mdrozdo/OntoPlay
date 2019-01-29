@@ -50,6 +50,7 @@ GET /api/individuals/class/:className ontoplay.controllers.webservices.Individua
 POST /api/individuals/save ontoplay.controllers.webservices.Individuals.addIndividual()
 GET /api/individuals/data/:individualName ontoplay.controllers.webservices.Individuals.getIndividualData(individualName: String)
 GET /add/:className			ontoplay.controllers.Operations.add(className: String)
+GET /addReact/:className			ontoplay.controllers.Operations.addReact(className: String)
 GET /api/individuals/update/:className/:individualName ontoplay.controllers.Operations.update(className: String,individualName: String)
 GET /api/individuals/remove/:individualName ontoplay.controllers.webservices.Individuals.deleteIndividualByName(individualName: String)
 

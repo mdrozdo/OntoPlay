@@ -2,7 +2,4 @@
 @(title: String, className: String, layoutTemplate: String => Html => Html => Html))
 @addReact(title, className, false, className, classRelation = "SUBCLASS", layoutTemplate = layoutTemplate){
 
-	   	<label for="input_superClass">Map class @className to: </label>
-		<select id="input_superClass" class="form-control"  ng-model="mainClass" ng-options="item.uri as item.localName for item in allClasses" required="required">
-		</select>
 }
