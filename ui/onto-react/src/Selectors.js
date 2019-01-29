@@ -1,7 +1,4 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom'
-
-import Api from './Api'
+import React, { Component } from 'react';
 
 class PropertySelector extends Component {
     constructor(props) {
@@ -26,7 +23,7 @@ class PropertySelector extends Component {
             //Class changed, properties need to be reset.
             return {
                 properties: [
-                {
+                    {
                         uri: 'null',
                         localName: 'Select a property'
                     }
@@ -52,7 +49,7 @@ class PropertySelector extends Component {
             .then(properties => {
                 this.setState({
                     properties: this.state.properties.concat(properties)
-                })
+                });
             });
     }
 
@@ -209,7 +206,7 @@ class ConditionClassSelector extends Component {
             .then(response => {
                 this.setState({
                     classes: this.state.classes.concat(response)
-                })
+                });
             });
     }
 
@@ -285,7 +282,7 @@ class IndividualSelector extends Component {
             .then(response => {
                 this.setState({
                     individuals: this.state.individuals.concat(response)
-                })
+                });
             });
     }
 
@@ -312,4 +309,4 @@ class IndividualSelector extends Component {
     }
 }
 
-export {PropertySelector, ConditionClassSelector, IndividualSelector, OperatorSelector}
+export {PropertySelector, ConditionClassSelector, IndividualSelector, OperatorSelector};
