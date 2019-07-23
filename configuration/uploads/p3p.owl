@@ -1,0 +1,1402 @@
+<?xml version="1.0"?>
+
+<!--Ontology written by Giles Hogben, Ioannis Vakalis, Joint Research Centre, Via Enrico Fermi 1, Ispra, Italy -->
+<rdf:RDF
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+   xmlns:p3p="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance#"
+    xml:base="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#"
+    xmlns="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#">
+  <owl:Ontology rdf:about="#P3P1.0">
+    <owl:versionInfo>1.0</owl:versionInfo>
+  <rdfs:comment>P3P1.0 Modelled in OWL</rdfs:comment>
+  </owl:Ontology>
+
+    <owl:Class rdf:about="#Policy">
+    <rdfs:comment xml:lang="en">The POLICY element contains
+    a complete P3P policy. Each P3P policy MUST contain exactly
+    one POLICY element. The policy element MUST contain an ENTITY
+    element that identifies the legal entity making the
+    representation of the privacy practices contained in the
+    policy.</rdfs:comment>
+    <rdfs:label xml:lang="en">Policy</rdfs:label>
+
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1" owl:maxCardinality="1">
+  <owl:onProperty rdf:resource="#discuri"/>
+  <owl:allValuesFrom rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#resource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1" owl:maxCardinality="1">
+  <owl:onProperty rdf:resource="#opturi"/>
+  <owl:allValuesFrom rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#resource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#controller"/>
+  <owl:allValuesFrom rdf:resource="#Entity"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#allowsaccess"/>
+  <owl:allValuesFrom rdf:resource="#Access"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#disputes-resolved-by"/>
+  <owl:allValuesFrom rdf:resource="#Dispute-Resolution"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#describes"/>
+  <owl:allValuesFrom rdf:resource="#Collection-practice"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+
+  <owl:Class rdf:about="#Test">
+    <rdfs:comment xml:lang="en">The TEST element is used
+    for testing purposes: the presence of TEST in a policy
+    indicates that the policy is just an example, and as such, it
+    MUST be ignored, and not be considered as a valid P3P
+    policy.</rdfs:comment>
+    <rdfs:label xml:lang="en">Test</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Policy"/>
+  </owl:Class>
+
+
+  <owl:Class rdf:about="#Entity">
+    <rdfs:comment xml:lang="en">The ENTITY element gives a
+    precise description of the legal entity making the
+    representation of the privacy practices.</rdfs:comment>
+    <rdfs:label xml:lang="en">Entity</rdfs:label>
+
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#is-subject"/>
+  <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#STRING"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#has-policy"/>
+  <owl:allValuesFrom rdf:resource="#Policy"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#has-data"/>
+  <owl:allValuesFrom rdf:resource="#Data"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Access">
+    <rdfs:comment xml:lang="en">The ACCESS element
+    indicates whether the site provides access to various kinds
+    of information.</rdfs:comment>
+     <rdfs:label xml:lang="en">Your access to information about you:
+    </rdfs:label>
+  </owl:Class>
+
+
+
+  <owl:Class rdf:about="#Data-Group">
+    <rdfs:comment xml:lang="en">Describes the data to be
+    transferred or inferred</rdfs:comment>
+    <rdfs:label xml:lang="en">Data-Group</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#may-include-members-of"/>
+  <owl:allValuesFrom rdf:resource="#Data"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#recipient"/>
+  <owl:allValuesFrom rdf:resource="#Recipient"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#retention"/>
+  <owl:allValuesFrom rdf:resource="#Retention"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Remedies">
+    <rdfs:comment xml:lang="en">Each DISPUTES element
+    SHOULD contain a REMEDIES element that specifies the possible
+    remedies in case a policy breach occurs.</rdfs:comment>
+    <rdfs:label xml:lang="en">Remedies</rdfs:label>
+
+  </owl:Class>
+    <owl:Class rdf:about="#Law">
+    <rdfs:comment xml:lang="en">Remedies for breaches of
+    the policy statement will be determined based on the law
+    referenced in the human readable
+    description.</rdfs:comment>
+     <rdfs:label xml:lang="en">We believe that the
+     following laws or regulations provide recourse:
+  </rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Remedies"/>
+    <rdfs:subClassOf rdf:resource="#Dispute-Resolution"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Correct">
+    <rdfs:comment xml:lang="en">Errors or wrongful actions
+    arising in connection with the privacy policy will be
+    remedied by the service.</rdfs:comment>
+    <rdfs:label xml:lang="en"> We will correct any errors
+    we make related to the commitments in our privacy policy
+</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Remedies"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Money">
+    <rdfs:comment xml:lang="en">If the service provider
+    violates its privacy policy it will pay the individual an
+    amount specified in the human readable privacy policy or the
+    amount of damages.</rdfs:comment>
+    <rdfs:label xml:lang="en">We will compensate
+    individuals if it is determined that we have violated our
+    privacy policy.
+</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Remedies"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Purpose">
+    <rdfs:comment xml:lang="en">Each STATEMENT element
+    that does not include a NON-IDENTIFIABLE element MUST contain
+    a PURPOSE element that contains one or more purposes of data
+    collection or uses of data. Sites MUST classify their data
+    practices into one or more of the purposes specified below.
+Purposes for data processing relevant to the Web.</rdfs:comment>
+    <rdfs:label xml:lang="en">The ways your information may be used
+</rdfs:label>
+
+  </owl:Class>
+  <owl:Class rdf:about="#Recipient">
+    <rdfs:comment xml:lang="en">Each STATEMENT element that
+    does not include a NON-IDENTIFIABLE element MUST contain a
+    RECIPIENT element that contains one or more recipients of the
+    collected data. Sites MUST classify their recipients into one
+    or more of the six recipients specified.
+    RECIPIENT is the legal entity, or domain, beyond the service
+    provider and its agents where data may be
+    distributed.</rdfs:comment>
+    <rdfs:label xml:lang="en">Recipient</rdfs:label>
+
+  </owl:Class>
+
+  <owl:Class rdf:about="#Retention">
+    <rdfs:comment xml:lang="en">Each STATEMENT element that
+    does not include a NON-IDENTIFIABLE element MUST contain a
+    RETENTION element that indicates the kind of retention policy
+    that applies to the data referenced in that statement.
+    The type of retention policy in effect</rdfs:comment>
+    <rdfs:label xml:lang="en">Retention</rdfs:label>
+  </owl:Class>
+
+  <!--
+  Purpose Classes
+  -->
+
+
+  <owl:Class rdf:about="#Admin">
+    <rdfs:comment xml:lang="en">Web Site and System
+    Administration: Information may be used for the technical
+    support of the Web site and its computer system. This would
+    include processing computer account information, information
+    used in the course of securing and maintaining the site, and
+    verification of Web site activity by the site or its
+    agents.</rdfs:comment>
+    <rdfs:label xml:lang="en">Admin</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Develop">
+    <rdfs:comment xml:lang="en">Research and Development:
+    Information may be used to enhance, evaluate, or otherwise
+    review the site, service, product, or market. This does not
+    include personal information used to tailor or modify the
+    content to the specific individual nor information used to
+    evaluate, target, profile or contact the
+    individual.</rdfs:comment>
+    <rdfs:label xml:lang="en">Develop</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Tailoring">
+    <rdfs:comment xml:lang="en">One-time Tailoring:
+    Information may be used to tailor or modify content or design
+    of the site where the information is used only for a single
+    visit to the site and not used for any kind of future
+    customization. For example, an online store might suggest
+    other items a visitor may wish to purchase based on the items
+    he has already placed in his shopping
+    basket.</rdfs:comment>
+    <rdfs:label xml:lang="en">Tailoring</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Pseudo-Analysis">
+    <rdfs:comment xml:lang="en">Pseudonymous Analysis:
+    Information may be used to create or build a record of a
+    particular individual or computer that is tied to a
+    pseudonymous identifier, without tying identified data (such
+    as name, address, phone number, or email address) to the
+    record. This profile will be used to determine the habits,
+    interests, or other characteristics of individuals for
+    purpose of research, analysis and reporting, but it will not
+    be used to attempt to identify specific individuals. For
+    example, a marketer may wish to understand the interests of
+    visitors to different portions of a Web
+    site.</rdfs:comment>
+    <rdfs:label xml:lang="en">Pseudo-Analysis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Pseudo-Decision">
+    <rdfs:comment xml:lang="en">Pseudonymous Decision:
+    Information may be used to create or build a record of a
+    particular individual or computer that is tied to a
+    pseudonymous identifier, without tying identified data (such
+    as name, address, phone number, or email address) to the
+    record. This profile will be used to determine the habits,
+    interests, or other characteristics of individuals to make a
+    decision that directly affects that individual, but it will
+    not be used to attempt to identify specific individuals. For
+    example, a marketer may tailor or modify content displayed to
+    the browser based on pages viewed during previous
+    visits.</rdfs:comment>
+    <rdfs:label xml:lang="en">Pseudo-Decision</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Individual-Analysis">
+    <rdfs:comment xml:lang="en">Individual Analysis:
+    Information may be used to determine the habits, interests,
+    or other characteristics of individuals and combine it with
+    identified data for the purpose of research, analysis and
+    reporting. For example, an online Web site for a physical
+    store may wish to analyze how online shoppers make offline
+    purchases.</rdfs:comment>
+    <rdfs:label xml:lang="en">Individual-Analysis</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Individual-Decision">
+    <rdfs:comment xml:lang="en">Individual Decision:
+    Information may be used to determine the habits, interests,
+    or other characteristics of individuals and combine it with
+    identified data to make a decision that directly affects that
+    individual.  For example, an online store suggests items a
+    visitor may wish to purchase based on items he has purchased
+    during previous visits to the Web site.</rdfs:comment>
+    <rdfs:label xml:lang="en">Individual-Decision</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Contact">
+    <rdfs:comment xml:lang="en">Contacting Visitors for
+    Marketing of Services or Products: Information may be used to
+    contact the individual, through a communications channel
+    other than voice telephone, for the promotion of a product or
+    service. This includes notifying visitors about updates to
+    the Web site. This does not include a direct reply to a
+    question or comment or customer service for a single
+    transaction -- in those cases, &lt;current/> would be
+    used. In addition, this does not include marketing via
+    customized Web content or banner advertisements embedded in
+    sites the user is visiting -- these cases would be covered by
+    the &lt;tailoring/>, &lt;pseudo-analysis/> and
+    &lt;pseudo-decision/>, or
+    &lt;individual-analysis/> and
+    &lt;individual-decision/>
+    purposes.</rdfs:comment>
+    <rdfs:label xml:lang="en">Contact</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Historical">
+    <rdfs:comment xml:lang="en">Historical Preservation:
+    Information may be archived or stored for the purpose of
+    preserving social history as governed by an existing law or
+    policy. This law or policy MUST be referenced in the
+    &lt;DISPUTES> element and MUST include a specific
+    definition of the type of qualified researcher who can access
+    the information, where this information will be stored and
+    specifically how this collection advances the preservation of
+    history.</rdfs:comment>
+    <rdfs:label xml:lang="en">Historical</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Telemarketing">
+    <rdfs:comment xml:lang="en">Contacting Visitors for
+    Marketing of Services or Products Via Telephone: Information
+    may be used to contact the individual via a voice telephone
+    call for promotion of a product or service. This does not
+    include a direct reply to a question or comment or customer
+    service for a single transaction -- in those cases,
+    &lt;current/> would be used.</rdfs:comment>
+    <rdfs:label xml:lang="en">Telemarketing</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Other-Purpose">
+    <rdfs:comment xml:lang="en">Other Uses: Information may
+    be used in other ways not captured by the above definitions.
+    (A human readable explanation MUST be provided in these
+    instances).</rdfs:comment>
+    <rdfs:label xml:lang="en">Other-Purpose</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Ours">
+    <rdfs:comment xml:lang="en">Ourselves and/or entities
+    acting as our agents or entities for whom we are acting as an
+    agent: An agent in this instance is defined as a third party
+    that processes data only on behalf of the service provider
+    for the completion of the stated purposes. (e.g., the service
+    provider and its printing bureau which prints address labels
+    and does nothing further with the
+    information.)</rdfs:comment>
+    <rdfs:label xml:lang="en">Ours</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Recipient"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Same">
+    <rdfs:comment xml:lang="en">Legal entities following
+    our practices: Legal entities who use the data on their own
+    behalf under equable practices. (e.g., consider a service
+    provider that grants the user access to collected personal
+    information, and also provides it to a partner who uses it
+    once but discards it. Since the recipient, who has otherwise
+    similar practices, cannot grant the user access to
+    information that it discarded, they are considered to have
+    equable practices.)</rdfs:comment>
+    <rdfs:label xml:lang="en">Same</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Recipient"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Other-Recipient">
+    <rdfs:comment xml:lang="en">Legal entities following
+    different practices: Legal entities that are constrained by
+    and accountable to the original service provider, but may use
+    the data in a way not specified in the service provider's
+    practices (e.g., the service provider collects data that is
+    shared with a partner who may use it for other purposes.
+    However, it is in the service provider's interest to ensure
+    that the data is not used in a way that would be considered
+    abusive to the users' and its own
+    interests.)</rdfs:comment>
+    <rdfs:label xml:lang="en">Other-Recipient</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Recipient"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Delivery">
+    <rdfs:comment xml:lang="en">Delivery services possibly
+    following different practices: Legal entities performing
+    delivery services that may use data for purposes other than
+    completion of the stated purpose. This should also be used
+    for delivery services whose data practices are
+    unknown.</rdfs:comment>
+    <rdfs:label xml:lang="en">Delivery</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Recipient"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Public">
+    <rdfs:comment xml:lang="en">Public fora: Public fora
+    such as bulletin boards, public directories, or commercial
+    CD-ROM directories.</rdfs:comment>
+    <rdfs:label xml:lang="en">Public</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Recipient"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Unrelated">
+    <rdfs:comment xml:lang="en">Unrelated third parties:
+    Legal entities whose data usage practices are not known by
+    the original service provider.</rdfs:comment>
+    <rdfs:label xml:lang="en">Unrelated</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Recipient"/>
+  </owl:Class>
+  <owl:Class rdf:about="#No-Retention">
+    <rdfs:comment xml:lang="en">Information is not retained
+    for more than a brief period of time necessary to make use of
+    it during the course of a single online interaction.
+    Information MUST be destroyed following this interaction and
+    MUST NOT be logged, archived, or otherwise stored. This type
+    of retention policy would apply, for example, to services
+    that keep no Web server logs, set cookies only for use during
+    a single session, or collect information to perform a search
+    but do not keep logs of searches
+    performed.</rdfs:comment>
+    <rdfs:label xml:lang="en">No-Retention</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Retention"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Stated-Purpose">
+    <rdfs:comment xml:lang="en">For the stated purpose:
+    Information is retained to meet the stated purpose. This
+    requires information to be discarded at the earliest time
+    possible. Sites MUST have a retention policy that establishes
+    a destruction time table. The retention policy MUST be
+    included in or linked from the site's human-readable privacy
+    policy.</rdfs:comment>
+    <rdfs:label xml:lang="en">Stated-Purpose</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Retention"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Legal-Requirement">
+    <rdfs:comment xml:lang="en">As required by law or
+    liability under applicable law: Information is retained to
+    meet a stated purpose, but the retention period is longer
+    because of a legal requirement or liability. For example, a
+    law may allow consumers to dispute transactions for a certain
+    time period; therefore a business may for liability reasons
+    decide to maintain records of transactions, or a law may
+    affirmatively require a certain business to maintain records
+    for auditing or other soundness purposes. Sites MUST have a
+    retention policy that establishes a destruction time table.
+    The retention policy MUST be included in or linked from the
+    site's human-readable privacy policy.</rdfs:comment>
+    <rdfs:label xml:lang="en">Legal-Requirement</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Retention"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Indefinitely">
+    <rdfs:comment xml:lang="en">Indefinitely: Information
+    is retained for an indeterminate period of time. The absence
+    of a retention policy would be reflected under this option.
+    Where the recipient is a public fora, this is the appropriate
+    retention policy.</rdfs:comment>
+    <rdfs:label xml:lang="en">Indefinitely</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Retention"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Business-Practices">
+    <rdfs:comment xml:lang="en">Determined by service
+    provider's business practice: Information is retained under a
+    service provider's stated business practices. Sites MUST have
+    a retention policy that establishes a destruction time table.
+    The retention policy MUST be included in or linked from the
+    site's human-readable privacy policy.</rdfs:comment>
+    <rdfs:label xml:lang="en">Business-Practices</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Retention"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Current">
+    <rdfs:comment xml:lang="en">Completion and Support of
+    Activity For Which Data Was Provided: Information may be used
+    by the service provider to complete the activity for which it
+    was provided, whether a one-time activity such as returning
+    the results from a Web search, forwarding an email message,
+    or placing an order; or a recurring activity such as
+    providing a subscription service, or allowing access to an
+    online address book or electronic
+    wallet.</rdfs:comment>
+    <rdfs:label xml:lang="en">Current</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Purpose"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Collection-practice">
+    <rdfs:label xml:lang="en">A collection practice
+    described by the policy</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#has-purpose"/>
+  <owl:allValuesFrom rdf:resource="#Purpose"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1" owl:maxCardinality="1">
+  <owl:onProperty rdf:resource="#has-consequence"/>
+  <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#STRING"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#collected-data"/>
+  <owl:allValuesFrom rdf:resource="#Data"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <!-- Types of Access Given by this Policy -->
+
+ <owl:Class rdf:about="#All">
+    <rdfs:label xml:lang="en">We give you access to all of
+    our information identified with you
+  </rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Access"/>
+    <owl:disjointWith rdf:resource="#Contact-and-Other"/>
+    <owl:disjointWith rdf:resource="#Ident-Contact"/>
+    <owl:disjointWith rdf:resource="#Other-Ident"/>
+    <owl:disjointWith rdf:resource="#Nonident"/>
+    <owl:disjointWith rdf:resource="#None"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Contact-and-Other">
+   <rdfs:label xml:lang="en">We give you access to your contact
+   information and some of our other information identified with you
+  </rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Access"/>
+    <owl:disjointWith rdf:resource="#Ident-Contact"/>
+    <owl:disjointWith rdf:resource="#Other-Ident"/>
+    <owl:disjointWith rdf:resource="#Nonident"/>
+    <owl:disjointWith rdf:resource="#None"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Ident-Contact">
+    <rdfs:label xml:lang="en">We give you access to only your contact
+    information in our records
+  </rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Access"/>
+    <owl:disjointWith rdf:resource="#Other-Ident"/>
+    <owl:disjointWith rdf:resource="#Nonident"/>
+    <owl:disjointWith rdf:resource="#None"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Other-Ident">
+   <rdfs:label xml:lang="en"> We allow you to access some of our information
+   identified with you, but not your contact information
+  </rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Access"/>
+    <owl:disjointWith rdf:resource="#Nonident"/>
+    <owl:disjointWith rdf:resource="#None"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Nonident">
+    <rdfs:label xml:lang="en">We do not keep any information identified with you
+   </rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Access"/>
+    <owl:disjointWith rdf:resource="#None"/>
+  </owl:Class>
+  <owl:Class rdf:about="#None">
+      <rdfs:label xml:lang="en">We do not give you access to our information about you
+   </rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Access"/>
+  </owl:Class>
+
+
+  <!-- Dispute Resolution Classes -->
+
+  <owl:Class rdf:about="#Dispute-Resolution">
+    <rdfs:label xml:lang="en">Ways to resolve privacy-related disputes with us include:
+   </rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1" owl:maxCardinality="1">
+  <owl:onProperty rdf:resource="#short-description"/>
+  <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#STRING"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#dispute-resolution-uri"/>
+  <owl:allValuesFrom rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#resource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#dispute-verification"/>
+  <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#STRING"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#has-remedies"/>
+  <owl:allValuesFrom rdf:resource="#Remedies"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1" owl:maxCardinality="1">
+  <owl:onProperty rdf:resource="#long-description"/>
+  <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#STRING"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1">
+  <owl:onProperty rdf:resource="#has-image"/>
+  <owl:allValuesFrom rdf:resource="#Image"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+<owl:Class rdf:about="#Independent">
+    <rdfs:label xml:lang="en">display "independent organization" with
+    hyperlink to service URI
+ </rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Dispute-Resolution"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Court">
+    <rdfs:label xml:lang="en">We believe that the following authority
+    offers recourse for disputes:
+  </rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Dispute-Resolution"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Customerservice">
+     <rdfs:label xml:lang="en">display "customer service" with
+     hyperlink to service URI
+  </rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Dispute-Resolution"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Image">
+    <rdfs:label xml:lang="en">Image Associated with Dispute Resolution</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1" owl:maxCardinality="1">
+  <owl:onProperty rdf:resource="#width"/>
+  <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#INTEGER"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1" owl:maxCardinality="1">
+  <owl:onProperty rdf:resource="#height"/>
+  <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#INTEGER"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction owl:minCardinality="1" owl:maxCardinality="1">
+  <owl:onProperty rdf:resource="#alt"/>
+  <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#STRING"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+ <owl:ObjectProperty rdf:about="#discuri">
+    <rdfs:label xml:lang="en">Read our full privacy policy at [with link to discuri]
+   </rdfs:label>
+
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#opturi">
+   <rdfs:label xml:lang="en">Find out how to opt-in or opt-out at [with link to opturi]
+  </rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#has-purpose">
+    <rdfs:label xml:lang="en">purpose-of</rdfs:label>
+
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="#is-subject">
+    <rdfs:label xml:lang="en">is-subject</rdfs:label>
+
+  </owl:DatatypeProperty>
+
+  <owl:ObjectProperty rdf:about="#has-policy">
+    <rdfs:label xml:lang="en">has-policy</rdfs:label>
+
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#controller">
+    <rdfs:label xml:lang="en">Is the controller for this policy</rdfs:label>
+
+  </owl:ObjectProperty>
+
+
+
+  <owl:ObjectProperty rdf:about="#has-data">
+    <rdfs:label xml:lang="en">has-data</rdfs:label>
+
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#allowsaccess">
+    <rdfs:label xml:lang="en">allowsaccess</rdfs:label>
+
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#disputes-resolved-by">
+    <rdfs:label xml:lang="en">disputes-resolved-by</rdfs:label>
+
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="#short-description">
+    <rdfs:label xml:lang="en">short-description</rdfs:label>
+
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="#dispute-resolution-uri">
+    <rdfs:label xml:lang="en">dispute-resolution-uri</rdfs:label>
+
+  </owl:ObjectProperty>
+
+
+  <owl:DatatypeProperty rdf:about="#dispute-verification">
+    <rdfs:label xml:lang="en">dispute-verification</rdfs:label>
+
+  </owl:DatatypeProperty>
+
+
+  <owl:DatatypeProperty rdf:about="#width">
+    <rdfs:label xml:lang="en">width</rdfs:label>
+
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#height">
+    <rdfs:label xml:lang="en">height</rdfs:label>
+
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#alt">
+    <rdfs:label xml:lang="en">alt</rdfs:label>
+
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="#has-remedies">
+    <rdfs:label xml:lang="en">has-remedies</rdfs:label>
+
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="#has-consequence">
+    <rdfs:label xml:lang="en">has-consequence</rdfs:label>
+
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="#collected-data">
+    <rdfs:label xml:lang="en">collected-data</rdfs:label>
+
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="#long-description">
+    <rdfs:label xml:lang="en">long-description</rdfs:label>
+
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="#has-image">
+    <rdfs:label xml:lang="en">has-image</rdfs:label>
+
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#recipient">
+    <rdfs:label xml:lang="en">recipient</rdfs:label>
+
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#retention">
+    <rdfs:label xml:lang="en">retention</rdfs:label>
+
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#describes">
+    <rdfs:label xml:lang="en">describes</rdfs:label>
+
+  </owl:ObjectProperty>
+
+
+
+  <!-- ************************************************
+
+   Data Schema
+
+   **************************************************** -->
+
+  <!-- Data Super Category -->
+
+<owl:Class rdf:about="#Data">
+    <rdfs:comment xml:lang="en">Describes the data to be
+    transferred or inferred</rdfs:comment>
+    <rdfs:label xml:lang="en">Data</rdfs:label>
+    <!-- Any data value must be in some category or other-category -->
+  <owl:unionOf rdf:parseType="Collection">
+    <owl:Class rdf:about="#Categories" />
+    <owl:Class rdf:about="#Othercategories" />
+  </owl:unionOf>
+  <!-- Top level categories included within Data -->
+  <p3p:may-include-members-of rdf:resource="#User"/>
+  <p3p:may-include-members-of rdf:resource="#Dynamic"/>
+  <p3p:may-include-members-of rdf:resource="#Thirdparty"/>
+  <p3p:may-include-members-of rdf:resource="#Business"/>
+  </owl:Class>
+
+
+
+  <!-- Top Level Data Types -->
+
+  <owl:Class rdf:about="#Dynamic">
+    <rdfs:label xml:lang="en">Dynamic</rdfs:label>
+    <p3p:may-include-members-of rdf:resource="#Clickstream"/>
+  <p3p:may-include-members-of rdf:resource="#Http"/>
+  <p3p:may-include-members-of rdf:resource="#Clientevents"/>
+  <p3p:may-include-members-of rdf:resource="#Cookies"/>
+  <p3p:may-include-members-of rdf:resource="#Searchtext"/>
+  <p3p:may-include-members-of rdf:resource="#Interactionrecord"/>
+  <p3p:may-include-members-of rdf:resource="#Miscdata"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#User">
+    <rdfs:label xml:lang="en">User</rdfs:label>
+   <p3p:may-include-members-of rdf:resource="#Name"/>
+  <p3p:may-include-members-of rdf:resource="#Bdate"/>
+  <p3p:may-include-members-of rdf:resource="#Login"/>
+  <p3p:may-include-members-of rdf:resource="#Cert"/>
+  <p3p:may-include-members-of rdf:resource="#Gender"/>
+  <p3p:may-include-members-of rdf:resource="#Jobtitle"/>
+  <p3p:may-include-members-of rdf:resource="#Home-info"/>
+  <p3p:may-include-members-of rdf:resource="#Business-info"/>
+  <p3p:may-include-members-of rdf:resource="#Employer"/>
+  <p3p:may-include-members-of rdf:resource="#Department"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ThirdParty">
+    <rdfs:label xml:lang="en">ThirdParty</rdfs:label>
+       <p3p:may-include-members-of rdf:resource="#Name"/>
+  <p3p:may-include-members-of rdf:resource="#Bdate"/>
+  <p3p:may-include-members-of rdf:resource="#Login"/>
+  <p3p:may-include-members-of rdf:resource="#Cert"/>
+  <p3p:may-include-members-of rdf:resource="#Gender"/>
+  <p3p:may-include-members-of rdf:resource="#Jobtitle"/>
+  <p3p:may-include-members-of rdf:resource="#Home-info"/>
+  <p3p:may-include-members-of rdf:resource="#Business-info"/>
+  <p3p:may-include-members-of rdf:resource="#Employer"/>
+  <p3p:may-include-members-of rdf:resource="#Department"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Business">
+    <rdfs:label xml:lang="en">Business</rdfs:label>
+   <p3p:may-include-members-of rdf:resource="#Name"/>
+  <p3p:may-include-members-of rdf:resource="#Department"/>
+  <p3p:may-include-members-of rdf:resource="#Cert"/>
+  <p3p:may-include-members-of rdf:resource="#Contact-info"/>
+  <p3p:may-include-members-of rdf:resource="#Business-info"/>
+  </owl:Class>
+
+
+ <!-- *******************
+  Second Level Data Class Relationships
+  ********************** -->
+<owl:Class rdf:about="#Clickstream">
+    <rdfs:label xml:lang="en">Click-stream Information</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Uri"/>
+    <p3p:may-include-members-of rdf:resource="#Timestamp"/>
+  <p3p:may-include-members-of rdf:resource="#Clientip"/>
+  <p3p:may-include-members-of rdf:resource="#Other-httpmethod"/>
+  <p3p:may-include-members-of rdf:resource="#Other-bytes"/>
+  <p3p:may-include-members-of rdf:resource="#Other-statuscode"/>
+</owl:Class>
+
+  <owl:Class rdf:about="#Http">
+    <rdfs:label xml:lang="en">HTTP Protocol Information</rdfs:label>
+    <p3p:may-include-members-of rdf:resource="#Referer"/>
+  <p3p:may-include-members-of rdf:resource="#Useragent"/>
+  </owl:Class>
+
+   <owl:Class rdf:about="#Clientevents">
+    <rdfs:label xml:lang="en">User's Interaction with a Resource</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+  </owl:Class>
+
+    <owl:Class rdf:about="#Cookies">
+    <rdfs:label xml:lang="en">Use of HTTP Cookies</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Physical-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Online-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Uniqueid-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Purchase-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Financial-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Content-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#State-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Political-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Health-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Preference-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Location-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Government-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Interactive-data-category"/>
+  </owl:Class>
+
+    <owl:Class rdf:about="#Searchtext">
+    <rdfs:label xml:lang="en">Search Terms</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Interactive-data-category"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Interactionrecord">
+    <rdfs:label xml:lang="en">Server Stores the Transaction History</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Interactive-data-category"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Miscdata">
+    <rdfs:label xml:lang="en">Miscellaneous Non-base Data Schema information</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Physical-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Online-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Uniqueid-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Purchase-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Financial-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Content-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#State-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Political-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Health-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Preference-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Location-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Government-data-category"/>
+    <p3p:may-include-members-of rdf:resource="#Interactive-data-category"/>
+  </owl:Class>
+
+<!-- Name data structure -->
+    <owl:Class rdf:about="#Name">
+    <rdfs:label xml:lang="en">Subject's Name</rdfs:label>
+   <p3p:may-include-members-of rdf:resource="#Prefix"/>
+   <p3p:may-include-members-of rdf:resource="#Given"/>
+   <p3p:may-include-members-of rdf:resource="#Middle"/>
+   <p3p:may-include-members-of rdf:resource="#Family"/>
+   <p3p:may-include-members-of rdf:resource="#Suffix"/>
+   <p3p:may-include-members-of rdf:resource="#Nickname"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Prefix">
+    <rdfs:label xml:lang="en">Name Prefix</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Given">
+    <rdfs:label xml:lang="en">Given Name</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Physical-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Middle">
+    <rdfs:label xml:lang="en">Middle Name</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Physical-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Family">
+    <rdfs:label xml:lang="en">Family Name (Last Name)</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Physical-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Suffix">
+    <rdfs:label xml:lang="en">Name Suffix</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Nickname">
+    <rdfs:label xml:lang="en">Nickname</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+
+   <owl:Class rdf:about="#Bdate">
+    <rdfs:label xml:lang="en">Subject's Birth Date</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Ymd-year"/>
+  <p3p:may-include-members-of rdf:resource="#Ymd-month"/>
+  <p3p:may-include-members-of rdf:resource="#Ymd-day"/>
+  <p3p:may-include-members-of rdf:resource="#Hms-hour"/>
+  <p3p:may-include-members-of rdf:resource="#Hms-minute"/>
+  <p3p:may-include-members-of rdf:resource="#Hms-second"/>
+  <p3p:may-include-members-of rdf:resource="#Fractionsecond"/>
+  <p3p:may-include-members-of rdf:resource="#Timezone"/>
+  </owl:Class>
+
+  <!-- Login data structure -->
+    <owl:Class rdf:about="#Login">
+    <rdfs:label xml:lang="en">Subject's Login Information</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Id"/>
+  <p3p:may-include-members-of rdf:resource="#Password"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Id">
+    <rdfs:label xml:lang="en">Login Id</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Uniqueid-data-category"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Password">
+    <rdfs:label xml:lang="en">Login Password</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Uniqueid-data-category"/>
+</owl:Class>
+
+<!-- Login data structure -->
+   <owl:Class rdf:about="#Cert">
+    <rdfs:label xml:lang="en">Subject's Identity Certificate</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Key"/>
+  <p3p:may-include-members-of rdf:resource="#Format"/>
+  </owl:Class>
+    <owl:Class rdf:about="#Key">
+    <rdfs:label xml:lang="en">Certificate key</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Uniqueid-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Format">
+    <rdfs:label xml:lang="en">Certificate format</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Uniqueid-data-category"/>
+</owl:Class>
+
+
+    <owl:Class rdf:about="#Gender">
+    <rdfs:label xml:lang="en">Subject's Gender</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Jobtitle">
+    <rdfs:label xml:lang="en">Subject's Job Title</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+  </owl:Class>
+
+    <owl:Class rdf:about="#Home-info">
+    <rdfs:label xml:lang="en">Subject's Home Contact Information</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Postal"/>
+  <p3p:may-include-members-of rdf:resource="#Telecom"/>
+  <p3p:may-include-members-of rdf:resource="#Online"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Business-info">
+    <rdfs:label xml:lang="en">Subject's Business Contact Information</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Postal"/>
+  <p3p:may-include-members-of rdf:resource="#Telecom"/>
+  <p3p:may-include-members-of rdf:resource="#Online"/>
+  </owl:Class>
+
+
+   <owl:Class rdf:about="#Employer">
+    <rdfs:label xml:lang="en">Name of User's Employer</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Department">
+    <rdfs:label xml:lang="en">Department or Division of Organization
+    where Subject is Employed</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+  </owl:Class>
+
+
+
+
+  <owl:Class rdf:about="#Contact-info">
+    <rdfs:label xml:lang="en">Contact Information for the Organization</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Postal"/>
+  <p3p:may-include-members-of rdf:resource="#Telecom"/>
+  <p3p:may-include-members-of rdf:resource="#Online"/>
+  </owl:Class>
+
+  <!--
+URI Data Structure
+  -->
+
+  <owl:Class rdf:about="#Uri">
+    <rdfs:label xml:lang="en">Uri</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Authority"/>
+  <p3p:may-include-members-of rdf:resource="#Stem"/>
+  <p3p:may-include-members-of rdf:resource="#Querystring"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Authority">
+    <rdfs:label xml:lang="en">Uri Authority</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Online-data-category"/>
+</owl:Class>
+ <owl:Class rdf:about="#Stem">
+    <rdfs:label xml:lang="en">Uri Stem</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Online-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Querystring">
+    <rdfs:label xml:lang="en">Uri Querystring</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Online-data-category"/>
+</owl:Class>
+
+<!-- Date/Time Data Structure -->
+
+  <owl:Class rdf:about="#Timestamp">
+    <rdfs:label xml:lang="en">Timestamp</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Ymd-year"/>
+  <p3p:may-include-members-of rdf:resource="#Ymd-month"/>
+  <p3p:may-include-members-of rdf:resource="#Ymd-day"/>
+  <p3p:may-include-members-of rdf:resource="#Hms-hour"/>
+  <p3p:may-include-members-of rdf:resource="#Hms-minute"/>
+  <p3p:may-include-members-of rdf:resource="#Hms-second"/>
+  <p3p:may-include-members-of rdf:resource="#Fractionsecond"/>
+  <p3p:may-include-members-of rdf:resource="#Timezone"/>
+  </owl:Class>
+
+<owl:Class rdf:about="#Ymd-year">
+    <rdfs:label xml:lang="en">Year</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+ <owl:Class rdf:about="#Ymd-month">
+    <rdfs:label xml:lang="en">Month</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Ymd-day">
+    <rdfs:label xml:lang="en">Day</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Hms-hour">
+    <rdfs:label xml:lang="en">Hour</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+ <owl:Class rdf:about="#Hms-minute">
+    <rdfs:label xml:lang="en">Minute</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Hms-second">
+    <rdfs:label xml:lang="en">Second</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Fractionsecond">
+    <rdfs:label xml:lang="en">Data about fractions of a second</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+ <owl:Class rdf:about="#Timezone">
+    <rdfs:label xml:lang="en">Timezone</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+
+
+
+
+ <!-- IP Address Structure -->
+
+ <owl:Class rdf:about="#Clientip">
+    <rdfs:label xml:lang="en">Client's IP Address or Hostname</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Hostname"/>
+  <p3p:may-include-members-of rdf:resource="#Partialhostname"/>
+  <p3p:may-include-members-of rdf:resource="#Fullip"/>
+  <p3p:may-include-members-of rdf:resource="#Partialip"/>
+  </owl:Class>
+<owl:Class rdf:about="#Hostname">
+    <rdfs:label xml:lang="en">Complete Host and Domain Name</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+</owl:Class>
+ <owl:Class rdf:about="#Partialhostname">
+    <rdfs:label xml:lang="en">Partial Hostname</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+  <owl:Class rdf:about="#Fullip">
+    <rdfs:label xml:lang="en">Full IP Address</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+</owl:Class>
+ <owl:Class rdf:about="#Partialhostname">
+    <rdfs:label xml:lang="en">Partial IP Address</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+
+  <owl:Class rdf:about="#Other.httpmethod">
+    <rdfs:label xml:lang="en">HTTP Request Method</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Other.bytes">
+    <rdfs:label xml:lang="en">Data Bytes in Response</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Other.statuscode">
+    <rdfs:label xml:lang="en">Response Status Code</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Navigation-data-category"/>
+    </owl:Class>
+
+  <owl:Class rdf:about="#Referer">
+    <rdfs:label xml:lang="en">Last URI Requested by the User</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Authority"/>
+  <p3p:may-include-members-of rdf:resource="#Stem"/>
+  <p3p:may-include-members-of rdf:resource="#Querystring"/>
+  </owl:Class>
+   <owl:Class rdf:about="#Useragent">
+    <rdfs:label xml:lang="en">User Agent Information</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Computer-data-category"/>
+  </owl:Class>
+
+  <!-- Postal data structure -->
+
+  <owl:Class rdf:about="#Postal">
+    <rdfs:label xml:lang="en">Postal Data</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Name"/>
+  <p3p:may-include-members-of rdf:resource="#City"/>
+  <p3p:may-include-members-of rdf:resource="#Street"/>
+  <p3p:may-include-members-of rdf:resource="#Stateprov"/>
+  <p3p:may-include-members-of rdf:resource="#Postalcode"/>
+  <p3p:may-include-members-of rdf:resource="#Organization"/>
+  <p3p:may-include-members-of rdf:resource="#Country"/>
+  </owl:Class>
+
+<owl:Class rdf:about="#City">
+    <rdfs:label xml:lang="en">City</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Street">
+    <rdfs:label xml:lang="en">Street Address</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Physical-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Stateprov">
+    <rdfs:label xml:lang="en">State or Province</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Postalcode">
+    <rdfs:label xml:lang="en">Postal Code</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Organization">
+    <rdfs:label xml:lang="en">Organization Name</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Country">
+    <rdfs:label xml:lang="en">Country</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Demographic-data-category"/>
+</owl:Class>
+
+
+  <!-- Telecom Data Structure -->
+
+
+  <owl:Class rdf:about="#Telecom">
+    <rdfs:label xml:lang="en">Telecom Data</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Telephone"/>
+  <p3p:may-include-members-of rdf:resource="#Fax"/>
+  <p3p:may-include-members-of rdf:resource="#Mobile"/>
+  <p3p:may-include-members-of rdf:resource="#Pager"/>
+  </owl:Class>
+
+
+    <owl:Class rdf:about="#Telephonenum">
+    <rdfs:label xml:lang="en">Telephone number data</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#intcode"/>
+  <p3p:may-include-members-of rdf:resource="#loccode"/>
+  <p3p:may-include-members-of rdf:resource="#number"/>
+  <p3p:may-include-members-of rdf:resource="#ext"/>
+  <p3p:may-include-members-of rdf:resource="#comment"/>
+  </owl:Class>
+
+     <owl:Class rdf:about="#Voicetelephonenum">
+    <rdfs:label xml:lang="en">Voice Landline Telephone number data</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Telephonenum"/>
+  </owl:Class>
+
+   <owl:Class rdf:about="#Fax">
+    <rdfs:label xml:lang="en">Fax Number</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Telephonenum"/>
+  </owl:Class>
+
+     <owl:Class rdf:about="#Mobile">
+    <rdfs:label xml:lang="en">Mobile Telephone Number</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Telephonenum"/>
+  </owl:Class>
+
+   <owl:Class rdf:about="#Pager">
+    <rdfs:label xml:lang="en">Pager Number</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Telephonenum"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Intcode">
+    <rdfs:label xml:lang="en">International Telephone Code</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Physical-data-category"/>
+</owl:Class>
+  <owl:Class rdf:about="#Loccode">
+    <rdfs:label xml:lang="en">Local Telephone Area Code</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Physical-data-category"/>
+</owl:Class>
+ <owl:Class rdf:about="#Number">
+    <rdfs:label xml:lang="en">Base Telephone Number Without Location Codes</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Physical-data-category"/>
+</owl:Class>
+   <owl:Class rdf:about="#Ext">
+    <rdfs:label xml:lang="en">Telephone Extension Number</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Physical-data-category"/>
+</owl:Class>
+<owl:Class rdf:about="#Comment">
+    <rdfs:label xml:lang="en">Telephone Optional Comments</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Physical-data-category"/>
+</owl:Class>
+
+  <!-- Online Data Structure -->
+
+  <owl:Class rdf:about="#Online">
+    <rdfs:label xml:lang="en">Online Contact Information</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Email"/>
+  <p3p:may-include-members-of rdf:resource="#Uri"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Email">
+    <rdfs:label xml:lang="en">Email Address</rdfs:label>
+  <p3p:may-include-members-of rdf:resource="#Online-data-category"/>
+</owl:Class>
+
+
+
+
+
+  <!--
+  ++++++++++++++++
+  Categories
+  ++++++++++++++++
+  -->
+
+  <owl:Class rdf:about="#Categories">
+    <rdfs:comment xml:lang="en">Categories are elements inside data
+    elements that provide hints to users and user agents as to the intended
+    uses of the data. Categories are vital to making P3P user agents easier
+    to implement and use. Note that categories are not data elements: they
+    just allow users to express more generalized preferences and rules over
+    the exchange of their data. Categories SHOULD NOT be used within the
+    DATA elements of an ENTITY element.</rdfs:comment>
+    <rdfs:label xml:lang="en">Categories</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Data"/>
+  <owl:disjointWith rdf:resource="#OtherCategories"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#OtherCategories">
+    <rdfs:comment xml:lang="en">Data may belong to other categories apart
+    to those explicitely described in P3P.</rdfs:comment>
+    <rdfs:label xml:lang="en">Other categories different from those stated
+    in P3P</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Data"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Navigation-data-category">
+    <rdfs:label xml:lang="en">navigation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+   <owl:Class rdf:about="#Online-data-category">
+    <rdfs:label xml:lang="en">online</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Physical-data-category">
+    <rdfs:label xml:lang="en">physical</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Uniqueid-data-category">
+    <rdfs:label xml:lang="en">uniqueid</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Purchase-data-category">
+    <rdfs:label xml:lang="en">purchase</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Financial-data-category">
+    <rdfs:label xml:lang="en">financial</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Computer-data-category">
+    <rdfs:label xml:lang="en">computer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Demographic-data-category">
+    <rdfs:label xml:lang="en">demographic</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Content-data-category">
+    <rdfs:label xml:lang="en">content</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+  <owl:Class rdf:about="#State-data-category">
+    <rdfs:label xml:lang="en">state</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Political-data-category">
+    <rdfs:label xml:lang="en">political</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Health-data-category">
+    <rdfs:label xml:lang="en">health</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Preference-data-category">
+    <rdfs:label xml:lang="en">preference</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Location-data-category">
+    <rdfs:label xml:lang="en">location</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Government-data-category">
+    <rdfs:label xml:lang="en">government</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Interactive-data-category">
+    <rdfs:label xml:lang="en">interactive</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Categories"/>
+  </owl:Class>
+
+    <owl:TransitiveProperty rdf:about="#may-include-members-of">
+  </owl:TransitiveProperty>
+
+
+</rdf:RDF>

@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://drozdowicz.net/onto/request/"
+     xml:base="http://drozdowicz.net/onto/request/"
+     xmlns:request="http://drozdowicz.net/onto/request#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://drozdowicz.net/onto/request">
+        <owl:versionIRI rdf:resource="http://drozdowicz.net/onto/request/1.0.0"/>
+        <owl:imports rdf:resource="http://drozdowicz.net/onto/access-control/1.0.0"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://drozdowicz.net/onto/request#hierarchyDesignator -->
+
+    <owl:AnnotationProperty rdf:about="http://drozdowicz.net/onto/request#hierarchyDesignator"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://drozdowicz.net/onto/request#identifier -->
+
+    <rdfs:Datatype rdf:about="http://drozdowicz.net/onto/request#identifier">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name"/>
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:data-type:x500Name"/>
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:2.0:data-type:dnsName"/>
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:2.0:data-type:ipAddress"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name -->
+
+    <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:data-type:x500Name -->
+
+    <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:1.0:data-type:x500Name">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:2.0:data-type:dnsName -->
+
+    <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:2.0:data-type:dnsName">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:2.0:data-type:ipAddress -->
+
+    <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:2.0:data-type:ipAddress">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression -->
+
+    <rdfs:Datatype rdf:about="urn:oasis:names:tc:xacml:3.0:data-type:xpathExpression">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://drozdowicz.net/onto/request#hierarchyDesignatorId -->
+
+    <owl:DatatypeProperty rdf:about="http://drozdowicz.net/onto/request#hierarchyDesignatorId">
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:action:action-id -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:1.0:action:action-id">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:action"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:resource:resource-id -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:1.0:resource:resource-id">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:subject:subject-id -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:1.0:subject:subject-id">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:2.0:resource:resource-ancestor -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:2.0:resource:resource-ancestor">
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:2.0:resource:resource-parent -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:2.0:resource:resource-parent">
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:2.0:subject:role -->
+
+    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:2.0:subject:role">
+        <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://drozdowicz.net/onto/access-control#Action -->
+
+    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#Action">
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:action"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://drozdowicz.net/onto/access-control#Environment -->
+
+    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#Environment">
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://drozdowicz.net/onto/access-control#Resource -->
+
+    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#Resource">
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://drozdowicz.net/onto/access-control#Subject -->
+
+    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#Subject">
+        <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
+    </rdf:Description>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:1.0:subject-category:access-subject -->
+
+    <owl:Class rdf:about="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+        <owl:hasKey rdf:parseType="Collection">
+            <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject:subject-id"/>
+        </owl:hasKey>
+    </owl:Class>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:3.0:attribute-category:action -->
+
+    <owl:Class rdf:about="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
+        <owl:hasKey rdf:parseType="Collection">
+            <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:action:action-id"/>
+        </owl:hasKey>
+    </owl:Class>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:3.0:attribute-category:environment -->
+
+    <owl:Class rdf:about="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"/>
+    
+
+
+    <!-- urn:oasis:names:tc:xacml:3.0:attribute-category:resource -->
+
+    <owl:Class rdf:about="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+        <owl:hasKey rdf:parseType="Collection">
+            <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:resource:resource-id"/>
+        </owl:hasKey>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
