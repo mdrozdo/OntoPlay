@@ -14,6 +14,7 @@
      xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:wot="http://xmlns.com/wot/0.1/"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:access="http://drozdowicz.net/onto/access-control#"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://drozdowicz.net/onto/personal-privacy">
         <owl:imports rdf:resource="http://drozdowicz.net/onto/fitness-tracking"/>
@@ -71,6 +72,20 @@
     <owl:Class rdf:about="http://drozdowicz.net/onto/personal-privacy#FitnessData">
         <rdfs:subClassOf rdf:resource="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#OtherCategories"/>
     </owl:Class>
+    
+
+
+    <!-- http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Organization -->
+
+    <rdf:Description rdf:about="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Organization">
+        <owl:equivalentClass rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Organization -->
+
+    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
 </rdf:RDF>
 
 

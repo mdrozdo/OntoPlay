@@ -46,7 +46,7 @@ class ConstraintsBox extends Component {
                     index={0}
                     classUri={this.props.classUri}
                     condition={this.props.propertyConditions}
-                    conditionChanged={this.conditionChanged}
+                    conditionChanged={this.conditionChanged}                    
                     api={this.props.api}
                 />
                 <div className='condition-operator'>

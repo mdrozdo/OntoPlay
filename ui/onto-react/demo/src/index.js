@@ -5,6 +5,59 @@ import OntoReact from '../../src';
 class Demo extends Component {
     state = { loading: false };
 
+    uc1_condition = {
+        classUri: 'http://drozdowicz.net/onto/access-control#PermittedRequest',
+        propertyConditions: {
+            type: 'intersection',
+            contents: [
+                {
+                    type: 'condition',
+                    propertyUri: 'http://drozdowicz.net/onto/access-control#requestedBy',
+                    operator: 'constrainedBy',
+                    classConstraintValue: {
+                        classUri: 'http://xmlns.com/foaf/0.1/Person',
+                        propertyConditions: {
+                            type: 'condition',
+                            propertyUri: 'http://www.w3.org/ns/org#memberOf',
+                            operator: 'equalToIndividual',
+                            objectValue: 'http://drozdowicz.net/onto/privacy-sample#healthCenter'
+                        }
+                    }
+                },
+                {
+                    type: 'condition',
+                    propertyUri: 'http://drozdowicz.net/onto/access-control#concernsResource',
+                    operator: 'constrainedBy',
+                    classConstraintValue: {
+                        classUri: 'http://drozdowicz.net/onto/fitness-tracking#AggregateMetric',
+                        propertyConditions: {
+                            type: 'intersection',
+                            contents: [
+                                {
+                                    type: 'condition',
+                                    propertyUri: 'http://drozdowicz.net/onto/fitness-tracking#aggregationDays',
+                                    operator: 'greaterThan',
+                                    datatypeValue: '30'
+                                },
+                                {
+                                    type: 'condition',
+                                    propertyUri: 'http://drozdowicz.net/onto/fitness-tracking#aggregatesMetric',
+                                    operator: 'constrainedBy',
+                                    classConstraintValue: {
+                                        classUri: 'http://drozdowicz.net/onto/fitness-tracking#Distance',
+                                        propertyConditions: [
+                                            {}
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }        
+    };
+
     fullCondition = {
         classUri: 'http://purl.org/NET/cgo#WorkerNode',
         propertyConditions: {
@@ -341,21 +394,21 @@ class Demo extends Component {
     render() {
         return (
             <div className='container'>
-                <h1>onto-react Demo - Individual</h1>
+                <h1>Privacy Sample - UC1</h1>
                 {React.createElement(OntoReact.OntoReact, {
-                    mainClass: 'http://purl.org/NET/cgo#WorkerNode',
+                    mainClass: 'http://drozdowicz.net/onto/access-control#PermittedRequest',
                     //api: false,
-                    elementName: 'http://purl.org/NET/cgo#WorkerNode',
-                    isDescriptionOfIndividual: true,
-                    // headerComponent: OntoReact.InputNameHeader('Individual name'),
-                    headerComponent: OntoReact.MultiHeader(
-                        OntoReact.InputNameHeader('Individual name'),
-                        OntoReact.SelectClassHeader('Of class:')
-                    ),
-                    api: new OntoReact.Api(true),
+                    elementName: 'HealthCenterPermission',
+                    isDescriptionOfIndividual: false,
+                    headerComponent: OntoReact.InputNameHeader('Class name'),
+                    // headerComponent: OntoReact.MultiHeader(
+                    //     OntoReact.InputNameHeader('Class name'),
+                    //     OntoReact.SelectClassHeader('Subclass of:')
+                    // ),
+                    api: new OntoReact.Api(false),
                     title:
-                        'Add new individual of class http://purl.org/NET/cgo#WorkerNode',
-                    condition: this.individualCondition,
+                        'Add new class expression for http://drozdowicz.net/onto/access-control#PermittedRequest',
+                    condition: this.uc1_condition,
                 })}
 
                 <h1>onto-react Demo - class</h1>

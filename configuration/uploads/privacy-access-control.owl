@@ -2,6 +2,7 @@
 <rdf:RDF xmlns="http://drozdowicz.net/onto/privacy-access-control#"
      xml:base="http://drozdowicz.net/onto/privacy-access-control"
      xmlns:schema="http://schema.org/"
+     xmlns:access="http://drozdowicz.net/onto/access-control"
      xmlns:ns="http://www.w3.org/2003/06/sw-vocab-status/ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:org="http://www.w3.org/ns/org#"
@@ -26,6 +27,41 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://drozdowicz.net/onto/fitness-tracking#Metric -->
+
+    <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#Metric">
+        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#Resource"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Data -->
+
+    <rdf:Description rdf:about="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Data">
+        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#Resource"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/ns/sosa/Observation -->
+
+    <rdf:Description rdf:about="http://www.w3.org/ns/sosa/Observation">
+        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#Resource"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Individuals
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -37,7 +73,7 @@
     <!-- http://drozdowicz.net/onto/privacy-sample#healthCenter -->
 
     <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/privacy-sample#healthCenter">
-        <rdf:type rdf:resource="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Organization"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/org#Organization"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 
