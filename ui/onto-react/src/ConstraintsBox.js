@@ -46,14 +46,16 @@ class ConstraintsBox extends Component {
                     index={0}
                     classUri={this.props.classUri}
                     condition={this.props.propertyConditions}
-                    conditionChanged={this.conditionChanged}                    
+                    conditionChanged={this.conditionChanged}
+                    handleAddOrCondition={this.handleAddOrCondition}
+                    displayBorder={false}
                     api={this.props.api}
                 />
-                <div className='condition-operator'>
+                {/* <div className='condition-operator'>
                     <a href='#' onClick={this.handleAddOrCondition}>
                         <div>Or</div>
                     </a>
-                </div>
+                </div> */}
             </div>
         );
     }
@@ -78,13 +80,14 @@ class ConstraintsBox extends Component {
                     classUri={this.props.classUri}
                     intersection={this.props.propertyConditions}
                     conditionChanged={this.conditionChanged}
+                    handleAddOrCondition={this.handleAddOrCondition}
                     api={this.props.api}
                 />
-                <div className='condition-operator'>
+                {/* <div className='condition-operator'>
                     <a href='#' onClick={this.handleAddOrCondition}>
-                        <div>Or</div>
+                        <div>OR</div>
                     </a>
-                </div>
+                </div> */}
             </div>
         );
     }
@@ -185,7 +188,7 @@ class UnionBox extends Component {
                 })}
                 <div className='condition-operator'>
                     <a href='#' onClick={this.handleAddCondition}>
-                        <div>Or</div>
+                        <div>OR</div>
                     </a>
                 </div>
                 {/* Commented out, because annotations are not ported to React.
@@ -333,9 +336,9 @@ class IntersectionBox extends Component {
 
     render() {
         const contents = this.props.intersection.contents;
-
+        const displayBorder = !this.props.handleAddOrCondition;
         return (
-            <div className='condition-panel row'>
+            <div className={displayBorder?'condition-panel row':''}>
                 {contents.map((c, i) => {
                     const constraintType = c.type || null;
 
@@ -358,9 +361,13 @@ class IntersectionBox extends Component {
                     );
                 })}
                 <div className='condition-operator'>
-                    <a href='#' onClick={this.handleAddCondition}>
-                        <div>And</div>
-                    </a>
+                    <a href='#' onClick={this.handleAddCondition}>AND</a>
+                    {this.props.handleAddOrCondition && (
+                        <span>
+                            &nbsp;|&nbsp;
+                            <a href='#' onClick={this.props.handleAddOrCondition}>OR</a>
+                        </span>
+                    )}
                 </div>
                 {/* Commented out, because annotations are not ported to React.
                 <div className='condition-operator'>
@@ -591,11 +598,7 @@ class ConditionBox extends Component {
                     {this.props.condition.groupOperator}
                 </div>
 
-                <div
-                    className={
-                        this.props.displayBorder ? 'condition-panel row' : ''
-                    }
-                >
+                <div className={this.props.displayBorder ? 'condition-panel row' : ''}>
                     <div className='remove-condition'>
                         <a href='#' onClick={this.handleRemoveCondition}>
                             <span className='glyphicon glyphicon-remove' />
@@ -676,9 +679,14 @@ class ConditionBox extends Component {
                     )}
                     {this.props.displayAndOperator && (
                         <div className='condition-internal-operator'>
-                            <a href='#' onClick={this.handleAddCondition}>
-                                <div>And</div>
-                            </a>
+                            
+                            <a href='#' onClick={this.handleAddCondition}>AND</a>
+                            {this.props.handleAddOrCondition && (
+                                <span> 
+                                    &nbsp;|&nbsp;
+                                    <a href='#' onClick={this.props.handleAddOrCondition}>OR</a>  
+                                </span>  
+                            )}
                         </div>
                     )}
                 </div>
