@@ -83,3 +83,8 @@
 .annotationPropertyClass{
 	color:red;
 }
+
+.btn-success {
+	margin-top: 5px;
+	margin-bottom: 15px;
+}

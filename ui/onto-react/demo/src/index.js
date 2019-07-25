@@ -407,7 +407,7 @@ class Demo extends Component {
                     // ),
                     api: new OntoReact.Api(false),
                     title:
-                        'Add new class expression for http://drozdowicz.net/onto/access-control#PermittedRequest',
+                        'Add new class expression for PermittedRequest',
                     condition: this.uc1_condition,
                 })}
 
