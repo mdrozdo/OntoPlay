@@ -337,6 +337,14 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://drozdowicz.net/onto/fitness-tracking#IndoorTraining -->
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#IndoorTraining">
+        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Training"/>
+    </owl:Class>
+    
+
+
     <!-- http://drozdowicz.net/onto/fitness-tracking#IndoorWalking -->
 
     <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#IndoorWalking">
@@ -367,6 +375,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#OutdoorCycling">
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Cycling"/>
+        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#OutdoorTraining"/>
     </owl:Class>
     
 
@@ -374,7 +383,16 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://drozdowicz.net/onto/fitness-tracking#OutdoorRunning -->
 
     <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#OutdoorRunning">
+        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#OutdoorTraining"/>
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Running"/>
+    </owl:Class>
+    
+
+
+    <!-- http://drozdowicz.net/onto/fitness-tracking#OutdoorTraining -->
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#OutdoorTraining">
+        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Training"/>
     </owl:Class>
     
 
@@ -382,6 +400,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- http://drozdowicz.net/onto/fitness-tracking#OutdoorWalking -->
 
     <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#OutdoorWalking">
+        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#OutdoorTraining"/>
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Walking"/>
     </owl:Class>
     

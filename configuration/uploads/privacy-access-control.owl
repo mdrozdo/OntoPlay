@@ -35,6 +35,14 @@
     
 
 
+    <!-- http://drozdowicz.net/onto/access-control#PurposeOfUse -->
+
+    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#PurposeOfUse">
+        <owl:equivalentClass rdf:resource="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Purpose"/>
+    </rdf:Description>
+    
+
+
     <!-- http://drozdowicz.net/onto/fitness-tracking#Metric -->
 
     <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#Metric">
@@ -43,11 +51,33 @@
     
 
 
+    <!-- http://drozdowicz.net/onto/privacy-access-control#InfrastructureAnalysis -->
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/privacy-access-control#InfrastructureAnalysis">
+        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#PurposeOfUse"/>
+    </owl:Class>
+    
+
+
+    <!-- http://drozdowicz.net/onto/privacy-access-control#PublicSafetyAnalysis -->
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/privacy-access-control#PublicSafetyAnalysis">
+        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#PurposeOfUse"/>
+    </owl:Class>
+    
+
+
     <!-- http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Data -->
 
     <rdf:Description rdf:about="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Data">
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#Resource"/>
     </rdf:Description>
+    
+
+
+    <!-- http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Purpose -->
+
+    <rdf:Description rdf:about="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Purpose"/>
     
 
 
