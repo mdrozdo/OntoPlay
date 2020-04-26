@@ -3,6 +3,7 @@ package ontoplay.models.owlGeneration;
 import com.google.inject.assistedinject.Assisted;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConfigurationException;
+import ontoplay.models.PropertyCondition;
 import ontoplay.models.PropertyValueCondition;
 import ontoplay.models.angular.update.Annotation;
 import org.semanticweb.owlapi.model.*;
@@ -52,11 +53,14 @@ public class IndividualGenerator {
         individualAxioms.add(classAssertionAxiom);
 
         //properies axioms
-        for (PropertyValueCondition cond : condition.getPropertyConditions()) {
+        PropertyCondition cond = condition.getPropertyConditions();
+
+        if(cond != null) {
             RestrictionFactory restrictionFactory = restrictionFactoryProvider.getRestrictionFactory(cond);
             List<OWLAxiom> propertyAxioms = restrictionFactory.createIndividualValue(cond, individual);
             individualAxioms.addAll(propertyAxioms);
         }
+
         for (Annotation ann : condition.getAnnotations()) {
             OWLAnnotationProperty owlAnnotationProperty = factory.getOWLAnnotationProperty(IRI.create(ann.getUri()));
             OWLAxiom annotationAxiom;

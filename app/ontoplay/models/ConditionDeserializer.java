@@ -8,7 +8,7 @@ import ontoplay.models.propertyConditions.IndividualValueCondition;
 import java.lang.reflect.Type;
 
 public class ConditionDeserializer implements
-        JsonDeserializer<PropertyValueCondition> {
+        JsonDeserializer<PropertyCondition> {
 
     private final PropertyProvider propertyProvider;
 
@@ -17,31 +17,53 @@ public class ConditionDeserializer implements
     }
 
     public static ClassCondition deserializeCondition(PropertyProvider jena, String json) {
-        Gson gson = new GsonBuilder().registerTypeAdapter(PropertyValueCondition.class, new ConditionDeserializer(jena)).create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(PropertyCondition.class, new ConditionDeserializer(jena)).create();
         ClassCondition condition = gson.fromJson(json, ClassCondition.class);
         return condition;
     }
 
     @Override
-    public PropertyValueCondition deserialize(JsonElement json, Type typeOfT,
-                                              JsonDeserializationContext context) throws JsonParseException {
+    public PropertyCondition deserialize(JsonElement json, Type typeOfT,
+                                         JsonDeserializationContext context) throws JsonParseException {
         System.out.println(json);
-        PropertyValueCondition condition = null;
         if (json.isJsonObject()) {
             JsonObject jo = json.getAsJsonObject();
 
-            //TODO: extract it away to deserializers for each property value subclass
-            if (jo.has("individualValue")) {
-                condition = context.deserialize(json, IndividualValueCondition.class);
-            } else if (jo.has("datatypeValue")) {
-                condition = context.deserialize(json, DatatypePropertyCondition.class);
-            } else if (jo.has("classConstraintValue")) {
-                condition = context.deserialize(json, ClassValueCondition.class);
+            if (jo.has("type")) {
+                String type = jo.get("type").getAsString();
+
+                switch (jo.get("type").getAsString()) {
+                    case "intersection":
+                        return deserializeGroupCondition(context, json, PropertyConditionType.INTERSECTION);
+                    case "union":
+                        return deserializeGroupCondition(context, json, PropertyConditionType.UNION);
+                    case "values":
+                        return deserializeGroupCondition(context, json, PropertyConditionType.VALUES);
+                    case "condition":
+                        PropertyValueCondition condition = null;
+                        if (jo.has("individualValue")) {
+                            condition = context.deserialize(json, IndividualValueCondition.class);
+                        } else if (jo.has("datatypeValue")) {
+                            condition = context.deserialize(json, DatatypePropertyCondition.class);
+                        } else if (jo.has("classConstraintValue")) {
+                            condition = context.deserialize(json, ClassValueCondition.class);
+                        }
+
+                        if (condition != null)
+                            fillConditionProperty(condition);
+
+                        return condition;
+                }
             }
         }
-        if (condition != null)
-            fillConditionProperty(condition);
-        return condition;
+        return null;
+    }
+
+    private PropertyGroupCondition deserializeGroupCondition(JsonDeserializationContext context, JsonElement json, PropertyConditionType type){
+        PropertyGroupCondition cond = context.deserialize(json, PropertyGroupCondition.class);
+        cond.setType(type);
+
+        return cond;
     }
 
     private void fillConditionProperty(PropertyValueCondition condition) {

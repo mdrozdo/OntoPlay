@@ -15,3 +15,8 @@ dist
 /.settings
 patches
 /bin/
+public/javascripts/onto-react
+
+configuration/uploads/check\.owl
+
+configuration/uploads/catalog-v001\.xml

@@ -1,7 +1,7 @@
 package ontoplay.models.owlGeneration;
 
 import ontoplay.models.ConfigurationException;
-import ontoplay.models.PropertyValueCondition;
+import ontoplay.models.PropertyCondition;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLIndividual;
@@ -9,7 +9,7 @@ import org.semanticweb.owlapi.model.OWLIndividual;
 import java.util.List;
 
 
-public interface RestrictionFactory<T extends PropertyValueCondition> {
+public interface RestrictionFactory<T extends PropertyCondition> {
 
     OWLClassExpression createRestriction(T condition) throws ConfigurationException;
 

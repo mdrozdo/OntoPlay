@@ -1,11 +1,13 @@
 name := """OntoPlay"""
 
-version := "1.0-SNAPSHOT"
+version := "1.1-SNAPSHOT"
 
 scalaVersion := "2.11.7"
 
 lazy val module = (project in file("."))
-    .enablePlugins(PlayJava)
+    .enablePlugins(PlayJava).settings(
+      watchSources ++= (baseDirectory.value / "public/ui" ** "*").get
+    )
 
 
 libraryDependencies ++= Seq(

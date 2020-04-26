@@ -9,6 +9,7 @@ import ontoplay.FileOntoplayConfig;
 import ontoplay.OntoplayConfig;
 import ontoplay.controllers.*;
 import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
+import ontoplay.models.PropertyGroupCondition;
 import ontoplay.models.ontologyReading.OntologyReader;
 import ontoplay.models.ontologyReading.OntologyReaderFactory;
 import ontoplay.models.ontologyReading.jena.JenaOntologyReaderFactory;
@@ -56,6 +57,8 @@ public class Module extends AbstractModule {
         }).to(IndividualValueRestrictionFactory.class).in(Singleton.class);
         bind(new TypeLiteral<RestrictionFactory<ClassValueCondition>>() {
         }).to(ClassValueRestrictionFactory.class);
+        bind(new TypeLiteral<RestrictionFactory<PropertyGroupCondition>>() {
+        }).to(MultiplePropertiesRestrictionFactory.class);
 
         bind(new TypeLiteral<PropertyConditionRenderer<OwlObjectProperty>>() {
         }).to(ObjectPropertyRenderer.class);

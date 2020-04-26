@@ -1,0 +1,26 @@
+@(title: String, className: String, isIndividual: Boolean, elementName: String = "", classRelation: String = "", headerComponent: String = "OntoReact.SelectClass", layoutTemplate: String => Html => Html => Html)(formHeader: Html)
+@import org.apache.commons.lang3.StringEscapeUtils.unescapeXml
+@layoutTemplate(title){
+	<!--TODO: Replace with local files-->
+	<script src='https://unpkg.com/react@@16.1.1/umd/react.development.js'></script>
+	<script src='https://unpkg.com/react-dom@@16.1.1/umd/react-dom.development.js'></script>
+	<script src='@ontoplay.controllers.routes.Assets.at("javascripts/onto-react/onto-react.js")' type='text/javascript' charset='utf-8'></script>
+}{
+	<div id='onto-react'>
+	</div>
+
+	<script>
+        ReactDOM.render(
+					React.createElement(OntoReact.OntoReact, 
+					{
+						mainClass: '@className',
+						elementName: '@elementName',
+						classRelation: '@classRelation',
+						headerComponent: @Html(headerComponent),
+						api: new OntoReact.Api(@isIndividual),
+						title: '@title'
+					}),
+          document.getElementById('onto-react')
+        );
+    </script>
+}

@@ -33,9 +33,9 @@ public class IndividualValueRestrictionFactory implements RestrictionFactory<Ind
     public List<OWLAxiom> createIndividualValue(IndividualValueCondition condition, OWLIndividual individual) throws ConfigurationException {
         OWLObjectProperty conditionProperty = factory.getOWLObjectProperty(IRI.create(condition.getPropertyUri()));
         OWLIndividual valueIndividual = factory.getOWLNamedIndividual(IRI.create(condition.getIndividualValue()));
+        ArrayList<OWLAxiom> result = new ArrayList<OWLAxiom>();
 
         OWLObjectPropertyAssertionAxiom assertion = factory.getOWLObjectPropertyAssertionAxiom(conditionProperty, individual, valueIndividual);
-        ArrayList<OWLAxiom> result = new ArrayList<OWLAxiom>();
         result.add(assertion);
 
         List<Annotation> tempAnnotations = condition.getAnnotations();
