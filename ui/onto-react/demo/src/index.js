@@ -49,7 +49,7 @@ class Demo extends Component {
                             type: 'condition',
                             propertyUri: 'http://purl.org/NET/cgo#hasName',
                             operator: 'equalTo',
-                            datatypeValue: 'dupa',
+                            datatypeValue: 'someNode',
                             annotations: [],
                         },
                         {
@@ -90,7 +90,7 @@ class Demo extends Component {
                     type: 'condition',
                     propertyUri: 'http://purl.org/NET/cgo#hasName',
                     operator: 'equalTo',
-                    datatypeValue: 'dupa',
+                    datatypeValue: 'someNode',
                     annotations: [],
                 },
                 {
@@ -113,7 +113,7 @@ class Demo extends Component {
                     type: 'condition',
                     propertyUri: 'http://purl.org/NET/cgo#hasName',
                     operator: 'equalTo',
-                    datatypeValue: 'dupa',
+                    datatypeValue: 'someNode',
                     annotations: [],
                 },
                 {
@@ -139,7 +139,7 @@ class Demo extends Component {
                             type: 'condition',
                             propertyUri: 'http://purl.org/NET/cgo#hasName',
                             operator: 'equalTo',
-                            datatypeValue: 'dupa',
+                            datatypeValue: 'someNode',
                             annotations: [],
                         },
                         {
@@ -186,7 +186,7 @@ class Demo extends Component {
                             type: 'condition',
                             propertyUri: 'http://purl.org/NET/cgo#hasName',
                             operator: 'equalTo',
-                            datatypeValue: 'dupa',
+                            datatypeValue: 'someNode',
                             annotations: [],
                         },
                         {
@@ -233,7 +233,7 @@ class Demo extends Component {
                             type: 'condition',
                             propertyUri: 'http://purl.org/NET/cgo#hasName',
                             operator: 'equalTo',
-                            datatypeValue: 'dupa',
+                            datatypeValue: 'someNode',
                             annotations: [],
                         },
                         {
@@ -280,7 +280,7 @@ class Demo extends Component {
                             type: 'condition',
                             propertyUri: 'http://purl.org/NET/cgo#hasName',
                             operator: 'equalTo',
-                            datatypeValue: 'dupa',
+                            datatypeValue: 'someNode',
                             annotations: [],
                         },
                         {
@@ -324,7 +324,7 @@ class Demo extends Component {
                     type: 'condition',
                     propertyUri: 'http://purl.org/NET/cgo#hasName',
                     operator: 'equalTo',
-                    datatypeValue: 'dupa',
+                    datatypeValue: 'someNode',
                     annotations: [],
                 },
                 {
