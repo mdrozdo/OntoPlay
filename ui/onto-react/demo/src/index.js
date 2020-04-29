@@ -366,7 +366,7 @@ class Demo extends Component {
                     classRelation: 'SUBCLASS',
                     // headerComponent: OntoReact.InputNameHeader('Individual name'),
                     headerComponent: OntoReact.MultiHeader(
-                        OntoReact.InputNameHeader('Individual name'),
+                        OntoReact.InputNameHeader('Class name'),
                         OntoReact.SelectClassHeader('Map class to:')
                     ),
                     api: new OntoReact.Api(false),
