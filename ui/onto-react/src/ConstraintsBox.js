@@ -519,13 +519,16 @@ class ConditionBox extends Component {
     }
 
     classSelected(classUri) {
-        this.setState({
-            valueClassUri: classUri,
-        });
+        // this.setState({
+        //     valueClassUri: classUri,
+        // });
+        const newCondition = { ...this.props.condition, valueClassUri: classUri };
+
+        this.props.conditionChanged(this.props.index, newCondition);
     }
 
     individualSelected(indUri) {
-        const newCondition = { ...this.props.condition, objectValue: indUri };
+        const newCondition = { ...this.props.condition, individualValue: indUri };
 
         this.props.conditionChanged(this.props.index, newCondition);
     }
@@ -590,7 +593,8 @@ class ConditionBox extends Component {
 
         const propertyUri = this.props.condition.propertyUri;
         const inputType = this.state.inputType;
-        const individualUri = this.props.condition.objectValue;
+        const individualUri = this.props.condition.individualValue;
+        const valueClassUri = this.props.condition.valueClassUri;
 
         return (
             <div>
@@ -635,7 +639,7 @@ class ConditionBox extends Component {
                         <ConditionClassSelector
                             api={this.props.api}
                             value={this.emptyIfNullOrUndefined(
-                                this.state.valueClassUri
+                                valueClassUri
                             )}
                             propertyUri={propertyUri}
                             selectionChanged={c => this.classSelected(c)}
@@ -652,14 +656,14 @@ class ConditionBox extends Component {
                             valueChanged={v => this.valueChanged(v)}
                         />
                     )}
-                    {this.state.valueClassUri &&
+                    {valueClassUri &&
                         this.isIndividualOperator(operator) && (
                         <IndividualSelector
                             api={this.props.api}
                             value={this.emptyIfNullOrUndefined(
                                 individualUri
                             )}
-                            classUri={this.state.valueClassUri}
+                            classUri={valueClassUri}
                             selectionChanged={i =>
                                 this.individualSelected(i)
                             }
