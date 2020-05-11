@@ -20,7 +20,8 @@ class Demo extends Component {
                             type: 'condition',
                             propertyUri: 'http://www.w3.org/ns/org#memberOf',
                             operator: 'equalToIndividual',
-                            objectValue: 'http://drozdowicz.net/onto/privacy-sample#healthCenter'
+                            valueClassUri: 'http://www.w3.org/ns/org#Organization',
+                            individualValue: 'http://drozdowicz.net/onto/privacy-sample#healthCenter'
                         }
                     }
                 },

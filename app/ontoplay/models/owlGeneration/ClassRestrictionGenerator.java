@@ -32,13 +32,15 @@ public class ClassRestrictionGenerator {
 
         PropertyCondition cond = condition.getPropertyConditions();
 
-        RestrictionFactory restrictionFactory = restrictionFactoryProvider.getRestrictionFactory(cond);
-        OWLClassExpression restriction = restrictionFactory.createRestriction(cond);
-        intersectionElements.add(restriction);
+        if (cond != null) {
+            RestrictionFactory restrictionFactory = restrictionFactoryProvider.getRestrictionFactory(cond);
+            OWLClassExpression restriction = restrictionFactory.createRestriction(cond);
+            intersectionElements.add(restriction);
+            OWLClassExpression intersection = factory.getOWLObjectIntersectionOf(intersectionElements);
 
-
-        OWLClassExpression intersection = factory.getOWLObjectIntersectionOf(intersectionElements);
-
-        return intersection;
+            return intersection;
+        } else {
+            return conditionClass;
+        }
     }
 }

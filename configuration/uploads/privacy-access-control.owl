@@ -1,26 +1,90 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://drozdowicz.net/onto/privacy-access-control#"
      xml:base="http://drozdowicz.net/onto/privacy-access-control"
-     xmlns:schema="http://schema.org/"
-     xmlns:access="http://drozdowicz.net/onto/access-control"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:ns="http://www.w3.org/2003/06/sw-vocab-status/ns#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:org="http://www.w3.org/ns/org#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:terms="http://purl.org/dc/terms/"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
-     xmlns:vann="http://purl.org/vocab/vann/"
      xmlns:wot="http://xmlns.com/wot/0.1/"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
-     xmlns:dc="http://purl.org/dc/elements/1.1/">
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:access="http://drozdowicz.net/onto/access-control"
+     xmlns:schema="http://schema.org/"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="http://drozdowicz.net/onto/privacy-access-control">
+        <owl:imports rdf:resource="http://drozdowicz.net/onto/access-control"/>
+        <owl:imports rdf:resource="http://drozdowicz.net/onto/fitness-tracking"/>
         <owl:imports rdf:resource="http://drozdowicz.net/onto/personal-privacy"/>
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/access-control/1.0.0"/>
+        <owl:imports rdf:resource="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#P3P1.0"/>
+        <owl:imports rdf:resource="http://www.w3.org/ns/org#"/>
+        <owl:imports rdf:resource="http://www.w3.org/ns/sosa/"/>
+        <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
     </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://drozdowicz.net/onto/access-control#concernsResource -->
+
+
+    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/access-control#concernsResource"/>
+    
+
+
+    <!-- http://drozdowicz.net/onto/access-control#requestedBy -->
+
+
+    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/access-control#requestedBy"/>
+    
+
+
+    <!-- http://drozdowicz.net/onto/fitness-tracking#aggregatesMetric -->
+
+
+    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#aggregatesMetric"/>
+    
+
+
+    <!-- http://www.w3.org/ns/org#memberOf -->
+
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/org#memberOf"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://drozdowicz.net/onto/fitness-tracking#aggregationDays -->
+
+
+    <owl:DatatypeProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#aggregationDays"/>
     
 
 
@@ -32,26 +96,192 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+
+    
+
+
+    <!-- http://drozdowicz.net/onto/access-control#PermittedRequest -->
+
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/access-control#PermittedRequest"/>
     
 
 
     <!-- http://drozdowicz.net/onto/access-control#PurposeOfUse -->
 
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#PurposeOfUse">
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/access-control#PurposeOfUse">
         <owl:equivalentClass rdf:resource="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Purpose"/>
-    </rdf:Description>
+    </owl:Class>
+    
+
+
+    <!-- http://drozdowicz.net/onto/access-control#Resource -->
+
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/access-control#Resource"/>
+    
+
+
+    <!-- http://drozdowicz.net/onto/fitness-tracking#AggregateMetric -->
+
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#AggregateMetric"/>
+    
+
+
+    <!-- http://drozdowicz.net/onto/fitness-tracking#Distance -->
+
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Distance"/>
     
 
 
     <!-- http://drozdowicz.net/onto/fitness-tracking#Metric -->
 
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#Metric">
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Metric">
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#Resource"/>
-    </rdf:Description>
+    </owl:Class>
+    
+
+
+    <!-- http://drozdowicz.net/onto/privacy-access-control#HealthCenterPermission -->
+
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/privacy-access-control#HealthCenterPermission">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#PermittedRequest"/>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://drozdowicz.net/onto/access-control#concernsResource"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#AggregateMetric"/>
+                                            <owl:Class>
+                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="http://drozdowicz.net/onto/fitness-tracking#aggregatesMetric"/>
+                                                        <owl:someValuesFrom>
+                                                            <owl:Class>
+                                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                                    <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#Distance"/>
+                                                                </owl:intersectionOf>
+                                                            </owl:Class>
+                                                        </owl:someValuesFrom>
+                                                    </owl:Restriction>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="http://drozdowicz.net/onto/fitness-tracking#aggregationDays"/>
+                                                        <owl:someValuesFrom>
+                                                            <rdfs:Datatype>
+                                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                                    <rdf:Description>
+                                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</xsd:minExclusive>
+                                                                    </rdf:Description>
+                                                                </owl:withRestrictions>
+                                                            </rdfs:Datatype>
+                                                        </owl:someValuesFrom>
+                                                    </owl:Restriction>
+                                                </owl:intersectionOf>
+                                            </owl:Class>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://drozdowicz.net/onto/access-control#requestedBy"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Person"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#memberOf"/>
+                                                <owl:hasValue rdf:resource="http://drozdowicz.net/onto/privacy-sample#healthCenter"/>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://drozdowicz.net/onto/privacy-access-control#HealthCenterPermission2 -->
+
+
+    <owl:Class rdf:about="http://drozdowicz.net/onto/privacy-access-control#HealthCenterPermission2">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#PermittedRequest"/>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://drozdowicz.net/onto/access-control#concernsResource"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#AggregateMetric"/>
+                                            <owl:Class>
+                                                <owl:intersectionOf rdf:parseType="Collection">
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="http://drozdowicz.net/onto/fitness-tracking#aggregatesMetric"/>
+                                                        <owl:someValuesFrom rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Distance"/>
+                                                    </owl:Restriction>
+                                                    <owl:Restriction>
+                                                        <owl:onProperty rdf:resource="http://drozdowicz.net/onto/fitness-tracking#aggregationDays"/>
+                                                        <owl:someValuesFrom>
+                                                            <rdfs:Datatype>
+                                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                                    <rdf:Description>
+                                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</xsd:minExclusive>
+                                                                    </rdf:Description>
+                                                                </owl:withRestrictions>
+                                                            </rdfs:Datatype>
+                                                        </owl:someValuesFrom>
+                                                    </owl:Restriction>
+                                                </owl:intersectionOf>
+                                            </owl:Class>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://drozdowicz.net/onto/access-control#requestedBy"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Person"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://www.w3.org/ns/org#memberOf"/>
+                                                <owl:hasValue rdf:resource="http://drozdowicz.net/onto/privacy-sample#healthCenter"/>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
     
 
 
     <!-- http://drozdowicz.net/onto/privacy-access-control#InfrastructureAnalysis -->
+
 
     <owl:Class rdf:about="http://drozdowicz.net/onto/privacy-access-control#InfrastructureAnalysis">
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#PurposeOfUse"/>
@@ -61,6 +291,7 @@
 
     <!-- http://drozdowicz.net/onto/privacy-access-control#PublicSafetyAnalysis -->
 
+
     <owl:Class rdf:about="http://drozdowicz.net/onto/privacy-access-control#PublicSafetyAnalysis">
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#PurposeOfUse"/>
     </owl:Class>
@@ -69,23 +300,40 @@
 
     <!-- http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Data -->
 
-    <rdf:Description rdf:about="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Data">
+
+    <owl:Class rdf:about="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Data">
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#Resource"/>
-    </rdf:Description>
+    </owl:Class>
     
 
 
     <!-- http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Purpose -->
 
-    <rdf:Description rdf:about="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Purpose"/>
+
+    <owl:Class rdf:about="http://p3p.jrc.it/privacyontology/2004/07/p3powlv1.owl#Purpose"/>
+    
+
+
+    <!-- http://www.w3.org/ns/org#Organization -->
+
+
+    <owl:Class rdf:about="http://www.w3.org/ns/org#Organization"/>
     
 
 
     <!-- http://www.w3.org/ns/sosa/Observation -->
 
-    <rdf:Description rdf:about="http://www.w3.org/ns/sosa/Observation">
+
+    <owl:Class rdf:about="http://www.w3.org/ns/sosa/Observation">
         <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/access-control#Resource"/>
-    </rdf:Description>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Person -->
+
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Person"/>
     
 
 
@@ -97,10 +345,12 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+
     
 
 
     <!-- http://drozdowicz.net/onto/privacy-sample#healthCenter -->
+
 
     <owl:NamedIndividual rdf:about="http://drozdowicz.net/onto/privacy-sample#healthCenter">
         <rdf:type rdf:resource="http://www.w3.org/ns/org#Organization"/>
@@ -109,5 +359,6 @@
 
 
 
-<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 5.1.3.2017-11-04T21:44:22Z) https://github.com/owlcs/owlapi/ -->
+
 
