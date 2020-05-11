@@ -2,7 +2,7 @@ name := """OntoPlay"""
 
 version := "1.1-SNAPSHOT"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.12"
 
 lazy val module = (project in file("."))
     .enablePlugins(PlayJava).settings(
@@ -14,6 +14,8 @@ libraryDependencies ++= Seq(
   // javaJdbc,
   // cache,
   // javaWs,
+  // https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api
+  "jakarta.xml.bind" % "jakarta.xml.bind-api" % "2.3.2",
   "com.google.code.gson" % "gson" % "2.2.2",
   "commons-io" % "commons-io" % "2.4",
   "net.sourceforge.owlapi" % "owlapi-distribution" % "[5.1.3]",

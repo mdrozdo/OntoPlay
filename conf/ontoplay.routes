@@ -42,6 +42,7 @@ GET /api/class/property/:propertyUri		ontoplay.controllers.webservices.Classes.g
 GET /api/class		                        ontoplay.controllers.webservices.Classes.getClasses()
 POST /api/class/save                        ontoplay.controllers.webservices.Classes.addClassExpression()
 GET /addClassExpression/:className		ontoplay.controllers.Operations.addClassExpression(className: String)
+GET /addClassExpressionReact/:className		ontoplay.controllers.Operations.addClassExpressionReact(className: String)
 GET /addClassMapping/:className		ontoplay.controllers.Operations.addClassMapping(className: String)
 GET /addClassMappingReact/:className		ontoplay.controllers.Operations.addClassMappingReact(className: String)
 

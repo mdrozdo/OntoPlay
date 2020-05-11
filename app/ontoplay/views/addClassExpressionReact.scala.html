@@ -1,0 +1,5 @@
+@import ontoplay.views.html.addReact;
+@(title: String, className: String, layoutTemplate: String => Html => Html => Html))
+@addReact(title, className, false, "", headerComponent = "OntoReact.MultiHeader(OntoReact.InputNameHeader('Class name'), OntoReact.SelectClassHeader('Is equivalent to:'))", classRelation = "EQUIVALENT", layoutTemplate = layoutTemplate){
+
+}
