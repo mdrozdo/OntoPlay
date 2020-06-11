@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://drozdowicz.net/onto/fitness-tracking#"
-     xml:base="http://drozdowicz.net/onto/fitness-tracking"
-     xmlns:schema="http://schema.org/"
+<rdf:RDF xmlns="https://w3id.org/sxacml/sample-privacy/fitness-tracking#"
+     xml:base="https://w3id.org/sxacml/sample-privacy/fitness-tracking"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:terms="http://purl.org/dc/terms/"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
-     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
-     xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <owl:Ontology rdf:about="http://drozdowicz.net/onto/fitness-tracking">
-        <owl:imports rdf:resource="http://www.w3.org/ns/sosa/"/>
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:schema="http://schema.org/"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking">
+        <owl:imports rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:comment xml:lang="en">A sample fitness data tracking ontology, used as an element of a use case for semantic data and privacy control.</rdfs:comment>
     </owl:Ontology>
     
@@ -106,91 +106,91 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#aggregatesMetric -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregatesMetric -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#aggregatesMetric">
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregatesMetric">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/fitness-tracking#AggregateMetric"/>
-        <rdfs:range rdf:resource="http://drozdowicz.net/onto/fitness-tracking#TrainingMetric"/>
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#describedWithMetric -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#describedWithMetric -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#describedWithMetric">
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Training"/>
-        <rdfs:range rdf:resource="http://drozdowicz.net/onto/fitness-tracking#TrainingMetric"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#describedWithMetric">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#distance -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#distance -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#distance">
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#distance">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Route"/>
-        <rdfs:range rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Distance"/>
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Route"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Distance"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#includesLocation -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#includesLocation -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#includesLocation">
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#includesLocation">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <owl:inverseOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#partOfRoute"/>
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Route"/>
-        <rdfs:range rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Location"/>
+        <owl:inverseOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#partOfRoute"/>
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Route"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#measuredDuring -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#measuredDuring -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#measuredDuring">
-        <owl:inverseOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#measuredHeartRate"/>
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/fitness-tracking#HeartRate"/>
-        <rdfs:range rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Training"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#measuredDuring">
+        <owl:inverseOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#measuredHeartRate"/>
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HeartRate"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#measuredHeartRate -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#measuredHeartRate -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#measuredHeartRate">
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Training"/>
-        <rdfs:range rdf:resource="http://drozdowicz.net/onto/fitness-tracking#HeartRate"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#measuredHeartRate">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HeartRate"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#partOfRoute -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#partOfRoute -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#partOfRoute">
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#partOfRoute">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Location"/>
-        <rdfs:range rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Route"/>
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Route"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#relatedToTraining -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#relatedToTraining -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#relatedToTraining">
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#relatedToTraining">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/fitness-tracking#GeospatialMeasurement"/>
-        <rdfs:range rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Training"/>
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#GeospatialMeasurement"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#trainingLocation -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#trainingLocation -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#trainingLocation">
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Training"/>
-        <rdfs:range rdf:resource="http://drozdowicz.net/onto/fitness-tracking#GeospatialMeasurement"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#trainingLocation">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#GeospatialMeasurement"/>
     </owl:ObjectProperty>
     
 
@@ -212,11 +212,22 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#aggregationDays -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregationDays -->
 
-    <owl:DatatypeProperty rdf:about="http://drozdowicz.net/onto/fitness-tracking#aggregationDays">
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/fitness-tracking#AggregateMetric"/>
+    <owl:DatatypeProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregationDays">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#lat_long -->
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat_long">
+        <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>A comma-separated representation of a latitude, longitude coordinate.</rdfs:comment>
+        <rdfs:label>lat/long</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -232,246 +243,246 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://drozdowicz.net/onto/access-control#Sensitivity -->
+    <!-- https://w3id.org/sxacml/access-control#Sensitivity -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/access-control#Sensitivity">
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Sensitivity">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#AggregateMetric -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#AggregateMetric">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Metric"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Metric"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#BloodPressure -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#BloodPressure -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#BloodPressure">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#HealthMeasurement"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#BloodPressure">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HealthMeasurement"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#CaloriesBurned -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#CaloriesBurned -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#CaloriesBurned">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#TrainingMetric"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#CaloriesBurned">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#CardiovascularTraining -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#CardiovascularTraining -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#CardiovascularTraining">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Training"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#CardiovascularTraining">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#Cycling -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Cycling -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Cycling">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#CardiovascularTraining"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Cycling">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#CardiovascularTraining"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#Distance -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Distance -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Distance">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#TrainingMetric"/>
-        <owl:disjointWith rdf:resource="http://drozdowicz.net/onto/fitness-tracking#StepCount"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Distance">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#StepCount"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#GeospatialMeasurement -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#GeospatialMeasurement -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#GeospatialMeasurement"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#GeospatialMeasurement"/>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#HealthMeasurement -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#HealthMeasurement -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#HealthMeasurement">
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HealthMeasurement">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#HeartRate -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#HeartRate -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#HeartRate">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#HealthMeasurement"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HeartRate">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HealthMeasurement"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#Height -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Height -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Height">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#HealthMeasurement"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Height">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HealthMeasurement"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#IndoorCycling -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#IndoorCycling -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#IndoorCycling">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Cycling"/>
-        <owl:disjointWith rdf:resource="http://drozdowicz.net/onto/fitness-tracking#OutdoorCycling"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#IndoorCycling">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Cycling"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorCycling"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#IndoorRunning -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#IndoorRunning -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#IndoorRunning">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Running"/>
-        <owl:disjointWith rdf:resource="http://drozdowicz.net/onto/fitness-tracking#OutdoorRunning"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#IndoorRunning">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Running"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorRunning"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#IndoorTraining -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#IndoorTraining -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#IndoorTraining">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Training"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#IndoorTraining">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#IndoorWalking -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#IndoorWalking -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#IndoorWalking">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Walking"/>
-        <owl:disjointWith rdf:resource="http://drozdowicz.net/onto/fitness-tracking#OutdoorWalking"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#IndoorWalking">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Walking"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorWalking"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#Location -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Location">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#GeospatialMeasurement"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#GeospatialMeasurement"/>
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
-        <owl:disjointWith rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Route"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Route"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#Metric -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Metric -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Metric"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Metric"/>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#OutdoorCycling -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorCycling -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#OutdoorCycling">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Cycling"/>
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#OutdoorTraining"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorCycling">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Cycling"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorTraining"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#OutdoorRunning -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorRunning -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#OutdoorRunning">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#OutdoorTraining"/>
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Running"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorRunning">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorTraining"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Running"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#OutdoorTraining -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorTraining -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#OutdoorTraining">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Training"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorTraining">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#OutdoorWalking -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorWalking -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#OutdoorWalking">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#OutdoorTraining"/>
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Walking"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorWalking">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorTraining"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Walking"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#Route -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Route -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Route">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#GeospatialMeasurement"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Route">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#GeospatialMeasurement"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#Running -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Running -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Running">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#CardiovascularTraining"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Running">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#CardiovascularTraining"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#StepCount -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#StepCount -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#StepCount">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#TrainingMetric"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#StepCount">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#Training -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Training"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training"/>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#TrainingMetric -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#TrainingMetric">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#Metric"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Metric"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#TreadmillRunning -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#TreadmillRunning -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#TreadmillRunning">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#IndoorRunning"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TreadmillRunning">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#IndoorRunning"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#TreadmillWalking -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#TreadmillWalking -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#TreadmillWalking">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#IndoorWalking"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TreadmillWalking">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#IndoorWalking"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#Walking -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Walking -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Walking">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#CardiovascularTraining"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Walking">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#CardiovascularTraining"/>
     </owl:Class>
     
 
 
-    <!-- http://drozdowicz.net/onto/fitness-tracking#Weight -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Weight -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/fitness-tracking#Weight">
-        <rdfs:subClassOf rdf:resource="http://drozdowicz.net/onto/fitness-tracking#HealthMeasurement"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Weight">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HealthMeasurement"/>
     </owl:Class>
     
 
@@ -606,10 +617,6 @@ basic geo vocab
 </rdfs:comment>
         <dc:title>WGS84 Geo Positioning: an RDF vocabulary</dc:title>
     </rdf:Description>
-    <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat_long">
-        <rdfs:comment>A comma-separated representation of a latitude, longitude coordinate.</rdfs:comment>
-        <rdfs:label>lat/long</rdfs:label>
-    </rdf:Description>
     <rdf:Description rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
         <rdfs:label>location</rdfs:label>
         <rdfs:comment>The relation between something and the point, 
@@ -635,41 +642,41 @@ basic geo vocab
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#AggregateMetric"/>
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#GeospatialMeasurement"/>
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#HealthMeasurement"/>
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#Training"/>
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#TrainingMetric"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#GeospatialMeasurement"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HealthMeasurement"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#BloodPressure"/>
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#HeartRate"/>
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#Height"/>
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#Weight"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#BloodPressure"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HeartRate"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Height"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Weight"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#CaloriesBurned"/>
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#Distance"/>
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#StepCount"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#CaloriesBurned"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Distance"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#StepCount"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#Cycling"/>
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#Running"/>
-            <rdf:Description rdf:about="http://drozdowicz.net/onto/fitness-tracking#Walking"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Cycling"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Running"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Walking"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 

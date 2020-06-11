@@ -1,14 +1,13 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://drozdowicz.net/onto/rbac#"
-     xml:base="http://drozdowicz.net/onto/rbac"
+<rdf:RDF xmlns="https://w3id.org/sxacml/rbac#"
+     xml:base="https://w3id.org/sxacml/rbac"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://drozdowicz.net/onto/rbac">
-        <owl:versionIRI rdf:resource="http://drozdowicz.net/onto/rbac/1.0.0"/>
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/access-control/1.0.0"/>
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/rbac">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/access-control"/>
     </owl:Ontology>
     
 
@@ -24,11 +23,11 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/rbac#hasRoleEnabled -->
+    <!-- https://w3id.org/sxacml/rbac#hasRoleEnabled -->
 
-    <owl:ObjectProperty rdf:about="http://drozdowicz.net/onto/rbac#hasRoleEnabled">
-        <rdfs:domain rdf:resource="http://drozdowicz.net/onto/access-control#Subject"/>
-        <rdfs:range rdf:resource="http://drozdowicz.net/onto/rbac#Role"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/rbac#hasRoleEnabled">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/access-control#Subject"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/rbac#Role"/>
     </owl:ObjectProperty>
     
 
@@ -44,9 +43,9 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/rbac#Role -->
+    <!-- https://w3id.org/sxacml/rbac#Role -->
 
-    <owl:Class rdf:about="http://drozdowicz.net/onto/rbac#Role"/>
+    <owl:Class rdf:about="https://w3id.org/sxacml/rbac#Role"/>
 </rdf:RDF>
 
 

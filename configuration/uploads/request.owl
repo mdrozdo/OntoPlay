@@ -1,15 +1,14 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://drozdowicz.net/onto/request/"
-     xml:base="http://drozdowicz.net/onto/request/"
-     xmlns:request="http://drozdowicz.net/onto/request#"
+<rdf:RDF xmlns="https://w3id.org/sxacml/request/"
+     xml:base="https://w3id.org/sxacml/request/"
+     xmlns:request="https://w3id.org/sxacml/request#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://drozdowicz.net/onto/request">
-        <owl:versionIRI rdf:resource="http://drozdowicz.net/onto/request/1.0.0"/>
-        <owl:imports rdf:resource="http://drozdowicz.net/onto/access-control/1.0.0"/>
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/request">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/access-control"/>
     </owl:Ontology>
     
 
@@ -25,9 +24,9 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/request#hierarchyDesignator -->
+    <!-- https://w3id.org/sxacml/request#hierarchyDesignator -->
 
-    <owl:AnnotationProperty rdf:about="http://drozdowicz.net/onto/request#hierarchyDesignator"/>
+    <owl:AnnotationProperty rdf:about="https://w3id.org/sxacml/request#hierarchyDesignator"/>
     
 
 
@@ -42,9 +41,9 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/request#identifier -->
+    <!-- https://w3id.org/sxacml/request#identifier -->
 
-    <rdfs:Datatype rdf:about="http://drozdowicz.net/onto/request#identifier">
+    <rdfs:Datatype rdf:about="https://w3id.org/sxacml/request#identifier">
         <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
         <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name"/>
@@ -106,9 +105,9 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/request#hierarchyDesignatorId -->
+    <!-- https://w3id.org/sxacml/request#hierarchyDesignatorId -->
 
-    <owl:DatatypeProperty rdf:about="http://drozdowicz.net/onto/request#hierarchyDesignatorId">
+    <owl:DatatypeProperty rdf:about="https://w3id.org/sxacml/request#hierarchyDesignatorId">
         <rdfs:domain rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
     </owl:DatatypeProperty>
@@ -180,33 +179,33 @@
     
 
 
-    <!-- http://drozdowicz.net/onto/access-control#Action -->
+    <!-- https://w3id.org/sxacml/access-control#Action -->
 
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#Action">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Action">
         <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:action"/>
     </rdf:Description>
     
 
 
-    <!-- http://drozdowicz.net/onto/access-control#Environment -->
+    <!-- https://w3id.org/sxacml/access-control#Environment -->
 
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#Environment">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Environment">
         <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"/>
     </rdf:Description>
     
 
 
-    <!-- http://drozdowicz.net/onto/access-control#Resource -->
+    <!-- https://w3id.org/sxacml/access-control#Resource -->
 
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#Resource">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Resource">
         <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:3.0:attribute-category:resource"/>
     </rdf:Description>
     
 
 
-    <!-- http://drozdowicz.net/onto/access-control#Subject -->
+    <!-- https://w3id.org/sxacml/access-control#Subject -->
 
-    <rdf:Description rdf:about="http://drozdowicz.net/onto/access-control#Subject">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Subject">
         <owl:equivalentClass rdf:resource="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject"/>
     </rdf:Description>
     

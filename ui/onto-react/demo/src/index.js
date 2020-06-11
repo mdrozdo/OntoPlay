@@ -6,13 +6,13 @@ class Demo extends Component {
     state = { loading: false };
 
     uc1_condition = {
-        classUri: 'http://drozdowicz.net/onto/access-control#PermittedRequest',
+        classUri: 'https://w3id.org/sxacml/access-control#PermittedRequest',
         propertyConditions: {
             type: 'intersection',
             contents: [
                 {
                     type: 'condition',
-                    propertyUri: 'http://drozdowicz.net/onto/access-control#requestedBy',
+                    propertyUri: 'https://w3id.org/sxacml/access-control#requestedBy',
                     operator: 'constrainedBy',
                     classConstraintValue: {
                         classUri: 'http://xmlns.com/foaf/0.1/Person',
@@ -21,31 +21,31 @@ class Demo extends Component {
                             propertyUri: 'http://www.w3.org/ns/org#memberOf',
                             operator: 'equalToIndividual',
                             valueClassUri: 'http://www.w3.org/ns/org#Organization',
-                            individualValue: 'http://drozdowicz.net/onto/privacy-sample#healthCenter'
+                            individualValue: 'https://w3id.org/sxacml/sample-privacy/privacy-mapping#healthCenter'
                         }
                     }
                 },
                 {
                     type: 'condition',
-                    propertyUri: 'http://drozdowicz.net/onto/access-control#concernsResource',
+                    propertyUri: 'https://w3id.org/sxacml/access-control#concernsResource',
                     operator: 'constrainedBy',
                     classConstraintValue: {
-                        classUri: 'http://drozdowicz.net/onto/fitness-tracking#AggregateMetric',
+                        classUri: 'https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric',
                         propertyConditions: {
                             type: 'intersection',
                             contents: [
                                 {
                                     type: 'condition',
-                                    propertyUri: 'http://drozdowicz.net/onto/fitness-tracking#aggregationDays',
+                                    propertyUri: 'https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregationDays',
                                     operator: 'greaterThan',
                                     datatypeValue: '30'
                                 },
                                 {
                                     type: 'condition',
-                                    propertyUri: 'http://drozdowicz.net/onto/fitness-tracking#aggregatesMetric',
+                                    propertyUri: 'https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregatesMetric',
                                     operator: 'constrainedBy',
                                     classConstraintValue: {
-                                        classUri: 'http://drozdowicz.net/onto/fitness-tracking#Distance',
+                                        classUri: 'https://w3id.org/sxacml/sample-privacy/fitness-tracking#Distance',
                                         propertyConditions: [
                                             {}
                                         ]
@@ -60,16 +60,16 @@ class Demo extends Component {
     };
 
     uc2_condition = {
-        'classUri': 'http://drozdowicz.net/onto/access-control#PermittedRequest',
+        'classUri': 'https://w3id.org/sxacml/access-control#PermittedRequest',
         'propertyConditions': {
             'type': 'intersection',
             'contents': [
                 {
                     'type': 'condition',
-                    'propertyUri': 'http://drozdowicz.net/onto/access-control#concernsResource',
+                    'propertyUri': 'https://w3id.org/sxacml/access-control#concernsResource',
                     'operator': 'constrainedBy',
                     'classConstraintValue': {
-                        'classUri': 'http://drozdowicz.net/onto/fitness-tracking#OutdoorTraining',
+                        'classUri': 'https://w3id.org/sxacml/sample-privacy/fitness-tracking#OutdoorTraining',
                         'propertyConditions': [
                             {}
                         ]
@@ -77,16 +77,16 @@ class Demo extends Component {
                 },
                 {
                     'type': 'condition',
-                    'propertyUri': 'http://drozdowicz.net/onto/access-control#concernsAction',
+                    'propertyUri': 'https://w3id.org/sxacml/access-control#concernsAction',
                     'operator': 'constrainedBy',
                     'classConstraintValue': {
-                        'classUri': 'http://drozdowicz.net/onto/access-control#Read',
+                        'classUri': 'https://w3id.org/sxacml/access-control#Read',
                         'propertyConditions': {
                             'type': 'condition',
-                            'propertyUri': 'http://drozdowicz.net/onto/access-control#requestedForPurpose',
+                            'propertyUri': 'https://w3id.org/sxacml/access-control#requestedForPurpose',
                             'operator': 'constrainedBy',
                             'classConstraintValue': {
-                                'classUri': 'http://drozdowicz.net/onto/privacy-access-control#InfrastructureAnalysis',
+                                'classUri': 'https://w3id.org/sxacml/sample-privacy/privacy-mapping#InfrastructureAnalysis',
                                 'propertyConditions': [
                                     {}
                                 ]
@@ -103,7 +103,7 @@ class Demo extends Component {
             <div className='container'>
                 <h1>Privacy Sample - UC1</h1>
                 {React.createElement(OntoReact.OntoReact, {
-                    mainClass: 'http://drozdowicz.net/onto/access-control#PermittedRequest',
+                    mainClass: 'https://w3id.org/sxacml/access-control#PermittedRequest',
                     //api: false,
                     elementName: 'HealthCenterPermission',
                     isDescriptionOfIndividual: false,
@@ -120,7 +120,7 @@ class Demo extends Component {
 
                 <h1>Privacy Sample - UC2</h1>
                 {React.createElement(OntoReact.OntoReact, {
-                    mainClass: 'http://drozdowicz.net/onto/access-control#PermittedRequest',
+                    mainClass: 'https://w3id.org/sxacml/access-control#PermittedRequest',
                     //api: false,
                     elementName: 'CyclingRoutePermission',
                     isDescriptionOfIndividual: false,
