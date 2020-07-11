@@ -18,7 +18,7 @@
 .condition-panel{	
 	border: 2px solid gray;
 	padding: 5px 5px 5px 5px;
-	margin: 5px;
+	margin: 5px;	
 }
 
 .property-condition{
@@ -27,6 +27,10 @@
 
 .condition-input{
 	margin: 5px;
+}
+
+.condition-json{
+	margin-top: 10px;
 }
 
 .condition-operator{

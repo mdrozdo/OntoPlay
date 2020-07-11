@@ -6,364 +6,44 @@ class Demo extends Component {
     state = { loading: false };
 
     fullCondition = {
-        classUri: 'http://purl.org/NET/cgo#WorkerNode',
+        classUri: 'https://w3id.org/sxacml/sample-port/port#Driver',
         propertyConditions: {
-            type: 'union',
-            contents: [
-                {
+            type: 'condition',
+            propertyUri: 'https://w3id.org/sxacml/sample-port/port#employedBy',
+            operator: 'constrainedBy',
+            classConstraintValue: {
+                classUri: 'http://ontology.tno.nl/transport#TransportParty',
+                propertyConditions: {
                     type: 'condition',
                     propertyUri:
-                        'http://gridagents.sourceforge.net/AiGGridOntology#hasGPU',
+                        'https://w3id.org/sxacml/sample-port/port#ownsEquipment',
                     operator: 'constrainedBy',
                     classConstraintValue: {
                         classUri:
-                            'http://gridagents.sourceforge.net/AiGGridOntology#GPU',
-                        propertyConditions: {
-                            type: 'condition',
-                            propertyUri:
-                                'http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture',
-                            operator: 'constrainedBy',
-                            classConstraintValue: {
-                                classUri:
-                                    'http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture',
-                                propertyConditions: {
-                                    type: 'condition',
-                                    propertyUri:
-                                        'http://purl.org/NET/cgo#hasName',
-                                    operator: 'equalTo',
-                                    datatypeValue: 'PowerPC',
-                                    annotations: [],
-                                },
-                                annotations: [],
-                            },
-                            annotations: [],
-                        },
-                        annotations: [],
+                            'https://w3id.org/sxacml/sample-port/port#ObservedTruck',
+                        propertyConditions: [{}],
                     },
-                    annotations: [],
                 },
-                {
-                    type: 'intersection',
-                    contents: [
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#hasName',
-                            operator: 'equalTo',
-                            datatypeValue: 'someNode',
-                            annotations: [],
-                        },
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                            operator: 'equalTo',
-                            datatypeValue: '12',
-                            annotations: [],
-                        },
-                    ],
-                },
-            ],
+            },
         },
     };
 
     emptyCondition = {
-        classUri: 'http://purl.org/NET/cgo#WorkerNode',
+        classUri: 'https://w3id.org/sxacml/sample-port/port#Driver',
         propertyConditions: {},
-    };
-
-    simpleCondition = {
-        classUri: 'http://purl.org/NET/cgo#WorkerNode',
-        propertyConditions: {
-            type: 'condition',
-            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-            operator: 'equalTo',
-            datatypeValue: '12',
-            annotations: [],
-        },
-    };
-
-    intersectionCondition = {
-        classUri: 'http://purl.org/NET/cgo#WorkerNode',
-        propertyConditions: {
-            type: 'intersection',
-            contents: [
-                {
-                    type: 'condition',
-                    propertyUri: 'http://purl.org/NET/cgo#hasName',
-                    operator: 'equalTo',
-                    datatypeValue: 'someNode',
-                    annotations: [],
-                },
-                {
-                    type: 'condition',
-                    propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                    operator: 'equalTo',
-                    datatypeValue: '12',
-                    annotations: [],
-                },
-            ],
-        },
-    };
-
-    unionCondition = {
-        classUri: 'http://purl.org/NET/cgo#WorkerNode',
-        propertyConditions: {
-            type: 'union',
-            contents: [
-                {
-                    type: 'condition',
-                    propertyUri: 'http://purl.org/NET/cgo#hasName',
-                    operator: 'equalTo',
-                    datatypeValue: 'someNode',
-                    annotations: [],
-                },
-                {
-                    type: 'condition',
-                    propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                    operator: 'equalTo',
-                    datatypeValue: '12',
-                    annotations: [],
-                },
-            ],
-        },
-    };
-
-    unionOfIntersections = {
-        classUri: 'http://purl.org/NET/cgo#WorkerNode',
-        propertyConditions: {
-            type: 'union',
-            contents: [
-                {
-                    type: 'intersection',
-                    contents: [
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#hasName',
-                            operator: 'equalTo',
-                            datatypeValue: 'someNode',
-                            annotations: [],
-                        },
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                            operator: 'equalTo',
-                            datatypeValue: '12',
-                            annotations: [],
-                        },
-                    ],
-                },
-                {
-                    type: 'intersection',
-                    contents: [
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#hasName',
-                            operator: 'equalTo',
-                            datatypeValue: 'asdasda',
-                            annotations: [],
-                        },
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                            operator: 'equalTo',
-                            datatypeValue: '56454',
-                            annotations: [],
-                        },
-                    ],
-                },
-            ],
-        },
-    };
-
-    intersectionOfUnions = {
-        classUri: 'http://purl.org/NET/cgo#WorkerNode',
-        propertyConditions: {
-            type: 'intersection',
-            contents: [
-                {
-                    type: 'union',
-                    contents: [
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#hasName',
-                            operator: 'equalTo',
-                            datatypeValue: 'someNode',
-                            annotations: [],
-                        },
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                            operator: 'equalTo',
-                            datatypeValue: '12',
-                            annotations: [],
-                        },
-                    ],
-                },
-                {
-                    type: 'union',
-                    contents: [
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#hasName',
-                            operator: 'equalTo',
-                            datatypeValue: 'asdasda',
-                            annotations: [],
-                        },
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                            operator: 'equalTo',
-                            datatypeValue: '56454',
-                            annotations: [],
-                        },
-                    ],
-                },
-            ],
-        },
-    };
-
-    intersectionOfIntersections = {
-        classUri: 'http://purl.org/NET/cgo#WorkerNode',
-        propertyConditions: {
-            type: 'intersection',
-            contents: [
-                {
-                    type: 'intersection',
-                    contents: [
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#hasName',
-                            operator: 'equalTo',
-                            datatypeValue: 'someNode',
-                            annotations: [],
-                        },
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                            operator: 'equalTo',
-                            datatypeValue: '12',
-                            annotations: [],
-                        },
-                    ],
-                },
-                {
-                    type: 'intersection',
-                    contents: [
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#hasName',
-                            operator: 'equalTo',
-                            datatypeValue: 'asdasda',
-                            annotations: [],
-                        },
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                            operator: 'equalTo',
-                            datatypeValue: '56454',
-                            annotations: [],
-                        },
-                    ],
-                },
-            ],
-        },
-    };
-
-    unionOfUnions = {
-        classUri: 'http://purl.org/NET/cgo#WorkerNode',
-        propertyConditions: {
-            type: 'union',
-            contents: [
-                {
-                    type: 'union',
-                    contents: [
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#hasName',
-                            operator: 'equalTo',
-                            datatypeValue: 'someNode',
-                            annotations: [],
-                        },
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                            operator: 'equalTo',
-                            datatypeValue: '12',
-                            annotations: [],
-                        },
-                    ],
-                },
-                {
-                    type: 'union',
-                    contents: [
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#hasName',
-                            operator: 'equalTo',
-                            datatypeValue: 'asdasda',
-                            annotations: [],
-                        },
-                        {
-                            type: 'condition',
-                            propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                            operator: 'equalTo',
-                            datatypeValue: '56454',
-                            annotations: [],
-                        },
-                    ],
-                },
-            ],
-        },
-    };
-
-    individualCondition = {
-        classUri: 'http://purl.org/NET/cgo#WorkerNode',
-        propertyConditions: {
-            type: 'values',
-            contents: [
-                {
-                    type: 'condition',
-                    propertyUri: 'http://purl.org/NET/cgo#hasName',
-                    operator: 'equalTo',
-                    datatypeValue: 'someNode',
-                    annotations: [],
-                },
-                {
-                    type: 'condition',
-                    propertyUri: 'http://purl.org/NET/cgo#waitingJobs',
-                    operator: 'equalTo',
-                    datatypeValue: '12',
-                    annotations: [],
-                },
-            ],
-        },
     };
 
     render() {
         return (
             <div className='container'>
-                <h1>onto-react Demo - Individual</h1>
-                {React.createElement(OntoReact.OntoReact, {
-                    mainClass: 'http://purl.org/NET/cgo#WorkerNode',
-                    //api: false,
-                    elementName: 'http://purl.org/NET/cgo#WorkerNode',
-                    isDescriptionOfIndividual: true,
-                    // headerComponent: OntoReact.InputNameHeader('Individual name'),
-                    headerComponent: OntoReact.MultiHeader(
-                        OntoReact.InputNameHeader('Individual name'),
-                        OntoReact.SelectClassHeader('Of class:')
-                    ),
-                    api: new OntoReact.Api(true),
-                    title:
-                        'Add new individual of class http://purl.org/NET/cgo#WorkerNode',
-                    condition: this.individualCondition,
-                })}
-
                 <h1>onto-react Demo - class</h1>
                 {React.createElement(OntoReact.OntoReact, {
-                    mainClass: 'http://purl.org/NET/cgo#WorkerNode',
+                    mainClass:
+                        'https://w3id.org/sxacml/sample-port/port#Driver',
                     //api: false,
-                    elementName: 'http://purl.org/NET/cgo#WorkerNode',
-                    classRelation: 'SUBCLASS',
+                    elementName:
+                        'DriverAuthorizedForTruck',
+                    classRelation: 'EQUIVALENT',
                     // headerComponent: OntoReact.InputNameHeader('Individual name'),
                     headerComponent: OntoReact.MultiHeader(
                         OntoReact.InputNameHeader('Class name'),
@@ -371,8 +51,8 @@ class Demo extends Component {
                     ),
                     api: new OntoReact.Api(false),
                     title:
-                        'Add new class mapping for http://purl.org/NET/cgo#WorkerNode',
-                    condition: this.intersectionCondition,
+                        'Add new class mapping for https://w3id.org/sxacml/sample-port/port#Driver',
+                    condition: this.fullCondition,
                 })}
             </div>
         );

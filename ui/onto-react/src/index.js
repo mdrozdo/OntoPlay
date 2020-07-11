@@ -100,7 +100,7 @@ class OntoReact extends Component {
                     >
                         Save
                     </Button>
-                    <pre className='code'>{stateJson}</pre>
+                    <pre className='code condition-json'>{stateJson}</pre>
                 </form>
             </div>
         );

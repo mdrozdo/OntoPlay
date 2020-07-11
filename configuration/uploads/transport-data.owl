@@ -1,0 +1,2594 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/sxacml/sample-port/transport-data#"
+     xml:base="https://w3id.org/sxacml/sample-port/transport-data"
+     xmlns:DUL="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:time="http://www.w3.org/2006/time#"
+     xmlns:logico="http://ontology.tno.nl/logico#"
+     xmlns:transport="http://ontology.tno.nl/transport#"
+     xmlns:transport-data="https://w3id.org/sxacml/sample-port/transport-data#">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/sample-port/transport-data"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#date -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#time -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#time"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#describes -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#describes"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#hasActor -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#hasActor"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#hasConsumer -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#hasConsumer"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#hasDestination -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#hasDestination"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#hasOrigin -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#hasOrigin"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#hasProvider -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#hasProvider"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#hasRole -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#hasRole"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#hasTime -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#hasTime"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#instantiates -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#instantiates"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#isConsumerOf -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#isConsumerOf"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#isProviderOf -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#isProviderOf"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#contains -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#contains"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasAddress -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasAddress"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasAgency -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasAgency"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasAmount -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasAmount"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasCity -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasCity"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasCountry -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasCountry"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasHeight -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasHeight"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasInvoiceTotalAmount -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasInvoiceTotalAmount"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasLocation -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasLocation"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasSize -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasSize"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasStreet -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasStreet"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasTemperature -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasTemperature"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasVolume -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasVolume"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasWeight -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hasWeight"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#isMeasuredIn -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#isMeasuredIn"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#isPackagedIn -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#isPackagedIn"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasConsignee -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasConsignee"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasConsigneeAssignedID -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasConsigneeAssignedID"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasConsignment -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasConsignment"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasConsignor -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasConsignor"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasConsignorAssignedID -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasConsignorAssignedID"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasContactDetails -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasContactDetails"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasPhysicalLocation -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasPhysicalLocation"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasPlannedDelivery -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasPlannedDelivery"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasPlannedPickup -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasPlannedPickup"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasPostalAddress -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasPostalAddress"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasRegistrationAddress -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasRegistrationAddress"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasRequestedDelivery -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasRequestedDelivery"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasRequestedPickup -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasRequestedPickup"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasTransportContract -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasTransportContract"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasTransportHandlingUnit -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#hasTransportHandlingUnit"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#satisfies -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.tno.nl/transport#satisfies"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasConstituent"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isConstituentOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isConstituentOf"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#hasBeginning -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2006/time#hasBeginning"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#hasEnd -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2006/time#hasEnd"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#hasTRS -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2006/time#hasTRS"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#hasStatus -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/sxacml/sample-port/transport-data#hasStatus"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasAgencyName -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasAgencyName"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasAmountValue -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasAmountValue"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasCityName -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasCityName"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasCountryName -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasCountryName"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasDescription"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasEmail -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasEmail"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasFaxNr -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasFaxNr"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasHeightValue -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasHeightValue"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasIDValue -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasIDValue"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasName"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasPhoneNr -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasPhoneNr"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasPostalCode -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasPostalCode"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasPostbox -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasPostbox"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasQuantity -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasQuantity"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasSpecialRequirement -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasSpecialRequirement"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasStreetName -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasStreetName"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasStreetNumber -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasStreetNumber"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasTemperatureValue -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasTemperatureValue"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasVolumeValue -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasVolumeValue"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasWebsiteURI -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasWebsiteURI"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hasWeightValue -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasWeightValue"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#isDangerous -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#isDangerous"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#isPacked -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#isPacked"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasConditions -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/transport#hasConditions"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasDocumentType -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/transport#hasDocumentType"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasIssueDate -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/transport#hasIssueDate"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasNote -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/transport#hasNote"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasOtherCommunication -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/transport#hasOtherCommunication"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasStatusCode -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/transport#hasStatusCode"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasTransportEventTypeCode -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/transport#hasTransportEventTypeCode"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasUUID -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/transport#hasUUID"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasValidityPeriodEndTime -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/transport#hasValidityPeriodEndTime"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#hasValidityPeriodStartTime -->
+
+    <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/transport#hasValidityPeriodStartTime"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#inXSDDateTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2006/time#inXSDDateTime"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#BusinessServiceDescription -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/transport-data#BusinessServiceDescription"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Cargo -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Cargo"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Consumer -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Consumer"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Provider -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Provider"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Transport -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Transport"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Actor -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Actor"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Address -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Address"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Airport -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Airport"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Amount -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Amount"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Carton -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Carton"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#City -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#City"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#CodeIssuingAgency -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#CodeIssuingAgency"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#ContainerSizeUnit -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#ContainerSizeUnit">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#feet"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Country -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Country"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Currency -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Currency">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#EUR"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#GBP"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#USD"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#GS1PalletCodeList -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#GS1PalletCodeList">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ISO0_halfEURO"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ISO1_oneEURO"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ISO2"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Oneway"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Returnable"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#one-eighthEURO"/>
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#quarterEURO"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#GrossVolume -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#GrossVolume"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#GrossWeight -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#GrossWeight"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Height -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Height"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#HeightLenghtWidthUnit -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#HeightLenghtWidthUnit">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#MTR"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Identifier -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Identifier"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Instant -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Instant"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Interval -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Interval"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#InvoiceTotalAmount -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#InvoiceTotalAmount"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Location -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Location"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#MinTemperature -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#MinTemperature"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#MonetaryAmount -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#MonetaryAmount"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Number -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Number"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Pallet -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Pallet"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#PhysicalAttributeUnit -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#PhysicalAttributeUnit"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#RailwayStation -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#RailwayStation"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Street -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Street"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#Temperature -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#Temperature"/>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#TemperatureUnit -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#TemperatureUnit">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#CEL"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#VolumeUnit -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#VolumeUnit">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#MTQ"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.tno.nl/logico#WeightUnit -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/logico#WeightUnit">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/transport-data#KG"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#Consignment -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/transport#Consignment"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#Contact -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/transport#Contact"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#Contract -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/transport#Contract"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#GoodsItem -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/transport#GoodsItem"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#TransportActivity -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/transport#TransportActivity"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#TransportEvent -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/transport#TransportEvent"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#TransportLocation -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/transport#TransportLocation"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#TransportParty -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/transport#TransportParty"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#TransportPlan -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/transport#TransportPlan"/>
+    
+
+
+    <!-- http://ontology.tno.nl/transport#TransportRequest -->
+
+    <owl:Class rdf:about="http://ontology.tno.nl/transport#TransportRequest"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#DateTimeDescription -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#DateTimeDescription">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2006/time#hasTRS"/>
+                <owl:hasValue rdf:resource="http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/time#DurationDescription -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#DurationDescription">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2006/time#hasTRS"/>
+                <owl:hasValue rdf:resource="http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/time#Instant -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#Instant"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Actor_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Actor_1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Actor"/>
+        <describes rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Service_1"/>
+        <hasRole rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Provider_1"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actor 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#AddressDenHaagCentralStation -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#AddressDenHaagCentralStation">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#DenHaag"/>
+        <logico:hasCountry rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Netherlands"/>
+        <logico:hasStreet rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#AnnaVanBuerenPlein"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2595DH</logico:hasPostalCode>
+        <logico:hasStreetNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</logico:hasStreetNumber>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Address 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Address_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Address_1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCountry rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Netherlands"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Address 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Amount_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Amount_1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Amount"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Number_1"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Amount 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#AnnaVanBuerenPlein -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#AnnaVanBuerenPlein">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Street"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anna van bueren plein</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Arnhem -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Arnhem">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#City"/>
+        <logico:hasCityName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arnhem</logico:hasCityName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arnhem</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Boris_Pasternaklaan_22 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Boris_Pasternaklaan_22">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Street"/>
+        <logico:hasStreetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Boris Pasternaklaan</logico:hasStreetName>
+        <logico:hasStreetNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22</logico:hasStreetNumber>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Boris Pasternaklaan</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Boris_Pasternaklaan_23 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Boris_Pasternaklaan_23">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Street"/>
+        <logico:hasStreetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Boris Pasternaklaan</logico:hasStreetName>
+        <logico:hasStreetNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">23</logico:hasStreetNumber>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Boris Pasternaklaan 23</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#CEL -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#CEL">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#TemperatureUnit"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CELSIUS</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_BTW -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_BTW">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#CodeIssuingAgency"/>
+        <logico:hasAgencyName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BTW</logico:hasAgencyName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Code issuing agency BTW</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_GLN -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_GLN">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#CodeIssuingAgency"/>
+        <logico:hasAgencyName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GLN</logico:hasAgencyName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Code issuing agency GLN</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_KVK -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_KVK">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#CodeIssuingAgency"/>
+        <logico:hasAgencyName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KVK</logico:hasAgencyName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Code issuing agency KVK</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_SSCC -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_SSCC">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#CodeIssuingAgency"/>
+        <logico:hasAgencyName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SSCC</logico:hasAgencyName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Code issuing agency SSCC</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Company_A -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Company_A">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportParty"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ConsignorIdentification_58263657"/>
+        <transport:hasContactDetails rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyA"/>
+        <transport:hasPhysicalLocation rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PhysicalAddress_CompanyA"/>
+        <transport:hasPostalAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PostalAddress_CompanyA"/>
+        <transport:hasRegistrationAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#RegistrationAddress_CompanyA"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Company A</logico:hasName>
+        <logico:hasWebsiteURI rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.a.nl</logico:hasWebsiteURI>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Company a</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Company_B -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Company_B">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportParty"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ConsigneeIdentification_56846846"/>
+        <transport:hasContactDetails rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyB"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CompanyB</logico:hasName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Company b</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Company_x -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Company_x">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportParty"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_1"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_2"/>
+        <transport:hasContactDetails rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyX"/>
+        <transport:hasPhysicalLocation rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PhysicalAddress_CompanyX"/>
+        <transport:hasPostalAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PostalAddress_CompanyX"/>
+        <transport:hasRegistrationAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#RegistrationAddress_CompanyX"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Company x</logico:hasName>
+        <logico:hasWebsiteURI rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.company-x.nl</logico:hasWebsiteURI>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Company x</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Company_y -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Company_y">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportParty"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_3"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_4"/>
+        <transport:hasContactDetails rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyY"/>
+        <transport:hasPostalAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PostalAddress_CompanyY"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Company y</logico:hasName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Company y</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#ConsigneeAssignedIdentification_A123789 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ConsigneeAssignedIdentification_A123789">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A123789</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"> Consignee assigned Identification A123789</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#ConsigneeIdentification_56846846 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ConsigneeIdentification_56846846">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_KVK"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">56846846</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consignee Identification 56846846</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#ConsignmentIdentification_XYZ987 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ConsignmentIdentification_XYZ987">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">XYZ987</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"> Consignment Identification XYZ987</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Consignment_XYZ987 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Consignment_XYZ987">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Consignment"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ConsignmentIdentification_XYZ987"/>
+        <logico:hasInvoiceTotalAmount rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#InvoiceTotalAmount_1"/>
+        <transport:hasConsignee rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Company_B"/>
+        <transport:hasConsigneeAssignedID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ConsigneeAssignedIdentification_A123789"/>
+        <transport:hasConsignor rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Company_A"/>
+        <transport:hasConsignorAssignedID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ConsignorAssignedIdentification_Z987321"/>
+        <transport:hasPlannedDelivery rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PlannedDeliveryTransportEvent"/>
+        <transport:hasPlannedPickup rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PlannedPickupTransportEvent"/>
+        <transport:hasRequestedDelivery rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#RequestedDeliveryTransportEvent"/>
+        <transport:hasRequestedPickup rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#RequestedPickupTransportEvent"/>
+        <transport:hasTransportContract rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportContract_1"/>
+        <transport:hasTransportHandlingUnit rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnit_THU1"/>
+        <transport:hasTransportHandlingUnit rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnit_THU2"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consignment_XYZ987</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#ConsignorAssignedIdentification_Z987321 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ConsignorAssignedIdentification_Z987321">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Z987321</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consignor assigned Identification Z987321</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#ConsignorIdentification_58263657 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ConsignorIdentification_58263657">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_KVK"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">58263657</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consignor Identification 58263657</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Consumer_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Consumer_1">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Consumer"/>
+        <isConsumerOf rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Transport_1"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consumer 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyA -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyA">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Contact"/>
+        <logico:hasEmail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">info@a.nl</logico:hasEmail>
+        <logico:hasFaxNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031384567222</logico:hasFaxNr>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Algemeen</logico:hasName>
+        <logico:hasPhoneNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031384567222</logico:hasPhoneNr>
+        <transport:hasNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A free text note</transport:hasNote>
+        <transport:hasOtherCommunication rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter @ACompany</transport:hasOtherCommunication>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contact Company a</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyB -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyB">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Contact"/>
+        <logico:hasEmail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">delivery@companyB.nl</logico:hasEmail>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Delivery manager</logico:hasName>
+        <logico:hasPhoneNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031384657000</logico:hasPhoneNr>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contact company B</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyX -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyX">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Contact"/>
+        <logico:hasEmail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">info@x.nl</logico:hasEmail>
+        <logico:hasFaxNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031884567200</logico:hasFaxNr>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Algemeen</logico:hasName>
+        <logico:hasPhoneNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031884567111</logico:hasPhoneNr>
+        <transport:hasNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A free text note</transport:hasNote>
+        <transport:hasOtherCommunication rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter @Xnews</transport:hasOtherCommunication>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contact company x</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyY -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Contact_CompanyY">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Contact"/>
+        <logico:hasEmail rdf:datatype="http://www.w3.org/2001/XMLSchema#string">logistics@companyY.nl</logico:hasEmail>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Logistics manager</logico:hasName>
+        <logico:hasPhoneNr rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0031450557000</logico:hasPhoneNr>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contact Company y</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#ContractIdentifier_FW-2013-12345 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ContractIdentifier_FW-2013-12345">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FW-2013-12345</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contract Identifier FW-2013-12345</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#DenHaag -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#DenHaag">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#City"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Den haag</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#DenHaagCentralStationLocation -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#DenHaagCentralStationLocation">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Location"/>
+        <logico:hasAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#AddressDenHaagCentralStation"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Den haag central station location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#EUR -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#EUR">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Currency"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EUR</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#GBP -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#GBP">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Currency"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GBP</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_10Aubergine -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_10Aubergine">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#GoodsItem"/>
+        <logico:hasAmount rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#InsuranceValueAmount_100EUR"/>
+        <logico:hasVolume rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GrossVolume_0.24MTQ"/>
+        <logico:hasWeight rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GrossWeight_30KGM"/>
+        <logico:isPackagedIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Package_40carton"/>
+        <logico:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aubergines</logico:hasDescription>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</logico:hasQuantity>
+        <logico:isPacked rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</logico:isPacked>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Goods item 10 aubergine</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_34Cucumber -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_34Cucumber">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#GoodsItem"/>
+        <logico:hasAmount rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#InsuranceValueAmount_300EUR"/>
+        <logico:hasTemperature rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#MaxTemperature_20CEL"/>
+        <logico:hasTemperature rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#MinTemperature_5CEL"/>
+        <logico:hasVolume rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GrossVolume_1.05MTQ"/>
+        <logico:hasWeight rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GrossWeight_80.5KGM"/>
+        <logico:isPackagedIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Package_77carton"/>
+        <logico:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cucumbers</logico:hasDescription>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">34</logico:hasQuantity>
+        <logico:isPacked rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</logico:isPacked>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Goods item 34 cucumber</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#GrossVolume_0.24MTQ -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#GrossVolume_0.24MTQ">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#GrossVolume"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#MTQ"/>
+        <logico:hasVolumeValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.24</logico:hasVolumeValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gross Volume 0.24 MTQ</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#GrossVolume_1.05MTQ -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#GrossVolume_1.05MTQ">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#GrossVolume"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#MTQ"/>
+        <logico:hasVolumeValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.05</logico:hasVolumeValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gross Volume 1.05 MTQ</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#GrossWeight_30KGM -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#GrossWeight_30KGM">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#GrossWeight"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#KG"/>
+        <logico:hasWeightValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">30.0</logico:hasWeightValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gross Weight 30 kgm</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#GrossWeight_80.5KGM -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#GrossWeight_80.5KGM">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#GrossWeight"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#KG"/>
+        <logico:hasWeightValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">80.5</logico:hasWeightValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gross Weight 80.5 kgm</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#ISO0_halfEURO -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ISO0_halfEURO">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#GS1PalletCodeList"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO0 half EURO</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#ISO1_oneEURO -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ISO1_oneEURO">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#GS1PalletCodeList"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO1 one EURO</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#ISO2 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#ISO2">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#GS1PalletCodeList"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Identifier_TEP-20130924-1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Identifier_TEP-20130924-1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TEP-20130924-1</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identifier TEP-20130924-1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Instant_PlanendPickupEnd -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlanendPickupEnd">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-11-05T10:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Planend pickup end</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Instant_PlanendPickupStart -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlanendPickupStart">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-11-05T09:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Planend pickup start</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Instant_PlannedDeliveryEnd -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlannedDeliveryEnd">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-11-06T15:45:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Planned delivery end</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Instant_PlannedDeliveryStart -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlannedDeliveryStart">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-11-06T13:45:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Planned delivery start</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Instant_PlannedPickupStart -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlannedPickupStart">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Planned pickup start</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedDeliveryEnd -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedDeliveryEnd">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-11-06T15:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Requested delivery end</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedDeliveryStart -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedDeliveryStart">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-11-06T12:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant Requested delivery start</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedPickupEnd -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedPickupEnd">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-11-05T12:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant requested Pickup end </rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedPickupStart -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedPickupStart">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Instant"/>
+        <time:inXSDDateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-11-05T09:30:10+01:00</time:inXSDDateTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Instant requested  Pickup start </rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#InsuranceValueAmount_100EUR -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#InsuranceValueAmount_100EUR">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#MonetaryAmount"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#EUR"/>
+        <logico:hasAmountValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">100.0</logico:hasAmountValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Insurance value amount 100 EUR</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#InsuranceValueAmount_300EUR -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#InsuranceValueAmount_300EUR">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#MonetaryAmount"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#EUR"/>
+        <logico:hasAmountValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">300.0</logico:hasAmountValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Insurance value amount 300 EUR</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#InvoiceTotalAmount_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#InvoiceTotalAmount_1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#InvoiceTotalAmount"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#EUR"/>
+        <logico:hasAmountValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">300.0</logico:hasAmountValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Invoice total amount 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#KG -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#KG">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#WeightUnit"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KG</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Kerkstraat20 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Kerkstraat20">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Street"/>
+        <logico:hasStreetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kerkstraat</logico:hasStreetName>
+        <logico:hasStreetNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20</logico:hasStreetNumber>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kerkstraat20</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Kerkstraat22 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Kerkstraat22">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Street"/>
+        <logico:hasStreetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kerkstraat</logico:hasStreetName>
+        <logico:hasStreetNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22</logico:hasStreetNumber>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kerkstraat22</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Kloosterlaan198 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Kloosterlaan198">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Street"/>
+        <logico:hasStreetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kloosterlaan</logico:hasStreetName>
+        <logico:hasStreetNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">198</logico:hasStreetNumber>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kloosterlaan198</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#LocationIdentification_4048623000003 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#LocationIdentification_4048623000003">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Location identification 4048623000003</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#LocationIdentification_4058673827000 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#LocationIdentification_4058673827000">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_GLN"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4058673827000</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Location Identification 4058673827000</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#LocationIdentification_4058673827003 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#LocationIdentification_4058673827003">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_GLN"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4058673827003</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LocationIdentification 4058673827003</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Location_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Location_1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Location"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Location 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#MTQ -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#MTQ">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#VolumeUnit"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MTQ</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#MTR -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#MTR">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#HeightLenghtWidthUnit"/>
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#PhysicalAttributeUnit"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MTR</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#MaxTemperature_20CEL -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#MaxTemperature_20CEL">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Temperature"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CEL"/>
+        <logico:hasTemperatureValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">20.0</logico:hasTemperatureValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Max Temperature  20 CEL</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#MinTemperature_5CEL -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#MinTemperature_5CEL">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#MinTemperature"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CEL"/>
+        <logico:hasTemperatureValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">5.0</logico:hasTemperatureValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Min Temperature 5 CEL</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Nederland -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Nederland">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Country"/>
+        <logico:hasCountryName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nederland</logico:hasCountryName>
+        <logico:hasID>NL</logico:hasID>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nederland</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Netherlands -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Netherlands">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Country"/>
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Location"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Netherlands</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Number_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Number_1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Number"/>
+        <logico:hasAmountValue>77</logico:hasAmountValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Oneway -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Oneway">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#GS1PalletCodeList"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oneway</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Package_40carton -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Package_40carton">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Carton"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_10Aubergine"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">40</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Package 40 carton</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Package_77carton -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Package_77carton">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Carton"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_34Cucumber"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">77</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Package carton</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_KVK"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11112222</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Party Identification 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_2 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_2">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_BTW"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NL001234567B01</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Party Identification 2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_3 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_3">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_KVK"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">45670011</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Party identification 3</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_4 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PartyIdentification_4">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_BTW"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NL876543210B01</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Party identification 4</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PhysicalAddress_CompanyA -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PhysicalAddress_CompanyA">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Zwolle"/>
+        <logico:hasCountry rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Nederland"/>
+        <logico:hasStreet rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Kerkstraat20"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8032PH</logico:hasPostalCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Physical Address Company A</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PhysicalAddress_CompanyX -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PhysicalAddress_CompanyX">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Zoetermeer"/>
+        <logico:hasCountry rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Nederland"/>
+        <logico:hasStreet rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Boris_Pasternaklaan_22"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2719DA</logico:hasPostalCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PhysicalAddress_CompanyX</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PhysicalLocation_CompanyX -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PhysicalLocation_CompanyX">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportLocation"/>
+        <logico:hasAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PhysicalAddress_CompanyX"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Physical location CompanyX</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PickupLocationStartTime -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PickupLocationStartTime">
+        <rdf:type rdf:resource="http://www.w3.org/2006/time#Instant"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pickup location start time</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PlannedDeliveryLocation -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PlannedDeliveryLocation">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Location"/>
+        <logico:hasAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#deliveryAddress"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned delivery location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PlannedDeliveryPeriod -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PlannedDeliveryPeriod">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Interval"/>
+        <time:hasBeginning rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlannedDeliveryStart"/>
+        <time:hasEnd rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlannedDeliveryEnd"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned Delivery Period</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PlannedDeliveryTransportEvent -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PlannedDeliveryTransportEvent">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportEvent"/>
+        <hasTime rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PlannedDeliveryPeriod"/>
+        <logico:hasLocation rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PlannedDeliveryLocation"/>
+        <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned</hasStatus>
+        <logico:hasDescription xml:lang="nl">Pallets ruilen</logico:hasDescription>
+        <transport:hasTransportEventTypeCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TE1001</transport:hasTransportEventTypeCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned delivery transport event</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PlannedPickupLocation -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PlannedPickupLocation">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportLocation"/>
+        <logico:hasAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PhysicalAddress_CompanyA"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#LocationIdentification_4048623000003"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Opslag Company A</logico:hasName>
+        <transport:hasConditions rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hoogte voertuig max 3 meter</transport:hasConditions>
+        <transport:hasValidityPeriodEndTime rdf:datatype="http://www.w3.org/2001/XMLSchema#time">17:30:10+01:00</transport:hasValidityPeriodEndTime>
+        <transport:hasValidityPeriodStartTime rdf:datatype="http://www.w3.org/2001/XMLSchema#time">07:30:10+01:00</transport:hasValidityPeriodStartTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">planned pickup location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PlannedPickupPeriod -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PlannedPickupPeriod">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Interval"/>
+        <time:hasBeginning rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlanendPickupStart"/>
+        <time:hasEnd rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlanendPickupEnd"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned pickup period</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PlannedPickupTransportEvent -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PlannedPickupTransportEvent">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportEvent"/>
+        <hasTime rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PlannedPickupPeriod"/>
+        <logico:hasLocation rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PlannedPickupLocation"/>
+        <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned</hasStatus>
+        <logico:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">text descrbing this location</logico:hasDescription>
+        <transport:hasTransportEventTypeCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TE1000</transport:hasTransportEventTypeCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned pickup transport event</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PlannedTransportActivity_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PlannedTransportActivity_1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportActivity"/>
+        <hasConsumer rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Company_x"/>
+        <hasDestination rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PlannedDeliveryLocation"/>
+        <hasOrigin rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PlannedPickupLocation"/>
+        <hasProvider rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Company_y"/>
+        <DUL:hasConstituent rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PlannedTransportActivity_1"/>
+        <DUL:isConstituentOf rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PlannedTransportActivity_1"/>
+        <time:hasBeginning rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlannedPickupStart"/>
+        <time:hasEnd rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlannedDeliveryEnd"/>
+        <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned</hasStatus>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Planned Transport activity 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PostalAddress_CompanyA -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PostalAddress_CompanyA">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Zwolle"/>
+        <logico:hasCountry rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Nederland"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8023RT</logico:hasPostalCode>
+        <logico:hasPostbox rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Postbus 1245</logico:hasPostbox>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Postal address company a</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PostalAddress_CompanyX -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PostalAddress_CompanyX">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Zoetermeer"/>
+        <logico:hasCountry rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Nederland"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2719DA</logico:hasPostalCode>
+        <logico:hasPostbox rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Postbus 3008</logico:hasPostbox>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PostalAddress_CompanyX</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#PostalAddress_CompanyY -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#PostalAddress_CompanyY">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Rotterdam"/>
+        <logico:hasCountry rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Nederland"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1357PW</logico:hasPostalCode>
+        <logico:hasPostbox rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Postbus 2546</logico:hasPostbox>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Postal address Company y</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Provider_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Provider_1">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Provider"/>
+        <isProviderOf rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Transport_1"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Provider 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#RegistrationAddress_CompanyA -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#RegistrationAddress_CompanyA">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Zwolle"/>
+        <logico:hasCountry rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Nederland"/>
+        <logico:hasStreet rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Kerkstraat22"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8032PH</logico:hasPostalCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Registration address company a</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#RegistrationAddress_CompanyX -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#RegistrationAddress_CompanyX">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Zoetermeer"/>
+        <logico:hasCountry rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Nederland"/>
+        <logico:hasStreet rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Boris_Pasternaklaan_23"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2719DA</logico:hasPostalCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RegistrationAddress_CompanyX</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#RequestedDeliveryLocation -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#RequestedDeliveryLocation">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportLocation"/>
+        <logico:hasAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#deliveryAddress"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#LocationIdentification_4058673827000"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Company B storage</logico:hasName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested delivery location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#RequestedDeliveryPeriod -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#RequestedDeliveryPeriod">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Interval"/>
+        <time:hasBeginning rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedDeliveryStart"/>
+        <time:hasEnd rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedDeliveryEnd"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested delivery period</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#RequestedDeliveryTransportEvent -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#RequestedDeliveryTransportEvent">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportEvent"/>
+        <hasTime rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#RequestedDeliveryPeriod"/>
+        <logico:hasLocation rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#RequestedDeliveryLocation"/>
+        <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested</hasStatus>
+        <logico:hasDescription xml:lang="nl">Pallets ruilen</logico:hasDescription>
+        <transport:hasTransportEventTypeCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TE1001</transport:hasTransportEventTypeCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested delivery transport event</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#RequestedPickupLocation -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#RequestedPickupLocation">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportLocation"/>
+        <logico:hasAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PhysicalAddress_CompanyA"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#LocationIdentification_4058673827003"/>
+        <logico:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Opslag Company A</logico:hasName>
+        <transport:hasConditions rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hoogte voertuig max 3 meter</transport:hasConditions>
+        <transport:hasValidityPeriodEndTime rdf:datatype="http://www.w3.org/2001/XMLSchema#time">17:30:10+01:00</transport:hasValidityPeriodEndTime>
+        <transport:hasValidityPeriodStartTime rdf:datatype="http://www.w3.org/2001/XMLSchema#time">07:30:10+01:00</transport:hasValidityPeriodStartTime>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">requested pickup location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#RequestedPickupPeriod -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#RequestedPickupPeriod">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Interval"/>
+        <time:hasBeginning rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_PlannedPickupStart"/>
+        <time:hasBeginning rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedPickupStart"/>
+        <time:hasEnd rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedPickupEnd"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">requested pickup period</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#RequestedPickupTransportEvent -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#RequestedPickupTransportEvent">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportEvent"/>
+        <hasTime rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#RequestedPickupPeriod"/>
+        <logico:hasLocation rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#RequestedPickupLocation"/>
+        <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested</hasStatus>
+        <transport:hasTransportEventTypeCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TE1000</transport:hasTransportEventTypeCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requested pickup transport event</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Returnable -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Returnable">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#GS1PalletCodeList"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Returnable</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Rotterdam -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Rotterdam">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#City"/>
+        <logico:hasCityName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rotterdam</logico:hasCityName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rotterdam</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Schiphol -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Schiphol">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Location"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schiphol</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#SchipholAirport -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#SchipholAirport">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Airport"/>
+        <logico:hasLocation rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Schiphol"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schiphol airport</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Service_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Service_1">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#BusinessServiceDescription"/>
+        <hasActor rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Provider_1"/>
+        <instantiates rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Transport_1"/>
+        <logico:hasLocation rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Netherlands"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Service 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TheHagueCentralStation -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TheHagueCentralStation">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#RailwayStation"/>
+        <logico:hasLocation rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#DenHaagCentralStationLocation"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Railway station The Hague</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportActivity_Pickup -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportActivity_Pickup">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Transport"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport activity Pickup</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportContract_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportContract_1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#Contract"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ContractIdentifier_FW-2013-12345"/>
+        <transport:hasDocumentType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FWAGREEMENT</transport:hasDocumentType>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport contract 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_1.44MTR -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_1.44MTR">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Height"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#MTR"/>
+        <logico:hasHeightValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.44</logico:hasHeightValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport Equipment Height 1.44 MTR</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_2.44MTR -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_2.44MTR">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Height"/>
+        <logico:isMeasuredIn rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#MTR"/>
+        <logico:hasHeightValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.44</logico:hasHeightValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport Equipment Height 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555551 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555551">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_SSCC"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00007141415555555551</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport Equipment ID 00007141415555555551</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555552 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555552">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_SSCC"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00007141415555555552</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment ID 00007141415555555552</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555553 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555553">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_SSCC"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00007141415555555553</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment ID 00007141415555555553</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555554 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555554">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_SSCC"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00007141415555555554</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment ID 00007141415555555554</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555555 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555555">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_SSCC"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00007141415555555555</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment ID 00007141415555555555</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555556 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555556">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_SSCC"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00007141415555555556</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment ID 00007141415555555556</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555557 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555557">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_SSCC"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00007141415555555557</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment ID 00007141415555555557</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555558 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555558">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasAgency rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#CodeIssuingAgency_SSCC"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00007141415555555558</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment ID 00007141415555555558</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555551 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555551">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Pallet"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_34Cucumber"/>
+        <logico:hasHeight rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_2.44MTR"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555551"/>
+        <logico:hasSize rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ISO0_halfEURO"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment 00007141415555555551</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555552 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555552">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Pallet"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_34Cucumber"/>
+        <logico:hasAmount rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#InsuranceValueAmount_300EUR"/>
+        <logico:hasHeight rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_2.44MTR"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555552"/>
+        <logico:hasSize rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ISO0_halfEURO"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment 00007141415555555552</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555553 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555553">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Pallet"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_34Cucumber"/>
+        <logico:hasAmount rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#InsuranceValueAmount_300EUR"/>
+        <logico:hasHeight rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_2.44MTR"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555553"/>
+        <logico:hasSize rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ISO0_halfEURO"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment 00007141415555555553</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555554 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555554">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Pallet"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_34Cucumber"/>
+        <logico:hasAmount rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#InsuranceValueAmount_300EUR"/>
+        <logico:hasHeight rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_2.44MTR"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555554"/>
+        <logico:hasSize rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ISO0_halfEURO"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment 00007141415555555554</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555555 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555555">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Pallet"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_34Cucumber"/>
+        <logico:hasAmount rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#InsuranceValueAmount_300EUR"/>
+        <logico:hasHeight rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_2.44MTR"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555555"/>
+        <logico:hasSize rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ISO0_halfEURO"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment 00007141415555555555</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555556 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555556">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Pallet"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_10Aubergine"/>
+        <logico:hasHeight rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_1.44MTR"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555556"/>
+        <logico:hasSize rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ISO0_halfEURO"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment 00007141415555555556</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555557 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555557">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Pallet"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_10Aubergine"/>
+        <logico:hasHeight rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_1.44MTR"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555557"/>
+        <logico:hasSize rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ISO0_halfEURO"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment 00007141415555555557</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555558 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555558">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Pallet"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#GoodsItem_10Aubergine"/>
+        <logico:hasHeight rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentHeight_1.44MTR"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipmentID_00007141415555555558"/>
+        <logico:hasSize rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#ISO0_halfEURO"/>
+        <logico:hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</logico:hasQuantity>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport equipment 00007141415555555558</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnitID_THU1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnitID_THU1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">THU1</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport handling unit ID THU1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnitID_THU2 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnitID_THU2">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+        <logico:hasIDValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">THU2</logico:hasIDValue>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport handling unit ID THU2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnit_THU1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnit_THU1">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Cargo"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555551"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555552"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555553"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555554"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555555"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnitID_THU1"/>
+        <logico:hasSpecialRequirement rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Handle with care</logico:hasSpecialRequirement>
+        <logico:isDangerous rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</logico:isDangerous>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport handling unit THU1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnit_THU2 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnit_THU2">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Cargo"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555556"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555557"/>
+        <logico:contains rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportEquipment_00007141415555555558"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportHandlingUnitID_THU2"/>
+        <logico:hasSpecialRequirement rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Handle with care</logico:hasSpecialRequirement>
+        <logico:isDangerous rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</logico:isDangerous>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport handling unit THU2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportPlan_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportPlan_1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportPlan"/>
+        <hasConsumer rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Company_x"/>
+        <hasProvider rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Company_y"/>
+        <instantiates rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PlannedTransportActivity_1"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Identifier_TEP-20130924-1"/>
+        <transport:hasConsignment rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Consignment_XYZ987"/>
+        <transport:satisfies rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#TransportRequest_1"/>
+        <transport:hasIssueDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2013-10-17</transport:hasIssueDate>
+        <transport:hasStatusCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Confirmed</transport:hasStatusCode>
+        <transport:hasUUID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6feca890-51e8-11e3-8f96-0800200c9a66</transport:hasUUID>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport plan 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#TransportRequest_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#TransportRequest_1">
+        <rdf:type rdf:resource="http://ontology.tno.nl/transport#TransportRequest"/>
+        <hasConsumer rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Company_x"/>
+        <hasProvider rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Company_y"/>
+        <logico:hasID rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Identifier_TEP-20130924-1"/>
+        <transport:hasConsignment rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Consignment_XYZ987"/>
+        <transport:hasIssueDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2013-10-17</transport:hasIssueDate>
+        <transport:hasStatusCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NotConfirmed</transport:hasStatusCode>
+        <transport:hasUUID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a7f755c0-252c-11e3-8224-0800200c9a66</transport:hasUUID>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport request 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Transport_1 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Transport_1">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Transport"/>
+        <hasDestination rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#DenHaagCentralStationLocation"/>
+        <hasProvider rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Provider_1"/>
+        <logico:hasLocation rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#pickup-location"/>
+        <DUL:hasConstituent rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Transport_1"/>
+        <DUL:isConstituentOf rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Transport_1"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport 1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#USD -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#USD">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Currency"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">USD</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Zoetermeer -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Zoetermeer">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#City"/>
+        <logico:hasCityName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zoetermeer</logico:hasCityName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zoetermeer</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#Zwolle -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Zwolle">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#City"/>
+        <logico:hasCityName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zwolle</logico:hasCityName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zwolle</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#deliveryAddress -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#deliveryAddress">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Address"/>
+        <logico:hasCity rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Arnhem"/>
+        <logico:hasCountry rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Nederland"/>
+        <logico:hasStreet rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Kloosterlaan198"/>
+        <logico:hasPostalCode rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3629HL</logico:hasPostalCode>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">delivery address</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#feet -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#feet">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#ContainerSizeUnit"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">feet</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#one-eighthEURO -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#one-eighthEURO">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#GS1PalletCodeList"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">one-eighth EURO</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#pickup-location -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#pickup-location">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Location"/>
+        <logico:hasAddress rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Address_1"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pickup-location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#pickupValidity -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#pickupValidity">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#Interval"/>
+        <time:hasBeginning rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#PickupLocationStartTime"/>
+        <time:hasEnd rdf:resource="https://w3id.org/sxacml/sample-port/transport-data#Instant_RequestedPickupEnd"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pickup validity</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/transport-data#quarterEURO -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#quarterEURO">
+        <rdf:type rdf:resource="http://ontology.tno.nl/logico#GS1PalletCodeList"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">quarter EURO</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.opengis.net/def/uom/ISO-8601/0/Gregorian -->
+
+    <owl:NamedIndividual rdf:about="http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

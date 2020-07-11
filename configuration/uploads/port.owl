@@ -1,0 +1,573 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/sxacml/sample-port/port#"
+     xml:base="https://w3id.org/sxacml/sample-port/port"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:logico="http://ontology.tno.nl/logico#"
+     xmlns:transport="http://ontology.tno.nl/transport#"
+     xmlns:schema="http://schema.org/"
+     xmlns:sosa="http://www.w3.org/ns/sosa/"
+     xmlns:logiserv="http://ontology.tno.nl/logiserv#"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/sample-port/port">
+        <owl:imports rdf:resource="http://ontology.tno.nl/transport"/>
+        <owl:imports rdf:resource="https://w3id.org/sxacml/iot"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
+
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.tno.nl/logico#hostsResource -->
+
+    <rdf:Description rdf:about="http://ontology.tno.nl/logico#hostsResource">
+        <owl:inverseOf rdf:resource="https://w3id.org/sxacml/sample-port/port#isHostedByResource"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#drivesTruck -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#drivesTruck">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-port/port#Driver"/>
+        <rdfs:range rdf:resource="http://ontology.tno.nl/logico#Truck"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#employedBy -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#employedBy">
+        <owl:inverseOf rdf:resource="https://w3id.org/sxacml/sample-port/port#hasEmployee"/>
+        <rdfs:domain rdf:resource="http://ontology.tno.nl/logico#Actor"/>
+        <rdfs:range rdf:resource="http://ontology.tno.nl/logico#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#hasEmployee -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#hasEmployee">
+        <rdfs:domain rdf:resource="http://ontology.tno.nl/logico#Actor"/>
+        <rdfs:range rdf:resource="http://ontology.tno.nl/logico#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#hasOwner -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#hasOwner">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="https://w3id.org/sxacml/sample-port/port#ownsEquipment"/>
+        <rdfs:domain rdf:resource="http://ontology.tno.nl/logico#PhysicalResource"/>
+        <rdfs:range rdf:resource="http://ontology.tno.nl/logico#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#isHostedByResource -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#isHostedByResource"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#ownsEquipment -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#ownsEquipment">
+        <rdfs:domain rdf:resource="http://ontology.tno.nl/logico#Actor"/>
+        <rdfs:range rdf:resource="http://ontology.tno.nl/logico#PhysicalResource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/ns/sosa/Actuator -->
+
+    <rdf:Description rdf:about="http://www.w3.org/ns/sosa/Actuator">
+        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#PhysicalResource"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/ns/sosa/Sensor -->
+
+    <rdf:Description rdf:about="http://www.w3.org/ns/sosa/Sensor">
+        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#PhysicalResource"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#AccessCardReader -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#AccessCardReader">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#Barrier -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#Barrier">
+        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#StaticEquipment"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#BarrierController -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#BarrierController">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Actuator"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#Dock -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#Dock">
+        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Facility"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#Driver -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#Driver">
+        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Carrier"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#LPRCamera -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#LPRCamera">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#LicenseNumber -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#LicenseNumber">
+        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Identifier"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#ObservedLicense -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#ObservedLicense">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-port/port#LicenseNumber"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#ObservedTruck -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#ObservedTruck">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.tno.nl/logico#Truck"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.tno.nl/logico#hasID"/>
+                        <owl:someValuesFrom rdf:resource="https://w3id.org/sxacml/sample-port/port#ObservedLicense"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Truck"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#ObservedUser -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#ObservedUser">
+        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#Parking -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#Parking">
+        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Facility"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#Yard -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#Yard">
+        <rdfs:subClassOf rdf:resource="http://ontology.tno.nl/logico#Facility"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#LicenseNumber -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/port#LicenseNumber">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#OpenClosedState -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/port#OpenClosedState">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/ActuatableProperty"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-port/port#UserName -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/port#UserName">
+        <rdf:type rdf:resource="http://www.w3.org/ns/sosa/ObservableProperty"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#o">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#v">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#a">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#l">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#d">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#t">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#consignment">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#vehicle">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#event">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">observedLicense_rule</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#o"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.w3.org/ns/sosa/hasSimpleResult"/>
+                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#o"/>
+                                <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#v"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#LicenseNumber"/>
+                                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#l"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/logico#hasIDValue"/>
+                                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#l"/>
+                                                <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#v"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#ObservedLicense"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#l"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drivesTruck_rule</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#Driver"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#d"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#ObservedUser"/>
+                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#d"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#ObservedTruck"/>
+                                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#t"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#drivesTruck"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#d"/>
+                        <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#t"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hasPlannedDelivery_rule</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/transport#hasTransportHandlingUnit"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#consignment"/>
+                        <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#vehicle"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/transport#hasPlannedDelivery"/>
+                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#consignment"/>
+                                <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#event"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/transport#hasPlannedDelivery"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#vehicle"/>
+                        <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#event"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">observedUser_rule</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#o"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.w3.org/ns/sosa/hasSimpleResult"/>
+                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#o"/>
+                                <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#v"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://ontology.tno.nl/logico#Actor"/>
+                                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#a"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://ontology.tno.nl/logico#hasIDValue"/>
+                                                <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#a"/>
+                                                <swrl:argument2 rdf:resource="https://w3id.org/sxacml/sample-port/port#v"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="https://w3id.org/sxacml/sample-port/port#ObservedUser"/>
+                        <swrl:argument1 rdf:resource="https://w3id.org/sxacml/sample-port/port#a"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
