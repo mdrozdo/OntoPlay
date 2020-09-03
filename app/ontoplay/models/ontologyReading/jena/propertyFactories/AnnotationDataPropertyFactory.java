@@ -27,7 +27,7 @@ public class AnnotationDataPropertyFactory extends OwlPropertyFactory {
     @Override
     public OntoProperty createProperty(OntProperty ontProperty) {
         return new AnnotationDataProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), Constants.translateDataType(ontProperty.getURI()),
-                ontProperty.getLabel(""));
+                ontProperty.getLabel(""), getPropertyDomain(ontProperty));
     }
 
 

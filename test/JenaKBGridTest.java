@@ -71,6 +71,21 @@ public class JenaKBGridTest {
     }
 
     @Test
+    public void getClass_ReturnedPropertiesIncludeDomain() throws Exception {
+        OntoClass memoryClass = kb.getOwlClass("http://gridagents.sourceforge.net/AiGGridOntology#PhysicalMemory");
+
+        assertThat(memoryClass).isNotNull();
+        List<OwlElement> domainElements = memoryClass.getProperties().stream()
+                .filter(p -> "hasTotalSize".equalsIgnoreCase(p.getLocalName()))
+                .findAny()
+                .map(p->p.getDomain())
+                .get();
+
+        assertThat(selectLocalNames(domainElements)).containsOnly( "Memory", "StorageSpace", "GPUMemory", "VirtualMemory", "PhysicalMemory");
+    }
+
+
+    @Test
     public void forComputingElement_getClass_ReturnsClassWithStorageSpaceProperty() throws Exception {
         OntoClass memoryClass = kb.getOwlClass("http://purl.org/NET/cgo#ComputingElement");
 

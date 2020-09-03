@@ -1,10 +1,14 @@
 import ontoplay.models.*;
 import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OwlElement;
 import ontoplay.models.propertyConditions.ClassValueCondition;
 import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 import ontoplay.models.propertyConditions.IndividualValueCondition;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -210,6 +214,10 @@ public class ConditionDeserializerTest {
             return uri;
         }
 
+        @Override
+        public List<OwlElement> getDomain() {
+            return new ArrayList<OwlElement>();
+        }
     }
 
     private class FakePropertyProvider implements PropertyProvider {

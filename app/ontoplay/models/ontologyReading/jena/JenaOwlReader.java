@@ -120,20 +120,20 @@ public class JenaOwlReader implements OntologyReader {
 
     private List<OntoProperty> getProperties(OntClass ontClass) {
 
-        List<OntoProperty> props = new ArrayList<OntoProperty>();
         System.out.println("get properties for: " + ontClass.getLocalName());
-        for (Iterator<OntProperty> i = ontClass.listDeclaredProperties(); i.hasNext(); ) {
-            OntProperty prop = i.next();
 
-            if (prop.getDomain() != null || !ignorePropsWithNoDomain)
-                try {
-                    OntoProperty temp = createProperty(prop);
-                    if (temp != null)
-                        props.add(temp);
-                } catch (InvalidConfigurationException ex) {
-                    ex.printStackTrace();
-                }
-        }
+        return ontClass.listDeclaredProperties()
+                .filterKeep(prop -> prop.getDomain() != null || !ignorePropsWithNoDomain)
+                .mapWith(prop -> {
+                    try {
+                        return createProperty(prop);
+                    } catch (InvalidConfigurationException ex) {
+                        ex.printStackTrace();
+                        return null;
+                    }
+                })
+                .filterDrop(prop -> prop == null)
+                .toList();
 
         // The below code should not be needed, but it may depend on the
         // reasoner used (how smart it is).
@@ -145,7 +145,6 @@ public class JenaOwlReader implements OntologyReader {
         // props.add(createProperty(prop));
         // }
         // }
-        return props;
     }
 
     private OntoProperty createProperty(OntProperty prop) {

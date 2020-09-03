@@ -1,6 +1,8 @@
 package ontoplay.models.ontologyModel;
 
 
-public interface OntoProperty extends OwlElement {
+import java.util.List;
 
+public interface OntoProperty extends OwlElement {
+    public List<OwlElement> getDomain();
 }
