@@ -1,4 +1,4 @@
-package ontoplay.models.angular.update;
+package ontoplay.models.dto.update;
 
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.rdf.model.*;

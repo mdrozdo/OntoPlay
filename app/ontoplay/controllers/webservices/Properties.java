@@ -3,7 +3,7 @@ package ontoplay.controllers.webservices;
 import com.google.gson.GsonBuilder;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.utils.OntologyUtils;
-import ontoplay.models.angular.PropertyDTO;
+import ontoplay.models.dto.PropertyDTO;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import play.mvc.Result;

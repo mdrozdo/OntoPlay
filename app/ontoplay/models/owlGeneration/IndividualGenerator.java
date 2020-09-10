@@ -4,8 +4,7 @@ import com.google.inject.assistedinject.Assisted;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.PropertyCondition;
-import ontoplay.models.PropertyValueCondition;
-import ontoplay.models.angular.update.Annotation;
+import ontoplay.models.dto.update.Annotation;
 import org.semanticweb.owlapi.model.*;
 
 import javax.inject.Inject;

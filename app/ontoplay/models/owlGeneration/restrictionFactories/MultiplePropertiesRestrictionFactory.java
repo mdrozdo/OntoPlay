@@ -4,16 +4,12 @@ import ontoplay.models.ConfigurationException;
 import ontoplay.models.PropertyCondition;
 import ontoplay.models.PropertyConditionType;
 import ontoplay.models.PropertyGroupCondition;
-import ontoplay.models.angular.update.Annotation;
 import ontoplay.models.owlGeneration.*;
-import ontoplay.models.propertyConditions.ClassValueCondition;
 import org.semanticweb.owlapi.model.*;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 public class MultiplePropertiesRestrictionFactory implements RestrictionFactory<PropertyGroupCondition> {

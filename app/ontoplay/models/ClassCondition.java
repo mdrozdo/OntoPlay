@@ -1,6 +1,6 @@
 package ontoplay.models;
 
-import ontoplay.models.angular.update.Annotation;
+import ontoplay.models.dto.update.Annotation;
 
 import java.util.ArrayList;
 import java.util.List;

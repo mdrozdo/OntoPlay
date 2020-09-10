@@ -1,7 +1,7 @@
 package ontoplay.models.owlGeneration.restrictionFactories;
 
 import ontoplay.models.ConfigurationException;
-import ontoplay.models.angular.update.Annotation;
+import ontoplay.models.dto.update.Annotation;
 import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 import org.semanticweb.owlapi.model.*;
 

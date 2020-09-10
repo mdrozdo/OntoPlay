@@ -5,7 +5,7 @@ import ontoplay.OntoplayConfig;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.InvalidConfigurationException;
 import ontoplay.models.PropertyValueCondition;
-import ontoplay.models.angular.AnnotationDTO;
+import ontoplay.models.dto.AnnotationDTO;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyModel.OwlIndividual;
