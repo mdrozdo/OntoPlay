@@ -21,12 +21,31 @@
 	margin: 5px;
 }
 
+.intersection-in-union{
+	width: 100%;
+	/* overflow: hidden; */
+}
+
+.clear-both{
+	clear: both;
+}
+
 .condition-box{	
 	width: 100%;
 }
 
 .intersection-box{	
 	width: 100%;
+	/* overflow: hidden; */
+}
+
+.union-box{	
+	/* width: 100%; */
+	/* overflow: hidden; */
+}
+
+.union-element{	
+	margin-right: 10px;
 }
 
 .property-condition{

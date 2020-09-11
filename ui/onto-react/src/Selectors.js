@@ -1,36 +1,27 @@
 import React, { Component } from 'react';
 import { Typeahead } from 'react-bootstrap-typeahead'; 
 import 'react-bootstrap-typeahead/css/Typeahead.css';
-
+import newId from './newId';
 
 class PropertySelector extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            properties: [
-                {
-                    uri: 'null',
-                    localName: 'Select a property'
-                }
-            ],
+            properties: [],
             classUri: props.classUri,
             dataLoaded: false
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.id = newId();
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
         if (prevState.classUri !== nextProps.classUri) {
             //Class changed, properties need to be reset.
             return {
-                properties: [
-                    {
-                        uri: 'null',
-                        localName: 'Select a property'
-                    }
-                ],
+                properties: [],
                 classUri: nextProps.classUri,
                 dataLoaded: false
             };
@@ -41,7 +32,8 @@ class PropertySelector extends Component {
 
 
     handleChange(event) {
-        const newPropUri = event.target.value !== 'null' ? event.target.value : null;
+        
+        const newPropUri = event && event.length ? event[0].id : null;
 
         this.props.selectionChanged(newPropUri);
     }
@@ -67,15 +59,36 @@ class PropertySelector extends Component {
         }
     }
 
+    getSelectedOption(options){
+        if(!this.props.value)
+            return undefined;
+
+        return options.find(p=>p.id === this.props.value);
+    }
+
+    filterBy(option, state) {
+        if (state.selected.length) {
+            return true;
+        }
+        return option.label.toLowerCase().indexOf(state.text.toLowerCase()) > -1;
+    }
+
     render() {
-        const value = this.props.value ? this.props.value : 'null';
+        const options = this.state.properties.map((p) => ({
+            id: p.uri,
+            label: p.localName,
+        }));
+        const selected = this.getSelectedOption(options);
 
         return (
-            <select className='form-control condition-input' value={value} onChange={this.handleChange}>
-                {this.state.properties.map((p) => {
-                    return <option key={p.uri} value={p.uri}>{p.localName}</option>;
-                })}
-            </select>
+            <Typeahead
+                filterBy={this.filterBy}
+                onChange={this.handleChange}
+                id={this.id}
+                placeholder='Select a property'
+                selected={selected ? [selected] : []}
+                options={options}   
+            />
         );
     }
 }
@@ -96,6 +109,7 @@ class OperatorSelector extends Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.id = newId();
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -151,20 +165,6 @@ class OperatorSelector extends Component {
         const value = this.props.value ? this.props.value : 'null';
 
         return (
-            // <Typeahead
-            //     onChange={this.handleChange}
-            //     selected={value}                
-            //     // options={this.state.operators.map((o) => ({
-            //     //     id: o.realValue,
-            //     //     label: o.displayValue,
-            //     // }))}
-            //     options = {[
-            //         {id: 1, label: 'John'},
-            //         {id: 2, label: 'Miles'},
-            //         {id: 3, label: 'Charles'},
-            //         {id: 4, label: 'Herbie'},
-            //     ]}
-            // />
             <select className='form-control condition-input' value={value} onChange={this.handleChange}>
                 {this.state.operators.map((o) => {
                     return <option key={o.realValue} value={o.realValue}>{o.displayValue}</option>;
