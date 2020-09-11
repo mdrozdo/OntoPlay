@@ -4,6 +4,7 @@ import ConstraintsBox from './ConstraintsBox';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './main.css';
+import '../fa/css/fontawesome.min.css';
 
 //TODO: condition, properties etc should be defined as classes, ideally with Flow annotations.
 //TODO: would be good to add some unit tests.
@@ -94,14 +95,12 @@ class OntoReact extends Component {
                         classUri={this.state.condition.classUri}
                         conditionsChanged={this.conditionsChanged}
                     />
-                    <Button
-                        className='btn btn-success'
-                        onClick={this.handleSubmit}
-                    >
-                        Save
-                    </Button>
-                    <pre className='code'>{stateJson}</pre>
                 </form>
+                <Button className='btn btn-success' onClick={this.handleSubmit}>
+                    Save
+                </Button>
+
+                <pre className='code'>{stateJson}</pre>
             </div>
         );
     }

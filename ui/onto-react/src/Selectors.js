@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Typeahead } from 'react-bootstrap-typeahead'; 
+import 'react-bootstrap-typeahead/css/Typeahead.css';
+
 
 class PropertySelector extends Component {
     constructor(props) {
@@ -148,6 +151,20 @@ class OperatorSelector extends Component {
         const value = this.props.value ? this.props.value : 'null';
 
         return (
+            // <Typeahead
+            //     onChange={this.handleChange}
+            //     selected={value}                
+            //     // options={this.state.operators.map((o) => ({
+            //     //     id: o.realValue,
+            //     //     label: o.displayValue,
+            //     // }))}
+            //     options = {[
+            //         {id: 1, label: 'John'},
+            //         {id: 2, label: 'Miles'},
+            //         {id: 3, label: 'Charles'},
+            //         {id: 4, label: 'Herbie'},
+            //     ]}
+            // />
             <select className='form-control condition-input' value={value} onChange={this.handleChange}>
                 {this.state.operators.map((o) => {
                     return <option key={o.realValue} value={o.realValue}>{o.displayValue}</option>;

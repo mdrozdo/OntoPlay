@@ -21,6 +21,14 @@
 	margin: 5px;
 }
 
+.condition-box{	
+	width: 100%;
+}
+
+.intersection-box{	
+	width: 100%;
+}
+
 .property-condition{
 	display: inline;	
 }
@@ -87,4 +95,8 @@
 .btn-success {
 	margin-top: 5px;
 	margin-bottom: 15px;
+}
+
+form > .row{
+	width: 100%;
 }
