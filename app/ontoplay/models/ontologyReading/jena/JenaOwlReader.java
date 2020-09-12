@@ -23,6 +23,7 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class JenaOwlReader implements OntologyReader {
     private OntModel model;
@@ -122,7 +123,7 @@ public class JenaOwlReader implements OntologyReader {
 
         System.out.println("get properties for: " + ontClass.getLocalName());
 
-        return ontClass.listDeclaredProperties()
+        var properties = ontClass.listDeclaredProperties()
                 .filterKeep(prop -> prop.getDomain() != null || !ignorePropsWithNoDomain)
                 .mapWith(prop -> {
                     try {
@@ -135,6 +136,16 @@ public class JenaOwlReader implements OntologyReader {
                 .filterDrop(prop -> prop == null)
                 .toList();
 
+        if(properties.size() > 0) {
+            var relevanceRanking = calculateRelevanceRanking(properties);
+
+            for (var prop : properties) {
+                prop.setRelevance(relevanceRanking.get(prop.getUri()));
+            }
+        }
+
+        return properties;
+
         // The below code should not be needed, but it may depend on the
         // reasoner used (how smart it is).
         // for (Iterator<OntProperty> i = model.listOntProperties();
@@ -145,6 +156,35 @@ public class JenaOwlReader implements OntologyReader {
         // props.add(createProperty(prop));
         // }
         // }
+    }
+
+    private Map<String, Double> calculateRelevanceRanking(List<OntoProperty> properties) {
+
+//        var domainSizes = properties.stream()
+//                .collect( Collectors.toMap(OntoProperty::getUri, p->p.getDomain().size()) );
+        var sorted = properties.stream().sorted((p1, p2) -> p1.getDomain().size() - p2.getDomain().size()).collect(Collectors.toList());
+
+        var rankingMap = new HashMap<String, Integer>(properties.size());
+
+        var rank = 0;
+        var lastSize = sorted.get(0).getDomain().size();
+        for (var prop: sorted){
+            if(prop.getDomain().size() > lastSize){
+                rank++;
+                lastSize = prop.getDomain().size();
+            }
+
+            rankingMap.put(prop.getUri(), rank);
+        }
+        var maxRank = rank;
+
+        return rankingMap.entrySet().stream()
+                .collect(Collectors.toMap(
+                        e -> e.getKey(),
+                        e -> (maxRank > 0) ? (Double.valueOf(maxRank-e.getValue()) / maxRank) : 1
+                        )
+                );
+
     }
 
     private OntoProperty createProperty(OntProperty prop) {

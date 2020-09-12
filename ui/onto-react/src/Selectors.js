@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Typeahead } from 'react-bootstrap-typeahead'; 
+import React, { Component, Fragment } from 'react';
+import { Typeahead, Highlighter } from 'react-bootstrap-typeahead'; 
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import newId from './newId';
 
@@ -78,6 +78,8 @@ class PropertySelector extends Component {
         const options = this.state.properties.map((p) => ({
             id: p.uri,
             label: p.localName,
+            domainSize: p.domain.length,
+            relevance: p.relevance
         }));
         const selected = getSelectedOption(options, this.props.value);
 
@@ -93,6 +95,23 @@ class PropertySelector extends Component {
                 placeholder='Select a property'
                 selected={selected ? [selected] : []}
                 options={options}
+                renderMenuItemChildren = {(option, { text }, index) => (
+                    <Fragment>
+                        <Highlighter search={text}>
+                            {option.label}
+                        </Highlighter>,
+                        <div>
+                            <small>
+                            Domain size: {option.domainSize.toLocaleString()}
+                            </small>
+                        </div>
+                        <div>
+                            <small>
+                            Relevance: {option.relevance.toLocaleString()}
+                            </small>
+                        </div>
+                    </Fragment>
+                )}
             />
         );
     }

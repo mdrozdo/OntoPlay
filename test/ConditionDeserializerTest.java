@@ -193,23 +193,16 @@ public class ConditionDeserializerTest {
         assertThat(propCond.getDatatypeValue()).isEqualTo(expectedValue);
     }
 
-    private class FakeProperty implements OntoProperty {
+    private class FakeProperty extends OntoProperty {
 
         private final String uri;
 
         public FakeProperty(String uri) {
+            super("", "", "");
             this.uri = uri;
         }
 
-        public String getLocalName() {
-            return "";
-        }
-
         @Override
-        public String getLabel() {
-            return "";
-        }
-
         public String getUri() {
             return uri;
         }
