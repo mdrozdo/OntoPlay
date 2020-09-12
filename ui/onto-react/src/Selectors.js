@@ -3,6 +3,21 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import newId from './newId';
 
+
+function getSelectedOption(options, id){
+    if(!id)
+        return undefined;
+
+    return options.find(p=>p.id === id);
+}
+
+function filterBy(option, state) {
+    if (state.selected.length) {
+        return true;
+    }
+    return option.label.toLowerCase().indexOf(state.text.toLowerCase()) > -1;
+}
+
 class PropertySelector extends Component {
     constructor(props) {
         super(props);
@@ -59,35 +74,25 @@ class PropertySelector extends Component {
         }
     }
 
-    getSelectedOption(options){
-        if(!this.props.value)
-            return undefined;
-
-        return options.find(p=>p.id === this.props.value);
-    }
-
-    filterBy(option, state) {
-        if (state.selected.length) {
-            return true;
-        }
-        return option.label.toLowerCase().indexOf(state.text.toLowerCase()) > -1;
-    }
-
     render() {
         const options = this.state.properties.map((p) => ({
             id: p.uri,
             label: p.localName,
         }));
-        const selected = this.getSelectedOption(options);
+        const selected = getSelectedOption(options, this.props.value);
 
         return (
             <Typeahead
-                filterBy={this.filterBy}
+                align='left'
+                inputProps={{
+                    className: 'combobox',
+                }}
+                filterBy={filterBy}
                 onChange={this.handleChange}
                 id={this.id}
                 placeholder='Select a property'
                 selected={selected ? [selected] : []}
-                options={options}   
+                options={options}
             />
         );
     }
@@ -179,12 +184,7 @@ class ConditionClassSelector extends Component {
         super(props);
 
         this.state = {
-            classes: [
-                {
-                    localName: 'Select a class',
-                    uri: 'null'
-                }
-            ],
+            classes: [],
             propertyUri: props.propertyUri,
             dataLoaded: false
         };
@@ -196,12 +196,7 @@ class ConditionClassSelector extends Component {
         if (prevState.propertyUri !== nextProps.propertyUri) {
             //Property changed, properties need to be reset.
             return {
-                classes: [
-                    {
-                        localName: 'Select a class',
-                        uri: 'null'
-                    }
-                ],
+                classes: [],
                 propertyUri: nextProps.propertyUri,
                 dataLoaded: false
             };
@@ -212,7 +207,7 @@ class ConditionClassSelector extends Component {
 
 
     handleChange(event) {
-        const newClass = event.target.value !== 'null' ? event.target.value : null;
+        const newClass = event && event.length ? event[0].id : null;
 
         this.props.selectionChanged(newClass);
     }
@@ -239,13 +234,25 @@ class ConditionClassSelector extends Component {
     }
 
     render() {
-        const value = this.props.value ? this.props.value : 'null';
+        const options = this.state.classes.map((p) => ({
+            id: p.uri,
+            label: p.localName,
+        }));
+        const selected = getSelectedOption(options, this.props.value);
+
         return (
-            <select className='form-control condition-input' value={value} onChange={this.handleChange}>
-                {this.state.classes.map((c) => {
-                    return <option key={c.uri} value={c.uri}>{c.localName}</option>;
-                })}
-            </select>
+            <Typeahead
+                align='left'
+                inputProps={{
+                    className: 'combobox',
+                }}
+                filterBy={filterBy}
+                onChange={this.handleChange}
+                id={this.id}
+                placeholder='Select a class'
+                selected={selected ? [selected] : []}
+                options={options}
+            />
         );
     }
 }
@@ -255,12 +262,7 @@ class IndividualSelector extends Component {
         super(props);
 
         this.state = {
-            individuals: [
-                {
-                    localName: 'Select an individual',
-                    uri: 'null'
-                }
-            ],
+            individuals: [],
             classUri: props.classUri,
             dataLoaded: false
         };
@@ -272,12 +274,7 @@ class IndividualSelector extends Component {
         if (prevState.classUri !== nextProps.classUri) {
             //Property changed, properties need to be reset.
             return {
-                individuals: [
-                    {
-                        localName: 'Select an individual',
-                        uri: 'null'
-                    }
-                ],
+                individuals: [],
                 classUri: nextProps.classUri,
                 dataLoaded: false
             };
@@ -288,7 +285,7 @@ class IndividualSelector extends Component {
 
 
     handleChange(event) {
-        const newIndividual = event.target.value !== 'null' ? event.target.value : null;
+        const newIndividual = event && event.length ? event[0].id : null;
 
         this.props.selectionChanged(newIndividual);
     }
@@ -315,13 +312,25 @@ class IndividualSelector extends Component {
     }
 
     render() {
-        const value = this.props.value ? this.props.value : 'null';
+        const options = this.state.individuals.map((p) => ({
+            id: p.uri,
+            label: p.localName,
+        }));
+        const selected = getSelectedOption(options, this.props.value);
+
         return (
-            <select className='form-control condition-input' value={value} onChange={this.handleChange}>
-                {this.state.individuals.map((c) => {
-                    return <option key={c.uri} value={c.uri}>{c.localName}</option>;
-                })}
-            </select>
+            <Typeahead
+                align='left'
+                inputProps={{
+                    className: 'combobox'
+                }}
+                filterBy={filterBy}
+                onChange={this.handleChange}
+                id={this.id}
+                placeholder='Select an individual'
+                selected={selected ? [selected] : []}
+                options={options}
+            />
         );
     }
 }
