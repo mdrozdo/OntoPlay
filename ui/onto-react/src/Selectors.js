@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import { Typeahead, Highlighter } from 'react-bootstrap-typeahead'; 
+import { Typeahead, Highlighter, Menu, MenuItem } from 'react-bootstrap-typeahead'; 
+import { groupBy } from 'lodash';
+//import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import newId from './newId';
 
@@ -95,23 +97,31 @@ class PropertySelector extends Component {
                 placeholder='Select a property'
                 selected={selected ? [selected] : []}
                 options={options}
-                renderMenuItemChildren = {(option, { text }, index) => (
-                    <Fragment>
-                        <Highlighter search={text}>
-                            {option.label}
-                        </Highlighter>,
-                        <div>
-                            <small>
-                            Domain size: {option.domainSize.toLocaleString()}
-                            </small>
-                        </div>
-                        <div>
-                            <small>
-                            Relevance: {option.relevance.toLocaleString()}
-                            </small>
-                        </div>
-                    </Fragment>
-                )}
+                renderMenu = {(results, menuProps, selected) => {
+                    let index = 0;
+                    const groups = groupBy(results, 'relevance');
+                    const items = Object.keys(groups).sort((a,b) => b-a).map((group) => (
+                        <Fragment key={group}>
+                            {index !== 0 && <Menu.Divider />}
+                            <Menu.Header>{'Relevance: ' + group.toLocaleString()}</Menu.Header>
+                            {groups[group].map((i) => {
+                                const item =
+                                    <MenuItem key={index} option={i} position={index}>
+                                        <Highlighter search={selected.text}>
+                                            {i.label}
+                                        </Highlighter>
+                                    </MenuItem>;
+
+                                index += 1;
+                                return item;
+                            })}
+                        </Fragment>
+                    ));
+
+                    return <Menu {...menuProps}>{items}</Menu>;
+                }
+                }
+                
             />
         );
     }
