@@ -5,7 +5,7 @@ import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.PropertyConditionRenderer;
 import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ConfigurationException;
-import ontoplay.models.angular.OperatorDTO;
+import ontoplay.models.dto.OperatorDTO;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.owlGeneration.PropertyConditionRendererProvider;
 import play.Logger.ALogger;

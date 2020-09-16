@@ -5,7 +5,7 @@ import ontoplay.OntoplayConfig;
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.InvalidConfigurationException;
 import ontoplay.models.PropertyValueCondition;
-import ontoplay.models.angular.AnnotationDTO;
+import ontoplay.models.dto.AnnotationDTO;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyModel.OwlIndividual;
@@ -23,6 +23,7 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class JenaOwlReader implements OntologyReader {
     private OntModel model;
@@ -120,20 +121,30 @@ public class JenaOwlReader implements OntologyReader {
 
     private List<OntoProperty> getProperties(OntClass ontClass) {
 
-        List<OntoProperty> props = new ArrayList<OntoProperty>();
         System.out.println("get properties for: " + ontClass.getLocalName());
-        for (Iterator<OntProperty> i = ontClass.listDeclaredProperties(); i.hasNext(); ) {
-            OntProperty prop = i.next();
 
-            if (prop.getDomain() != null || !ignorePropsWithNoDomain)
-                try {
-                    OntoProperty temp = createProperty(prop);
-                    if (temp != null)
-                        props.add(temp);
-                } catch (InvalidConfigurationException ex) {
-                    ex.printStackTrace();
-                }
+        var properties = ontClass.listDeclaredProperties()
+                .filterKeep(prop -> prop.getDomain() != null || !ignorePropsWithNoDomain)
+                .mapWith(prop -> {
+                    try {
+                        return createProperty(prop);
+                    } catch (InvalidConfigurationException ex) {
+                        ex.printStackTrace();
+                        return null;
+                    }
+                })
+                .filterDrop(prop -> prop == null)
+                .toList();
+
+        if(properties.size() > 0) {
+            var relevanceRanking = calculateRelevanceRanking(properties);
+
+            for (var prop : properties) {
+                prop.setRelevance(relevanceRanking.get(prop.getUri()));
+            }
         }
+
+        return properties;
 
         // The below code should not be needed, but it may depend on the
         // reasoner used (how smart it is).
@@ -145,7 +156,35 @@ public class JenaOwlReader implements OntologyReader {
         // props.add(createProperty(prop));
         // }
         // }
-        return props;
+    }
+
+    private Map<String, Double> calculateRelevanceRanking(List<OntoProperty> properties) {
+
+//        var domainSizes = properties.stream()
+//                .collect( Collectors.toMap(OntoProperty::getUri, p->p.getDomain().size()) );
+        var sorted = properties.stream().sorted((p1, p2) -> p1.getDomain().size() - p2.getDomain().size()).collect(Collectors.toList());
+
+        var rankingMap = new HashMap<String, Integer>(properties.size());
+
+        var rank = 0;
+        var lastSize = sorted.get(0).getDomain().size();
+        for (var prop: sorted){
+            if(prop.getDomain().size() > lastSize){
+                rank++;
+                lastSize = prop.getDomain().size();
+            }
+
+            rankingMap.put(prop.getUri(), rank);
+        }
+        var maxRank = rank;
+
+        return rankingMap.entrySet().stream()
+                .collect(Collectors.toMap(
+                        e -> e.getKey(),
+                        e -> (maxRank > 0) ? (Double.valueOf(maxRank-e.getValue()) / maxRank) : 1
+                        )
+                );
+
     }
 
     private OntoProperty createProperty(OntProperty prop) {

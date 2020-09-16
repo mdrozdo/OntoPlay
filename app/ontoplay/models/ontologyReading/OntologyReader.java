@@ -2,7 +2,7 @@ package ontoplay.models.ontologyReading;
 
 import ontoplay.models.ConfigurationException;
 import ontoplay.models.PropertyProvider;
-import ontoplay.models.angular.AnnotationDTO;
+import ontoplay.models.dto.AnnotationDTO;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyModel.OwlIndividual;

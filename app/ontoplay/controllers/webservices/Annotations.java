@@ -4,7 +4,7 @@ import com.google.gson.GsonBuilder;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.configuration.utils.OntoplayAnnotationUtils;
 import ontoplay.controllers.utils.OntologyUtils;
-import ontoplay.models.angular.AnnotationDTO;
+import ontoplay.models.dto.AnnotationDTO;
 import ontoplay.models.ontologyReading.OntologyReader;
 import play.mvc.Result;
 

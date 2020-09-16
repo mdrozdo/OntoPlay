@@ -1,36 +1,22 @@
 package ontoplay.models.properties;
 
 import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OwlElement;
 
-public class OwlDatatypeProperty implements OntoProperty {
-    private final String namespace;
-    private final String localName;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+
+public class OwlDatatypeProperty extends OntoProperty {
     private final String datatype;
-    private final String label;
 
-    public OwlDatatypeProperty(String namespace, String localName, String datatype, String label) {
-        this.namespace = namespace;
-        this.localName = localName;
+    public OwlDatatypeProperty(String namespace, String localName, String datatype, String label, OwlElement... domainClasses) {
+        super(namespace, localName, label, domainClasses);
         this.datatype = datatype;
-        this.label = label;
-    }
-
-    @Override
-    public String getLabel() {
-        return label;
     }
 
     public String getDatatype() {
         return datatype;
-    }
-
-    @Override
-    public String getLocalName() {
-        return localName;
-    }
-
-    @Override
-    public String getUri() {
-        return String.format("%s%s", namespace, localName);
     }
 }

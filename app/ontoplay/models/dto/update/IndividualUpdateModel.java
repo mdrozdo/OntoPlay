@@ -1,4 +1,4 @@
-package ontoplay.models.angular.update;
+package ontoplay.models.dto.update;
 
 import ontoplay.models.ontologyReading.OntologyReader;
 import org.apache.jena.ontology.AnnotationProperty;

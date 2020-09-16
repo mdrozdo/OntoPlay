@@ -1,4 +1,4 @@
-package ontoplay.models.angular.update;
+package ontoplay.models.dto.update;
 
 public class Property {
 
