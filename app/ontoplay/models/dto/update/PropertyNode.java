@@ -1,4 +1,4 @@
-package ontoplay.models.angular.update;
+package ontoplay.models.dto.update;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package ontoplay.models.angular;
+package ontoplay.models.dto;
 
 import ontoplay.models.PropertyOperator;
 

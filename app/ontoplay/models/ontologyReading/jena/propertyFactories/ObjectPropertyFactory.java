@@ -14,7 +14,7 @@ public class ObjectPropertyFactory extends OwlPropertyFactory {
 
     @Override
     public OntoProperty createProperty(OntProperty ontProperty) {
-        return new OwlObjectProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getLabel(""));
+        return new OwlObjectProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getLabel(""), getPropertyDomain(ontProperty));
     }
 
 }

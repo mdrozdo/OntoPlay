@@ -1,4 +1,4 @@
-package ontoplay.models.angular;
+package ontoplay.models.dto;
 
 /**
  * @author Motasem Alwazir

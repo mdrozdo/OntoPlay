@@ -2,7 +2,6 @@ package ontoplay.models.owlGeneration;
 
 import com.google.inject.assistedinject.Assisted;
 import ontoplay.models.*;
-import ontoplay.models.angular.update.Property;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;

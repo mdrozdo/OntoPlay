@@ -1,8 +1,8 @@
 package ontoplay.controllers.configuration.utils;
 
-import ontoplay.models.angular.AnnotationCFDTO;
-import ontoplay.models.angular.AnnotationDTO;
-import ontoplay.models.angular.ComponentCF;
+import ontoplay.models.dto.AnnotationCFDTO;
+import ontoplay.models.dto.AnnotationDTO;
+import ontoplay.models.dto.ComponentCF;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
