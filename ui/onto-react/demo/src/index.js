@@ -370,6 +370,7 @@ class Demo extends Component {
                         OntoReact.SelectClassHeader('Map class to:')
                     ),
                     api: new OntoReact.Api(false),
+                    isDescriptionOfIndividual: false,
                     title:
                         'Add new class mapping for http://purl.org/NET/cgo#WorkerNode',
                     condition: this.intersectionCondition,

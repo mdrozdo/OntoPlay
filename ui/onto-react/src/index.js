@@ -91,6 +91,7 @@ class OntoReact extends Component {
                             this.state.condition.propertyConditions
                         }
                         api={this.props.api}
+                        isDescriptionOfIndividual={this.props.isDescriptionOfIndividual}
                         classUri={this.state.condition.classUri}
                         conditionsChanged={this.conditionsChanged}
                     />
