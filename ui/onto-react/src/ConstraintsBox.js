@@ -62,14 +62,12 @@ class ConstraintsBox extends Component {
 
     renderUnionBox() {
         return (
-            <div>
-                <UnionBox
-                    classUri={this.props.classUri}
-                    union={this.props.propertyConditions}
-                    conditionChanged={this.conditionChanged}
-                    api={this.props.api}
-                />
-            </div>
+            <UnionBox
+                classUri={this.props.classUri}
+                union={this.props.propertyConditions}
+                conditionChanged={this.conditionChanged}
+                api={this.props.api}
+            />
         );
     }
 
@@ -164,7 +162,7 @@ class UnionBox extends Component {
         const contents = this.props.union.contents;
 
         return (
-            <div className='condition-panel row'>
+            <div className='condition-panel union-box'>
                 {contents.map((c, i) => {
                     const constraintType = c.type || null;
 
@@ -178,7 +176,7 @@ class UnionBox extends Component {
                                     : null; //Unknown value
 
                     return (
-                        <div key={'cond' + i}>
+                        <div className='union-element' key={'cond' + i}>
                             {boxComponent}
                             {i < contents.length - 1 ? (
                                 <div className='group-operator'>OR</div>
@@ -191,6 +189,7 @@ class UnionBox extends Component {
                         <div>OR</div>
                     </a>
                 </div>
+                <div className='clear-both'></div>
                 {/* Commented out, because annotations are not ported to React.
                 <div className='condition-operator'>
                     <a>Describe</a>
@@ -214,36 +213,27 @@ class UnionBox extends Component {
 
     renderUnionBox(index, condition) {
         return (
-            <div>
-                <UnionBox
-                    key={index}
-                    index={index}
-                    classUri={this.props.classUri}
-                    union={condition}
-                    conditionChanged={this.conditionChanged}
-                    api={this.props.api}
-                />
-                {/* <div className='condition-operator'>
-                    <a href='#' onClick={this.handleAddOrCondition}>
-                        <div>Or</div>
-                    </a>
-                </div> */}
-            </div>
+            <UnionBox
+                key={index}
+                index={index}
+                classUri={this.props.classUri}
+                union={condition}
+                conditionChanged={this.conditionChanged}
+                api={this.props.api}
+            />
         );
     }
 
     renderIntersectionBox(index, condition) {
         return (
-            <div>
-                <IntersectionBox
-                    key={index}
-                    index={index}
-                    classUri={this.props.classUri}
-                    intersection={condition}
-                    conditionChanged={this.conditionChanged}
-                    api={this.props.api}
-                />
-            </div>
+            <IntersectionBox
+                key={index}
+                index={index}
+                classUri={this.props.classUri}
+                intersection={condition}
+                conditionChanged={this.conditionChanged}
+                api={this.props.api}
+            />
         );
     }
 }
@@ -301,36 +291,27 @@ class IntersectionBox extends Component {
 
     renderUnionBox(index, condition) {
         return (
-            <div>
-                <UnionBox
-                    key={index}
-                    index={index}
-                    classUri={this.props.classUri}
-                    union={condition}
-                    conditionChanged={this.conditionChanged}
-                    api={this.props.api}
-                />
-                {/* <div className='condition-operator'>
-                    <a href='#' onClick={this.handleAddOrCondition}>
-                        <div>Or</div>
-                    </a>
-                </div> */}
-            </div>
+            <UnionBox
+                key={index}
+                index={index}
+                classUri={this.props.classUri}
+                union={condition}
+                conditionChanged={this.conditionChanged}
+                api={this.props.api}
+            />        
         );
     }
 
     renderIntersectionBox(index, condition) {
         return (
-            <div>
-                <IntersectionBox
-                    key={index}
-                    index={index}
-                    classUri={this.props.classUri}
-                    intersection={condition}
-                    conditionChanged={this.conditionChanged}
-                    api={this.props.api}
-                />
-            </div>
+            <IntersectionBox
+                key={index}
+                index={index}
+                classUri={this.props.classUri}
+                intersection={condition}
+                conditionChanged={this.conditionChanged}
+                api={this.props.api}
+            />
         );
     }
 
@@ -338,7 +319,7 @@ class IntersectionBox extends Component {
         const contents = this.props.intersection.contents;
         const displayBorder = !this.props.handleAddOrCondition;
         return (
-            <div className={displayBorder?'condition-panel row':''}>
+            <div className={displayBorder?'condition-panel intersection-box':'intersection-box'}>
                 {contents.map((c, i) => {
                     const constraintType = c.type || null;
 
@@ -352,7 +333,7 @@ class IntersectionBox extends Component {
                                     : null; //Unknown value
 
                     return (
-                        <div key={'cond' + i}>
+                        <div className='intersection-element' key={'cond' + i}>
                             {boxComponent}
                             {i < contents.length - 1 ? (
                                 <div className='group-operator'>AND</div>
@@ -369,6 +350,7 @@ class IntersectionBox extends Component {
                         </span>
                     )}
                 </div>
+                <div className='clear-both'></div>
                 {/* Commented out, because annotations are not ported to React.
                 <div className='condition-operator'>
                     <a>Describe</a>
@@ -519,9 +501,6 @@ class ConditionBox extends Component {
     }
 
     classSelected(classUri) {
-        // this.setState({
-        //     valueClassUri: classUri,
-        // });
         const newCondition = { ...this.props.condition, valueClassUri: classUri };
 
         this.props.conditionChanged(this.props.index, newCondition);
@@ -597,78 +576,91 @@ class ConditionBox extends Component {
         const valueClassUri = this.props.condition.valueClassUri;
 
         return (
-            <div>
+            <span className='condition-box'>
                 <div className='group-operator'>
                     {this.props.condition.groupOperator}
                 </div>
 
-                <div className={this.props.displayBorder ? 'condition-panel row' : ''}>
+                <div
+                    className={
+                        this.props.displayBorder
+                            ? 'condition-panel intersection-in-union'
+                            : 'selectors'
+                    }
+                >
                     <div className='remove-condition'>
                         <a href='#' onClick={this.handleRemoveCondition}>
-                            <span className='glyphicon glyphicon-remove' />
+                            🗙
                         </a>
                     </div>
-                    <PropertySelector
-                        api={this.props.api}
-                        classUri={this.props.classUri}
-                        value={this.emptyIfNullOrUndefined(propertyUri)}
-                        selectionChanged={p => this.propertySelected(p)}
-                    />
-                    {propertyUri && (
-                        <OperatorSelector
+                    <div className='form-inline'>
+                        <PropertySelector
                             api={this.props.api}
-                            value={this.emptyIfNullOrUndefined(operator)}
-                            propertyUri={propertyUri}
-                            selectionChanged={o => this.operatorSelected(o)}
-                            inputTypeRetrieved={i => this.inputTypeRetrieved(i)}
+                            classUri={this.props.classUri}
+                            value={this.emptyIfNullOrUndefined(propertyUri)}
+                            selectionChanged={(p) => this.propertySelected(p)}
                         />
-                    )}
-                    {operator && this.isClassRestrictionOperator(operator) && (
-                        <ConditionClassSelector
-                            api={this.props.api}
-                            value={this.emptyIfNullOrUndefined(
-                                selectedClassUri
-                            )}
-                            propertyUri={propertyUri}
-                            selectionChanged={c =>
-                                this.nestedConditionCreated(c)
-                            }
-                        />
-                    )}
-                    {operator && this.isIndividualOperator(operator) && (
-                        <ConditionClassSelector
-                            api={this.props.api}
-                            value={this.emptyIfNullOrUndefined(
-                                valueClassUri
-                            )}
-                            propertyUri={propertyUri}
-                            selectionChanged={c => this.classSelected(c)}
-                        />
-                    )}
-                    {operator &&
-                        !this.isClassRestrictionOperator(operator) &&
-                        !this.isIndividualOperator(operator) && (
-                        <DatatypeInput
-                            inputType={inputType}
-                            value={this.emptyIfNullOrUndefined(
-                                this.props.condition.datatypeValue
-                            )}
-                            valueChanged={v => this.valueChanged(v)}
-                        />
-                    )}
-                    {valueClassUri &&
-                        this.isIndividualOperator(operator) && (
-                        <IndividualSelector
-                            api={this.props.api}
-                            value={this.emptyIfNullOrUndefined(
-                                individualUri
-                            )}
-                            classUri={valueClassUri}
-                            selectionChanged={i =>
-                                this.individualSelected(i)
-                            }
-                        />
-                    )}
+                        {propertyUri && (
+                            <OperatorSelector
+                                api={this.props.api}
+                                value={this.emptyIfNullOrUndefined(operator)}
+                                propertyUri={propertyUri}
+                                selectionChanged={(o) =>
+                                    this.operatorSelected(o)
+                                }
+                                inputTypeRetrieved={(i) =>
+                                    this.inputTypeRetrieved(i)
+                                }
+                            />
+                        )}
+                        {operator &&
+                            this.isClassRestrictionOperator(operator) && (
+                            <ConditionClassSelector
+                                api={this.props.api}
+                                value={this.emptyIfNullOrUndefined(
+                                    selectedClassUri
+                                )}
+                                propertyUri={propertyUri}
+                                selectionChanged={(c) =>
+                                    this.nestedConditionCreated(c)
+                                }
+                            />
+                        )}
+                        {operator && this.isIndividualOperator(operator) && (
+                            <ConditionClassSelector
+                                api={this.props.api}
+                                value={this.emptyIfNullOrUndefined(
+                                    valueClassUri
+                                )}
+                                propertyUri={propertyUri}
+                                selectionChanged={(c) => this.classSelected(c)}
+                            />
+                        )}
+                        {operator &&
+                            !this.isClassRestrictionOperator(operator) &&
+                            !this.isIndividualOperator(operator) && (
+                            <DatatypeInput
+                                inputType={inputType}
+                                value={this.emptyIfNullOrUndefined(
+                                    this.props.condition.datatypeValue
+                                )}
+                                valueChanged={(v) => this.valueChanged(v)}
+                            />
+                        )}
+                        {valueClassUri &&
+                            this.isIndividualOperator(operator) && (
+                            <IndividualSelector
+                                api={this.props.api}
+                                value={this.emptyIfNullOrUndefined(
+                                    individualUri
+                                )}
+                                classUri={valueClassUri}
+                                selectionChanged={(i) =>
+                                    this.individualSelected(i)
+                                }
+                            />
+                        )}
+                    </div>
                     {selectedClassUri &&
                         this.isClassRestrictionOperator(operator) && (
                         <ConstraintsBox
@@ -683,18 +675,28 @@ class ConditionBox extends Component {
                     )}
                     {this.props.displayAndOperator && (
                         <div className='condition-internal-operator'>
-                            
-                            <a href='#' onClick={this.handleAddCondition}>AND</a>
+                            <a href='#' onClick={this.handleAddCondition}>
+                                AND
+                            </a>
                             {this.props.handleAddOrCondition && (
-                                <span> 
+                                <span>
                                     &nbsp;|&nbsp;
-                                    <a href='#' onClick={this.props.handleAddOrCondition}>OR</a>  
-                                </span>  
+                                    <a
+                                        href='#'
+                                        onClick={
+                                            this.props.handleAddOrCondition
+                                        }
+                                    >
+                                        OR
+                                    </a>
+                                </span>
                             )}
                         </div>
+                        
                     )}
+                    <div className='clear-both'></div>
                 </div>
-            </div>
+            </span>
         );
     }
 }

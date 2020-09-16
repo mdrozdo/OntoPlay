@@ -1,10 +1,14 @@
 import ontoplay.models.*;
 import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OwlElement;
 import ontoplay.models.propertyConditions.ClassValueCondition;
 import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 import ontoplay.models.propertyConditions.IndividualValueCondition;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -189,27 +193,24 @@ public class ConditionDeserializerTest {
         assertThat(propCond.getDatatypeValue()).isEqualTo(expectedValue);
     }
 
-    private class FakeProperty implements OntoProperty {
+    private class FakeProperty extends OntoProperty {
 
         private final String uri;
 
         public FakeProperty(String uri) {
+            super("", "", "");
             this.uri = uri;
         }
 
-        public String getLocalName() {
-            return "";
-        }
-
         @Override
-        public String getLabel() {
-            return "";
-        }
-
         public String getUri() {
             return uri;
         }
 
+        @Override
+        public List<OwlElement> getDomain() {
+            return new ArrayList<OwlElement>();
+        }
     }
 
     private class FakePropertyProvider implements PropertyProvider {

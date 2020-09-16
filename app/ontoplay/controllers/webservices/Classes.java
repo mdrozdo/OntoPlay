@@ -6,7 +6,7 @@ import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ClassCondition;
 import ontoplay.models.ConditionDeserializer;
 import ontoplay.models.ConfigurationException;
-import ontoplay.models.angular.ClassDTO;
+import ontoplay.models.dto.ClassDTO;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.ontologyReading.OntologyReader;
@@ -17,9 +17,9 @@ import play.data.FormFactory;
 import play.mvc.Result;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class Classes extends OntologyController {
 

@@ -19,6 +19,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import play.inject.Injector;
 import play.inject.guice.GuiceInjectorBuilder;
+import scala.Array;
 
 import java.io.File;
 import java.io.IOException;
