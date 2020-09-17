@@ -520,7 +520,7 @@ class ConditionBox extends Component {
     }
 
     isClassRestrictionOperator(operator) {
-        return operator === 'constrainedBy' || operator === 'isDescribedWith';
+        return operator === 'constrainedBy' || operator === 'describedWith';
     }
 
     isIndividualOperator(operator) {
@@ -671,6 +671,7 @@ class ConditionBox extends Component {
                             }
                             api={this.props.api}
                             classUri={selectedClassUri}
+                            isDescriptionOfIndividual={this.props.isDescriptionOfIndividual}
                             conditionsChanged={this.nestedConditionsChanged}
                         />
                     )}
