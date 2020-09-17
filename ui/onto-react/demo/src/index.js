@@ -41,8 +41,7 @@ class Demo extends Component {
                     mainClass:
                         'https://w3id.org/sxacml/sample-port/port#Driver',
                     //api: false,
-                    elementName:
-                        'DriverAuthorizedForTruck',
+                    elementName: 'DriverAuthorizedForTruck',
                     classRelation: 'EQUIVALENT',
                     // headerComponent: OntoReact.InputNameHeader('Individual name'),
                     headerComponent: OntoReact.MultiHeader(
@@ -54,6 +53,24 @@ class Demo extends Component {
                     title:
                         'Add new class mapping for https://w3id.org/sxacml/sample-port/port#Driver',
                     condition: this.fullCondition,
+                })}
+
+                <h1>onto-react Demo - individual</h1>
+                {React.createElement(OntoReact.OntoReact, {
+                    mainClass:
+                        'https://w3id.org/sxacml/sample-port/port#Driver',
+                    //api: false,
+                    elementName: 'ClarkContoso',                    
+                    // headerComponent: OntoReact.InputNameHeader('Individual name'),
+                    headerComponent: OntoReact.MultiHeader(
+                        OntoReact.InputNameHeader('Individual name'),
+                        OntoReact.SelectClassHeader('Instance of class:')
+                    ),
+                    api: new OntoReact.Api(true),
+                    isDescriptionOfIndividual: true,
+                    title:
+                        'Define a new individual of type Driver',
+                    condition: this.emptyCondition,
                 })}
             </div>
         );
