@@ -48,6 +48,7 @@ class ConstraintsBox extends Component {
                     condition={this.props.propertyConditions}
                     conditionChanged={this.conditionChanged}
                     handleAddOrCondition={this.handleAddOrCondition}
+                    isDescriptionOfIndividual={this.props.isDescriptionOfIndividual}
                     displayBorder={false}
                     api={this.props.api}
                 />
@@ -415,7 +416,7 @@ class ValuesBox extends Component {
         const contents = this.props.values.contents;
 
         return (
-            <div className='condition-panel row'>
+            <div className='condition-panel values-box'>
                 {contents.map((c, i) => {
                     const constraintType = c.type || null;
 
@@ -435,7 +436,7 @@ class ValuesBox extends Component {
                 })}
                 <div className='condition-operator'>
                     <a href='#' onClick={this.handleAddCondition}>
-                        <div>And</div>
+                        <div>AND</div>
                     </a>
                 </div>
                 {/* Commented out, because annotations are not ported to React.
@@ -557,7 +558,7 @@ class ConditionBox extends Component {
         e.preventDefault();
 
         const newCondition = {
-            type: 'intersection',
+            type: this.props.isDescriptionOfIndividual ? 'values' : 'intersection',
             contents: [{ ...this.props.condition }, {}],
         };
 
@@ -678,7 +679,7 @@ class ConditionBox extends Component {
                             <a href='#' onClick={this.handleAddCondition}>
                                 AND
                             </a>
-                            {this.props.handleAddOrCondition && (
+                            {!this.props.isDescriptionOfIndividual && this.props.handleAddOrCondition && (
                                 <span>
                                     &nbsp;|&nbsp;
                                     <a

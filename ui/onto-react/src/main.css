@@ -39,6 +39,11 @@
 	/* overflow: hidden; */
 }
 
+.values-box{	
+	width: 100%;
+	/* overflow: hidden; */
+}
+
 .combobox{
 	margin: 5px;
 }

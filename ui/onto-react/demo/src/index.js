@@ -50,6 +50,7 @@ class Demo extends Component {
                         OntoReact.SelectClassHeader('Map class to:')
                     ),
                     api: new OntoReact.Api(false),
+                    isDescriptionOfIndividual: false,
                     title:
                         'Add new class mapping for https://w3id.org/sxacml/sample-port/port#Driver',
                     condition: this.fullCondition,

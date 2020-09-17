@@ -18,7 +18,6 @@ import play.mvc.Result;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.stream.Stream;
 import java.util.stream.Collectors;
 
 public class Classes extends OntologyController {
@@ -42,10 +41,11 @@ public class Classes extends OntologyController {
 
             OntoProperty property = ontologyReader.getProperty(propertyUri);
             List<OntoClass> classes = ontologyReader.getClassesInRange(property);
-            List<ClassDTO> classesDTO = new ArrayList<ClassDTO>();
-            for (OntoClass owlClass : classes) {
-                classesDTO.add(new ClassDTO(owlClass));
-            }
+            List<ClassDTO> classesDTO = classes.stream()
+                    .map(c -> new ClassDTO(c))
+                    .sorted((c1, c2) -> c1.getLocalName().compareTo(c2.getLocalName()))
+                    .distinct()
+                    .collect(Collectors.toList());
 
             return ok(new GsonBuilder().create().toJson(classesDTO));
         } catch (ConfigurationException e) {
@@ -55,12 +55,13 @@ public class Classes extends OntologyController {
 
     public Result getClasses() {
         List<OntoClass> classes = ontologyReader.getClasses();
-        Stream<ClassDTO> classesDTO = classes.stream()
+        List<ClassDTO> classesDTO = classes.stream()
                 .map(c -> new ClassDTO(c))
                 .sorted((c1, c2) -> c1.getLocalName().compareTo(c2.getLocalName()))
-                .distinct();
+                .distinct()
+                .collect(Collectors.toList());
 
-        return ok(new GsonBuilder().create().toJson(classesDTO.toArray()));
+        return ok(new GsonBuilder().create().toJson(classesDTO));
     }
 
     public Result addClassExpression() {
