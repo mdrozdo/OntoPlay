@@ -41,6 +41,7 @@
 
 .values-box{	
 	width: 100%;
+	border: none;
 	/* overflow: hidden; */
 }
 
@@ -128,3 +129,4 @@
 form > .row{
 	width: 100%;
 }
+

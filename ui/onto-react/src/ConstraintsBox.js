@@ -98,6 +98,7 @@ class ConstraintsBox extends Component {
                     classUri={this.props.classUri}
                     values={this.props.propertyConditions}
                     conditionChanged={this.conditionChanged}
+                    isDescriptionOfIndividual={this.props.isDescriptionOfIndividual}                    
                     api={this.props.api}
                 />
             </div>
@@ -207,6 +208,7 @@ class UnionBox extends Component {
                 classUri={this.props.classUri}
                 condition={condition}
                 conditionChanged={this.conditionChanged}
+                isDescriptionOfIndividual={this.props.isDescriptionOfIndividual}
                 api={this.props.api}
             />
         );
@@ -283,6 +285,7 @@ class IntersectionBox extends Component {
                 classUri={this.props.classUri}
                 condition={condition}
                 conditionChanged={this.conditionChanged}
+                isDescriptionOfIndividual={this.props.isDescriptionOfIndividual}
                 displayBorder={false}
                 displayAndOperator={false}
                 api={this.props.api}
@@ -405,6 +408,7 @@ class ValuesBox extends Component {
                 classUri={this.props.classUri}
                 condition={condition}
                 conditionChanged={this.conditionChanged}
+                isDescriptionOfIndividual={this.props.isDescriptionOfIndividual}
                 displayBorder={false}
                 displayAndOperator={false}
                 api={this.props.api}
