@@ -28,6 +28,56 @@ class Demo extends Component {
         },
     };
 
+    indivCondition = {
+        classUri: 'https://w3id.org/sxacml/sample-port/port#Driver',
+        propertyConditions: {
+            type: 'values',
+            contents: [
+                {
+                    type: 'condition',
+                    propertyUri:
+                        'https://w3id.org/sxacml/sample-port/port#employedBy',
+                    operator: 'equalToIndividual',
+                    valueClassUri: 'http://ontology.tno.nl/logico#Carrier',
+                    individualValue:
+                        'https://w3id.org/sxacml/sample-port/port-data#GlobexCorp',
+                },
+                {
+                    type: 'condition',
+                    propertyUri: 'http://ontology.tno.nl/logico#hasEmail',
+                    operator: 'equalTo',
+                    datatypeValue: 'clarkcontoso@globex.com',
+                },
+                {
+                    type: 'condition',
+                    propertyUri:
+                        'https://w3id.org/sxacml/sample-port/port#drivesTruck',
+                    operator: 'describedWith',
+                    classConstraintValue: {
+                        classUri: 'http://ontology.tno.nl/logico#Truck',
+                        propertyConditions: {
+                            type: 'condition',
+                            propertyUri:
+                                'http://ontology.tno.nl/logico#hasID',
+                            operator: 'describedWith',
+                            classConstraintValue: {
+                                classUri:
+                                    'https://w3id.org/sxacml/sample-port/port#LicenseNumber',
+                                propertyConditions: {
+                                    type: 'condition',
+                                    propertyUri:
+                                        'http://ontology.tno.nl/logico#hasIDValue',
+                                    operator: 'equalTo',
+                                    datatypeValue: 'KT3311',
+                                },
+                            },
+                        },
+                    },
+                },
+            ],
+        },
+    };
+
     emptyCondition = {
         classUri: 'https://w3id.org/sxacml/sample-port/port#Driver',
         propertyConditions: {},
@@ -60,7 +110,7 @@ class Demo extends Component {
                     mainClass:
                         'https://w3id.org/sxacml/sample-port/port#Driver',
                     //api: false,
-                    elementName: 'ClarkContoso',                    
+                    elementName: 'ClarkContoso',
                     // headerComponent: OntoReact.InputNameHeader('Individual name'),
                     headerComponent: OntoReact.MultiHeader(
                         OntoReact.InputNameHeader('Individual name'),
@@ -68,9 +118,8 @@ class Demo extends Component {
                     ),
                     api: new OntoReact.Api(true),
                     isDescriptionOfIndividual: true,
-                    title:
-                        'Define a new individual of type Driver',
-                    condition: this.emptyCondition,
+                    title: 'Define a new individual of type Driver',
+                    condition: this.indivCondition,
                 })}
             </div>
         );

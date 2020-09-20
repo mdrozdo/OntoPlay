@@ -28,44 +28,10 @@
      xmlns:transport="http://ontology.tno.nl/transport#"
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <owl:Ontology rdf:about="https://w3id.org/sxacml/sample-port/port-mapping">
-        <owl:imports rdf:resource="http://ontology.tno.nl/logico"/>
-        <owl:imports rdf:resource="http://ontology.tno.nl/logiserv"/>
-        <owl:imports rdf:resource="http://ontology.tno.nl/transport"/>
-        <owl:imports rdf:resource="http://purl.org/dc/elements/1.1/"/>
-        <owl:imports rdf:resource="http://www.opengis.net/ont/geosparql"/>
-        <owl:imports rdf:resource="http://www.opengis.net/ont/gml"/>
-        <owl:imports rdf:resource="http://www.opengis.net/ont/sf"/>
-        <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
-        <owl:imports rdf:resource="http://www.w3.org/2006/time"/>
-        <owl:imports rdf:resource="http://www.w3.org/ns/org#"/>
-        <owl:imports rdf:resource="http://www.w3.org/ns/sosa/"/>
-        <owl:imports rdf:resource="http://www.w3.org/ns/ssn/"/>
-        <owl:imports rdf:resource="https://w3id.org/sxacml/access-control"/>
         <owl:imports rdf:resource="https://w3id.org/sxacml/access-control-action"/>
-        <owl:imports rdf:resource="https://w3id.org/sxacml/iot"/>
         <owl:imports rdf:resource="https://w3id.org/sxacml/request"/>
-        <owl:imports rdf:resource="https://w3id.org/sxacml/sample-port/port"/>
         <owl:imports rdf:resource="https://w3id.org/sxacml/sample-port/port-data"/>
     </owl:Ontology>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotation properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-
-    
-
-
-    <!-- https://w3id.org/sxacml/request#hierarchyDesignator -->
-
-
-    <owl:AnnotationProperty rdf:about="https://w3id.org/sxacml/request#hierarchyDesignator"/>
     
 
 
@@ -80,9 +46,7 @@
 
     
 
-
     <!-- http://ontology.tno.nl/logico#hostsResource -->
-
 
     <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hostsResource">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
@@ -91,26 +55,11 @@
     
 
 
-    <!-- https://w3id.org/sxacml/sample-port/port#employedBy -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#employedBy"/>
-    
-
-
     <!-- https://w3id.org/sxacml/sample-port/port#isHostedByResource -->
 
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#isHostedByResource">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#isHostedByResource">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://w3id.org/sxacml/sample-port/port#ownsEquipment -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-port/port#ownsEquipment"/>
+    </rdf:Description>
     
 
 
@@ -125,9 +74,7 @@
 
     
 
-
     <!-- http://ontology.tno.nl/logico#hasIDValue -->
-
 
     <owl:DatatypeProperty rdf:about="http://ontology.tno.nl/logico#hasIDValue">
         <owl:equivalentProperty rdf:resource="urn:oasis:names:tc:xacml:1.0:subject:subject-id"/>
@@ -137,8 +84,7 @@
 
     <!-- urn:oasis:names:tc:xacml:1.0:subject:subject-id -->
 
-
-    <owl:DatatypeProperty rdf:about="urn:oasis:names:tc:xacml:1.0:subject:subject-id"/>
+    <rdf:Description rdf:about="urn:oasis:names:tc:xacml:1.0:subject:subject-id"/>
     
 
 
@@ -153,78 +99,31 @@
 
     
 
-
     <!-- http://ontology.tno.nl/logico#Actor -->
 
-
-    <owl:Class rdf:about="http://ontology.tno.nl/logico#Actor">
+    <rdf:Description rdf:about="http://ontology.tno.nl/logico#Actor">
         <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Subject"/>
-    </owl:Class>
-    
-
-
-    <!-- http://ontology.tno.nl/transport#TransportParty -->
-
-
-    <owl:Class rdf:about="http://ontology.tno.nl/transport#TransportParty"/>
+    </rdf:Description>
     
 
 
     <!-- http://www.w3.org/ns/sosa/Actuation -->
 
-
-    <owl:Class rdf:about="http://www.w3.org/ns/sosa/Actuation">
+    <rdf:Description rdf:about="http://www.w3.org/ns/sosa/Actuation">
         <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control-action#PhysicalAction"/>
-    </owl:Class>
+    </rdf:Description>
     
 
 
     <!-- http://www.w3.org/ns/sosa/Actuator -->
 
-
-    <owl:Class rdf:about="http://www.w3.org/ns/sosa/Actuator">
+    <rdf:Description rdf:about="http://www.w3.org/ns/sosa/Actuator">
         <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Resource"/>
-    </owl:Class>
-    
-
-
-    <!-- https://w3id.org/sxacml/access-control#Resource -->
-
-
-    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Resource"/>
-    
-
-
-    <!-- https://w3id.org/sxacml/access-control#Subject -->
-
-
-    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Subject"/>
-    
-
-
-    <!-- https://w3id.org/sxacml/access-control-action#PhysicalAction -->
-
-
-    <owl:Class rdf:about="https://w3id.org/sxacml/access-control-action#PhysicalAction"/>
-    
-
-
-    <!-- https://w3id.org/sxacml/sample-port/port#Driver -->
-
-
-    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#Driver"/>
-    
-
-
-    <!-- https://w3id.org/sxacml/sample-port/port#ObservedTruck -->
-
-
-    <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port#ObservedTruck"/>
+    </rdf:Description>
     
 
 
     <!-- https://w3id.org/sxacml/sample-port/port-mapping#DriverAuthorizedForTruck -->
-
 
     <owl:Class rdf:about="https://w3id.org/sxacml/sample-port/port-mapping#DriverAuthorizedForTruck">
         <owl:equivalentClass>
@@ -248,11 +147,11 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-port/port#Driver"/>
     </owl:Class>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 5.1.3.2017-11-04T21:44:22Z) https://github.com/owlcs/owlapi/ -->
-
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 
