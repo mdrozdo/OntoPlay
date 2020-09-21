@@ -1696,7 +1696,6 @@
     <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/transport-data#Nederland">
         <rdf:type rdf:resource="http://ontology.tno.nl/logico#Country"/>
         <logico:hasCountryName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nederland</logico:hasCountryName>
-        <logico:hasID>NL</logico:hasID>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nederland</rdfs:label>
     </owl:NamedIndividual>
     

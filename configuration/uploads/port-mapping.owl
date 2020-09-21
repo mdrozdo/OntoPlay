@@ -49,7 +49,7 @@
     <!-- http://ontology.tno.nl/logico#hostsResource -->
 
     <owl:ObjectProperty rdf:about="http://ontology.tno.nl/logico#hostsResource">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <!-- <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/> -->
         <request:hierarchyDesignator></request:hierarchyDesignator>
     </owl:ObjectProperty>
     
@@ -58,7 +58,7 @@
     <!-- https://w3id.org/sxacml/sample-port/port#isHostedByResource -->
 
     <rdf:Description rdf:about="https://w3id.org/sxacml/sample-port/port#isHostedByResource">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <!-- <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/> -->
     </rdf:Description>
     
 

@@ -833,7 +833,6 @@
     <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-port/port-data#Spain">
         <rdf:type rdf:resource="http://ontology.tno.nl/logico#Country"/>
         <logico:hasCountryName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spain</logico:hasCountryName>
-        <logico:hasID>NL</logico:hasID>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spain</rdfs:label>
     </owl:NamedIndividual>
     

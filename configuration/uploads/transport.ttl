@@ -1206,7 +1206,6 @@ _:genid72 a owl:Restriction ;
 
 :Nederland a owl:NamedIndividual , LogiCO:Country ;
 	LogiCO:hasCountryName "Nederland"^^xsd:string ;
-	LogiCO:hasID "NL" ;
 	rdfs:label "Nederland"^^xsd:string .
 # 
 # http://ontology.tno.nl/transport#Number_1
@@ -1313,7 +1312,7 @@ _:genid72 a owl:Restriction ;
 :PlannedDeliveryTransportEvent a :TransportEvent ;
 	LogiCO:hasLocation :PlannedDeliveryLocation ;
 	LogiServ:hasTime :PlannedDeliveryPeriod ;
-	LogiCO:hasDescription "Pallets ruilen"@nl^^xsd:string ;
+	LogiCO:hasDescription "Pallets ruilen"^^xsd:string ;
 	LogiServ:hasStatus "Planned"^^xsd:string ;
 	:hasTransportEventTypeCode "TE1001"^^xsd:string ;
 	rdfs:label "Planned delivery transport event"^^xsd:string .
@@ -1428,7 +1427,7 @@ _:genid72 a owl:Restriction ;
 :RequestedDeliveryTransportEvent a :TransportEvent ;
 	LogiCO:hasLocation :RequestedDeliveryLocation ;
 	LogiServ:hasTime :RequestedDeliveryPeriod ;
-	LogiCO:hasDescription "Pallets ruilen"@nl ;
+	LogiCO:hasDescription "Pallets ruilen"^^xsd:string ;
 	LogiServ:hasStatus "Requested"^^xsd:string ;
 	:hasTransportEventTypeCode "TE1001"^^xsd:string ;
 	rdfs:label "Requested delivery transport event"^^xsd:string .
