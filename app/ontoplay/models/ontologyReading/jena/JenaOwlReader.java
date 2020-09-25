@@ -8,8 +8,10 @@ import ontoplay.models.PropertyValueCondition;
 import ontoplay.models.dto.AnnotationDTO;
 import ontoplay.models.ontologyModel.OntoClass;
 import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OwlElement;
 import ontoplay.models.ontologyModel.OwlIndividual;
 import ontoplay.models.ontologyReading.OntologyReader;
+import openllet.core.OpenlletOptions;
 import openllet.jena.PelletReasonerFactory;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -56,6 +58,7 @@ public class JenaOwlReader implements OntologyReader {
     }
 
     private void readModel(String filePath, String ontologyNamespace, List<FolderMapping> localMappings) {
+        //OpenlletOptions.USE_TRACING = true;
         OntModel model = ModelFactory.createOntologyModel(PelletReasonerFactory.THE_SPEC);
         if (localMappings != null) {
             OntDocumentManager dm = model.getDocumentManager();
@@ -116,7 +119,7 @@ public class JenaOwlReader implements OntologyReader {
             throw new ConfigurationException(String.format("Property %s not found in ontology", propertyUri));
         }
 
-        return createProperty(ontProperty);
+        return owlPropertyFactory.createProperty(ontProperty, new ArrayList<OwlElement>(0));
     }
 
     private List<OntoProperty> getProperties(OntClass ontClass) {
@@ -124,10 +127,10 @@ public class JenaOwlReader implements OntologyReader {
         System.out.println("get properties for: " + ontClass.getLocalName());
 
         var properties = ontClass.listDeclaredProperties()
-                .filterKeep(prop -> prop.getDomain() != null || !ignorePropsWithNoDomain)
+                //.filterKeep(prop -> prop.getDomain() != null || !ignorePropsWithNoDomain)
                 .mapWith(prop -> {
                     try {
-                        return createProperty(prop);
+                        return createProperty(ontClass, prop);
                     } catch (InvalidConfigurationException ex) {
                         ex.printStackTrace();
                         return null;
@@ -187,9 +190,6 @@ public class JenaOwlReader implements OntologyReader {
 
     }
 
-    private OntoProperty createProperty(OntProperty prop) {
-        return owlPropertyFactory.createProperty(prop);
-    }
 
     /* (non-Javadoc)
      * @see models.ontologyReading.jena.OntologyReader#getIndividualsInRange(models.ontologyModel.OntoClass, ontoplay.models.ontologyModel.OntoProperty)
@@ -208,6 +208,69 @@ public class JenaOwlReader implements OntologyReader {
             }
         }
         return individuals;
+    }
+
+    private OntoProperty createProperty(OntClass declaringClass, OntProperty prop) {
+        List<OwlElement> domainClasses;
+
+        if(prop.getDomain() != null){
+            domainClasses = getRdfDomainClasses(prop);
+
+            // For some reason declaredProperties and listDeclaringClasses sometimes do not match.
+            // if the declaring classes is not in the domain of the property, we shouldn't use it.
+            //TODO: sprawdzać jakoś po superclassach (chyba) Powinno działać dla ObservedTruck jakoś.
+            if(domainClasses.stream()
+                    .noneMatch(c->c.getUri().equalsIgnoreCase(declaringClass.getURI()))) {
+                return null;
+            }
+
+        } else {
+            var schemaDomainClasses = getSchemaOrgDomainClasses(prop);
+
+            var domainClassDescendants = schemaDomainClasses.stream()
+                    .flatMap(c -> c.listSubClasses(false).toList().stream())
+                    .collect(Collectors.toList());
+
+            schemaDomainClasses.addAll(domainClassDescendants);
+
+            if(schemaDomainClasses.contains(declaringClass)) {
+                domainClasses = schemaDomainClasses.stream()
+                        .filter(c -> !c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing"))
+                        .map(c -> createOwlClass(c))
+                        .collect(Collectors.toList());
+            } else if(!ignorePropsWithNoDomain){
+                domainClasses = getRdfDomainClasses(prop);
+            } else {
+                return null;
+            }
+        }
+
+        return owlPropertyFactory.createProperty(prop, domainClasses);
+    }
+
+
+    private OwlElement createOwlClass(OntClass ontClass){
+        return new OntoClass((OntClass) ontClass);
+    }
+
+
+    private List<OntClass> getSchemaOrgDomainClasses(OntProperty property) {
+        OntModel ontModel = property.getOntModel();
+        var schemaDomainProperty = ontModel.getAnnotationProperty("http://schema.org/domainIncludes");
+        return property.listPropertyValues(schemaDomainProperty)
+                .mapWith(res -> ontModel.getOntClass(res.asResource().getURI()))
+                .filterKeep(res -> res != null)
+                .toList();
+    }
+
+    private List<OwlElement> getRdfDomainClasses(OntProperty property) {
+        return property.listDeclaringClasses()
+                //Only keep named classes. The remaining ones are unions/intersections/class expressions. If these
+                // can be reduced to named classes, listDeclaringClasses will return them. Otherwise, we lose some
+                // information, but we can still use the domain size as a metric of how generic the property is.
+                .filterKeep(res -> !res.isAnon())
+                .mapWith(res -> createOwlClass(res))
+                .toList();
     }
 
     private List<OntClass> getAllClassesFromRange(OntoProperty property) {

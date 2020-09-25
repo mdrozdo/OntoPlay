@@ -1,9 +1,12 @@
 package ontoplay.models.ontologyReading.jena.propertyFactories;
 
 import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OwlElement;
 import ontoplay.models.ontologyReading.jena.OwlPropertyFactory;
 import ontoplay.models.properties.FloatProperty;
 import org.apache.jena.ontology.OntProperty;
+
+import java.util.List;
 
 public class FloatPropertyFactory extends OwlPropertyFactory {
 
@@ -23,8 +26,8 @@ public class FloatPropertyFactory extends OwlPropertyFactory {
     }
 
     @Override
-    public OntoProperty createProperty(OntProperty ontProperty) {
-        return new FloatProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getRange().getURI(), ontProperty.getLabel(""), getPropertyDomain(ontProperty));
+    public OntoProperty createProperty(OntProperty ontProperty, List<OwlElement> domain) {
+        return new FloatProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getRange().getURI(), ontProperty.getLabel(""), domain.toArray(OwlElement[]::new));
     }
 
 }

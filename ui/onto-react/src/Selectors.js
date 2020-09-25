@@ -81,7 +81,7 @@ class PropertySelector extends Component {
             id: p.uri,
             label: p.localName,
             domainSize: p.domain.length,
-            relevance: p.relevance
+            relevance: p.relevance.toFixed(2)
         }));
         const selected = getSelectedOption(options, this.props.value);
 
@@ -93,6 +93,7 @@ class PropertySelector extends Component {
                 }}
                 filterBy={filterBy}
                 onChange={this.handleChange}
+                maxResults={1000}
                 id={this.id}
                 placeholder='Select a property'
                 selected={selected ? [selected] : []}
