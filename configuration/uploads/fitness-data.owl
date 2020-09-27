@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/sxacml/sample-privacy/fitness-data#"
+     xml:base="https://w3id.org/sxacml/sample-privacy/fitness-data"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:sosa="http://www.w3.org/ns/sosa/"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:schema="http://schema.org/"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:fitness-tracking="https://w3id.org/sxacml/sample-privacy/fitness-tracking#">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-data">
+        <owl:imports rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-data#agg_dist_201904 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-data#agg_dist_201904">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric"/>
+        <fitness-tracking:aggregatesMetric rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190401"/>
+        <fitness-tracking:aggregatesMetric rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190402"/>
+        <fitness-tracking:aggregatesMetric rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190403"/>
+        <fitness-tracking:aggregationDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</fitness-tracking:aggregationDays>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190401 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190401">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Distance"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190402 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190402">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Distance"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190403 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-data#dist_20190403">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Distance"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-data#loc_1559197812 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-data#loc_1559197812">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location"/>
+        <wgs84_pos:lat_long rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52.232500,20.960139</wgs84_pos:lat_long>
+        <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-30T06:30:12+00:00</sosa:resultTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-data#loc_1559207530 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-data#loc_1559207530">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location"/>
+        <wgs84_pos:lat_long rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52.234688,20.960021</wgs84_pos:lat_long>
+        <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-30T09:12:10+00:00</sosa:resultTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-data#loc_1559210590 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-data#loc_1559210590">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location"/>
+        <wgs84_pos:lat_long rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52.242347, 21.003451</wgs84_pos:lat_long>
+        <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-30T10:03:10+00:00</sosa:resultTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-data#loc_1559295224 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-data#loc_1559295224">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location"/>
+        <wgs84_pos:lat_long rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52.234688,20.960021</wgs84_pos:lat_long>
+        <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-05-31T09:33:44+00:00</sosa:resultTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-data#loc_1559374941 -->
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-data#loc_1559374941">
+        <rdf:type rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location"/>
+        <wgs84_pos:lat_long rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52.234688,20.960021</wgs84_pos:lat_long>
+        <sosa:resultTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-06-01T07:42:21+00:00</sosa:resultTime>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

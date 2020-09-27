@@ -47,9 +47,9 @@
     
 
 
-    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Metric -->
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric -->
 
-    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Metric">
+    <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric">
         <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Resource"/>
     </rdf:Description>
     

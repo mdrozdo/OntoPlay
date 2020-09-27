@@ -106,6 +106,12 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location"/>
+    
+
+
     <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregatesMetric -->
 
     <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregatesMetric">
@@ -195,12 +201,6 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
-
-    <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location"/>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -212,15 +212,6 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregationDays -->
-
-    <owl:DatatypeProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregationDays">
-        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#lat_long -->
 
     <owl:DatatypeProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat_long">
@@ -228,6 +219,15 @@ above the local reference ellipsoid).</rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment>A comma-separated representation of a latitude, longitude coordinate.</rdfs:comment>
         <rdfs:label>lat/long</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregationDays -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#aggregationDays">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
     </owl:DatatypeProperty>
     
 
@@ -243,6 +243,36 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#Point -->
+
+    <owl:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#Point">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+        <rdfs:comment> 
+Uniquely identified by lat/long/alt. i.e.
+
+spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
+  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).
+
+sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).
+  </rdfs:comment>
+        <rdfs:comment>A point, typically described using a coordinate system relative to Earth, such as WGS84.
+  </rdfs:comment>
+        <rdfs:label>point</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing -->
+
+    <owl:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing">
+        <rdfs:comment>Anything with spatial extent, i.e. size, shape, or position.
+ e.g. people, places, bowling balls, as well as abstract areas like cubes.
+</rdfs:comment>
+        <rdfs:label>SpatialThing</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/sxacml/access-control#Sensitivity -->
 
     <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Sensitivity">
@@ -254,7 +284,7 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric -->
 
     <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Metric"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric"/>
     </owl:Class>
     
 
@@ -368,17 +398,11 @@ above the local reference ellipsoid).</rdfs:comment>
     <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location -->
 
     <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Location">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#GeospatialMeasurement"/>
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Observation"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#GeospatialMeasurement"/>
         <owl:disjointWith rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Route"/>
     </owl:Class>
-    
-
-
-    <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#Metric -->
-
-    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Metric"/>
     
 
 
@@ -449,9 +473,7 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric -->
 
-    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric">
-        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Metric"/>
-    </owl:Class>
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric"/>
     
 
 
@@ -483,36 +505,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <owl:Class rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Weight">
         <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HealthMeasurement"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#Point -->
-
-    <owl:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#Point">
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
-        <rdfs:comment> 
-Uniquely identified by lat/long/alt. i.e.
-
-spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
-  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).
-
-sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).
-  </rdfs:comment>
-        <rdfs:comment>A point, typically described using a coordinate system relative to Earth, such as WGS84.
-  </rdfs:comment>
-        <rdfs:label>point</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing -->
-
-    <owl:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing">
-        <rdfs:comment>Anything with spatial extent, i.e. size, shape, or position.
- e.g. people, places, bowling balls, as well as abstract areas like cubes.
-</rdfs:comment>
-        <rdfs:label>SpatialThing</rdfs:label>
     </owl:Class>
     
 
@@ -639,16 +631,6 @@ basic geo vocab
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#AggregateMetric"/>
-            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#GeospatialMeasurement"/>
-            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#HealthMeasurement"/>
-            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#Training"/>
-            <rdf:Description rdf:about="https://w3id.org/sxacml/sample-privacy/fitness-tracking#TrainingMetric"/>
-        </owl:members>
-    </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
