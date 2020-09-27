@@ -1,5 +1,6 @@
 package ontoplay.models.ontologyReading.jena;
 
+import com.google.common.collect.Iterators;
 import com.google.inject.assistedinject.Assisted;
 import ontoplay.OntoplayConfig;
 import ontoplay.models.ConfigurationException;
@@ -13,6 +14,7 @@ import ontoplay.models.ontologyModel.OwlIndividual;
 import ontoplay.models.ontologyReading.OntologyReader;
 import openllet.core.OpenlletOptions;
 import openllet.jena.PelletReasonerFactory;
+import org.apache.jena.ext.com.google.common.collect.Streams;
 import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.ResIterator;
@@ -215,10 +217,19 @@ public class JenaOwlReader implements OntologyReader {
 
         if(prop.getDomain() != null){
             domainClasses = getRdfDomainClasses(declaringClass, prop);
+
+            if(domainClasses == null){
+                // If rdf domain is inapplicable to the declaring class, we shouldn't return the property at all.
+                return null;
+            }
         }
 
         if(domainClasses == null){
             domainClasses = getSchemaOrgDomainClasses(declaringClass, prop);
+        }
+
+        if(domainClasses == null){
+            domainClasses = getDomainClassesFromClassRestrictions(declaringClass, prop);
         }
 
         if(domainClasses == null && !ignorePropsWithNoDomain){
@@ -234,6 +245,22 @@ public class JenaOwlReader implements OntologyReader {
         return owlPropertyFactory.createProperty(prop, domainClasses);
     }
 
+
+    private List<OwlElement> getDomainClassesFromClassRestrictions(OntClass declaringClass, OntProperty property) {
+        var classesIterator = property.listReferringRestrictions()
+                .mapWith(r->r.listSubClasses(false)
+                    .filterDrop(c -> c.isAnon() || c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing")));
+
+        var classes = Streams.stream(Iterators.concat(classesIterator))
+                .distinct()
+                .collect(Collectors.toList());
+
+        if(classes.contains(declaringClass)){
+            return classes.stream().map(c -> createOwlClass(c)).collect(Collectors.toList());
+        } else {
+            return null;
+        }
+    }
 
     private OwlElement createOwlClass(OntClass ontClass){
         return new OntoClass((OntClass) ontClass);

@@ -16,6 +16,7 @@ dist
 patches
 /bin/
 public/javascripts/onto-react
+*.bak
 
 configuration/uploads/check\.owl
 
