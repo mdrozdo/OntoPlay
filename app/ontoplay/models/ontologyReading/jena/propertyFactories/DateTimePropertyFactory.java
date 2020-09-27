@@ -1,9 +1,12 @@
 package ontoplay.models.ontologyReading.jena.propertyFactories;
 
 import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OwlElement;
 import ontoplay.models.ontologyReading.jena.OwlPropertyFactory;
 import ontoplay.models.properties.DateTimeProperty;
 import org.apache.jena.ontology.OntProperty;
+
+import java.util.List;
 
 public class DateTimePropertyFactory extends OwlPropertyFactory {
 
@@ -22,8 +25,8 @@ public class DateTimePropertyFactory extends OwlPropertyFactory {
     }
 
     @Override
-    public OntoProperty createProperty(OntProperty ontProperty) {
-        return new DateTimeProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getLabel(""), getPropertyDomain(ontProperty));
+    public OntoProperty createProperty(OntProperty ontProperty, List<OwlElement> domain) {
+        return new DateTimeProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), ontProperty.getLabel(""), domain.toArray(OwlElement[]::new));
     }
 
 }

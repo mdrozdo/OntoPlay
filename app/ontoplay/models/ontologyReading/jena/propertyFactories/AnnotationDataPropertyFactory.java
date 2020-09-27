@@ -2,9 +2,12 @@ package ontoplay.models.ontologyReading.jena.propertyFactories;
 
 import ontoplay.models.Constants;
 import ontoplay.models.ontologyModel.OntoProperty;
+import ontoplay.models.ontologyModel.OwlElement;
 import ontoplay.models.ontologyReading.jena.OwlPropertyFactory;
 import ontoplay.models.properties.AnnotationDataProperty;
 import org.apache.jena.ontology.OntProperty;
+
+import java.util.List;
 
 public class AnnotationDataPropertyFactory extends OwlPropertyFactory {
 
@@ -25,9 +28,9 @@ public class AnnotationDataPropertyFactory extends OwlPropertyFactory {
     }
 
     @Override
-    public OntoProperty createProperty(OntProperty ontProperty) {
+    public OntoProperty createProperty(OntProperty ontProperty, List<OwlElement> domain) {
         return new AnnotationDataProperty(ontProperty.getNameSpace(), ontProperty.getLocalName(), Constants.translateDataType(ontProperty.getURI()),
-                ontProperty.getLabel(""), getPropertyDomain(ontProperty));
+                ontProperty.getLabel(""), domain.toArray(OwlElement[]::new));
     }
 
 
