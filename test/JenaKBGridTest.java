@@ -67,7 +67,7 @@ public class JenaKBGridTest {
 
         assertThat(memoryClass).isNotNull();
         assertThat(selectLocalNames(memoryClass.getProperties())).containsOnly(
-                "hasModelName", "hasName", "hasID", "belongToVO", "hasTotalSize", "hasAvailableSize");
+                "testProperty", "hasModelName", "hasName", "hasID", "belongToVO", "hasTotalSize", "hasAvailableSize");
     }
 
     @Test

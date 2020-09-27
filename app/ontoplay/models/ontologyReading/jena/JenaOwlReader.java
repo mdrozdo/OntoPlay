@@ -211,38 +211,24 @@ public class JenaOwlReader implements OntologyReader {
     }
 
     private OntoProperty createProperty(OntClass declaringClass, OntProperty prop) {
-        List<OwlElement> domainClasses;
+        List<OwlElement> domainClasses = null;
 
         if(prop.getDomain() != null){
-            domainClasses = getRdfDomainClasses(prop);
+            domainClasses = getRdfDomainClasses(declaringClass, prop);
+        }
 
-            // For some reason declaredProperties and listDeclaringClasses sometimes do not match.
-            // if the declaring classes is not in the domain of the property, we shouldn't use it.
-            //TODO: sprawdzać jakoś po superclassach (chyba) Powinno działać dla ObservedTruck jakoś.
-            if(domainClasses.stream()
-                    .noneMatch(c->c.getUri().equalsIgnoreCase(declaringClass.getURI()))) {
-                return null;
-            }
+        if(domainClasses == null){
+            domainClasses = getSchemaOrgDomainClasses(declaringClass, prop);
+        }
 
-        } else {
-            var schemaDomainClasses = getSchemaOrgDomainClasses(prop);
+        if(domainClasses == null && !ignorePropsWithNoDomain){
+            //If no domain was specified and schema.org domains not found, grab rdf domain, which should really return
+            //all classes.
+            domainClasses = getRdfDomainClasses(declaringClass, prop);
+        }
 
-            var domainClassDescendants = schemaDomainClasses.stream()
-                    .flatMap(c -> c.listSubClasses(false).toList().stream())
-                    .collect(Collectors.toList());
-
-            schemaDomainClasses.addAll(domainClassDescendants);
-
-            if(schemaDomainClasses.contains(declaringClass)) {
-                domainClasses = schemaDomainClasses.stream()
-                        .filter(c -> !c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing"))
-                        .map(c -> createOwlClass(c))
-                        .collect(Collectors.toList());
-            } else if(!ignorePropsWithNoDomain){
-                domainClasses = getRdfDomainClasses(prop);
-            } else {
-                return null;
-            }
+        if(domainClasses == null){
+            return null;
         }
 
         return owlPropertyFactory.createProperty(prop, domainClasses);
@@ -254,23 +240,48 @@ public class JenaOwlReader implements OntologyReader {
     }
 
 
-    private List<OntClass> getSchemaOrgDomainClasses(OntProperty property) {
+    private List<OwlElement> getSchemaOrgDomainClasses(OntClass declaringClass, OntProperty property) {
         OntModel ontModel = property.getOntModel();
         var schemaDomainProperty = ontModel.getAnnotationProperty("http://schema.org/domainIncludes");
-        return property.listPropertyValues(schemaDomainProperty)
+        List<OntClass> schemaDomainClasses = property.listPropertyValues(schemaDomainProperty)
                 .mapWith(res -> ontModel.getOntClass(res.asResource().getURI()))
                 .filterKeep(res -> res != null)
                 .toList();
+
+        var domainClassDescendants = schemaDomainClasses.stream()
+                .flatMap(c -> c.listSubClasses(false).toList().stream())
+                .collect(Collectors.toList());
+
+        schemaDomainClasses.addAll(domainClassDescendants);
+
+        if(schemaDomainClasses.contains(declaringClass)) {
+            return schemaDomainClasses.stream()
+                    .filter(c -> !c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing"))
+                    .map(c -> createOwlClass(c))
+                    .collect(Collectors.toList());
+        } else{
+            return null;
+        }
     }
 
-    private List<OwlElement> getRdfDomainClasses(OntProperty property) {
-        return property.listDeclaringClasses()
+    private List<OwlElement> getRdfDomainClasses(OntClass declaringClass, OntProperty property) {
+        List<OwlElement> domainClasses = property.listDeclaringClasses()
                 //Only keep named classes. The remaining ones are unions/intersections/class expressions. If these
                 // can be reduced to named classes, listDeclaringClasses will return them. Otherwise, we lose some
                 // information, but we can still use the domain size as a metric of how generic the property is.
                 .filterKeep(res -> !res.isAnon())
                 .mapWith(res -> createOwlClass(res))
                 .toList();
+
+
+        // For some reason declaredProperties and listDeclaringClasses sometimes do not match.
+        // if the declaring classes is not in the domain of the property, we shouldn't use it.
+        if(domainClasses.stream()
+                .anyMatch(c->c.getUri().equalsIgnoreCase(declaringClass.getURI()))) {
+            return domainClasses;
+        } else{
+            return null;
+        }
     }
 
     private List<OntClass> getAllClassesFromRange(OntoProperty property) {
