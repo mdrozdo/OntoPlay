@@ -866,49 +866,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#http://purl.org/NET/cgo#WorkeDdasdasrNode -->
-
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#http://purl.org/NET/cgo#WorkeDdasdasrNode">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.org/NET/cgo#WorkerNode"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasGPU"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#GPU"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture"/>
-                                        <owl:someValuesFrom>
-                                            <owl:Class>
-                                                <owl:intersectionOf rdf:parseType="Collection">
-                                                    <rdf:Description rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture"/>
-                                                    <owl:Restriction>
-                                                        <owl:onProperty rdf:resource="http://purl.org/NET/cgo#hasName"/>
-                                                        <owl:hasValue rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">PowerPC</owl:hasValue>
-                                                    </owl:Restriction>
-                                                </owl:intersectionOf>
-                                            </owl:Class>
-                                        </owl:someValuesFrom>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.org/NET/cgo#hasName"/>
-                        <owl:hasValue rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">dupa</owl:hasValue>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-    </owl:Class>
-    
-
-
     <!-- http://purl.org/NET/cgo#ApplicationEnv -->
 
 

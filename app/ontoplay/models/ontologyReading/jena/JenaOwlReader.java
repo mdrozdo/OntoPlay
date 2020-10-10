@@ -270,6 +270,10 @@ public class JenaOwlReader implements OntologyReader {
     private List<OwlElement> getSchemaOrgDomainClasses(OntClass declaringClass, OntProperty property) {
         OntModel ontModel = property.getOntModel();
         var schemaDomainProperty = ontModel.getAnnotationProperty("http://schema.org/domainIncludes");
+        if(schemaDomainProperty == null){
+            return null;
+        }
+
         List<OntClass> schemaDomainClasses = property.listPropertyValues(schemaDomainProperty)
                 .mapWith(res -> ontModel.getOntClass(res.asResource().getURI()))
                 .filterKeep(res -> res != null)
