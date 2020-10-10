@@ -17,7 +17,7 @@
      xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:YellowPages="http://gridagents.sourceforge.net/YellowPages#"
      xmlns:AiGGridOntology="http://gridagents.sourceforge.net/AiGGridOntology#">
-    <owl:Ontology rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#http://purl.org/NET/cgo">
+    <owl:Ontology rdf:about="http://gridagents.sourceforge.net/AiGGridOntology">
         <owl:imports rdf:resource="http://purl.org/NET/cgo"/>
     </owl:Ontology>
     
@@ -31,12 +31,10 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-
     
 
 
     <!-- http://purl.org/dc/elements/1.1/date -->
-
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
     
@@ -44,13 +42,11 @@
 
     <!-- http://purl.org/dc/elements/1.1/description -->
 
-
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
     
 
 
     <!-- http://purl.org/dc/elements/1.1/title -->
-
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
     
@@ -58,13 +54,11 @@
 
     <!-- http://www.w3.org/2000/01/rdf-schema#comment -->
 
-
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#comment"/>
     
 
 
     <!-- http://www.w3.org/2000/01/rdf-schema#label -->
-
 
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label"/>
     
@@ -78,12 +72,10 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-
     
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture -->
-
 
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasArchitecture">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -103,7 +95,6 @@
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasFileSystem -->
 
-
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasFileSystem">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#StorageSpace"/>
@@ -115,7 +106,6 @@
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasGPU -->
 
-
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasGPU">
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#ComputingComponent"/>
         <rdfs:range rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#GPU"/>
@@ -126,7 +116,6 @@
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasInstalledSoftware -->
 
-
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasInstalledSoftware">
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#GridComponent"/>
         <rdfs:range rdf:resource="http://purl.org/NET/cgo#Software"/>
@@ -135,7 +124,6 @@
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasMemory -->
-
 
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasMemory">
         <rdfs:domain>
@@ -154,7 +142,6 @@
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasOperatingSystem -->
 
-
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasOperatingSystem">
         <rdfs:subPropertyOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasInstalledSoftware"/>
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#GridComponent"/>
@@ -166,7 +153,6 @@
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasStorageInterface -->
 
-
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasStorageInterface">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#StorageSpace"/>
@@ -177,7 +163,6 @@
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasStorageSpace -->
-
 
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasStorageSpace">
         <rdfs:domain>
@@ -196,7 +181,6 @@
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasVendor -->
 
-
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasVendor">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#CPU"/>
@@ -207,7 +191,6 @@
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#isRunningOS -->
-
 
     <owl:ObjectProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#isRunningOS">
         <rdfs:subPropertyOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#hasOperatingSystem"/>
@@ -221,7 +204,6 @@
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#alt -->
 
-
     <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#alt">
         <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
         <rdfs:comment>The WGS84 altitude of a SpatialThing (decimal meters 
@@ -233,7 +215,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#lat -->
 
-
     <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat">
         <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
         <rdfs:comment>The WGS84 latitude of a SpatialThing (decimal degrees).</rdfs:comment>
@@ -243,7 +224,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#location -->
-
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#location">
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/based_near"/>
@@ -262,7 +242,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#long -->
 
-
     <owl:ObjectProperty rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#long">
         <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
         <rdfs:comment>The WGS84 longitude of a SpatialThing (decimal degrees).</rdfs:comment>
@@ -272,7 +251,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <!-- http://xmlns.com/foaf/0.1/based_near -->
-
 
     <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/based_near"/>
     
@@ -286,12 +264,10 @@ above the local reference ellipsoid).</rdfs:comment>
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-
     
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasAvailableSize -->
-
 
     <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasAvailableSize">
         <rdfs:domain>
@@ -310,7 +286,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasCores -->
 
-
     <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasCores">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#CPU"/>
@@ -321,7 +296,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasL1CacheSize -->
-
 
     <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasL1CacheSize">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -334,7 +308,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasL2CacheSize -->
 
-
     <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasL2CacheSize">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#CPU"/>
@@ -346,7 +319,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasL3CacheSize -->
 
-
     <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasL3CacheSize">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#CPU"/>
@@ -357,7 +329,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize -->
-
 
     <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasTotalSize">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -377,7 +348,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#hasVersion -->
 
-
     <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#hasVersion">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#Software"/>
@@ -387,7 +357,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#isVirtualized -->
-
 
     <owl:DatatypeProperty rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#isVirtualized">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -400,7 +369,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://purl.org/NET/cgo#hasClockSpeed -->
 
-
     <owl:DatatypeProperty rdf:about="http://purl.org/NET/cgo#hasClockSpeed">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#CPU"/>
@@ -411,7 +379,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://purl.org/NET/cgo#hasModelName -->
 
-
     <owl:DatatypeProperty rdf:about="http://purl.org/NET/cgo#hasModelName">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/NET/cgo#ComputingResource"/>
@@ -421,7 +388,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <!-- http://purl.org/NET/cgo#hasName -->
-
 
     <owl:DatatypeProperty rdf:about="http://purl.org/NET/cgo#hasName">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -445,12 +411,18 @@ above the local reference ellipsoid).</rdfs:comment>
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
 
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Armadillo -->
+
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Armadillo">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
+    </owl:Class>
     
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#Blas -->
-
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Blas">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
@@ -458,8 +430,15 @@ above the local reference ellipsoid).</rdfs:comment>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#CPPLapack -->
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Blitz -->
 
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Blitz">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#CPPLapack -->
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#CPPLapack">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#Lapack"/>
@@ -470,7 +449,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#CPPScaLapack -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#CPPScaLapack">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#Lapack"/>
     </owl:Class>
@@ -478,7 +456,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture -->
-
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#ComputerSystemConcept"/>
@@ -489,7 +466,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#CPUVendor -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#CPUVendor">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#ComputerSystemConcept"/>
     </owl:Class>
@@ -497,7 +473,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#CUDA -->
-
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#CUDA">
         <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#ApplicationEnv"/>
@@ -507,7 +482,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#CVMClassLibrary -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#CVMClassLibrary">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
     </owl:Class>
@@ -515,7 +489,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#CentOS -->
-
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#CentOS">
         <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#Linux"/>
@@ -525,13 +498,11 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#ComputerSystemConcept -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#ComputerSystemConcept"/>
     
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#Debian -->
-
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Debian">
         <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#Linux"/>
@@ -540,7 +511,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#Eigen -->
-
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Eigen">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
@@ -551,7 +521,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#Fedora -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Fedora">
         <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#Linux"/>
     </owl:Class>
@@ -559,7 +528,6 @@ above the local reference ellipsoid).</rdfs:comment>
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#Flens -->
-
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Flens">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
@@ -569,8 +537,16 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#GPU -->
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#GMM -->
 
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#GMM">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
+        <rdfs:comment xml:lang="en">Gmm++ is a generic matrix template library inspired by MTL and ITL.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#GPU -->
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#GPU">
         <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#ComputingResource"/>
@@ -592,7 +568,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#GPUMemory -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#GPUMemory">
         <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#Memory"/>
     </owl:Class>
@@ -601,15 +576,30 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#GSL -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#GSL">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
     </owl:Class>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#LALibrary -->
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#IML -->
 
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#IML">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
+        <rdfs:comment xml:lang="en">Iterative Methods Library</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#IT -->
+
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#IT">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#LALibrary -->
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#LALibrary">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
@@ -619,15 +609,14 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#Lapack -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Lapack">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#Lapack"/>
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
     </owl:Class>
     
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#LinAl -->
-
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#LinAl">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
@@ -637,7 +626,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#LinBox -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#LinBox">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
     </owl:Class>
@@ -645,7 +633,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib -->
-
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib">
         <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#Lib"/>
@@ -655,7 +642,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#MTL -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#MTL">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
         <rdfs:comment xml:lang="en">Matrix Template Library</rdfs:comment>
@@ -663,8 +649,15 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#NewMat -->
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#MV -->
 
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#MV">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#NewMat -->
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#NewMat">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
@@ -674,7 +667,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#OpenCL -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#OpenCL">
         <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#ApplicationEnv"/>
     </owl:Class>
@@ -682,7 +674,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#PETSc -->
-
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#PETSc">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
@@ -693,7 +684,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#PhysicalMemory -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#PhysicalMemory">
         <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#Memory"/>
     </owl:Class>
@@ -702,8 +692,15 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#RNM -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#RNM">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#SL -->
+
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#SL">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
     </owl:Class>
     
@@ -711,15 +708,21 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#Seldon -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Seldon">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
     </owl:Class>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#TCBI -->
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#SparseLib -->
 
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#SparseLib">
+        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#TCBI -->
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#TCBI">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
@@ -730,7 +733,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#TNT -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#TNT">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
         <rdfs:comment xml:lang="en">Template Numerical Toolkit</rdfs:comment>
@@ -738,8 +740,21 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Trilinos -->
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#TestClass -->
 
+    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#TestClass">
+        <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#GridEntity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/NET/cgo#hasID"/>
+                <owl:allValuesFrom rdf:resource="http://purl.org/NET/cgo#MAC"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Trilinos -->
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Trilinos">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
@@ -749,7 +764,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#VirtualMemory -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#VirtualMemory">
         <rdfs:subClassOf rdf:resource="http://purl.org/NET/cgo#Memory"/>
     </owl:Class>
@@ -757,7 +771,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#X86 -->
-
 
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#X86">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#CPUArchictecture"/>
@@ -767,7 +780,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#X86_64 -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#X86_64">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#X86"/>
     </owl:Class>
@@ -776,98 +788,13 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#uBlas -->
 
-
     <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#uBlas">
         <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#Blas"/>
     </owl:Class>
     
 
 
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Armadillo++ -->
-
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Armadillo++">
-        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Blitz++ -->
-
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Blitz++">
-        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#GMM++ -->
-
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#GMM++">
-        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
-        <rdfs:comment xml:lang="en">Gmm++ is a generic matrix template library inspired by MTL and ITL.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#IML++ -->
-
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#IML++">
-        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
-        <rdfs:comment xml:lang="en">Iterative Methods Library</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#IT++ -->
-
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#IT++">
-        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#Lapack++ -->
-
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Lapack++">
-        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#Lapack"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#MV++ -->
-
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#MV++">
-        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#SL++ -->
-
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#SL++">
-        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
-    </owl:Class>
-    
-
-
-    <!-- http://gridagents.sourceforge.net/AiGGridOntology#SparseLib++ -->
-
-
-    <owl:Class rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#SparseLib++">
-        <rdfs:subClassOf rdf:resource="http://gridagents.sourceforge.net/AiGGridOntology#LinearAlgebraLib"/>
-    </owl:Class>
-    
-
-
     <!-- http://purl.org/NET/cgo#ApplicationEnv -->
-
 
     <owl:Class rdf:about="http://purl.org/NET/cgo#ApplicationEnv"/>
     
@@ -875,13 +802,11 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://purl.org/NET/cgo#CPU -->
 
-
     <owl:Class rdf:about="http://purl.org/NET/cgo#CPU"/>
     
 
 
     <!-- http://purl.org/NET/cgo#ComputingComponent -->
-
 
     <owl:Class rdf:about="http://purl.org/NET/cgo#ComputingComponent"/>
     
@@ -889,13 +814,11 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://purl.org/NET/cgo#ComputingElement -->
 
-
     <owl:Class rdf:about="http://purl.org/NET/cgo#ComputingElement"/>
     
 
 
     <!-- http://purl.org/NET/cgo#ComputingResource -->
-
 
     <owl:Class rdf:about="http://purl.org/NET/cgo#ComputingResource"/>
     
@@ -903,13 +826,11 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://purl.org/NET/cgo#FileSystem -->
 
-
     <owl:Class rdf:about="http://purl.org/NET/cgo#FileSystem"/>
     
 
 
     <!-- http://purl.org/NET/cgo#GridComponent -->
-
 
     <owl:Class rdf:about="http://purl.org/NET/cgo#GridComponent"/>
     
@@ -917,13 +838,11 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://purl.org/NET/cgo#GridEntity -->
 
-
     <owl:Class rdf:about="http://purl.org/NET/cgo#GridEntity"/>
     
 
 
     <!-- http://purl.org/NET/cgo#Lib -->
-
 
     <owl:Class rdf:about="http://purl.org/NET/cgo#Lib"/>
     
@@ -931,13 +850,11 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://purl.org/NET/cgo#Linux -->
 
-
     <owl:Class rdf:about="http://purl.org/NET/cgo#Linux"/>
     
 
 
     <!-- http://purl.org/NET/cgo#Memory -->
-
 
     <owl:Class rdf:about="http://purl.org/NET/cgo#Memory"/>
     
@@ -945,13 +862,11 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://purl.org/NET/cgo#OperatingSystem -->
 
-
     <owl:Class rdf:about="http://purl.org/NET/cgo#OperatingSystem"/>
     
 
 
     <!-- http://purl.org/NET/cgo#Software -->
-
 
     <owl:Class rdf:about="http://purl.org/NET/cgo#Software"/>
     
@@ -959,13 +874,11 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://purl.org/NET/cgo#StorageElement -->
 
-
     <owl:Class rdf:about="http://purl.org/NET/cgo#StorageElement"/>
     
 
 
     <!-- http://purl.org/NET/cgo#StorageInterface -->
-
 
     <owl:Class rdf:about="http://purl.org/NET/cgo#StorageInterface"/>
     
@@ -973,13 +886,11 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://purl.org/NET/cgo#StorageSpace -->
 
-
     <owl:Class rdf:about="http://purl.org/NET/cgo#StorageSpace"/>
     
 
 
     <!-- http://purl.org/NET/cgo#URI -->
-
 
     <owl:Class rdf:about="http://purl.org/NET/cgo#URI"/>
     
@@ -987,13 +898,11 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
     <!-- http://purl.org/NET/cgo#WorkerNode -->
 
-
     <owl:Class rdf:about="http://purl.org/NET/cgo#WorkerNode"/>
     
 
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#Point -->
-
 
     <owl:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#Point">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
@@ -1005,7 +914,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing -->
-
 
     <owl:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing">
         <rdfs:comment>Anything with spatial extent, i.e. size, shape, or position. e.g. people, places, bowling balls, as well as abstract areas like cubes.</rdfs:comment>
@@ -1022,12 +930,10 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-
     
 
 
     <!-- http://gridagents.sourceforge.net/AiGGridOntology#Wikipedia -->
-
 
     <owl:NamedIndividual rdf:about="http://gridagents.sourceforge.net/AiGGridOntology#Wikipedia">
         <rdf:type rdf:resource="http://purl.org/NET/cgo#URI"/>
@@ -1036,7 +942,6 @@ computing providing interface for Blas and Lapack.</rdfs:comment>
 
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos# -->
-
 
     <owl:Thing rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -1133,7 +1038,6 @@ basic geo vocab</rdfs:comment>
 
     <!-- http://www.w3.org/2003/01/geo/wgs84_pos#lat_long -->
 
-
     <owl:Thing rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#lat_long">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
         <rdfs:comment>A comma-separated representation of a latitude, longitude coordinate.</rdfs:comment>
@@ -1143,6 +1047,5 @@ basic geo vocab</rdfs:comment>
 
 
 
-<!-- Generated by the OWL API (version 5.1.3.2017-11-04T21:44:22Z) https://github.com/owlcs/owlapi/ -->
-
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 

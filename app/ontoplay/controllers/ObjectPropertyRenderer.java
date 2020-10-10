@@ -53,7 +53,7 @@ public class ObjectPropertyRenderer implements PropertyConditionRenderer<OwlObje
 
         Map<String, Object> args = new LinkedHashMap<String, Object>();
         args.put("conditionId", conditionId);
-        args.put("classes", ontoReader.getClassesInRange(property));
+        args.put("classes", ontoReader.getClassesInRange(owlClass.getUri(), property.getUri()));
         args.put("isDescriptionOfIndividual", isDescriptionOfIndividual);
 
         renderer.renderTemplate("Constraints.constrainedValueCondition", args);

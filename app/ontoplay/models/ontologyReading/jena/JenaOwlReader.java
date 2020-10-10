@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class JenaOwlReader implements OntologyReader {
     private OntModel model;
@@ -337,6 +338,12 @@ public class JenaOwlReader implements OntologyReader {
         return classes;
     }
 
+    private Stream<OntClass> listSubclassesOrSelf(OntClass aClass){
+        return Streams.concat(Stream.of(aClass),
+                Streams.stream(aClass.listSubClasses(false))
+                    .filter(c -> !c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing")));
+    }
+
     /*
      * (non-Javadoc)
      *
@@ -344,33 +351,42 @@ public class JenaOwlReader implements OntologyReader {
      * ontologyModel.OntoClass, ontoplay.models.ontologyModel.OntoProperty)
      */
     @Override
-    public List<OntoClass> getClassesInRange(OntoProperty property) {
-        List<OntoClass> classes = new ArrayList<OntoClass>();
+    public List<OntoClass> getClassesInRange(String domainClassUri, String propertyUri) {
+        List<OntClass> classes;
 
-        OntProperty ontProp = model.getOntProperty(property.getUri());
-        for (ExtendedIterator<? extends OntResource> r = ontProp.listRange(); r.hasNext(); ) {
-            OntResource res = r.next();
-            if (ontProp.hasRange(res)) {
-                if (res.isClass()) {
-                    OntClass rangeClass = res.asClass();
+        OntProperty ontProp = model.getOntProperty(propertyUri);
 
-                    classes.add(new OntoClass(rangeClass));
-                    fillWithSubClasses(classes, rangeClass);
-                }
+        OntClass ontClass = model.getOntClass(domainClassUri);
+
+        classes = Streams.stream(ontProp.listReferringRestrictions())
+                .filter(r->r.isAllValuesFromRestriction()
+                        && r.hasSubClass(ontClass, false)
+                        && r.asAllValuesFromRestriction().getAllValuesFrom() instanceof OntClass)
+                .flatMap(r-> listSubclassesOrSelf((OntClass) r.asAllValuesFromRestriction().getAllValuesFrom()))
+                        .collect(Collectors.toList());
+
+        if(classes.isEmpty()) {
+
+            if (ontProp.getRange() != null) {
+                var range = Streams.stream(ontProp.listRange())
+                        .filter(c -> c.isClass())
+                        .map(c -> c.asClass());
+
+                var subclasses = range
+                        .flatMap(c -> c
+                                .listSubClasses(false)
+                                .filterDrop(sc -> sc.getURI().equals("http://www.w3.org/2002/07/owl#Nothing")).toList().stream());
+
+                classes = Streams.concat(range, subclasses).collect(Collectors.toList());
+
+            } else {
+                classes = Streams.stream(model.listNamedClasses()).collect(Collectors.toList());
             }
         }
-        return classes;
+
+        return classes.stream().map(c -> new OntoClass((c))).collect(Collectors.toList());
     }
 
-    private void fillWithSubClasses(List<OntoClass> classes, OntClass superClass) {
-        for (ExtendedIterator<? extends OntResource> s = superClass.listSubClasses(true); s.hasNext(); ) {
-            OntClass subclass = s.next().asClass();
-            if (!subclass.getURI().equals("http://www.w3.org/2002/07/owl#Nothing")) {
-                classes.add(new OntoClass(subclass, superClass));
-                fillWithSubClasses(classes, subclass);
-            }
-        }
-    }
 
     @Override
     public List<OwlIndividual> getIndividuals(OntoClass owlClass) {
@@ -438,10 +454,10 @@ public class JenaOwlReader implements OntologyReader {
 
     @Override
     public List<OntoClass> getClasses() {
-        List<OntoClass> classes = new ArrayList<>();
-        OntClass thing = model.getOntClass("http://www.w3.org/2002/07/owl#Thing");
-
-        fillWithSubClasses(classes, thing);
+        List<OntoClass> classes = model.listNamedClasses()
+                .filterDrop(c->c.getURI().equals("http://www.w3.org/2002/07/owl#Nothing"))
+                .mapWith(c->new OntoClass(c))
+                .toList();
 
         return classes;
     }

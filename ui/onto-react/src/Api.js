@@ -23,8 +23,8 @@ class Api {
             .then(response => response.json());
     }
 
-    getClasses(propertyName) {
-        return fetch('/api/class/property/' + encodeURIComponent(propertyName))
+    getClasses(className, propertyName) {
+        return fetch('/api/class/' + encodeURIComponent(className) + '/property/' + encodeURIComponent(propertyName))
             .then(response => response.json());
     }
 

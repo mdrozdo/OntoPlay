@@ -38,7 +38,7 @@ GET /api/annotationProperties/get/:componentUri ontoplay.controllers.webservices
 
 
 #classes
-GET /api/class/property/:propertyUri		ontoplay.controllers.webservices.Classes.getClassesByProperty(propertyUri: String)
+GET /api/class/:className/property/:propertyUri		ontoplay.controllers.webservices.Classes.getClassesByProperty(className:String, propertyUri: String)
 GET /api/class		                        ontoplay.controllers.webservices.Classes.getClasses()
 POST /api/class/save                        ontoplay.controllers.webservices.Classes.addClassExpression()
 GET /addClassExpression/:className		ontoplay.controllers.Operations.addClassExpression(className: String)
