@@ -343,9 +343,9 @@ class Demo extends Component {
             <div className='container'>
                 <h1>onto-react Demo - Individual</h1>
                 {React.createElement(OntoReact.OntoReact, {
-                    mainClass: 'http://purl.org/NET/cgo#WorkerNode',
+                    mainClass: 'https://saref.etsi.org/saref4bldg/Building',
                     //api: false,
-                    elementName: 'http://purl.org/NET/cgo#WorkerNode',
+                    elementName: 'https://w3id.org/sxacml/sample-smartgrid/smartgrid-data#heater_1',
                     isDescriptionOfIndividual: true,
                     // headerComponent: OntoReact.InputNameHeader('Individual name'),
                     headerComponent: OntoReact.MultiHeader(
@@ -354,27 +354,10 @@ class Demo extends Component {
                     ),
                     api: new OntoReact.Api(true),
                     title:
-                        'Add new individual of class http://purl.org/NET/cgo#WorkerNode',
-                    condition: this.individualCondition,
+                        'Add new individual of class https://saref.etsi.org/saref4bldg/Building',
+                    condition: this.emptyCondition,
                 })}
 
-                <h1>onto-react Demo - class</h1>
-                {React.createElement(OntoReact.OntoReact, {
-                    mainClass: 'http://purl.org/NET/cgo#WorkerNode',
-                    //api: false,
-                    elementName: 'http://purl.org/NET/cgo#WorkerNode',
-                    classRelation: 'SUBCLASS',
-                    // headerComponent: OntoReact.InputNameHeader('Individual name'),
-                    headerComponent: OntoReact.MultiHeader(
-                        OntoReact.InputNameHeader('Class name'),
-                        OntoReact.SelectClassHeader('Map class to:')
-                    ),
-                    api: new OntoReact.Api(false),
-                    isDescriptionOfIndividual: false,
-                    title:
-                        'Add new class mapping for http://purl.org/NET/cgo#WorkerNode',
-                    condition: this.intersectionCondition,
-                })}
             </div>
         );
     }

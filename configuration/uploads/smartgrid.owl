@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/sxacml/sample-smartgrid/smartgrid#"
+     xml:base="https://w3id.org/sxacml/sample-smartgrid/smartgrid"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:prov="http://www.w3.org/ns/prov#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:terms="http://purl.org/dc/terms/">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid">
+        <owl:imports rdf:resource="https://saref.etsi.org/core/v3.1.1/"/>
+        <owl:imports rdf:resource="https://saref.etsi.org/saref4bldg/v1.1.2/"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://saref.etsi.org/core/Appliance -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/core/Appliance">
+        <owl:equivalentClass rdf:resource="https://saref.etsi.org/saref4bldg/AudioVisualAppliance"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/core/HVAC -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/core/HVAC">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://saref.etsi.org/core/controlsProperty"/>
+                <owl:someValuesFrom rdf:resource="https://saref.etsi.org/core/Temperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/AudioVisualAppliance -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/AudioVisualAppliance"/>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/Boiler -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/Boiler">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/HVAC"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/Burner -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/Burner">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/HVAC"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/Coil -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/Coil">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/HVAC"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/CommunicationAppliance -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/CommunicationAppliance">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Appliance"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/CooledBeam -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/CooledBeam">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/HVAC"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/CoolingTower -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/CoolingTower">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/HVAC"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/ElectricAppliance -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/ElectricAppliance">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Appliance"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/EvaporativeCooler -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/EvaporativeCooler">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/HVAC"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/SpaceHeater -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/SpaceHeater">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/HVAC"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid#AirConditioningUnit -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid#AirConditioningUnit">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/HVAC"/>
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4bldg/EnergyConversionDevice"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid#WashingMachine -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid#WashingMachine">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4bldg/ElectricAppliance"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

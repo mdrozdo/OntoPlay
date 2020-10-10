@@ -315,6 +315,11 @@ public class JenaOwlReader implements OntologyReader {
         List<OntClass> classes = new ArrayList<OntClass>();
 
         OntProperty ontProp = model.getOntProperty(property.getUri());
+
+        if(ontProp.getRange() == null){
+            return getAllClassesFromPropertyRestriction
+        }
+
         for (ExtendedIterator<? extends OntResource> r = ontProp.listRange(); r.hasNext(); ) {
             OntResource res = r.next();
             if (ontProp.hasRange(res)) {
@@ -344,11 +349,13 @@ public class JenaOwlReader implements OntologyReader {
         List<OntoClass> classes = new ArrayList<OntoClass>();
 
         OntProperty ontProp = model.getOntProperty(property.getUri());
+        ontProp.
         for (ExtendedIterator<? extends OntResource> r = ontProp.listRange(); r.hasNext(); ) {
             OntResource res = r.next();
             if (ontProp.hasRange(res)) {
                 if (res.isClass()) {
                     OntClass rangeClass = res.asClass();
+                    rangeClass.
 
                     classes.add(new OntoClass(rangeClass));
                     fillWithSubClasses(classes, rangeClass);

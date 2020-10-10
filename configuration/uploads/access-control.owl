@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://w3id.org/sxacml/access-control#"
+     xml:base="https://w3id.org/sxacml/access-control"
+     xmlns:access="https://w3id.org/sxacml/access-control#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:org="http://www.w3.org/ns/org#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    <owl:Ontology rdf:about="https://w3id.org/sxacml/access-control">
+        <owl:imports rdf:resource="http://www.w3.org/ns/org#"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#concernsAction -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#concernsAction">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/access-control#Request"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/access-control#Action"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#concernsResource -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#concernsResource">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/access-control#Request"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/access-control#Resource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#inContextOf -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#inContextOf">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/access-control#Request"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/access-control#Environment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#isConfidential -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#isConfidential">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/access-control#Resource"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/access-control#Confidentiality"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#isSensitive -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#isSensitive">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/access-control#Resource"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/access-control#Sensitivity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#isTrusted -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#isTrusted">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/access-control#Subject"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/access-control#Trust"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#requestedBy -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#requestedBy">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/access-control#Request"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/access-control#Subject"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#requestedForPurpose -->
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/sxacml/access-control#requestedForPurpose">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/access-control#Action"/>
+        <rdfs:range rdf:resource="https://w3id.org/sxacml/access-control#PurposeOfUse"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Action -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Action"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Confidentiality -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Confidentiality"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Create -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Create">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Delete -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Delete">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#DeniedRequest -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#DeniedRequest">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Request"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/sxacml/access-control#PermittedRequest"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Environment -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Environment"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#PermittedRequest -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#PermittedRequest">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Request"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#PurposeOfUse -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#PurposeOfUse"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Read -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Read">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Request -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Request"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Resource -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Resource"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Sensitivity -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Sensitivity"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Subject -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Subject">
+        <owl:equivalentClass rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Trust -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Trust"/>
+    
+
+
+    <!-- https://w3id.org/sxacml/access-control#Update -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/access-control#Update">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Agent -->
+
+    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Agent"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Create"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Delete"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Read"/>
+            <rdf:Description rdf:about="https://w3id.org/sxacml/access-control#Update"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
