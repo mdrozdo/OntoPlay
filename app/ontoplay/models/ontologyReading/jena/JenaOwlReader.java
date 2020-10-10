@@ -256,7 +256,13 @@ public class JenaOwlReader implements OntologyReader {
                 .distinct()
                 .collect(Collectors.toList());
 
-        if(classes.contains(declaringClass)){
+        var allClassCount = model.listNamedClasses()
+                .filterDrop(c->c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Thing"))
+                .filterDrop(c->c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing"))
+                .toList()
+                .size();
+
+        if(classes.size() < allClassCount && classes.contains(declaringClass)){
             return classes.stream().map(c -> createOwlClass(c)).collect(Collectors.toList());
         } else {
             return null;
