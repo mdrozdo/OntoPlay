@@ -36,21 +36,18 @@ public class Classes extends OntologyController {
         this.formFactory = formFactory;
     }
 
-    public Result getClassesByProperty(String propertyUri) {
-        try {
+    public Result getClassesByProperty(String domainClassUri, String propertyUri) {
 
-            OntoProperty property = ontologyReader.getProperty(propertyUri);
-            List<OntoClass> classes = ontologyReader.getClassesInRange(property);
-            List<ClassDTO> classesDTO = classes.stream()
-                    .map(c -> new ClassDTO(c))
-                    .sorted((c1, c2) -> c1.getLocalName().compareTo(c2.getLocalName()))
-                    .distinct()
-                    .collect(Collectors.toList());
+        //OntoProperty property = ontologyReader.getProperty(propertyUri);
+        List<OntoClass> classes = ontologyReader.getClassesInRange(domainClassUri, propertyUri);
+        List<ClassDTO> classesDTO = classes.stream()
+                .map(c -> new ClassDTO(c))
+                .sorted((c1, c2) -> c1.getLocalName().compareTo(c2.getLocalName()))
+                .distinct()
+                .collect(Collectors.toList());
 
-            return ok(new GsonBuilder().create().toJson(classesDTO));
-        } catch (ConfigurationException e) {
-            return badRequest();
-        }
+        return ok(new GsonBuilder().create().toJson(classesDTO));
+
     }
 
     public Result getClasses() {
