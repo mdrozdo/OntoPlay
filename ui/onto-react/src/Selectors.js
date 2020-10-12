@@ -80,7 +80,7 @@ class PropertySelector extends Component {
         const options = this.state.properties.map((p) => ({
             id: p.uri,
             label: p.localName,
-            domainSize: p.domain.length,
+            domainSize: p.domainSize,
             relevance: p.relevance.toFixed(2)
         }));
         const selected = getSelectedOption(options, this.props.value);
