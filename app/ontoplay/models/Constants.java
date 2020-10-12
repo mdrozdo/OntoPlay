@@ -24,6 +24,9 @@ public class Constants {
     public final static String STRING_MAIN_RANGE = "http://www.w3.org/2001/XMLSchema#string";
     public final static String INTEGER_MAIN_RANGE = "http://www.w3.org/2001/XMLSchema#integer";
 
+    public final static String HAS_LOCAL_NAME_NS = "https://w3id.org/sxacml/ontoplay#";
+    public final static String HAS_LOCAL_NAME_NAME = "hasLocalName";
+    public final static String HAS_LOCAL_NAME_URI = HAS_LOCAL_NAME_NS + HAS_LOCAL_NAME_NAME;
 
     /**
      * Translation to main data property types ranges

@@ -1,5 +1,6 @@
 package ontoplay.models;
 
+import ch.qos.logback.core.ConsoleAppender;
 import com.google.gson.*;
 import ontoplay.models.propertyConditions.ClassValueCondition;
 import ontoplay.models.propertyConditions.DatatypePropertyCondition;
@@ -68,6 +69,10 @@ public class ConditionDeserializer implements
 
     private void fillConditionProperty(PropertyValueCondition condition) {
         try {
+            if(condition.getPropertyUri().equalsIgnoreCase(Constants.HAS_LOCAL_NAME_URI)){
+                return;
+            }
+
             condition.setProperty(propertyProvider.getProperty(condition.getPropertyUri()));
         } catch (ConfigurationException e) {
             // TODO Auto-generated catch block

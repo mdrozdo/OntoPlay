@@ -3,8 +3,11 @@ package ontoplay.controllers.webservices;
 import com.google.gson.GsonBuilder;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.PropertyConditionRenderer;
+import ontoplay.controllers.SimpleDatatypePropertyValueRenderer;
 import ontoplay.controllers.utils.OntologyUtils;
 import ontoplay.models.ConfigurationException;
+import ontoplay.models.Constants;
+import ontoplay.models.PropertyOperator;
 import ontoplay.models.dto.OperatorDTO;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.owlGeneration.PropertyConditionRendererProvider;
@@ -13,6 +16,7 @@ import play.mvc.Result;
 
 import javax.inject.Inject;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 public class Operators extends OntologyController {
 
@@ -38,19 +42,28 @@ public class Operators extends OntologyController {
             return "text";
     }
 
-    public Result getOpertors(String propertyUri, boolean isDescriptionOfIndividual) {
+    public Result getOperators(String propertyUri, boolean isDescriptionOfIndividual) {
         try {
             propertyUri = java.net.URLDecoder.decode(propertyUri, "UTF-8");
             ALogger log = play.Logger.of("application");
-            OntoProperty property = ontologyUtils.getProperty(propertyUri);
-            log.info("Getting opertor for " + propertyUri + " of the class " + property.getClass());
+
+            OperatorDTO operatorDTO;
+
+            if(propertyUri.equalsIgnoreCase(Constants.HAS_LOCAL_NAME_URI)){
+                operatorDTO = new OperatorDTO("text", List.of(new PropertyOperator("equalTo", "is equal to ", true)));
+            } else {
+                OntoProperty property = ontologyUtils.getProperty(propertyUri);
+                log.info("Getting operator for " + propertyUri + " of the class " + property.getClass());
 
 
-            PropertyConditionRenderer conditionRenderer = conditionRendererProvider
-                    .getRenderer(property);
+                PropertyConditionRenderer conditionRenderer = conditionRendererProvider
+                        .getRenderer(property);
 
-            OperatorDTO operatorDTO = new OperatorDTO(getInputType(property.getClass()),
-                    conditionRenderer.getOperators(isDescriptionOfIndividual));
+                operatorDTO = new OperatorDTO(getInputType(property.getClass()),
+                        conditionRenderer.getOperators(isDescriptionOfIndividual));
+            }
+
+
             return ok(new GsonBuilder().create().toJson(operatorDTO));
 
         } catch (ConfigurationException e) {

@@ -381,14 +381,15 @@ public class JenaOwlReader implements OntologyReader {
             if (ontProp.getRange() != null) {
                 var range = Streams.stream(ontProp.listRange())
                         .filter(c -> c.isClass())
-                        .map(c -> c.asClass());
+                        .map(c -> c.asClass())
+                        .collect(Collectors.toList());
 
-                var subclasses = range
+                var subclasses = range.stream()
                         .flatMap(c -> c
                                 .listSubClasses(false)
                                 .filterDrop(sc -> sc.getURI().equals("http://www.w3.org/2002/07/owl#Nothing")).toList().stream());
 
-                classes = Streams.concat(range, subclasses).collect(Collectors.toList());
+                classes = Streams.concat(range.stream(), subclasses).collect(Collectors.toList());
 
             } else {
                 classes = Streams.stream(model.listNamedClasses()).collect(Collectors.toList());

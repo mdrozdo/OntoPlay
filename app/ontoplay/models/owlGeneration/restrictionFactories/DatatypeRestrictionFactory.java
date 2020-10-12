@@ -1,6 +1,7 @@
 package ontoplay.models.owlGeneration.restrictionFactories;
 
 import ontoplay.models.ConfigurationException;
+import ontoplay.models.Constants;
 import ontoplay.models.ontologyModel.OntoProperty;
 import ontoplay.models.owlGeneration.RestrictionFactory;
 import ontoplay.models.propertyConditions.DatatypePropertyCondition;
@@ -8,6 +9,7 @@ import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLIndividual;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +50,10 @@ public class DatatypeRestrictionFactory implements RestrictionFactory<DatatypePr
 
     @Override
     public List<OWLAxiom> createIndividualValue(DatatypePropertyCondition condition, OWLIndividual individual) throws ConfigurationException {
+        if(condition.getPropertyUri().equalsIgnoreCase(Constants.HAS_LOCAL_NAME_URI)){
+            return new ArrayList<>();
+        }
+
         DatatypeRestrictionFactory factory = getOperatorRestrictionFactory(condition);
 
         return factory.createIndividualValue(condition, individual);
