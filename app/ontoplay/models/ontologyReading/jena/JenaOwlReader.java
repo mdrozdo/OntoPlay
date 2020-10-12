@@ -327,10 +327,6 @@ public class JenaOwlReader implements OntologyReader {
 
         OntProperty ontProp = model.getOntProperty(property.getUri());
 
-        if(ontProp.getRange() == null){
-            return getAllClassesFromPropertyRestriction
-        }
-
         for (ExtendedIterator<? extends OntResource> r = ontProp.listRange(); r.hasNext(); ) {
             OntResource res = r.next();
             if (ontProp.hasRange(res)) {
