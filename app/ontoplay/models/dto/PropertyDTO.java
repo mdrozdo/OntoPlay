@@ -7,18 +7,18 @@ import java.util.List;
 public class PropertyDTO extends OwlElementDTO {
 
     private final Double relevance;
-    private List<OwlElementDTO> domain;
+    private int domainSize;
 
 
-    public PropertyDTO(String namespace, String localName, List<OwlElementDTO> domain, Double relevance) {
+    public PropertyDTO(String namespace, String localName, int domainSize, Double relevance) {
         super(namespace, localName);
 
-        this.domain = domain;
+        this.domainSize = domainSize;
         this.relevance = relevance;
     }
 
-    public List<OwlElementDTO> getDomain() {
-        return domain;
+    public int getDomainSize() {
+        return domainSize;
     }
 
     public Double getRelevance() {
