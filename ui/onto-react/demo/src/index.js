@@ -207,13 +207,34 @@ class Demo extends Component {
                         'https://w3id.org/sxacml/access-control#concernsResource',
                     operator: 'constrainedBy',
                     classConstraintValue: {
-                        classUri:
-                            'https://w3id.org/sxacml/access-control#Resource',
+                        classUri: 'https://saref.etsi.org/core/HVAC',
                         propertyConditions: {
                             type: 'condition',
                             propertyUri:
                                 'https://saref.etsi.org/saref4bldg/isContainedIn',
-                            operator: 'equalToIndividual',
+                            operator: 'constrainedBy',
+                            classConstraintValue: {
+                                classUri:
+                                    'https://w3id.org/sxacml/sample-smartgrid/smartgrid#MeetingRoom',
+                                propertyConditions: [{}],
+                            },
+                        },
+                    },
+                },
+                {
+                    type: 'condition',
+                    propertyUri:
+                        'https://w3id.org/sxacml/access-control#inContextOf',
+                    operator: 'constrainedBy',
+                    classConstraintValue: {
+                        classUri:
+                            'https://w3id.org/sxacml/access-control#Environment',
+                        propertyConditions: {
+                            type: 'condition',
+                            propertyUri:
+                                'urn:oasis:names:tc:xacml:1.0:environment:current-time',
+                            operator: 'greaterThan',
+                            datatypeValue: '19:00',
                         },
                     },
                 },

@@ -21,6 +21,41 @@
         <owl:imports rdf:resource="https://w3id.org/sxacml/request"/>
         <owl:imports rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid-data"/>
     </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://saref.etsi.org/core/Actuator -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/core/Actuator">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Resource"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/core/Command -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/core/Command">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Action"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/core/Sensor -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/core/Sensor">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/sxacml/access-control#Resource"/>
+    </rdf:Description>
 </rdf:RDF>
 
 

@@ -19,6 +19,55 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/contains -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/contains">
+        <rdfs:domain rdf:resource="https://saref.etsi.org/saref4bldg/BuildingSpace"/>
+        <rdfs:range rdf:resource="https://saref.etsi.org/saref4bldg/PhysicalObject"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://saref.etsi.org/saref4bldg/isContainedIn -->
+
+    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/isContainedIn">
+        <rdfs:domain rdf:resource="https://saref.etsi.org/saref4bldg/PhysicalObject"/>
+        <rdfs:range rdf:resource="https://saref.etsi.org/saref4bldg/BuildingSpace"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid#targetTemperatureCelsius -->
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid#targetTemperatureCelsius">
+        <rdfs:domain rdf:resource="https://w3id.org/sxacml/sample-smartgrid/smartgrid#SetTargetTemperatureCommand"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -27,17 +76,11 @@
     
 
 
-    <!-- https://saref.etsi.org/core/Appliance -->
-
-    <rdf:Description rdf:about="https://saref.etsi.org/core/Appliance">
-        <owl:equivalentClass rdf:resource="https://saref.etsi.org/saref4bldg/AudioVisualAppliance"/>
-    </rdf:Description>
-    
-
-
     <!-- https://saref.etsi.org/core/HVAC -->
 
     <rdf:Description rdf:about="https://saref.etsi.org/core/HVAC">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/Actuator"/>
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4bldg/BuildingDevice"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://saref.etsi.org/core/controlsProperty"/>
@@ -45,12 +88,6 @@
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
-    
-
-
-    <!-- https://saref.etsi.org/saref4bldg/AudioVisualAppliance -->
-
-    <rdf:Description rdf:about="https://saref.etsi.org/saref4bldg/AudioVisualAppliance"/>
     
 
 
@@ -131,6 +168,30 @@
     <owl:Class rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid#AirConditioningUnit">
         <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/HVAC"/>
         <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4bldg/EnergyConversionDevice"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid#MeetingRoom -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid#MeetingRoom">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4bldg/BuildingSpace"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid#ServerRoom -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid#ServerRoom">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/saref4bldg/BuildingSpace"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/sxacml/sample-smartgrid/smartgrid#SetTargetTemperatureCommand -->
+
+    <owl:Class rdf:about="https://w3id.org/sxacml/sample-smartgrid/smartgrid#SetTargetTemperatureCommand">
+        <rdfs:subClassOf rdf:resource="https://saref.etsi.org/core/SetAbsoluteLevelCommand"/>
     </owl:Class>
     
 
