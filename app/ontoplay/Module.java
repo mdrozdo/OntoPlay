@@ -92,17 +92,26 @@ public class Module extends AbstractModule {
 
         DatatypeRestrictionFactory topLevelFactory = new DatatypeRestrictionFactory();
         topLevelFactory.registerOperatorRestrictionFactory(StringProperty.class, "equalTo", new EqualToRestrictionFactory("http://www.w3.org/2001/XMLSchema#string", factory));
+
         topLevelFactory.registerOperatorRestrictionFactory(IntegerProperty.class, "equalTo", new EqualToRestrictionFactory("http://www.w3.org/2001/XMLSchema#integer", factory));
         topLevelFactory.registerOperatorRestrictionFactory(IntegerProperty.class, "lessThan", new LessThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#integer", factory));
         topLevelFactory.registerOperatorRestrictionFactory(IntegerProperty.class, "greaterThan", new GreaterThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#integer", factory));
+
         topLevelFactory.registerOperatorRestrictionFactory(FloatProperty.class, "equalTo", new EqualToRestrictionFactory("http://www.w3.org/2001/XMLSchema#float", factory));
         topLevelFactory.registerOperatorRestrictionFactory(FloatProperty.class, "lessThan", new LessThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#float", factory));
         topLevelFactory.registerOperatorRestrictionFactory(FloatProperty.class, "greaterThan", new GreaterThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#float", factory));
+
         topLevelFactory.registerOperatorRestrictionFactory(DateTimeProperty.class, "equalTo", new DatetimeRestrictionFactoryDecorator(new EqualToRestrictionFactory("http://www.w3.org/2001/XMLSchema#dateTime", factory)));
         topLevelFactory.registerOperatorRestrictionFactory(DateTimeProperty.class, "lessThan",
                 new DatetimeRestrictionFactoryDecorator(new LessThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#dateTime", factory)));
         topLevelFactory.registerOperatorRestrictionFactory(DateTimeProperty.class, "greaterThan",
                 new DatetimeRestrictionFactoryDecorator(new GreaterThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#dateTime", factory)));
+
+        topLevelFactory.registerOperatorRestrictionFactory(TimeProperty.class, "equalTo", new TimeRestrictionFactoryDecorator(new EqualToRestrictionFactory("http://www.w3.org/2001/XMLSchema#time", factory)));
+        topLevelFactory.registerOperatorRestrictionFactory(TimeProperty.class, "lessThan",
+                new TimeRestrictionFactoryDecorator(new LessThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#time", factory)));
+        topLevelFactory.registerOperatorRestrictionFactory(TimeProperty.class, "greaterThan",
+                new TimeRestrictionFactoryDecorator(new GreaterThanRestrictionFactory("http://www.w3.org/2001/XMLSchema#time", factory)));
 
         return topLevelFactory;
     }
@@ -114,6 +123,7 @@ public class Module extends AbstractModule {
         topLevelFactory.registerPropertyFactory(new IntegerPropertyFactory());
         topLevelFactory.registerPropertyFactory(new FloatPropertyFactory());
         topLevelFactory.registerPropertyFactory(new DateTimePropertyFactory());
+        topLevelFactory.registerPropertyFactory(new TimePropertyFactory());
         topLevelFactory.registerPropertyFactory(new StringPropertyFactory());
         topLevelFactory.registerPropertyFactory(new ObjectPropertyFactory());
         return topLevelFactory;
@@ -160,11 +170,20 @@ public class Module extends AbstractModule {
 
     @Provides
     private PropertyConditionRenderer<DateTimeProperty> createDateTimePropertyRenderer() {
-        DatatypePropertyRenderer floatPropertyRenderer = new DatatypePropertyRenderer();
-        floatPropertyRenderer.registerPropertyOperator("equalTo", "is equal to ", true, new DateTimePropertyValueRenderer());
-        floatPropertyRenderer.registerPropertyOperator("greaterThan", "is greater than ", new DateTimePropertyValueRenderer());
-        floatPropertyRenderer.registerPropertyOperator("lessThan", "is less than ", new DateTimePropertyValueRenderer());
-        return floatPropertyRenderer;
+        DatatypePropertyRenderer propertyRenderer = new DatatypePropertyRenderer();
+        propertyRenderer.registerPropertyOperator("equalTo", "is equal to ", true, new DateTimePropertyValueRenderer());
+        propertyRenderer.registerPropertyOperator("greaterThan", "is greater than ", new DateTimePropertyValueRenderer());
+        propertyRenderer.registerPropertyOperator("lessThan", "is less than ", new DateTimePropertyValueRenderer());
+        return propertyRenderer;
+    }
+
+    @Provides
+    private PropertyConditionRenderer<TimeProperty> createTimePropertyRenderer() {
+        DatatypePropertyRenderer propertyRenderer = new DatatypePropertyRenderer();
+        propertyRenderer.registerPropertyOperator("equalTo", "is equal to ", true, new TimePropertyValueRenderer());
+        propertyRenderer.registerPropertyOperator("greaterThan", "is greater than ", new TimePropertyValueRenderer());
+        propertyRenderer.registerPropertyOperator("lessThan", "is less than ", new TimePropertyValueRenderer());
+        return propertyRenderer;
     }
 
 

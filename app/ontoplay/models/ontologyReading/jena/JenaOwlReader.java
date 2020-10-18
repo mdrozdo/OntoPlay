@@ -31,10 +31,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class JenaOwlReader implements OntologyReader {
-    private OntModel model;
-    private String ontologyNamespace;
     private final boolean ignorePropsWithNoDomain;
     private final OwlPropertyFactory owlPropertyFactory;
+    private OntModel model;
+    private String ontologyNamespace;
     private OntoplayConfig config;
 
     @Inject
@@ -110,11 +110,11 @@ public class JenaOwlReader implements OntologyReader {
      * @see models.PropertyProvider#getProperty(java.lang.String)
      */
     /*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * models.ontologyReading.jena.OntologyReader#getProperty(java.lang.String)
-	 */
+     * (non-Javadoc)
+     *
+     * @see
+     * models.ontologyReading.jena.OntologyReader#getProperty(java.lang.String)
+     */
     @Override
     public OntoProperty getProperty(String propertyUri) throws ConfigurationException {
         OntProperty ontProperty = model.getOntProperty(propertyUri);
@@ -142,7 +142,7 @@ public class JenaOwlReader implements OntologyReader {
                 .filterDrop(prop -> prop == null)
                 .toList();
 
-        if(properties.size() > 0) {
+        if (properties.size() > 0) {
             var relevanceRanking = calculateRelevanceRanking(properties);
 
             for (var prop : properties) {
@@ -174,8 +174,8 @@ public class JenaOwlReader implements OntologyReader {
 
         var rank = 0;
         var lastSize = sorted.get(0).getDomain().size();
-        for (var prop: sorted){
-            if(prop.getDomain().size() > lastSize){
+        for (var prop : sorted) {
+            if (prop.getDomain().size() > lastSize) {
                 rank++;
                 lastSize = prop.getDomain().size();
             }
@@ -187,7 +187,7 @@ public class JenaOwlReader implements OntologyReader {
         return rankingMap.entrySet().stream()
                 .collect(Collectors.toMap(
                         e -> e.getKey(),
-                        e -> (maxRank > 0) ? (Double.valueOf(maxRank-e.getValue()) / maxRank) : 1
+                        e -> (maxRank > 0) ? (Double.valueOf(maxRank - e.getValue()) / maxRank) : 1
                         )
                 );
 
@@ -216,30 +216,30 @@ public class JenaOwlReader implements OntologyReader {
     private OntoProperty createProperty(OntClass declaringClass, OntProperty prop) {
         List<OwlElement> domainClasses = null;
 
-        if(prop.getDomain() != null){
+        if (prop.getDomain() != null) {
             domainClasses = getRdfDomainClasses(declaringClass, prop);
 
-            if(domainClasses == null){
+            if (domainClasses == null) {
                 // If rdf domain is inapplicable to the declaring class, we shouldn't return the property at all.
                 return null;
             }
         }
 
-        if(domainClasses == null){
+        if (domainClasses == null) {
             domainClasses = getSchemaOrgDomainClasses(declaringClass, prop);
         }
 
-        if(domainClasses == null){
+        if (domainClasses == null) {
             domainClasses = getDomainClassesFromClassRestrictions(declaringClass, prop);
         }
 
-        if(domainClasses == null && !ignorePropsWithNoDomain){
+        if (domainClasses == null && !ignorePropsWithNoDomain) {
             //If no domain was specified and schema.org domains not found, grab rdf domain, which should really return
             //all classes.
             domainClasses = getRdfDomainClasses(declaringClass, prop);
         }
 
-        if(domainClasses == null){
+        if (domainClasses == null) {
             return null;
         }
 
@@ -249,27 +249,27 @@ public class JenaOwlReader implements OntologyReader {
 
     private List<OwlElement> getDomainClassesFromClassRestrictions(OntClass declaringClass, OntProperty property) {
         var classesIterator = property.listReferringRestrictions()
-                .mapWith(r->r.listSubClasses(false)
-                    .filterDrop(c -> c.isAnon() || c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing")));
+                .mapWith(r -> r.listSubClasses(false)
+                        .filterDrop(c -> c.isAnon() || c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing")));
 
         var classes = Streams.stream(Iterators.concat(classesIterator))
                 .distinct()
                 .collect(Collectors.toList());
 
         var allClassCount = model.listNamedClasses()
-                .filterDrop(c->c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Thing"))
-                .filterDrop(c->c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing"))
+                .filterDrop(c -> c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Thing"))
+                .filterDrop(c -> c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing"))
                 .toList()
                 .size();
 
-        if(classes.size() < allClassCount && classes.contains(declaringClass)){
+        if (classes.size() < allClassCount && classes.contains(declaringClass)) {
             return classes.stream().map(c -> createOwlClass(c)).collect(Collectors.toList());
         } else {
             return null;
         }
     }
 
-    private OwlElement createOwlClass(OntClass ontClass){
+    private OwlElement createOwlClass(OntClass ontClass) {
         return new OntoClass((OntClass) ontClass);
     }
 
@@ -277,7 +277,7 @@ public class JenaOwlReader implements OntologyReader {
     private List<OwlElement> getSchemaOrgDomainClasses(OntClass declaringClass, OntProperty property) {
         OntModel ontModel = property.getOntModel();
         var schemaDomainProperty = ontModel.getAnnotationProperty("http://schema.org/domainIncludes");
-        if(schemaDomainProperty == null){
+        if (schemaDomainProperty == null) {
             return null;
         }
 
@@ -292,12 +292,12 @@ public class JenaOwlReader implements OntologyReader {
 
         schemaDomainClasses.addAll(domainClassDescendants);
 
-        if(schemaDomainClasses.contains(declaringClass)) {
+        if (schemaDomainClasses.contains(declaringClass)) {
             return schemaDomainClasses.stream()
                     .filter(c -> !c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing"))
                     .map(c -> createOwlClass(c))
                     .collect(Collectors.toList());
-        } else{
+        } else {
             return null;
         }
     }
@@ -314,10 +314,10 @@ public class JenaOwlReader implements OntologyReader {
 
         // For some reason declaredProperties and listDeclaringClasses sometimes do not match.
         // if the declaring classes is not in the domain of the property, we shouldn't use it.
-        if(domainClasses.stream()
-                .anyMatch(c->c.getUri().equalsIgnoreCase(declaringClass.getURI()))) {
+        if (domainClasses.stream()
+                .anyMatch(c -> c.getUri().equalsIgnoreCase(declaringClass.getURI()))) {
             return domainClasses;
-        } else{
+        } else {
             return null;
         }
     }
@@ -345,10 +345,10 @@ public class JenaOwlReader implements OntologyReader {
         return classes;
     }
 
-    private Stream<OntClass> listSubclassesOrSelf(OntClass aClass){
+    private Stream<OntClass> listSubclassesOrSelf(OntClass aClass) {
         return Streams.concat(Stream.of(aClass),
                 Streams.stream(aClass.listSubClasses(false))
-                    .filter(c -> !c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing")));
+                        .filter(c -> !c.getURI().equalsIgnoreCase("http://www.w3.org/2002/07/owl#Nothing")));
     }
 
     /*
@@ -366,13 +366,14 @@ public class JenaOwlReader implements OntologyReader {
         OntClass ontClass = model.getOntClass(domainClassUri);
 
         classes = Streams.stream(ontProp.listReferringRestrictions())
-                .filter(r->r.isAllValuesFromRestriction()
+                .filter(r -> r.isAllValuesFromRestriction()
                         && r.hasSubClass(ontClass, false)
                         && r.asAllValuesFromRestriction().getAllValuesFrom() instanceof OntClass)
-                .flatMap(r-> listSubclassesOrSelf((OntClass) r.asAllValuesFromRestriction().getAllValuesFrom()))
-                        .collect(Collectors.toList());
+                .flatMap(r -> listSubclassesOrSelf((OntClass) r.asAllValuesFromRestriction().getAllValuesFrom()))
+                .filter(r -> !r.isAnon())
+                .collect(Collectors.toList());
 
-        if(classes.isEmpty()) {
+        if (classes.isEmpty()) {
 
             if (ontProp.getRange() != null) {
                 var range = Streams.stream(ontProp.listRange())
@@ -463,8 +464,8 @@ public class JenaOwlReader implements OntologyReader {
     @Override
     public List<OntoClass> getClasses() {
         List<OntoClass> classes = model.listNamedClasses()
-                .filterDrop(c->c.getURI().equals("http://www.w3.org/2002/07/owl#Nothing"))
-                .mapWith(c->new OntoClass(c))
+                .filterDrop(c -> c.getURI().equals("http://www.w3.org/2002/07/owl#Nothing"))
+                .mapWith(c -> new OntoClass(c))
                 .toList();
 
         return classes;
