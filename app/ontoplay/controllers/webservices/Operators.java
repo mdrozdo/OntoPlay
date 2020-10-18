@@ -28,13 +28,16 @@ public class Operators extends OntologyController {
         this.conditionRendererProvider = conditionRendererProvider;
     }
 
+    //TODO: Move this logic to the client side, PropertyDTO should have datatype as a parameter
     private static String getInputType(Class<? extends OntoProperty> propertyCLass) {
         String classAsString = (propertyCLass + "").toLowerCase();
         if (classAsString.indexOf("object") > -1)
             return "object";
         else if (classAsString.indexOf("float") > -1 || classAsString.indexOf("integer") > -1)
             return "number";
-        else if (classAsString.indexOf("date") > -1)
+        else if (classAsString.indexOf("time") > -1)
+            return "time";
+        else if (classAsString.indexOf("datetime") > -1)
             return "date";
         else if (classAsString.indexOf("boolean") > -1)
             return "checkbox";
