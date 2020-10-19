@@ -54,6 +54,7 @@ public class Individuals extends OntologyController {
             return ok(new GsonBuilder().create().toJson(individualDTOs));
         } catch (Exception e) {
             System.out.println("Error getting class individuals " + e.toString());
+            e.printStackTrace();
             return badRequest();
         }
     }

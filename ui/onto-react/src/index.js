@@ -19,8 +19,10 @@ class OntoReact extends Component {
                 : {
                     classUri: props.mainClass,
                     propertyConditions: [{}],
+                    classRelation: props.classRelation
                 },
             elementName: props.elementName,
+            classRelation: props.classRelation
         };
 
         this.conditionsChanged = this.conditionsChanged.bind(this);
@@ -30,6 +32,7 @@ class OntoReact extends Component {
     mainClassChanged(classUri) {
         const newCondition = {
             classUri: classUri,
+            classRelation: this.state.classRelation,
             propertyConditions: [{}],
         };
 
