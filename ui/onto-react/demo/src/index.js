@@ -197,8 +197,14 @@ class Demo extends Component {
                     operator: 'constrainedBy',
                     classConstraintValue: {
                         classUri:
-                            'https://w3id.org/sxacml/access-control#Update',
-                        propertyConditions: [{}],
+                            'https://w3id.org/sxacml/sample-smartgrid/smartgrid#SetTargetTemperatureCommand',
+                        propertyConditions: {
+                            type: 'condition',
+                            propertyUri:
+                                'https://w3id.org/sxacml/sample-smartgrid/smartgrid#targetTemperatureCelsius',
+                            operator: 'greaterThan',
+                            datatypeValue: '25',
+                        },
                     },
                 },
                 {
@@ -207,7 +213,8 @@ class Demo extends Component {
                         'https://w3id.org/sxacml/access-control#concernsResource',
                     operator: 'constrainedBy',
                     classConstraintValue: {
-                        classUri: 'https://saref.etsi.org/core/HVAC',
+                        classUri:
+                            'https://w3id.org/sxacml/sample-smartgrid/smartgrid#AirConditioningUnit',
                         propertyConditions: {
                             type: 'condition',
                             propertyUri:
@@ -240,6 +247,12 @@ class Demo extends Component {
                 },
             ],
         },
+    };
+
+    classMappingCondition = {
+        classUri: 'https://saref.etsi.org/core/HVAC',
+        classRelation: 'EQUIVALENT',
+        propertyConditions: {},
     };
 
     render() {
@@ -279,6 +292,26 @@ class Demo extends Component {
                         api: new OntoReact.Api(false),
                         title: 'Add new permission',
                         condition: this.classCondition,
+                    })}
+                </div>
+
+                <div className='container'>
+                    <h1>onto-react Demo - Class mapping</h1>
+                    {React.createElement(OntoReact.OntoReact, {
+                        mainClass: 'https://saref.etsi.org/core/HVAC',
+                        //api: false,
+                        elementName:
+                            'https://w3id.org/sxacml/sample-smartgrid/testRequest#ClimateControlDevice',
+                        isDescriptionOfIndividual: false,
+                        // headerComponent: OntoReact.InputNameHeader('Individual name'),
+                        headerComponent: OntoReact.MultiHeader(
+                            OntoReact.InputNameHeader('Class name: '),
+                            OntoReact.SelectClassHeader('Equivalent to class:')
+                        ),
+                        classRelation: 'EQUIVALENT',
+                        api: new OntoReact.Api(false),
+                        title: 'Add new class mapping',
+                        condition: this.classMappingCondition,
                     })}
                 </div>
             </span>
