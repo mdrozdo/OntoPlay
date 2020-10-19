@@ -152,7 +152,7 @@ public class OntologyUtils {
 
 
     public String nameToUri(String name, String ontologyNamespace) {
-        if (name.contains("#")) {
+        if (name.contains("#") || name.startsWith("http")) {
             return name;
         } else {
             return joinNamespaceAndName(ontologyNamespace, name);
