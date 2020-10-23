@@ -22,7 +22,7 @@ public class TimeRestrictionFactoryDecorator extends DatatypeRestrictionFactory 
 
     @Override
     public OWLClassExpression createRestriction(DatatypePropertyCondition condition) throws ConfigurationException {
-        DateTime datetime = DateTimeFormat.forPattern("HH:mm:ss").parseDateTime(condition.getDatatypeValue().trim());
+        DateTime datetime = DateTimeFormat.forPattern("HH:mm").parseDateTime(condition.getDatatypeValue().trim());
 
         //10/26/2001 00:00
         condition.setDatatypeValue(datetime.toString(ISODateTimeFormat.hourMinuteSecond()));
@@ -31,7 +31,7 @@ public class TimeRestrictionFactoryDecorator extends DatatypeRestrictionFactory 
 
     @Override
     public List<OWLAxiom> createIndividualValue(DatatypePropertyCondition condition, OWLIndividual individual) throws ConfigurationException {
-        DateTime datetime = DateTimeFormat.forPattern("HH:mm:ss").parseDateTime(condition.getDatatypeValue().trim());
+        DateTime datetime = DateTimeFormat.forPattern("HH:mm").parseDateTime(condition.getDatatypeValue().trim());
 
         //10/26/2001 00:00
         condition.setDatatypeValue(datetime.toString(ISODateTimeFormat.hourMinuteSecond()));

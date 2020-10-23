@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class OntologyUtils {
 
@@ -73,7 +74,7 @@ public class OntologyUtils {
         OWLOntology newOntology = null;
 
         try {
-            newOntology = mergeOntologies(generatedOntology.getOntologyID().getOntologyIRI().orElse(null), originalOntology, generatedOntology);
+            newOntology = mergeOntologies(originalOntology.getOntologyID().getOntologyIRI().orElse(null), originalOntology, generatedOntology);
         } catch (org.semanticweb.owlapi.model.OWLOntologyCreationException | OWLOntologyStorageException
                 | IOException e) {
             e.printStackTrace();
@@ -107,6 +108,12 @@ public class OntologyUtils {
 
             String filePath = config.getOntologyFilePath();
             String ontologyNamespace = ontoReader.getOntologyNamespace();
+
+            OWLOntologyIRIMapperImpl iriMapper = new OWLOntologyIRIMapperImpl();
+            for (FolderMapping mapping : config.getMappings()) {
+                iriMapper.addMapping(IRI.create(mapping.getUri()), IRI.create(mapping.getFolderPath()));
+            }
+            OWLmanager.addIRIMapper(iriMapper);
 
             try {
                 originalOntology = OWLmanager.loadOntologyFromOntologyDocument(new File(filePath));
@@ -179,7 +186,7 @@ public class OntologyUtils {
         OWLOntology mergedOntology = owlManager.createOntology(mergedOntologyIRI);
         for (OWLOntology ontology : ontologies) {
             owlManager.addAxioms(mergedOntology, ontology.getAxioms());
-            Set<OWLOntology> imports = ontology.getImports();
+            Set<OWLOntology> imports = ontology.directImports().collect(Collectors.toSet());
             for (Iterator<OWLOntology> it = imports.iterator(); it.hasNext(); ) {
                 OWLOntology onto = it.next();
                 addImportToOntology(mergedOntology, onto.getOntologyID().getOntologyIRI().orElse(null));
