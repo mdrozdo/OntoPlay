@@ -1,9 +1,14 @@
 package ontoplay.models.owlGeneration.restrictionFactories;
 
+import ontoplay.OntoplayConfig;
 import ontoplay.models.ConfigurationException;
+import ontoplay.models.Constants;
+import ontoplay.models.PropertyConditionType;
+import ontoplay.models.PropertyGroupCondition;
 import ontoplay.models.dto.update.Annotation;
 import ontoplay.models.owlGeneration.*;
 import ontoplay.models.propertyConditions.ClassValueCondition;
+import ontoplay.models.propertyConditions.DatatypePropertyCondition;
 import org.semanticweb.owlapi.model.*;
 
 import javax.inject.Inject;
@@ -17,14 +22,16 @@ public class ClassValueRestrictionFactory implements RestrictionFactory<ClassVal
     private final OWLDataFactory factory;
     private final ClassRestrictionGenerator classRestrictionGenerator;
     private final IndividualGenerator individualGenerator;
+    private final OntoplayConfig config;
 
     //TODO: Extract some small interface from OWLApiKB just for generating class restrictions
     @Inject
     public ClassValueRestrictionFactory(ClassRestrictionGeneratorFactory classRestrictionGeneratorFactory, IndividualGeneratorFactory individualGeneratorFactory,
-                                        OWLDataFactory factory) {
+                                        OWLDataFactory factory, OntoplayConfig config) {
         this.classRestrictionGenerator = classRestrictionGeneratorFactory.create(factory);
         this.individualGenerator = individualGeneratorFactory.create(factory);
         this.factory = factory;
+        this.config = config;
     }
 
     @Override
@@ -39,7 +46,12 @@ public class ClassValueRestrictionFactory implements RestrictionFactory<ClassVal
     @Override
     public List<OWLAxiom> createIndividualValue(ClassValueCondition condition, OWLIndividual individual) throws ConfigurationException {
         OWLObjectProperty conditionProperty = factory.getOWLObjectProperty(IRI.create(condition.getPropertyUri()));
-        OWLIndividual nestedIndividual = factory.getOWLAnonymousIndividual();
+
+        String individualUri = extractIndividualUri(condition);
+
+        OWLIndividual nestedIndividual = individualUri == null
+                ? factory.getOWLAnonymousIndividual()
+                : factory.getOWLNamedIndividual(IRI.create(config.getOntologyNamespace() + individualUri));
 
         List<OWLAxiom> nestedAxioms = individualGenerator.createPropertyAxioms(nestedIndividual, condition.getClassConstraintValue());
         OWLObjectPropertyAssertionAxiom assertion = factory.getOWLObjectPropertyAssertionAxiom(conditionProperty, individual, nestedIndividual);
@@ -62,6 +74,31 @@ public class ClassValueRestrictionFactory implements RestrictionFactory<ClassVal
             result.add(ax);
         }
         return result;
+    }
+
+    private String extractIndividualUri(ClassValueCondition condition) {
+        var innerCondition = condition.getClassConstraintValue().getPropertyConditions();
+        if (innerCondition instanceof DatatypePropertyCondition) {
+            var innerDatatypeCondition = (DatatypePropertyCondition) innerCondition;
+            if (innerDatatypeCondition.getPropertyUri().equalsIgnoreCase(Constants.HAS_LOCAL_NAME_URI)) {
+                return innerDatatypeCondition.getDatatypeValue();
+            } else {
+                return null;
+            }
+        } else if (innerCondition instanceof PropertyGroupCondition) {
+            var innerGroupCondition = (PropertyGroupCondition) innerCondition;
+            if (innerGroupCondition.getType() == PropertyConditionType.VALUES) {
+                return innerGroupCondition.getContents().stream()
+                        .filter(c -> c instanceof DatatypePropertyCondition
+                                && ((DatatypePropertyCondition) c).getPropertyUri().equalsIgnoreCase(Constants.HAS_LOCAL_NAME_URI))
+                        .map(c -> ((DatatypePropertyCondition) c).getDatatypeValue())
+                        .findFirst().orElse(null);
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
     }
 
 

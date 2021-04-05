@@ -21,7 +21,7 @@ public interface OntologyReader extends PropertyProvider {
 
     List<OwlIndividual> getIndividualsInRange(OntoClass owlClass, OntoProperty property);
 
-    List<OntoClass> getClassesInRange(OntoProperty property);
+    List<OntoClass> getClassesInRange(String domainClassUri, String propertyUri);
 
     List<OwlIndividual> getIndividuals(OntoClass owlClass);
 

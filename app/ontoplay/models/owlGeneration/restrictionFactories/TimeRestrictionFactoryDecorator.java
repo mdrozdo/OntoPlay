@@ -12,29 +12,29 @@ import org.semanticweb.owlapi.model.OWLIndividual;
 
 import java.util.List;
 
-public class DatetimeRestrictionFactoryDecorator extends DatatypeRestrictionFactory {
+public class TimeRestrictionFactoryDecorator extends DatatypeRestrictionFactory {
 
     private final RestrictionFactory<DatatypePropertyCondition> restrictionFactory;
 
-    public DatetimeRestrictionFactoryDecorator(RestrictionFactory<DatatypePropertyCondition> restrictionFactory) {
+    public TimeRestrictionFactoryDecorator(RestrictionFactory<DatatypePropertyCondition> restrictionFactory) {
         this.restrictionFactory = restrictionFactory;
     }
 
     @Override
     public OWLClassExpression createRestriction(DatatypePropertyCondition condition) throws ConfigurationException {
-        DateTime datetime = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm").parseDateTime(condition.getDatatypeValue().trim());
+        DateTime datetime = DateTimeFormat.forPattern("HH:mm").parseDateTime(condition.getDatatypeValue().trim());
 
         //10/26/2001 00:00
-        condition.setDatatypeValue(datetime.toString(ISODateTimeFormat.dateHourMinuteSecond()));
+        condition.setDatatypeValue(datetime.toString(ISODateTimeFormat.hourMinuteSecond()));
         return restrictionFactory.createRestriction(condition);
     }
 
     @Override
     public List<OWLAxiom> createIndividualValue(DatatypePropertyCondition condition, OWLIndividual individual) throws ConfigurationException {
-        DateTime datetime = DateTimeFormat.forPattern("yy-mm-dd HH:mm").parseDateTime(condition.getDatatypeValue().trim());
+        DateTime datetime = DateTimeFormat.forPattern("HH:mm").parseDateTime(condition.getDatatypeValue().trim());
 
         //10/26/2001 00:00
-        condition.setDatatypeValue(datetime.toString(ISODateTimeFormat.dateHourMinuteSecond()));
+        condition.setDatatypeValue(datetime.toString(ISODateTimeFormat.hourMinuteSecond()));
         return restrictionFactory.createIndividualValue(condition, individual);
     }
 

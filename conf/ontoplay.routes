@@ -31,14 +31,14 @@ POST /annotation/configuration/deleteAllRelations 							ontoplay.controllers.co
 
 #properties
 GET /api/properties/class/:className 		ontoplay.controllers.webservices.Properties.getPropertiesByClassName(className: String)
-GET /api/properties/operators/:propertyUrl/:isDescriptionOfIndividual ontoplay.controllers.webservices.Operators.getOpertors(propertyUrl: String,isDescriptionOfIndividual: Boolean)
+GET /api/properties/operators/:propertyUrl/:isDescriptionOfIndividual ontoplay.controllers.webservices.Operators.getOperators(propertyUrl: String,isDescriptionOfIndividual: Boolean)
 
 #annotations
 GET /api/annotationProperties/get/:componentUri ontoplay.controllers.webservices.Annotations.getAnnotationPropertyByUri(componentUri: String)
 
 
 #classes
-GET /api/class/property/:propertyUri		ontoplay.controllers.webservices.Classes.getClassesByProperty(propertyUri: String)
+GET /api/class/:className/property/:propertyUri		ontoplay.controllers.webservices.Classes.getClassesByProperty(className:String, propertyUri: String)
 GET /api/class		                        ontoplay.controllers.webservices.Classes.getClasses()
 POST /api/class/save                        ontoplay.controllers.webservices.Classes.addClassExpression()
 GET /addClassExpression/:className		ontoplay.controllers.Operations.addClassExpression(className: String)

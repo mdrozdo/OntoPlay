@@ -67,7 +67,7 @@ public class JenaKBGridTest {
 
         assertThat(memoryClass).isNotNull();
         assertThat(selectLocalNames(memoryClass.getProperties())).containsOnly(
-                "hasModelName", "hasName", "hasID", "belongToVO", "hasTotalSize", "hasAvailableSize");
+                "testProperty", "hasModelName", "hasName", "hasID", "belongToVO", "hasTotalSize", "hasAvailableSize");
     }
 
     @Test
@@ -98,6 +98,22 @@ public class JenaKBGridTest {
 
         assertThat(selectLocalNames(domainElements)).containsOnly( "Memory", "StorageSpace", "GPUMemory", "VirtualMemory", "PhysicalMemory");
     }
+
+    @Test
+    public void getClass_ReturnedPropertiesIncludeDomainFromClassRestrictions() throws Exception {
+
+        OntoClass memoryClass = kb.getOwlClass("http://gridagents.sourceforge.net/AiGGridOntology#TestClass1");
+
+        assertThat(memoryClass).isNotNull();
+        List<OwlElement> domainElements = memoryClass.getProperties().stream()
+                .filter(p -> "testProperty2".equalsIgnoreCase(p.getLocalName()))
+                .findAny()
+                .map(p->p.getDomain())
+                .get();
+
+        assertThat(selectLocalNames(domainElements)).containsOnly( "TestClass1", "TestClass2", "TestSubclass");
+    }
+
 
 
     @Test

@@ -6,6 +6,7 @@ package ontoplay.models;
 public class Constants {
 
     public final static String DATE_TIME_RANGES = "http://www.w3.org/2001/XMLSchema#dateTime";
+    public final static String TIME_RANGES = "http://www.w3.org/2001/XMLSchema#time";
     public final static String FLOAT_DATA_RANGES = "http://www.w3.org/2001/XMLSchema#float,"
             + "http://www.w3.org/2001/XMLSchema#decimal,"
             + "http://www.w3.org/2001/XMLSchema#double,"
@@ -20,10 +21,14 @@ public class Constants {
             + "http://www.w3.org/2000/01/rdf-schema#Literal";
 
     public final static String DATE_MAIN_RANGE = "http://www.w3.org/2001/XMLSchema#dateTime";
+    public final static String TIME_MAIN_RANGE = "http://www.w3.org/2001/XMLSchema#time";
     public final static String FLOAT_MAIN_RANGE = "http://www.w3.org/2001/XMLSchema#float";
     public final static String STRING_MAIN_RANGE = "http://www.w3.org/2001/XMLSchema#string";
     public final static String INTEGER_MAIN_RANGE = "http://www.w3.org/2001/XMLSchema#integer";
 
+    public final static String HAS_LOCAL_NAME_NS = "https://w3id.org/sxacml/ontoplay#";
+    public final static String HAS_LOCAL_NAME_NAME = "hasLocalName";
+    public final static String HAS_LOCAL_NAME_URI = HAS_LOCAL_NAME_NS + HAS_LOCAL_NAME_NAME;
 
     /**
      * Translation to main data property types ranges
@@ -34,6 +39,8 @@ public class Constants {
     public static final String translateDataType(String dataType) {
         if (Constants.DATE_TIME_RANGES.indexOf(dataType) > -1)
             return Constants.DATE_MAIN_RANGE;
+        if (Constants.TIME_RANGES.indexOf(dataType) > -1)
+            return Constants.TIME_MAIN_RANGE;
         if (Constants.FLOAT_DATA_RANGES.indexOf(dataType) > -1)
             return Constants.FLOAT_MAIN_RANGE;
         if (Constants.STRING_DATA_RANGES.indexOf(dataType) > -1)

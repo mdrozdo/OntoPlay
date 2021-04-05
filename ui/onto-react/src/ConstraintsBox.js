@@ -625,6 +625,7 @@ class ConditionBox extends Component {
                                 value={this.emptyIfNullOrUndefined(
                                     selectedClassUri
                                 )}
+                                classUri={this.props.classUri}
                                 propertyUri={propertyUri}
                                 selectionChanged={(c) =>
                                     this.nestedConditionCreated(c)
@@ -637,6 +638,7 @@ class ConditionBox extends Component {
                                 value={this.emptyIfNullOrUndefined(
                                     valueClassUri
                                 )}
+                                classUri={this.props.classUri}
                                 propertyUri={propertyUri}
                                 selectionChanged={(c) => this.classSelected(c)}
                             />

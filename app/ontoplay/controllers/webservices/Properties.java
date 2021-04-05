@@ -3,6 +3,7 @@ package ontoplay.controllers.webservices;
 import com.google.gson.GsonBuilder;
 import ontoplay.controllers.OntologyController;
 import ontoplay.controllers.utils.OntologyUtils;
+import ontoplay.models.Constants;
 import ontoplay.models.dto.OwlElementDTO;
 import ontoplay.models.dto.PropertyDTO;
 import ontoplay.models.ontologyModel.OntoClass;
@@ -32,15 +33,15 @@ public class Properties extends OntologyController {
             List<OntoProperty> properties = owlClass.getProperties();
             var propertiesDTO = properties.stream()
                     .map(p -> {
-                        var domain = p.getDomain()
-                                .stream()
-                                .map(el -> new OwlElementDTO(el.getUri(), el.getLocalName())).collect(Collectors.toList());
+                        var domainSize = p.getDomain().size();
 
-                        return new PropertyDTO(p.getUri(), p.getLocalName(), domain, p.getRelevance());
+                        return new PropertyDTO(p.getUri(), p.getLocalName(), domainSize, p.getRelevance());
                     })
                     .sorted(Comparator.comparing(PropertyDTO::getRelevance).reversed()
                         .thenComparing(PropertyDTO::getLocalName))
                     .collect(Collectors.toList());
+
+            propertiesDTO.add(new PropertyDTO(Constants.HAS_LOCAL_NAME_URI, Constants.HAS_LOCAL_NAME_NAME, 1, 1.0));
 
             return ok(new GsonBuilder().create().toJson(propertiesDTO));
         } catch (Exception e) {

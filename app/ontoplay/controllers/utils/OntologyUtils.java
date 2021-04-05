@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class OntologyUtils {
 
@@ -50,7 +51,7 @@ public class OntologyUtils {
     }
 
     public String joinNamespaceAndName(String namespace, String name) {
-        return String.format("%s#%s", namespace, name);
+        return String.format("%s%s", namespace, name);
     }
 
     public boolean saveOntology(OWLOntology generatedOntology) {
@@ -67,17 +68,15 @@ public class OntologyUtils {
             originalOntology = owlManager.loadOntologyFromOntologyDocument(new File(config.getOntologyFilePath()));
 
         } catch (OWLOntologyCreationException e1) {
-            System.out.print("Error at OntologyUtils.saveOntology 47" + e1.getMessage());
             e1.printStackTrace();
         }
 
         OWLOntology newOntology = null;
 
         try {
-            newOntology = mergeOntologies(generatedOntology.getOntologyID().getOntologyIRI().orElse(null), originalOntology, generatedOntology);
+            newOntology = mergeOntologies(originalOntology.getOntologyID().getOntologyIRI().orElse(null), originalOntology, generatedOntology);
         } catch (org.semanticweb.owlapi.model.OWLOntologyCreationException | OWLOntologyStorageException
                 | IOException e) {
-            System.out.print("Error at OntologyUtils.saveOntology 58 " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -87,14 +86,13 @@ public class OntologyUtils {
             out = new FileOutputStream(config.getOntologyFilePath());
             owlManager.saveOntology(newOntology, originalFormat, out);
         } catch (Exception e) {
-            System.out.print("Error at OntologyUtils.saveOntology 66" + e.getMessage());
             e.printStackTrace();
         } finally {
             if (out != null) {
                 try {
                     out.close();
                 } catch (Exception e) {
-                    System.out.print("Error at OntologyUtils.saveOntology 73" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
         }
@@ -111,10 +109,16 @@ public class OntologyUtils {
             String filePath = config.getOntologyFilePath();
             String ontologyNamespace = ontoReader.getOntologyNamespace();
 
+            OWLOntologyIRIMapperImpl iriMapper = new OWLOntologyIRIMapperImpl();
+            for (FolderMapping mapping : config.getMappings()) {
+                iriMapper.addMapping(IRI.create(mapping.getUri()), IRI.create(mapping.getFolderPath()));
+            }
+            OWLmanager.addIRIMapper(iriMapper);
+
             try {
                 originalOntology = OWLmanager.loadOntologyFromOntologyDocument(new File(filePath));
             } catch (OWLOntologyCreationException e1) {
-                // TODO Auto-generated catch block
+                e1.printStackTrace();
                 return false;
             }
 
@@ -124,7 +128,7 @@ public class OntologyUtils {
                 newOntology = mergeOntologies(test, originalOntology, generatedOntology);
             } catch (org.semanticweb.owlapi.model.OWLOntologyCreationException
                     | OWLOntologyStorageException | IOException e) {
-                // TODO Auto-generated catch block
+                e.printStackTrace();
                 return false;
             }
 
@@ -132,31 +136,30 @@ public class OntologyUtils {
 
             try {
                 OutputStream out = new FileOutputStream(checkFilePath);
-                //out.write(5);
                 OWLmanager.saveOntology(newOntology, out);
                 try {
                     out.close();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                     return false;
                 }
             } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
+                e.printStackTrace();
                 return false;
             } catch (OWLOntologyStorageException e) {
-                // TODO Auto-generated catch block
+                e.printStackTrace();
                 return false;
             }
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
 
 
     public String nameToUri(String name, String ontologyNamespace) {
-        if (name.contains("#")) {
+        if (name.contains("#") || name.startsWith("http")) {
             return name;
         } else {
             return joinNamespaceAndName(ontologyNamespace, name);
@@ -183,7 +186,7 @@ public class OntologyUtils {
         OWLOntology mergedOntology = owlManager.createOntology(mergedOntologyIRI);
         for (OWLOntology ontology : ontologies) {
             owlManager.addAxioms(mergedOntology, ontology.getAxioms());
-            Set<OWLOntology> imports = ontology.getImports();
+            Set<OWLOntology> imports = ontology.directImports().collect(Collectors.toSet());
             for (Iterator<OWLOntology> it = imports.iterator(); it.hasNext(); ) {
                 OWLOntology onto = it.next();
                 addImportToOntology(mergedOntology, onto.getOntologyID().getOntologyIRI().orElse(null));

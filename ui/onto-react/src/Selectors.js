@@ -80,7 +80,7 @@ class PropertySelector extends Component {
         const options = this.state.properties.map((p) => ({
             id: p.uri,
             label: p.localName,
-            domainSize: p.domain.length,
+            domainSize: p.domainSize,
             relevance: p.relevance.toFixed(2)
         }));
         const selected = getSelectedOption(options, this.props.value);
@@ -216,6 +216,7 @@ class ConditionClassSelector extends Component {
         this.state = {
             classes: [],
             propertyUri: props.propertyUri,
+            classUri: props.classUri,
             dataLoaded: false
         };
 
@@ -228,7 +229,8 @@ class ConditionClassSelector extends Component {
             return {
                 classes: [],
                 propertyUri: nextProps.propertyUri,
-                dataLoaded: false
+                classUri: nextProps.classUri,
+                dataLoaded: false,
             };
         } else {
             return null;
@@ -244,7 +246,7 @@ class ConditionClassSelector extends Component {
 
     loadData() {
         this.setState({ dataLoaded: true });
-        return this.props.api.getClasses(this.state.propertyUri)
+        return this.props.api.getClasses(this.state.classUri, this.state.propertyUri)
             .then(response => {
                 this.setState({
                     classes: this.state.classes.concat(response)
